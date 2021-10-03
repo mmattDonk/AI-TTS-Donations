@@ -1,5 +1,25 @@
 # AI-TTS-Donations
+
 💰 A bot that uses Uberduck AI to make bit donations have an AI voice.
+
+### How to run
+
+1. Clone the repo
+2. Obtain the following keys:
+
+    1. [An Uberduck API key and secret](https://uberduck.ai/account/manage)
+    2. [A Twitch Client Id and secret](https://dev.twitch.tv/console/apps/create)
+        - Add an OAuth Redirect URI of `http://localhost:17563/`
+
+3. Create a .env with the following keys:
+    ```
+    UBERDUCK_USERNAME=<The "Key" from uberduck.ai>
+    UBERDUCK_SECRET=<The "Secret" from uberduck.ai>
+    TWITCH_CLIENT_ID=<The "Client Id" from dev.twitch.tv>
+    TWITCH_SECRET=<The "Client Secret" from dev.twitch.tv>
+    ```
+4. Run `python3 bot.py`
+    - This will install all of the needed dependencies and start the bot.
 
 ### 🙌 Code Contributors
 
@@ -14,4 +34,3 @@
     </td>
 </tr>
 </table>
-
