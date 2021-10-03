@@ -11,6 +11,9 @@ Changes unreleased.
 
 ### Documentation
 
+- README:
+  - Added documentation on how to run the bot (#2) ([948c57b](https://github.com/mmattDonk/AI-TTS-Donations/commit/948c57ba063767be9b548f78ecb2f5d67bfd5aaf)) ([#2](https://github.com/mmattDonk/AI-TTS-Donations/pull/2))
+
 - CONTRIBUTING:
   - Added CONTRIBUTING.md ([b83d216](https://github.com/mmattDonk/AI-TTS-Donations/commit/b83d21696594b6380a697d17e12ea16f630ae875))
 
