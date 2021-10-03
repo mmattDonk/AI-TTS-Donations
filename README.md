@@ -9,7 +9,7 @@
 
     1. [An Uberduck API key and secret](https://uberduck.ai/account/manage)
     2. [A Twitch Client Id and secret](https://dev.twitch.tv/console/apps/create)
-        - Add an OAuth Redirect URI of `http://localhost:3000/`
+        - Add an OAuth Redirect URI of `http://localhost:17563/`
 
 3. Create a .env with the following keys:
     ```
