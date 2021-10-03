@@ -1,0 +1,30 @@
+name: Lint
+
+on: [push]
+
+jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: Install Python dependencies
+        run: pip install black
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v1
+        with:
+          black: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          auto_fix: true
+          git_name: 'Linting BOT'
+          git_email: 'matt@mmatt.net'
+          commit_message: '✨ [auto lint]'
