@@ -9,7 +9,7 @@ jobs:
     - uses: BobAnkh/add-contributors@master
       with:
         REPO_NAME: 'mmattDonk/AI-TTS-Donations'
-        CONTRIBUTOR: '### 🙌 Code Contributors'
+        CONTRIBUTOR: "### 🙌 Code Contributors"
         COLUMN_PER_ROW: '6'
         ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
         IMG_WIDTH: '100'
