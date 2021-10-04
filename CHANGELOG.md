@@ -7,6 +7,7 @@ Changes unreleased.
 ### Feature
 
 - core:
+  - Bot at least stays online ([d195eb8](https://github.com/mmattDonk/AI-TTS-Donations/commit/d195eb884cd030524bf53e54d26b9e5a793e2d87))
   - Added the bot's core. ([30bb93b](https://github.com/mmattDonk/AI-TTS-Donations/commit/30bb93bd46e556309e4e2c6ebb16ef2b4d362205))
 
 ### Documentation
