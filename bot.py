@@ -11,12 +11,10 @@ else:
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
-from pprint import pprint
 from uuid import UUID
 from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
-import requests
-import asyncio
+import httpx
 
 
 load_dotenv()
@@ -24,21 +22,25 @@ load_dotenv()
 
 def callback_whisper(uuid: UUID, data: dict) -> None:
     print("got callback for UUID " + str(uuid))
-    pprint(data)
-    with requests(
-        "GET",
+    print(data)
+    request_auth = httpx.DigestAuth(
+        os.environ.get("UBERDUCK_USERNAME"), os.environ.get("UBERDUCK_SECRET")
+    )
+    response = httpx.get(
         "https://api.uberduck.ai/speak",
+        auth=request_auth,
         data={
             "speech": "test",
             "voice": "eminem",
         },
-        auth={
-            "username": os.environ.get("UBERDUCK_USERNAME"),
-            "password": os.environ.get("UBERDUCK_SECRET"),
-        },
-    ) as response:
-        print(response)
-        print("dank")
+        timeout=60.00,
+    )
+
+    print("dank")
+    print(response.status_code)
+    print("dank2")
+    print(response.json())
+    print("dank3")
 
 
 # setting up Authentication and getting your user id
