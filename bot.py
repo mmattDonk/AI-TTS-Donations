@@ -31,7 +31,9 @@ load_dotenv()
 
 def callback_whisper(uuid: UUID, data: dict) -> None:
 
-    if config["MIN_BIT_AMOUNT"] >= bits:  # Make bits a valid variable later.
+    bits = data["event"]["bits"]
+
+    if config["MIN_BIT_AMOUNT"] >= bits:
         return
 
     message = data["event"]["message"]
