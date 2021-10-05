@@ -1,12 +1,12 @@
 import os
 import sys
 
-print(sys.argv)
-if "dev".lower() in sys.argv:
-    print("Starting in DEV mode")
-else:
-    os.system("git pull origin main")
-    os.system("pip install -U -r requirements.txt")
+# print(sys.argv)
+# if "dev".lower() in sys.argv:
+#     print("Starting in DEV mode")
+# else:
+#     os.system("git pull origin main")
+#     os.system("pip install -U -r requirements.txt")
 
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
 import httpx
 import time
+import re
 
 from playsound import playsound
 import urllib.request
@@ -24,12 +25,20 @@ load_dotenv()
 
 
 def callback_whisper(uuid: UUID, data: dict) -> None:
+    print(data)
 
-    message = data["event"]["message"]
+    message = data["data"]["chat_message"]
+    message = re.sub("cheer\d*", "", message)
+    if message[0] == " ":
+        message = message[1:]
+
+    print(message)
 
     voice = message.split(": ")[0]
     voice = voice.lower()
+    print(voice)
     text = message.split(": ")[1]
+    print(text)
 
     response = httpx.post(
         "https://api.uberduck.ai/speak",
