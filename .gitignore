@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Voice
+AI_voice.wav
+AI_voice.mp3

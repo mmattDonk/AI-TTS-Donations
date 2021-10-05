@@ -17,6 +17,7 @@
     UBERDUCK_SECRET=<The "Secret" from uberduck.ai>
     TWITCH_CLIENT_ID=<The "Client Id" from dev.twitch.tv>
     TWITCH_SECRET=<The "Client Secret" from dev.twitch.tv>
+    TWITCH_USERNAME=<The streamer's Twitch username from twitch.tv>
     ```
 4. Run `python3 bot.py`
     - This will install all of the needed dependencies and start the bot.

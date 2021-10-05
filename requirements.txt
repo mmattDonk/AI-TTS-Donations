@@ -8,3 +8,5 @@ python_dotenv == 0.19.0
 
 # ai-tts-donations/bot.py: 11,12,13,16
 twitchAPI == 2.4.2
+
+pyobjc==7.3

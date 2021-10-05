@@ -15,32 +15,61 @@ from uuid import UUID
 from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
 import httpx
+import time
 
+from playsound import playsound
+import urllib.request
 
 load_dotenv()
 
 
 def callback_whisper(uuid: UUID, data: dict) -> None:
-    print("got callback for UUID " + str(uuid))
-    print(data)
-    request_auth = httpx.DigestAuth(
-        os.environ.get("UBERDUCK_USERNAME"), os.environ.get("UBERDUCK_SECRET")
-    )
-    response = httpx.get(
+
+    message = data["event"]["message"]
+
+    voice = message.split(": ")[0]
+    voice = voice.lower()
+    text = message.split(": ")[1]
+
+    response = httpx.post(
         "https://api.uberduck.ai/speak",
-        auth=request_auth,
-        data={
-            "speech": "test",
-            "voice": "eminem",
+        auth=(os.environ.get("UBERDUCK_USERNAME"), os.environ.get("UBERDUCK_SECRET")),
+        json={
+            "speech": text,
+            "voice": voice,
         },
-        timeout=60.00,
+        timeout=10.00,
     )
 
-    print("dank")
-    print(response.status_code)
-    print("dank2")
     print(response.json())
-    print("dank3")
+
+    if response.json()["uuid"] is not None:
+        print("dank0")
+
+        danking = True
+        while danking:
+            ud_ai = httpx.get(
+                f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
+                auth=(
+                    os.environ.get("UBERDUCK_USERNAME"),
+                    os.environ.get("UBERDUCK_SECRET"),
+                ),
+                timeout=120.00,
+            )
+            print(ud_ai.url)
+
+            print("dank1")
+
+            print(ud_ai.json())
+            if ud_ai.json()["path"] != None:
+                print("DANK ALERT")
+                urllib.request.urlretrieve(ud_ai.json()["path"], "AI_voice.wav")
+                time.sleep(1)
+                playsound("./AI_voice.wav")
+                danking = False
+            else:
+                print("false danking")
+                time.sleep(1)
 
 
 # setting up Authentication and getting your user id
@@ -53,10 +82,11 @@ token, refresh_token = auth.authenticate()
 # add User authentication
 twitch.set_user_authentication(token, target_scope, refresh_token)
 
-user_id = twitch.get_users(logins=["mmattbtw"])["data"][0]["id"]
+user_id = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][0]["id"]
 
 # starting up PubSub
 pubsub = PubSub(twitch)
 pubsub.start()
 # you can either start listening before or after you started pubsub.
-uuid = pubsub.listen_channel_points(user_id, callback_whisper)
+uuid = pubsub.listen_bits(user_id, callback_whisper)
+print("Pubsub Ready.")
