@@ -22,7 +22,7 @@ import urllib.request
 
 import json
 
-with open('config.json', 'r') as f:
+with open("config.json", "r") as f:
     config = json.load(f)
 
 
@@ -31,12 +31,12 @@ load_dotenv()
 
 def callback_whisper(uuid: UUID, data: dict) -> None:
 
-    if config['MIN_BIT_AMOUNT'] >= bits: # Make bits a valid variable later.
+    if config["MIN_BIT_AMOUNT"] >= bits:  # Make bits a valid variable later.
         return
 
     message = data["event"]["message"]
 
-    if message.length >= config['MAX_MSG_LENGTH']:
+    if message.length >= config["MAX_MSG_LENGTH"]:
         return
 
     voice = message.split(": ")[0]
