@@ -23,6 +23,12 @@ import logging
 from playsound import playsound
 import urllib.request
 
+import json
+
+with open("config.json", "r") as f:
+    config = json.load(f)
+
+
 load_dotenv()
 log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
 
@@ -41,6 +47,11 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
         message = message[1:]
 
     print(message)
+    if config["MIN_BIT_AMOUNT"] >= bits:  # Make bits a valid variable later.
+        return
+
+    if message.length >= config["MAX_MSG_LENGTH"]:
+        return
 
     voice = message.split(": ")[0]
     voice = voice.lower()
