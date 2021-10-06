@@ -1,12 +1,12 @@
 import os
 import sys
 
-# print(sys.argv)
-# if "dev".lower() in sys.argv:
-#     print("Starting in DEV mode")
-# else:
-#     os.system("git pull origin main")
-#     os.system("pip install -U -r requirements.txt")
+print(sys.argv)
+if "dev".lower() in sys.argv:
+    print("Starting in DEV mode")
+else:
+    os.system("git pull origin main")
+    os.system("pip install -U -r requirements.txt")
 
 
 from twitchAPI.pubsub import PubSub
