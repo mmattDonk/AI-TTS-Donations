@@ -8,6 +8,7 @@ import sys
 #     os.system("git pull origin main")
 #     os.system("pip install -U -r requirements.txt")
 
+
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
@@ -17,18 +18,25 @@ from twitchAPI.oauth import UserAuthenticator
 import httpx
 import time
 import re
+import logging
 
 from playsound import playsound
 import urllib.request
 
 load_dotenv()
+log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
+
+
+log = logging.getLogger()
+
+logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%X")
 
 
 def callback_whisper(uuid: UUID, data: dict) -> None:
     print(data)
 
     message = data["data"]["chat_message"]
-    message = re.sub("cheer\d*", "", message)
+    message = re.sub("(?i)cheer\d*", "", message)
     if message[0] == " ":
         message = message[1:]
 
@@ -47,7 +55,6 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
             "speech": text,
             "voice": voice,
         },
-        timeout=10.00,
     )
 
     print(response.json())
@@ -63,7 +70,6 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                     os.environ.get("UBERDUCK_USERNAME"),
                     os.environ.get("UBERDUCK_SECRET"),
                 ),
-                timeout=120.00,
             )
             print(ud_ai.url)
 
@@ -75,6 +81,7 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                 urllib.request.urlretrieve(ud_ai.json()["path"], "AI_voice.wav")
                 time.sleep(1)
                 playsound("./AI_voice.wav")
+                os.remove("./AI_voice.wav")
                 danking = False
             else:
                 print("false danking")
