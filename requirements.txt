@@ -10,4 +10,5 @@ playsound==1.2.2
 python_dotenv == 0.19.0
 
 # ai-tts-donations/bot.py: 11,12,13,16
-twitchAPI == 2.4.2
+
+git+git://github.com/Teekeks/pyTwitchAPI@d842aad6fba985d2e50afee0fc32044e3de67a01#egg=twitchAPI
