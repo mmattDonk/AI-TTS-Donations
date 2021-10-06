@@ -8,6 +8,7 @@ else:
     os.system("git pull origin main")
     os.system("pip install -U -r requirements.txt")
 
+
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
@@ -15,32 +16,79 @@ from uuid import UUID
 from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
 import httpx
-
+import time
+import re
+import logging
+from datetime import datetime
+from playsound import playsound
+import urllib.request
 
 load_dotenv()
+log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
+
+
+log = logging.getLogger()
+
+logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%X")
 
 
 def callback_whisper(uuid: UUID, data: dict) -> None:
-    print("got callback for UUID " + str(uuid))
     print(data)
-    request_auth = httpx.DigestAuth(
-        os.environ.get("UBERDUCK_USERNAME"), os.environ.get("UBERDUCK_SECRET")
-    )
-    response = httpx.get(
+
+    message = data["data"]["chat_message"]
+    message = re.sub("(?i)cheer\d*", "", message)
+    if message[0] == " ":
+        message = message[1:]
+
+    print(message)
+
+    voice = message.split(": ")[0]
+    voice = voice.lower()
+    print(voice)
+    text = message.split(": ")[1]
+    print(text)
+
+    response = httpx.post(
         "https://api.uberduck.ai/speak",
-        auth=request_auth,
-        data={
-            "speech": "test",
-            "voice": "eminem",
+        auth=(os.environ.get("UBERDUCK_USERNAME"), os.environ.get("UBERDUCK_SECRET")),
+        json={
+            "speech": text,
+            "voice": voice,
         },
-        timeout=60.00,
     )
 
-    print("dank")
-    print(response.status_code)
-    print("dank2")
     print(response.json())
-    print("dank3")
+
+    if response.json()["uuid"] is not None:
+        print("dank0")
+
+        danking = True
+        while danking:
+            ud_ai = httpx.get(
+                f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
+                auth=(
+                    os.environ.get("UBERDUCK_USERNAME"),
+                    os.environ.get("UBERDUCK_SECRET"),
+                ),
+            )
+            print(ud_ai.url)
+
+            print("dank1")
+
+            print(ud_ai.json())
+            if ud_ai.json()["path"] != None:
+                print("DANK ALERT")
+                date_string = datetime.now().strftime("%d%m%Y%H%M%S")
+                urllib.request.urlretrieve(
+                    ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+                )
+                time.sleep(1)
+                playsound(f"./AI_voice_{date_string}.wav")
+                os.remove(f"./AI_voice_{date_string}.wav")
+                danking = False
+            else:
+                print("false danking")
+                time.sleep(1)
 
 
 # setting up Authentication and getting your user id
@@ -53,10 +101,11 @@ token, refresh_token = auth.authenticate()
 # add User authentication
 twitch.set_user_authentication(token, target_scope, refresh_token)
 
-user_id = twitch.get_users(logins=["mmattbtw"])["data"][0]["id"]
+user_id = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][0]["id"]
 
 # starting up PubSub
 pubsub = PubSub(twitch)
 pubsub.start()
 # you can either start listening before or after you started pubsub.
-uuid = pubsub.listen_channel_points(user_id, callback_whisper)
+uuid = pubsub.listen_bits(user_id, callback_whisper)
+print("Pubsub Ready.")

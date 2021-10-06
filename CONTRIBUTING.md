@@ -54,7 +54,7 @@ The `type` field mainly explains the type of the commit. Only the following 9 ty
 
 For this project, the following 2 types can also be used if necessary:
 
-- build: Changes to the build tools or dependencies (webpack, npm, etc)
+- build: Changes to the build tools or dependencies (webpack, npm, pip, etc)
 - ci: Changes to Continuous Integration
 
 If a commit is related to multiple `<type>`, use `feat` and `fix` in priority, followed by the remaining seven types specified in `AngularJS Git Commit Message Conventions`, and the remaining two are for special needs
