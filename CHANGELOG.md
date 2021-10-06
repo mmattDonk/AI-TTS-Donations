@@ -1,8 +1,19 @@
 # CHANGELOG
 
-## Unreleased
+## [v1.0.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.0.0) - 2021-10-06 23:03:18
 
-Changes unreleased.
+The bot is stable!
+If you would like help setting up the bot, dm me on Discord/Twitter @mmattbtw/mmatt#9926
+## What's Changed
+* docs(README): Added documentation on how to run the bot by @MrAuro in https://github.com/mmattDonk/AI-TTS-Donations/pull/2
+* feat(core): Release 1.0 is ready by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/4
+
+## New Contributors
+* @MrAuro made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/2
+* @mmattbtw made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/4
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/commits/v1.0.0
+**Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 
 ### Feature
 
