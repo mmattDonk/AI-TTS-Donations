@@ -109,10 +109,14 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                     waitingToProcess = False
                 else:
                     if checkCount > 100:
-                        print(f"Failed to recieve a processed TTS after {checkCount} checks. Giving up.")
+                        print(
+                            f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
+                        )
                         waitingToProcess = False
                     else:
-                        print(f"Waiting for TTS to finish processing. {checkCount} checks")
+                        print(
+                            f"Waiting for TTS to finish processing. {checkCount} checks"
+                        )
                         time.sleep(1)
 
 
