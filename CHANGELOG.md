@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Feature
+
+- limits:
+  - Added limits. (#14) ([f95ea07](https://github.com/mmattDonk/AI-TTS-Donations/commit/f95ea074e52ceb098319aa50f11c9757e9d109cc))
+
 ## [v1.0.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.0.0) - 2021-10-06 23:03:18
 
 The bot is stable!
