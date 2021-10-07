@@ -1,4 +1,7 @@
 # AI-TTS-Donations
+Join the Discord! 
+
+[![Discord](https://img.shields.io/discord/883929594179256350?label=Click%20Here%20to%20Join%21)](https://discord.gg/mvVePs2Hs2)
 
 💰 A bot that uses Uberduck AI to make bit donations have an AI voice.
 
@@ -35,6 +38,7 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
 
 5. Run `python3 bot.py`
     - This will install all of the needed dependencies and start the bot.
+
 
 ### 🙌 Code Contributors
 
