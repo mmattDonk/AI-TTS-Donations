@@ -28,6 +28,8 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
     {
         "MAX_MSG_LENGTH": 300, // The maximum length for the donation message.
         "MIN_BIT_AMOUNT": 1 // The minimum amount of bits to donate for the TTS to activate.
+        // ^ I'd recommend setting the minimum bit amount to be -1 of the actual limit you want to set, just in case
+        // (also remove all of these // comments before you start the bot)
     }
     ```
 
