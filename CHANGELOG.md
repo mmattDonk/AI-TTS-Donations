@@ -1,8 +1,17 @@
 # CHANGELOG
 
-## Unreleased
+## [v1.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.1.0) - 2021-10-07 00:37:19
 
-Changes unreleased.
+# Added limits.
+If you need a `config.json` file, checkout the README
+
+
+## What's Changed
+* feat(limits): Added limits. by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/14
+
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.0.0...v1.1.0
+**Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 
 ### Feature
 
