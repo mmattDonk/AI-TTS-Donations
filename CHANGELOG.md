@@ -9,6 +9,11 @@ Changes unreleased.
 - limits:
   - Added limits. (#14) ([f95ea07](https://github.com/mmattDonk/AI-TTS-Donations/commit/f95ea074e52ceb098319aa50f11c9757e9d109cc))
 
+### Documentation
+
+- README:
+  - Updated README with config.json comments ([5a56e84](https://github.com/mmattDonk/AI-TTS-Donations/commit/5a56e84cfeb352e12cb7243cc7fac7cd2a986b1e))
+
 ## [v1.0.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.0.0) - 2021-10-06 23:03:18
 
 The bot is stable!
