@@ -22,7 +22,16 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
     TWITCH_SECRET=<The "Client Secret" from dev.twitch.tv>
     TWITCH_USERNAME=<The streamer's Twitch username from twitch.tv>
     ```
-4. Run `python3 bot.py`
+
+4. Create a config.json with the following keys:
+    ```json
+    {
+        "MAX_MSG_LENGTH": 300, // The maximum length for the donation message.
+        "MIN_BIT_AMOUNT": 1 // The minimum amount of bits to donate for the TTS to activate.
+    }
+    ```
+
+5. Run `python3 bot.py`
     - This will install all of the needed dependencies and start the bot.
 
 ### 🙌 Code Contributors

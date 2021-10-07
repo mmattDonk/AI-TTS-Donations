@@ -15,6 +15,7 @@ from twitchAPI.types import AuthScope
 from uuid import UUID
 from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
+from datetime import datetime
 import httpx
 import time
 import re
@@ -22,6 +23,12 @@ import logging
 from datetime import datetime
 from playsound import playsound
 import urllib.request
+
+import json
+
+with open("config.json", "r") as f:
+    config = json.load(f)
+
 
 load_dotenv()
 log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
@@ -34,6 +41,8 @@ logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%
 
 def callback_whisper(uuid: UUID, data: dict) -> None:
     print(data)
+
+    bits = data["data"]["bits_used"]
 
     message = data["data"]["chat_message"]
     message = re.sub("(?i)cheer\d*", "", message)
@@ -48,47 +57,59 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
     text = message.split(": ")[1]
     print(text)
 
-    response = httpx.post(
-        "https://api.uberduck.ai/speak",
-        auth=(os.environ.get("UBERDUCK_USERNAME"), os.environ.get("UBERDUCK_SECRET")),
-        json={
-            "speech": text,
-            "voice": voice,
-        },
-    )
+    if config["MIN_BIT_AMOUNT"] > int(bits):
+        print("dank12131")
+        return
 
-    print(response.json())
+    if len(text) > config["MAX_MSG_LENGTH"]:
+        print("dank1234124102948")
+        return
 
-    if response.json()["uuid"] is not None:
-        print("dank0")
+    else:
+        response = httpx.post(
+            "https://api.uberduck.ai/speak",
+            auth=(
+                os.environ.get("UBERDUCK_USERNAME"),
+                os.environ.get("UBERDUCK_SECRET"),
+            ),
+            json={
+                "speech": text,
+                "voice": voice,
+            },
+        )
 
-        danking = True
-        while danking:
-            ud_ai = httpx.get(
-                f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                auth=(
-                    os.environ.get("UBERDUCK_USERNAME"),
-                    os.environ.get("UBERDUCK_SECRET"),
-                ),
-            )
-            print(ud_ai.url)
+        print(response.json())
 
-            print("dank1")
+        if response.json()["uuid"] is not None:
+            print("dank0")
 
-            print(ud_ai.json())
-            if ud_ai.json()["path"] != None:
-                print("DANK ALERT")
-                date_string = datetime.now().strftime("%d%m%Y%H%M%S")
-                urllib.request.urlretrieve(
-                    ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+            danking = True
+            while danking:
+                ud_ai = httpx.get(
+                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
+                    auth=(
+                        os.environ.get("UBERDUCK_USERNAME"),
+                        os.environ.get("UBERDUCK_SECRET"),
+                    ),
                 )
-                time.sleep(1)
-                playsound(f"./AI_voice_{date_string}.wav")
-                os.remove(f"./AI_voice_{date_string}.wav")
-                danking = False
-            else:
-                print("false danking")
-                time.sleep(1)
+                print(ud_ai.url)
+
+                print("dank1")
+
+                print(ud_ai.json())
+                if ud_ai.json()["path"] != None:
+                    print("DANK ALERT")
+                    date_string = datetime.now().strftime("%d%m%Y%H%M%S")
+                    urllib.request.urlretrieve(
+                        ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+                    )
+                    time.sleep(1)
+                    playsound(f"./AI_voice_{date_string}.wav")
+                    os.remove(f"./AI_voice_{date_string}.wav")
+                    danking = False
+                else:
+                    print("false danking")
+                    time.sleep(1)
 
 
 # setting up Authentication and getting your user id
