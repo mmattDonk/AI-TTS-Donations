@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Documentation
+
+- README:
+  - Added Discord badge. ([c5f9059](https://github.com/mmattDonk/AI-TTS-Donations/commit/c5f9059702ff43dc1518e659b2986f51c2745aba))
+
 ## [v1.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.1.0) - 2021-10-07 00:37:19
 
 # Added limits.
