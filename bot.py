@@ -58,11 +58,11 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
     print(text)
 
     if config["MIN_BIT_AMOUNT"] > int(bits):
-        print("dank12131")
+        print("Cheered bits is less than the minimum bit amount")
         return
 
     if len(text) > config["MAX_MSG_LENGTH"]:
-        print("dank1234124102948")
+        print("Cheered message is longer than the maximum message length")
         return
 
     else:
@@ -81,10 +81,13 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
         print(response.json())
 
         if response.json()["uuid"] is not None:
-            print("dank0")
+            print("UUID recieved. Waiting for TTS to process")
 
-            danking = True
-            while danking:
+            checkCount = 0
+            waitingToProcess = True
+            while waitingToProcess:
+                checkCount += 1
+
                 ud_ai = httpx.get(
                     f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
                     auth=(
@@ -92,13 +95,10 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                         os.environ.get("UBERDUCK_SECRET"),
                     ),
                 )
-                print(ud_ai.url)
-
-                print("dank1")
 
                 print(ud_ai.json())
                 if ud_ai.json()["path"] != None:
-                    print("DANK ALERT")
+                    print(f"TTS processed after {checkCount} checks")
                     date_string = datetime.now().strftime("%d%m%Y%H%M%S")
                     urllib.request.urlretrieve(
                         ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
@@ -106,10 +106,14 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                     time.sleep(1)
                     playsound(f"./AI_voice_{date_string}.wav")
                     os.remove(f"./AI_voice_{date_string}.wav")
-                    danking = False
+                    waitingToProcess = False
                 else:
-                    print("false danking")
-                    time.sleep(1)
+                    if checkCount > 100:
+                        print(f"Failed to recieve a processed TTS after {checkCount} checks. Giving up.")
+                        waitingToProcess = False
+                    else:
+                        print(f"Waiting for TTS to finish processing. {checkCount} checks")
+                        time.sleep(1)
 
 
 # setting up Authentication and getting your user id
@@ -129,4 +133,4 @@ pubsub = PubSub(twitch)
 pubsub.start()
 # you can either start listening before or after you started pubsub.
 uuid = pubsub.listen_bits(user_id, callback_whisper)
-print("Pubsub Ready.")
+print("Pubsub Ready!")
