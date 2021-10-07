@@ -2,6 +2,9 @@
 
 💰 A bot that uses Uberduck AI to make bit donations have an AI voice.
 
+### Are you a viewer?
+Check the instructions [here!](https://mmatt.link/UseTTS)
+
 ### How to run
 
 1. Clone the repo
