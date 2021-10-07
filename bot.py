@@ -41,17 +41,14 @@ logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%
 def callback_whisper(uuid: UUID, data: dict) -> None:
     print(data)
 
+    bits = data["data"]["bits_used"]
+
     message = data["data"]["chat_message"]
     message = re.sub("(?i)cheer\d*", "", message)
     if message[0] == " ":
         message = message[1:]
 
     print(message)
-    if config["MIN_BIT_AMOUNT"] >= bits:  # Make bits a valid variable later.
-        return
-
-    if message.length >= config["MAX_MSG_LENGTH"]:
-        return
 
     voice = message.split(": ")[0]
     voice = voice.lower()
@@ -59,44 +56,57 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
     text = message.split(": ")[1]
     print(text)
 
-    response = httpx.post(
-        "https://api.uberduck.ai/speak",
-        auth=(os.environ.get("UBERDUCK_USERNAME"), os.environ.get("UBERDUCK_SECRET")),
-        json={
-            "speech": text,
-            "voice": voice,
-        },
-    )
+    if config["MIN_BIT_AMOUNT"] > int(bits):
+        print("dank12131")
+        return
 
-    print(response.json())
+    if len(text) > config["MAX_MSG_LENGTH"]:
+        print("dank1234124102948")
+        return
 
-    if response.json()["uuid"] is not None:
-        print("dank0")
+    else:
+        response = httpx.post(
+            "https://api.uberduck.ai/speak",
+            auth=(
+                os.environ.get("UBERDUCK_USERNAME"),
+                os.environ.get("UBERDUCK_SECRET"),
+            ),
+            json={
+                "speech": text,
+                "voice": voice,
+            },
+        )
 
-        danking = True
-        while danking:
-            ud_ai = httpx.get(
-                f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                auth=(
-                    os.environ.get("UBERDUCK_USERNAME"),
-                    os.environ.get("UBERDUCK_SECRET"),
-                ),
-            )
-            print(ud_ai.url)
+        print(response.json())
 
-            print("dank1")
+        if response.json()["uuid"] is not None:
 
-            print(ud_ai.json())
-            if ud_ai.json()["path"] != None:
-                print("DANK ALERT")
-                urllib.request.urlretrieve(ud_ai.json()["path"], "AI_voice.wav")
-                time.sleep(1)
-                playsound("./AI_voice.wav")
-                os.remove("./AI_voice.wav")
-                danking = False
-            else:
-                print("false danking")
-                time.sleep(1)
+            print("dank0")
+
+            danking = True
+            while danking:
+                ud_ai = httpx.get(
+                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
+                    auth=(
+                        os.environ.get("UBERDUCK_USERNAME"),
+                        os.environ.get("UBERDUCK_SECRET"),
+                    ),
+                )
+                print(ud_ai.url)
+
+                print("dank1")
+
+                print(ud_ai.json())
+                if ud_ai.json()["path"] != None:
+                    print("DANK ALERT")
+                    urllib.request.urlretrieve(ud_ai.json()["path"], "AI_voice.wav")
+                    time.sleep(1)
+                    playsound("./AI_voice.wav")
+                    os.remove("./AI_voice.wav")
+                    danking = False
+                else:
+                    print("false danking")
+                    time.sleep(1)
 
 
 # setting up Authentication and getting your user id
