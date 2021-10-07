@@ -15,6 +15,7 @@ from twitchAPI.types import AuthScope
 from uuid import UUID
 from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
+from datetime import datetime
 import httpx
 import time
 import re
@@ -80,7 +81,6 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
         print(response.json())
 
         if response.json()["uuid"] is not None:
-
             print("dank0")
 
             danking = True
@@ -99,10 +99,13 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                 print(ud_ai.json())
                 if ud_ai.json()["path"] != None:
                     print("DANK ALERT")
-                    urllib.request.urlretrieve(ud_ai.json()["path"], "AI_voice.wav")
+                    date_string = datetime.now().strftime("%d%m%Y%H%M%S")
+                    urllib.request.urlretrieve(
+                        ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+                    )
                     time.sleep(1)
-                    playsound("./AI_voice.wav")
-                    os.remove("./AI_voice.wav")
+                    playsound(f"./AI_voice_{date_string}.wav")
+                    os.remove(f"./AI_voice_{date_string}.wav")
                     danking = False
                 else:
                     print("false danking")
