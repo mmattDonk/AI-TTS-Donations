@@ -4,6 +4,11 @@
 
 Changes unreleased.
 
+### Bug Fixes
+
+- LOGGING:
+  - Reworded logs & quit after 100 false "danks" (#20) ([1c453df](https://github.com/mmattDonk/AI-TTS-Donations/commit/1c453df324bb0705dbc0cb0709509d8e027b56b7)) ([#20](https://github.com/mmattDonk/AI-TTS-Donations/pull/20))
+
 ### Documentation
 
 - README:
@@ -25,7 +30,7 @@ If you need a `config.json` file, checkout the README
 ### Feature
 
 - limits:
-  - Added limits. (#14) ([f95ea07](https://github.com/mmattDonk/AI-TTS-Donations/commit/f95ea074e52ceb098319aa50f11c9757e9d109cc))
+  - Added limits. (#14) ([f95ea07](https://github.com/mmattDonk/AI-TTS-Donations/commit/f95ea074e52ceb098319aa50f11c9757e9d109cc)) ([#14](https://github.com/mmattDonk/AI-TTS-Donations/pull/14))
 
 ### Documentation
 
