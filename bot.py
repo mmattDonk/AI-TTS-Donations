@@ -105,6 +105,7 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                     )
                     time.sleep(1)
                     playsound(f"./AI_voice_{date_string}.wav")
+                    time.sleep(1)
                     os.remove(f"./AI_voice_{date_string}.wav")
                     waitingToProcess = False
                 elif ud_ai.json()["failed_at"] != None:
