@@ -14,6 +14,9 @@ Changes unreleased.
 
 ### Bug Fixes
 
+- core:
+  - Fixed a bug by waiting to remove audio. ([f3782ee](https://github.com/mmattDonk/AI-TTS-Donations/commit/f3782ee6f82f4b6a04c84598ab72ca592bb81e49))
+
 - LOGGING:
   - Reworded logs & quit after 100 false "danks" (#20) ([1c453df](https://github.com/mmattDonk/AI-TTS-Donations/commit/1c453df324bb0705dbc0cb0709509d8e027b56b7)) ([#20](https://github.com/mmattDonk/AI-TTS-Donations/pull/20))
 
@@ -21,6 +24,11 @@ Changes unreleased.
 
 - README:
   - Added Discord badge. ([c5f9059](https://github.com/mmattDonk/AI-TTS-Donations/commit/c5f9059702ff43dc1518e659b2986f51c2745aba))
+
+### Refactor
+
+- core:
+  - Refactor if/else statement ([139f849](https://github.com/mmattDonk/AI-TTS-Donations/commit/139f84921396af0a4d9df96dd932468fe321c3f9))
 
 ## [v1.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.1.0) - 2021-10-07 00:37:19
 
