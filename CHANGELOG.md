@@ -4,6 +4,11 @@
 
 Changes unreleased.
 
+### Feature
+
+- LOGGING:
+  - Made it show how many checks it does total. ([d2fd675](https://github.com/mmattDonk/AI-TTS-Donations/commit/d2fd675199a37d31488c58d553aaaf0b49504b95))
+
 ### Bug Fixes
 
 - LOGGING:
