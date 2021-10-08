@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from datetime import datetime
 import httpx
@@ -6,51 +7,22 @@ import re
 from playsound import playsound
 import urllib.request
 from dotenv import load_dotenv
-import os
-
 
 load_dotenv()
 
+def test_tts(self):
+	message = text_field.get()
+	message = re.sub("(?i)cheer\d*", "", message)
+	if message[0] == " ":
+		message = message[1:]
 
-ui = tk.Tk()
+	print(message.split(": "))
 
-yo = tk.Label(text="AI tts :D")
-
-yo.pack()
-
-button = tk.Button(
-	text="Send Test TTS",
-	width=15,
-	height=5,
-	bg="black",
-	fg="white"
-)
-
-button.bind("<Button-1>",  test_tts)
-
-button.pack()
-
-text_field = tk.Entry(
-	width=50
-)
-
-text_field.pack()
-
-
-def test_tts():
-
-    message = data["data"]["chat_message"]
-    message = re.sub("(?i)cheer\d*", "", message)
-    if message[0] == " ":
-        message = message[1:]
-
-    print(message)
-
-    voice = message.split(": ")[0]
-    voice = voice.lower()
-    print(voice)
-    text = message.split(": ")[1]
-    print(text)
+	voice = message.split(": ")[0]
+	voice = voice.lower()
+	print(voice)
+	text = message.split(": ")[1]
+	print(text)
 
 	response = httpx.post(
 		"https://api.uberduck.ai/speak",
@@ -107,5 +79,28 @@ def test_tts():
 
 
 
+ui = tk.Tk()
+
+yo = tk.Label(text="AI tts :D")
+
+yo.pack()
+
+button = tk.Button(
+	text="Send Test TTS",
+	width=15,
+	height=5,
+	bg="black",
+	fg="white"
+)
+
+button.bind("<Button-1>",  test_tts)
+
+button.pack()
+
+text_field = tk.Entry(
+	width=50
+)
+
+text_field.pack()
 
 ui.mainloop()
