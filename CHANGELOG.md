@@ -1,8 +1,10 @@
 # CHANGELOG
 
-## Unreleased
+## [v1.2.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.2.0) - 2021-10-08 23:01:53
 
-Changes unreleased.
+**Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.1.0...v1.2.0
 
 ### Feature
 
