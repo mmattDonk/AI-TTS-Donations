@@ -111,17 +111,16 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                 elif ud_ai.json()["failed_at"] != None:
                     print("This TTS request failed.")
                     waitingToProcess = False
+                elif checkCount > 100:
+                    print(
+                        f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
+                    )
+                    waitingToProcess = False
                 else:
-                    if checkCount > 100:
-                        print(
-                            f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
-                        )
-                        waitingToProcess = False
-                    else:
-                        print(
-                            f"Waiting for TTS to finish processing. {checkCount}/100 checks"
-                        )
-                        time.sleep(1)
+                    print(
+                        f"Waiting for TTS to finish processing. {checkCount}/100 checks"
+                    )
+                    time.sleep(1)
 
 
 # setting up Authentication and getting your user id
