@@ -107,6 +107,9 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                     playsound(f"./AI_voice_{date_string}.wav")
                     os.remove(f"./AI_voice_{date_string}.wav")
                     waitingToProcess = False
+                elif ud_ai.json()["failed_at"] != None:
+                    print("This TTS request failed.")
+                    waitingToProcess = False
                 else:
                     if checkCount > 100:
                         print(
