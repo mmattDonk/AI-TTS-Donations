@@ -130,9 +130,8 @@ dmypy.json
 
 # Voice
 AI_voice.wav
-AI_voice.mp3
 *.wav
-
+AI_voice.mp3
 #config
 config.json
 
