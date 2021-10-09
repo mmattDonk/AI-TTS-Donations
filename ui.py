@@ -83,15 +83,10 @@ def test_tts(self):
                 time.sleep(1)
 
 
-ui = tk.Tk()
+def skip_tts(self):
+    print("Skipping TTS")
+    winsound.PlaySound(None, winsound.SND_ASYNC)
 
-yo = tk.Label(text="AI tts :D")
-
-yo.pack()
-
-button = tk.Button(text="Send Test TTS", width=15, height=5, bg="black", fg="white")
-
-button.bind("<Button-1>", test_tts)
 
 ui = tk.Tk()
 
@@ -99,14 +94,18 @@ yo = tk.Label(text="AI tts :D")
 
 yo.pack()
 
-button = tk.Button(text="Send Test TTS", width=15, height=5, bg="black", fg="white")
+text_field = tk.Entry(width=50)
+
+text_field.pack()
+
+button = tk.Button(text="Send Test TTS", width=50, height=1, bg="black", fg="white")
 
 button.bind("<Button-1>", test_tts)
 
 button.pack()
 
-text_field = tk.Entry(width=50)
-
-text_field.pack()
+skip_button = tk.Button(text="Skip TTS", width=50, height=1, bg="black", fg="white")
+skip_button.bind("<Button-1>", skip_tts)
+skip_button.pack()
 
 ui.mainloop()
