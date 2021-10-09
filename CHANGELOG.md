@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Feature
+
+- core:
+  - Added channel points as an option. (#26) ([e8b7883](https://github.com/mmattDonk/AI-TTS-Donations/commit/e8b7883b9675af68b06f8741b6a18e32088e6aea)) ([#26](https://github.com/mmattDonk/AI-TTS-Donations/pull/26))
+
 ## [v1.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.2.1) - 2021-10-09 03:25:52
 
 ## Fixed the auto-delete bug.
