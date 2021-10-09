@@ -4,13 +4,9 @@
 # C:\Users\notmm\ai-tts-donations\ui.py: 4
 httpx == 1.0.0b0
 
-<<<<<<< HEAD
-# ai-tts-donations/bot.py: 15
-=======
-
+python_dotenv == 0.19.0
 # C:\Users\notmm\ai-tts-donations\bot.py: 16
 # C:\Users\notmm\ai-tts-donations\ui.py: 9
->>>>>>> 0853aa4d62d0c6eb2ff374b3fb451904e7230fcb
 python_dotenv == 0.19.0
 
 # C:\Users\notmm\ai-tts-donations\bot.py: 12,13,14,17

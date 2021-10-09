@@ -4,9 +4,10 @@ from datetime import datetime
 import httpx
 import time
 import re
-from playsound import playsound
 import urllib.request
 from dotenv import load_dotenv
+import winsound
+
 
 load_dotenv()
 
@@ -63,18 +64,23 @@ def test_tts(self):
                     ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                 )
                 time.sleep(1)
-                playsound(f"./AI_voice_{date_string}.wav")
+                winsound.PlaySound(f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC)
+                time.sleep(1)
                 os.remove(f"./AI_voice_{date_string}.wav")
                 waitingToProcess = False
+
+            elif ud_ai.json()["failed_at"] != None:
+                print("TTS request failed.")
+                waitingToProcess = False
+
+            elif checkCount > 100:
+                print(
+                    f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
+                )
+                waitingToProcess = False
             else:
-                if checkCount > 100:
-                    print(
-                        f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
-                    )
-                    waitingToProcess = False
-                else:
-                    print(f"Waiting for TTS to finish processing. {checkCount} checks")
-                    time.sleep(1)
+                print(f"Waiting for TTS to finish processing. {checkCount} checks")
+                time.sleep(1)
 
 
 ui = tk.Tk()
