@@ -130,7 +130,11 @@ def callback_bits(uuid: UUID, data: dict) -> None:
     bits = data["data"]["bits_used"]
 
     message = data["data"]["chat_message"]
-    message = re.sub("(?i)cheer\d*", "", message)
+    message = re.sub(
+        "(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
+        "",
+        message,
+    )
     if message[0] == " ":
         message = message[1:]
 
@@ -239,7 +243,11 @@ print("Pubsub Ready!")
 
 def test_tts(self):
     message = entry_1.get()
-    message = re.sub("(?i)cheer\d*", "", message)
+    message = re.sub(
+        "(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
+        "",
+        message,
+    )
     if message[0] == " ":
         message = message[1:]
 
