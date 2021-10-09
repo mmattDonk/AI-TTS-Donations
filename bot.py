@@ -42,66 +42,53 @@ logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%
 def callback_whisper(uuid: UUID, data: dict) -> None:
     print(data)
 
-    bits = data["data"]["bits_used"]
+    if data["data"]["redemption"]["reward"]["title"].lower() == "uberdank ai tts":
+        message = data["data"]["redemption"]["user_input"]
+        message = re.sub("(?i)cheer\d*", "", message)
+        if message[0] == " ":
+            message = message[1:]
 
-    message = data["data"]["chat_message"]
-    message = re.sub("(?i)cheer\d*", "", message)
-    if message[0] == " ":
-        message = message[1:]
+        print(message)
 
-    print(message)
+        voice = message.split(": ")[0]
+        voice = voice.lower()
+        print(voice)
+        text = message.split(": ")[1]
+        print(text)
 
-    voice = message.split(": ")[0]
-    voice = voice.lower()
-    print(voice)
-    text = message.split(": ")[1]
-    print(text)
+        if len(text) > config["MAX_MSG_LENGTH"]:
+            print("Cheered message is longer than the maximum message length")
+            return
 
-    if config["MIN_BIT_AMOUNT"] > int(bits):
-        print("Cheered bits is less than the minimum bit amount")
-        return
+        else:
+            response = httpx.post(
+                "https://api.uberduck.ai/speak",
+                auth=(
+                    os.environ.get("UBERDUCK_USERNAME"),
+                    os.environ.get("UBERDUCK_SECRET"),
+                ),
+                json={
+                    "speech": text,
+                    "voice": voice,
+                },
+            )
 
-    if len(text) > config["MAX_MSG_LENGTH"]:
-        print("Cheered message is longer than the maximum message length")
-        return
+            print(response.json())
 
-    else:
-        response = httpx.post(
-            "https://api.uberduck.ai/speak",
-            auth=(
-                os.environ.get("UBERDUCK_USERNAME"),
-                os.environ.get("UBERDUCK_SECRET"),
-            ),
-            json={
-                "speech": text,
-                "voice": voice,
-            },
-        )
+            if response.json()["uuid"] is not None:
+                print("UUID recieved. Waiting for TTS to process")
 
-        print(response.json())
+                checkCount = 0
+                waitingToProcess = True
+                while waitingToProcess:
+                    checkCount += 1
 
-        if response.json()["uuid"] is not None:
-            print("UUID recieved. Waiting for TTS to process")
-
-            checkCount = 0
-            waitingToProcess = True
-            while waitingToProcess:
-                checkCount += 1
-
-                ud_ai = httpx.get(
-                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                    auth=(
-                        os.environ.get("UBERDUCK_USERNAME"),
-                        os.environ.get("UBERDUCK_SECRET"),
-                    ),
-                )
-
-                print(ud_ai.json())
-                if ud_ai.json()["path"] != None:
-                    print(f"TTS processed after {checkCount} checks")
-                    date_string = datetime.now().strftime("%d%m%Y%H%M%S")
-                    urllib.request.urlretrieve(
-                        ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+                    ud_ai = httpx.get(
+                        f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
+                        auth=(
+                            os.environ.get("UBERDUCK_USERNAME"),
+                            os.environ.get("UBERDUCK_SECRET"),
+                        ),
                     )
                     time.sleep(1)
                     winsound.PlaySound(
@@ -141,5 +128,5 @@ user_id = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][0
 pubsub = PubSub(twitch)
 pubsub.start()
 # you can either start listening before or after you started pubsub.
-uuid = pubsub.listen_bits(user_id, callback_whisper)
+uuid = pubsub.listen_channel_points(user_id, callback_whisper)
 print("Pubsub Ready!")
