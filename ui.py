@@ -87,6 +87,16 @@ button = tk.Button(text="Send Test TTS", width=15, height=5, bg="black", fg="whi
 
 button.bind("<Button-1>", test_tts)
 
+ui = tk.Tk()
+
+yo = tk.Label(text="AI tts :D")
+
+yo.pack()
+
+button = tk.Button(text="Send Test TTS", width=15, height=5, bg="black", fg="white")
+
+button.bind("<Button-1>", test_tts)
+
 button.pack()
 
 text_field = tk.Entry(width=50)
