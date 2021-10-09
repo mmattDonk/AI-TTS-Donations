@@ -21,7 +21,7 @@ import time
 import re
 import logging
 from datetime import datetime
-from playsound import playsound
+import winsound
 import urllib.request
 
 import json
@@ -104,7 +104,9 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
                         ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                     )
                     time.sleep(1)
-                    playsound(f"./AI_voice_{date_string}.wav")
+                    winsound.PlaySound(
+                        f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC
+                    )
                     time.sleep(1)
                     os.remove(f"./AI_voice_{date_string}.wav")
                     waitingToProcess = False
