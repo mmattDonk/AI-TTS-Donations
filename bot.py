@@ -49,6 +49,12 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
         == config["CHANNEL_POINTS_REWARD"].lower()
     ):
         message = data["data"]["redemption"]["user_input"]
+
+        for i in config["BLACKLISTED_WORDS"]:
+            if i in message.lower():
+                print("Blacklisted word found")
+                return
+
         if message[0] == " ":
             message = message[1:]
 
@@ -130,6 +136,12 @@ def callback_bits(uuid: UUID, data: dict) -> None:
     bits = data["data"]["bits_used"]
 
     message = data["data"]["chat_message"]
+
+    for i in config["BLACKLISTED_WORDS"]:
+        if i in message.lower():
+            print("Blacklisted word found")
+            return
+
     message = re.sub(
         "(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
         "",
@@ -248,6 +260,12 @@ def test_tts(self):
         "",
         message,
     )
+
+    for i in config["BLACKLISTED_WORDS"]:
+        if i in message.lower():
+            print("Blacklisted word found")
+            return
+
     if message[0] == " ":
         message = message[1:]
 

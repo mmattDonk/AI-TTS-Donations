@@ -33,7 +33,8 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
         "MIN_BIT_AMOUNT": 1, // The minimum amount of bits to donate for the TTS to activate.
         // ^ I'd recommend setting the minimum bit amount to be -1 of the actual limit you want to set, just in case
         "BITS_OR_CHANNEL_POINTS": "channel_points" or "bits", // What type of even to listen for, you can either do channel points or bits, but not both at the moment
-        "CHANNEL_POINTS_REWARD": "reward name here" // The reward name for your Channel Point reward, if you are using channel points.
+        "CHANNEL_POINTS_REWARD": "reward name here", // The reward name for your Channel Point reward, if you are using channel points.
+        "BLACKLISTED_WORDS": ["weirdchamp", "bad_word", "bad_words_go_here"], // A list of words that will be blacklisted from the TTS.
         // (also remove all of these // comments before you start the bot)
     }
     ```
