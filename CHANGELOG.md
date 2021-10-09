@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Bug Fixes
+
+- ui:
+  - Get rid of unused text on the top bar ([37b20ac](https://github.com/mmattDonk/AI-TTS-Donations/commit/37b20ac8bd126f9a6811e4b09b17fa734a463344))
+
 ## [v1.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.3.0) - 2021-10-09 18:55:21
 
 ## What's Changed
