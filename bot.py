@@ -39,7 +39,7 @@ log = logging.getLogger()
 logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%X")
 
 
-def callback_whisper(uuid: UUID, data: dict) -> None:
+def callback_channel_points(uuid: UUID, data: dict) -> None:
     print(data)
 
     if data["data"]["redemption"]["reward"]["title"].lower() == "uberdank ai tts":
@@ -75,20 +75,28 @@ def callback_whisper(uuid: UUID, data: dict) -> None:
 
             print(response.json())
 
-            if response.json()["uuid"] is not None:
-                print("UUID recieved. Waiting for TTS to process")
+        if response.json()["uuid"] is not None:
+            print("UUID recieved. Waiting for TTS to process")
 
-                checkCount = 0
-                waitingToProcess = True
-                while waitingToProcess:
-                    checkCount += 1
+            checkCount = 0
+            waitingToProcess = True
+            while waitingToProcess:
+                checkCount += 1
 
-                    ud_ai = httpx.get(
-                        f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                        auth=(
-                            os.environ.get("UBERDUCK_USERNAME"),
-                            os.environ.get("UBERDUCK_SECRET"),
-                        ),
+                ud_ai = httpx.get(
+                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
+                    auth=(
+                        os.environ.get("UBERDUCK_USERNAME"),
+                        os.environ.get("UBERDUCK_SECRET"),
+                    ),
+                )
+
+                print(ud_ai.json())
+                if ud_ai.json()["path"] != None:
+                    print(f"TTS processed after {checkCount} checks")
+                    date_string = datetime.now().strftime("%d%m%Y%H%M%S")
+                    urllib.request.urlretrieve(
+                        ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                     )
                     time.sleep(1)
                     winsound.PlaySound(
@@ -128,5 +136,6 @@ user_id = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][0
 pubsub = PubSub(twitch)
 pubsub.start()
 # you can either start listening before or after you started pubsub.
-uuid = pubsub.listen_channel_points(user_id, callback_whisper)
+if config["BITS_OR_CHANNEL_POINTS"] == "channel_points":
+    uuid = pubsub.listen_channel_points(user_id, callback_channel_points)
 print("Pubsub Ready!")
