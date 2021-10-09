@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Bug Fixes
+
+- bug:
+  - Fixed the auto-delete bug. ([1fd25cc](https://github.com/mmattDonk/AI-TTS-Donations/commit/1fd25cc42e56d0d2e4826fda51ac01713b7a22ce))
+
 ## [v1.2.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.2.0) - 2021-10-08 23:01:53
 
 **Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
