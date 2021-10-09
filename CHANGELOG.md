@@ -1,8 +1,16 @@
 # CHANGELOG
 
-## Unreleased
+## [v1.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.3.0) - 2021-10-09 18:55:21
 
-Changes unreleased.
+## What's Changed
+* feat(core): Added channel points as an option. by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/26
+* feat(ui): Added ui by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/24
+
+## Known bugs in this release:
+#27 
+
+**Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.2.1...v1.3.0
 
 ### Feature
 
