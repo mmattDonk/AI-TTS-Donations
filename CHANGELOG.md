@@ -6,6 +6,9 @@ Changes unreleased.
 
 ### Feature
 
+- limits:
+  - Added a blacklisted words limit (#33) ([57ce7f3](https://github.com/mmattDonk/AI-TTS-Donations/commit/57ce7f3abf0833ba7c3c22e927a337cbf3c7b78f)) ([#33](https://github.com/mmattDonk/AI-TTS-Donations/pull/33))
+
 - core:
   - Support all cheermotes (#29) ([5c3962b](https://github.com/mmattDonk/AI-TTS-Donations/commit/5c3962ba61d31e1aedf878bda315a8cada6b5bff)) ([#29](https://github.com/mmattDonk/AI-TTS-Donations/pull/29))
 
