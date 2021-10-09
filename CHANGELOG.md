@@ -4,6 +4,11 @@
 
 Changes unreleased.
 
+### Feature
+
+- core:
+  - Support all cheermotes (#29) ([5c3962b](https://github.com/mmattDonk/AI-TTS-Donations/commit/5c3962ba61d31e1aedf878bda315a8cada6b5bff)) ([#29](https://github.com/mmattDonk/AI-TTS-Donations/pull/29))
+
 ### Bug Fixes
 
 - ui:
