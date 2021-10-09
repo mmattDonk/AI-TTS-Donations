@@ -21,8 +21,12 @@ import time
 import re
 import logging
 from datetime import datetime
+<<<<<<< HEAD
 import winsound
+=======
+>>>>>>> 0853aa4d62d0c6eb2ff374b3fb451904e7230fcb
 import urllib.request
+import winsound
 
 import json
 

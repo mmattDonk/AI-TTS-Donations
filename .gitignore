@@ -134,6 +134,8 @@ AI_voice.wav
 AI_voice.mp3
 *.wav
 
+*.wav
+AI_voice.mp3
 #config
 config.json
 
