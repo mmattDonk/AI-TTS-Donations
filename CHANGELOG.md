@@ -6,6 +6,9 @@ Changes unreleased.
 
 ### Feature
 
+- ui:
+  - Added ui (#24) ([6a7fd1f](https://github.com/mmattDonk/AI-TTS-Donations/commit/6a7fd1fe4619552f2814c77f23ebf7bbba6677af)) ([#24](https://github.com/mmattDonk/AI-TTS-Donations/pull/24))
+
 - core:
   - Added channel points as an option. (#26) ([e8b7883](https://github.com/mmattDonk/AI-TTS-Donations/commit/e8b7883b9675af68b06f8741b6a18e32088e6aea)) ([#26](https://github.com/mmattDonk/AI-TTS-Donations/pull/26))
 
