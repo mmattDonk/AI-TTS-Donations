@@ -42,7 +42,10 @@ logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%
 def callback_channel_points(uuid: UUID, data: dict) -> None:
     print(data)
 
-    if data["data"]["redemption"]["reward"]["title"].lower() == "uberdank ai tts":
+    if (
+        data["data"]["redemption"]["reward"]["title"].lower()
+        == config["channel_points_reward"].lower()
+    ):
         message = data["data"]["redemption"]["user_input"]
         if message[0] == " ":
             message = message[1:]
