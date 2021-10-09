@@ -30,8 +30,9 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
     ```json
     {
         "MAX_MSG_LENGTH": 300, // The maximum length for the donation message.
-        "MIN_BIT_AMOUNT": 1 // The minimum amount of bits to donate for the TTS to activate.
+        "MIN_BIT_AMOUNT": 1, // The minimum amount of bits to donate for the TTS to activate.
         // ^ I'd recommend setting the minimum bit amount to be -1 of the actual limit you want to set, just in case
+        "BITS_OR_CHANNEL_POINTS": "channel_points" or "bits" // What type of even to listen for, you can either do channel points or bits, but not both at the moment
         // (also remove all of these // comments before you start the bot)
     }
     ```
