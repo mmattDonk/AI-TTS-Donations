@@ -23,7 +23,6 @@ import logging
 from datetime import datetime
 import winsound
 import urllib.request
-import winsound
 
 import json
 
