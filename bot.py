@@ -57,22 +57,27 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
                 print("Blacklisted word found")
                 return
 
-        if message[0] == " ":
-            message = message[1:]
+        messages = message.split("||")
+        print(messages)
 
-        print(message)
+        q = queue.Queue()
 
-        voice = message.split(": ")[0]
-        voice = voice.lower()
-        print(voice)
-        text = message.split(": ")[1]
-        print(text)
+        voice_files = []
 
-        if len(text) > config["MAX_MSG_LENGTH"]:
-            print("Cheered message is longer than the maximum message length")
-            return
+        for message in messages:
+            if message[0] == " ":
+                message = message[1:]
+            elif message == ",":
+                continue
 
-        else:
+            print(message.split(": "))
+
+            voice = message.split(": ")[0]
+            voice = voice.lower()
+            print(voice)
+            text = message.split(": ")[1]
+            print(text)
+
             response = httpx.post(
                 "https://api.uberduck.ai/speak",
                 auth=(
@@ -87,49 +92,73 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
 
             print(response.json())
 
-        if response.json()["uuid"] is not None:
-            print("UUID recieved. Waiting for TTS to process")
+            if response.json()["uuid"] is not None:
+                print("UUID recieved. Waiting for TTS to process")
 
-            checkCount = 0
-            waitingToProcess = True
-            while waitingToProcess:
-                checkCount += 1
+                checkCount = 0
+                waitingToProcess = True
+                while waitingToProcess:
+                    checkCount += 1
 
-                ud_ai = httpx.get(
-                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                    auth=(
-                        os.environ.get("UBERDUCK_USERNAME"),
-                        os.environ.get("UBERDUCK_SECRET"),
-                    ),
-                )
+                    ud_ai = httpx.get(
+                        f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
+                        auth=(
+                            os.environ.get("UBERDUCK_USERNAME"),
+                            os.environ.get("UBERDUCK_SECRET"),
+                        ),
+                    )
 
-                print(ud_ai.json())
-                if ud_ai.json()["path"] != None:
-                    print(f"TTS processed after {checkCount} checks")
-                    date_string = datetime.now().strftime("%d%m%Y%H%M%S")
-                    urllib.request.urlretrieve(
-                        ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
-                    )
-                    time.sleep(1)
-                    winsound.PlaySound(
-                        f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC
-                    )
-                    time.sleep(1)
-                    os.remove(f"./AI_voice_{date_string}.wav")
-                    waitingToProcess = False
-                elif ud_ai.json()["failed_at"] != None:
-                    print("This TTS request failed.")
-                    waitingToProcess = False
-                elif checkCount > 100:
-                    print(
-                        f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
-                    )
-                    waitingToProcess = False
-                else:
-                    print(
-                        f"Waiting for TTS to finish processing. {checkCount}/100 checks"
-                    )
-                    time.sleep(1)
+                    print(ud_ai.json())
+                    if ud_ai.json()["path"] != None:
+                        print(f"TTS processed after {checkCount} checks")
+                        date_string = datetime.now().strftime("%d%m%Y%H%M%S")
+                        urllib.request.urlretrieve(
+                            ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+                        )
+                        time.sleep(1)
+                        # winsound.PlaySound(f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC)
+                        voice_files.append(f"AI_voice_{date_string}.wav")
+                        time.sleep(1)
+                        # os.remove(f"./AI_voice_{date_string}.wav")
+
+                        waitingToProcess = False
+
+                    elif ud_ai.json()["failed_at"] != None:
+                        print("TTS request failed.")
+                        waitingToProcess = False
+
+                    elif checkCount > 100:
+                        print(
+                            f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
+                        )
+                        waitingToProcess = False
+                    else:
+                        print(
+                            f"Waiting for TTS to finish processing. {checkCount} checks"
+                        )
+                        time.sleep(1)
+
+        # for voice_file in voice_files:
+        #     time.sleep(0.5)
+        #     winsound.PlaySound(voice_file, winsound.SND_ASYNC)
+        #     time.sleep(2)
+        #     os.remove(voice_file)
+
+        def thread_function():
+            while True:
+                sound = q.get()
+                if sound is None:
+                    break
+                winsound.PlaySound(sound, winsound.SND_FILENAME)
+                os.remove(sound)
+
+        if __name__ == "__main__":
+            t = threading.Thread(target=thread_function, daemon=True)
+            t.start()
+            for voice_file in voice_files:
+                q.put(voice_file)
+                time.sleep(1)
+            t.join()
 
 
 def callback_bits(uuid: UUID, data: dict) -> None:
@@ -149,26 +178,28 @@ def callback_bits(uuid: UUID, data: dict) -> None:
         "",
         message,
     )
-    if message[0] == " ":
-        message = message[1:]
 
-    print(message)
+    messages = message.split("||")
+    print(messages)
 
-    voice = message.split(": ")[0]
-    voice = voice.lower()
-    print(voice)
-    text = message.split(": ")[1]
-    print(text)
+    q = queue.Queue()
 
-    if config["MIN_BIT_AMOUNT"] > int(bits):
-        print("Cheered bits is less than the minimum bit amount")
-        return
+    voice_files = []
 
-    if len(text) > config["MAX_MSG_LENGTH"]:
-        print("Cheered message is longer than the maximum message length")
-        return
+    for message in messages:
+        if message[0] == " ":
+            message = message[1:]
+        elif message == ",":
+            continue
 
-    else:
+        print(message.split(": "))
+
+        voice = message.split(": ")[0]
+        voice = voice.lower()
+        print(voice)
+        text = message.split(": ")[1]
+        print(text)
+
         response = httpx.post(
             "https://api.uberduck.ai/speak",
             auth=(
@@ -207,25 +238,47 @@ def callback_bits(uuid: UUID, data: dict) -> None:
                         ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                     )
                     time.sleep(1)
-                    winsound.PlaySound(
-                        f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC
-                    )
+                    # winsound.PlaySound(f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC)
+                    voice_files.append(f"AI_voice_{date_string}.wav")
                     time.sleep(1)
-                    os.remove(f"./AI_voice_{date_string}.wav")
+                    # os.remove(f"./AI_voice_{date_string}.wav")
+
                     waitingToProcess = False
+
                 elif ud_ai.json()["failed_at"] != None:
-                    print("This TTS request failed.")
+                    print("TTS request failed.")
                     waitingToProcess = False
+
                 elif checkCount > 100:
                     print(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
                     waitingToProcess = False
                 else:
-                    print(
-                        f"Waiting for TTS to finish processing. {checkCount}/100 checks"
-                    )
+                    print(f"Waiting for TTS to finish processing. {checkCount} checks")
                     time.sleep(1)
+
+    # for voice_file in voice_files:
+    #     time.sleep(0.5)
+    #     winsound.PlaySound(voice_file, winsound.SND_ASYNC)
+    #     time.sleep(2)
+    #     os.remove(voice_file)
+
+    def thread_function():
+        while True:
+            sound = q.get()
+            if sound is None:
+                break
+            winsound.PlaySound(sound, winsound.SND_FILENAME)
+            os.remove(sound)
+
+    if __name__ == "__main__":
+        t = threading.Thread(target=thread_function)
+        t.start()
+        for voice_file in voice_files:
+            q.put(voice_file)
+            time.sleep(1)
+        t.join()
 
 
 # setting up Authentication and getting your user id
