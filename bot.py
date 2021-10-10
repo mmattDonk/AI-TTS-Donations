@@ -115,9 +115,12 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
                     time.sleep(1)
                     os.remove(f"./AI_voice_{date_string}.wav")
                     waitingToProcess = False
+
                 elif ud_ai.json()["failed_at"] != None:
-                    print("This TTS request failed.")
+                    print("TTS request failed, trying again.")
                     waitingToProcess = False
+                    callback_channel_points(uuid=uuid, data=data)
+
                 elif checkCount > 100:
                     print(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
@@ -211,9 +214,12 @@ def callback_bits(uuid: UUID, data: dict) -> None:
                     time.sleep(1)
                     os.remove(f"./AI_voice_{date_string}.wav")
                     waitingToProcess = False
+
                 elif ud_ai.json()["failed_at"] != None:
-                    print("This TTS request failed.")
+                    print("TTS request failed, trying again.")
                     waitingToProcess = False
+                    callback_bits(uuid=uuid, data=data)
+
                 elif checkCount > 100:
                     print(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
@@ -321,8 +327,9 @@ def test_tts(self):
                 waitingToProcess = False
 
             elif ud_ai.json()["failed_at"] != None:
-                print("TTS request failed.")
+                print("TTS request failed, trying again.")
                 waitingToProcess = False
+                test_tts(self)
 
             elif checkCount > 100:
                 print(
