@@ -25,6 +25,8 @@ import winsound
 import urllib.request
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 from pathlib import Path
+import queue
+import threading
 
 import json
 
@@ -253,8 +255,10 @@ elif (
 print("Pubsub Ready!")
 
 
-def test_tts(self):
+def test_tts():
     message = entry_1.get()
+    if message == "":
+        return
     message = re.sub(
         "(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
         "",
@@ -266,72 +270,106 @@ def test_tts(self):
             print("Blacklisted word found")
             return
 
-    if message[0] == " ":
-        message = message[1:]
+    messages = message.split("||")
+    print(messages)
 
-    print(message.split(": "))
+    q = queue.Queue()
 
-    voice = message.split(": ")[0]
-    voice = voice.lower()
-    print(voice)
-    text = message.split(": ")[1]
-    print(text)
+    voice_files = []
 
-    response = httpx.post(
-        "https://api.uberduck.ai/speak",
-        auth=(
-            os.environ.get("UBERDUCK_USERNAME"),
-            os.environ.get("UBERDUCK_SECRET"),
-        ),
-        json={
-            "speech": text,
-            "voice": voice,
-        },
-    )
+    for message in messages:
+        if message[0] == " ":
+            message = message[1:]
+        elif message == ",":
+            continue
 
-    print(response.json())
+        print(message.split(": "))
 
-    if response.json()["uuid"] is not None:
-        print("UUID recieved. Waiting for TTS to process")
+        voice = message.split(": ")[0]
+        voice = voice.lower()
+        print(voice)
+        text = message.split(": ")[1]
+        print(text)
 
-        checkCount = 0
-        waitingToProcess = True
-        while waitingToProcess:
-            checkCount += 1
+        response = httpx.post(
+            "https://api.uberduck.ai/speak",
+            auth=(
+                os.environ.get("UBERDUCK_USERNAME"),
+                os.environ.get("UBERDUCK_SECRET"),
+            ),
+            json={
+                "speech": text,
+                "voice": voice,
+            },
+        )
 
-            ud_ai = httpx.get(
-                f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                auth=(
-                    os.environ.get("UBERDUCK_USERNAME"),
-                    os.environ.get("UBERDUCK_SECRET"),
-                ),
-            )
+        print(response.json())
 
-            print(ud_ai.json())
-            if ud_ai.json()["path"] != None:
-                print(f"TTS processed after {checkCount} checks")
-                date_string = datetime.now().strftime("%d%m%Y%H%M%S")
-                urllib.request.urlretrieve(
-                    ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+        if response.json()["uuid"] is not None:
+            print("UUID recieved. Waiting for TTS to process")
+
+            checkCount = 0
+            waitingToProcess = True
+            while waitingToProcess:
+                checkCount += 1
+
+                ud_ai = httpx.get(
+                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
+                    auth=(
+                        os.environ.get("UBERDUCK_USERNAME"),
+                        os.environ.get("UBERDUCK_SECRET"),
+                    ),
                 )
-                time.sleep(1)
-                winsound.PlaySound(f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC)
-                time.sleep(1)
-                os.remove(f"./AI_voice_{date_string}.wav")
-                waitingToProcess = False
 
-            elif ud_ai.json()["failed_at"] != None:
-                print("TTS request failed.")
-                waitingToProcess = False
+                print(ud_ai.json())
+                if ud_ai.json()["path"] != None:
+                    print(f"TTS processed after {checkCount} checks")
+                    date_string = datetime.now().strftime("%d%m%Y%H%M%S")
+                    urllib.request.urlretrieve(
+                        ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+                    )
+                    time.sleep(1)
+                    # winsound.PlaySound(f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC)
+                    voice_files.append(f"AI_voice_{date_string}.wav")
+                    time.sleep(1)
+                    # os.remove(f"./AI_voice_{date_string}.wav")
 
-            elif checkCount > 100:
-                print(
-                    f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
-                )
-                waitingToProcess = False
-            else:
-                print(f"Waiting for TTS to finish processing. {checkCount} checks")
-                time.sleep(1)
+                    waitingToProcess = False
+
+                elif ud_ai.json()["failed_at"] != None:
+                    print("TTS request failed.")
+                    waitingToProcess = False
+
+                elif checkCount > 100:
+                    print(
+                        f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
+                    )
+                    waitingToProcess = False
+                else:
+                    print(f"Waiting for TTS to finish processing. {checkCount} checks")
+                    time.sleep(1)
+
+    # for voice_file in voice_files:
+    #     time.sleep(0.5)
+    #     winsound.PlaySound(voice_file, winsound.SND_ASYNC)
+    #     time.sleep(2)
+    #     os.remove(voice_file)
+
+    def thread_function():
+        while True:
+            sound = q.get()
+            if sound is None:
+                break
+            winsound.PlaySound(sound, winsound.SND_FILENAME)
+            os.remove(sound)
+
+    if __name__ == "__main__":
+        t = threading.Thread(target=thread_function)
+        t.start()
+        for voice_file in voice_files:
+            q.put(voice_file)
+            time.sleep(1)
+        t.join()
 
 
 def skip_tts(self):
@@ -396,8 +434,9 @@ button_2 = Button(
     highlightthickness=0,
     relief="flat",
 )
-button_2.bind("<Button-1>", test_tts)
+button_2.bind("<Button-1>", lambda x: threading.Thread(target=test_tts).start())
 button_2.place(x=551.9999999999998, y=227.0, width=192.0, height=44.0)
 window.resizable(False, False)
 window.iconbitmap("./assets/trihard.ico")
+
 window.mainloop()
