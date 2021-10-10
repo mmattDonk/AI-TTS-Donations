@@ -25,6 +25,8 @@ import winsound
 import urllib.request
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 from pathlib import Path
+from typing import Optional
+
 
 import json
 
@@ -41,7 +43,9 @@ log = logging.getLogger()
 logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%X")
 
 
-def callback_channel_points(uuid: UUID, data: dict) -> None:
+def callback_channel_points(
+    uuid: UUID, data: dict, failed: Optional[bool] = False
+) -> None:
     print(data)
 
     if (
@@ -130,10 +134,14 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
                     print(
                         f"Waiting for TTS to finish processing. {checkCount}/100 checks"
                     )
-                    time.sleep(1)
+                    if not failed:
+                        time.sleep(1)
+
+                    else:
+                        time.sleep(2)
 
 
-def callback_bits(uuid: UUID, data: dict) -> None:
+def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> None:
     print(data)
 
     bits = data["data"]["bits_used"]
@@ -218,7 +226,7 @@ def callback_bits(uuid: UUID, data: dict) -> None:
                 elif ud_ai.json()["failed_at"] != None:
                     print("TTS request failed, trying again.")
                     waitingToProcess = False
-                    callback_bits(uuid=uuid, data=data)
+                    callback_bits(uuid=uuid, data=data, failed=True)
 
                 elif checkCount > 100:
                     print(
@@ -229,7 +237,11 @@ def callback_bits(uuid: UUID, data: dict) -> None:
                     print(
                         f"Waiting for TTS to finish processing. {checkCount}/100 checks"
                     )
-                    time.sleep(1)
+                    if not failed:
+                        time.sleep(1)
+
+                    else:
+                        time.sleep(2)
 
 
 # setting up Authentication and getting your user id
@@ -259,7 +271,8 @@ elif (
 print("Pubsub Ready!")
 
 
-def test_tts(self):
+def test_tts(self, failed: Optional[bool] = False):
+
     message = entry_1.get()
     message = re.sub(
         "(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
@@ -329,7 +342,7 @@ def test_tts(self):
             elif ud_ai.json()["failed_at"] != None:
                 print("TTS request failed, trying again.")
                 waitingToProcess = False
-                test_tts(self)
+                test_tts(self, failed=True)
 
             elif checkCount > 100:
                 print(
@@ -337,8 +350,12 @@ def test_tts(self):
                 )
                 waitingToProcess = False
             else:
-                print(f"Waiting for TTS to finish processing. {checkCount} checks")
-                time.sleep(1)
+                print(f"Waiting for TTS to finish processing. {checkCount}/100 checks")
+                if not failed:
+                    time.sleep(1)
+
+                else:
+                    time.sleep(2)
 
 
 def skip_tts(self):
