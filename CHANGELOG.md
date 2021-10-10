@@ -1,8 +1,17 @@
 # CHANGELOG
 
-## Unreleased
+## [v1.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.4.0) - 2021-10-09 19:43:11
 
-Changes unreleased.
+## What's Changed
+* feat(core): Support all cheermotes by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/29
+* chore(ui): [ImgBot] Optimize images by @imgbot in https://github.com/mmattDonk/AI-TTS-Donations/pull/31
+* feat(limits): Added a blacklisted words limit by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/33
+
+## New Contributors
+* @imgbot made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/31
+
+**Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.3.0...v1.4.0
 
 ### Feature
 
