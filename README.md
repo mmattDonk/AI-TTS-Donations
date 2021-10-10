@@ -35,6 +35,7 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
         "BITS_OR_CHANNEL_POINTS": "channel_points" or "bits", // What type of even to listen for, you can either do channel points or bits, but not both at the moment
         "CHANNEL_POINTS_REWARD": "reward name here", // The reward name for your Channel Point reward, if you are using channel points.
         "BLACKLISTED_WORDS": ["weirdchamp", "bad_word", "bad_words_go_here"], // A list of words that will be blacklisted from the TTS.
+        "QUERY_TRIES": 100 // The number of times to query the API for a TTS response
         // (also remove all of these // comments before you start the bot)
     }
     ```
