@@ -118,7 +118,7 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
                 elif ud_ai.json()["failed_at"] != None:
                     print("This TTS request failed.")
                     waitingToProcess = False
-                elif checkCount > config['QUERY_TRIES']:
+                elif checkCount > config["QUERY_TRIES"]:
                     print(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
@@ -324,7 +324,7 @@ def test_tts(self):
                 print("TTS request failed.")
                 waitingToProcess = False
 
-            elif checkCount > config['QUERY_TRIES']:
+            elif checkCount > config["QUERY_TRIES"]:
                 print(
                     f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                 )
