@@ -386,7 +386,7 @@ def relative_to_assets(path: str) -> Path:
 
 
 window = Tk()
-window.title("AI-TTS-Donations")
+window.title("AI TTS Donations")
 
 window.geometry("811x279")
 window.configure(bg="#7CCFFF")
