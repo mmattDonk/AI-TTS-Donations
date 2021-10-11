@@ -1,7 +1,8 @@
 # AI-TTS-Donations
-Join the Discord! 
+Join the Discord!
 
 [![Discord](https://img.shields.io/discord/883929594179256350?label=Click%20Here%20to%20Join%21)](https://discord.gg/mvVePs2Hs2)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mmattDonk/AI-TTS-Donations/main.svg)](https://results.pre-commit.ci/latest/github/mmattDonk/AI-TTS-Donations/main)
 
 💰 A bot that uses Uberduck AI to make bit donations have an AI voice.
 
@@ -15,7 +16,8 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
 
     1. [An Uberduck API key and secret](https://uberduck.ai/account/manage)
     2. [A Twitch Client Id and secret](https://dev.twitch.tv/console/apps/create)
-        - Add an OAuth Redirect URI of `http://localhost:17563/`
+        - Add an OAuth Redirect URI of both `http://localhost:17563/` and `http://localhost:17563`
+        - You **HAVE** to put **BOTH URIs**.
 
 3. Create a .env with the following keys:
     ```
@@ -25,9 +27,18 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
     TWITCH_SECRET=<The "Client Secret" from dev.twitch.tv>
     TWITCH_USERNAME=<The streamer's Twitch username from twitch.tv>
     ```
+Replace the <> Notes entirely when pasting in your keys.
+
+Example:
+
+    UBERDUCK_USERNAME=USENAMETHISISAREALUSERNAMELOL
+    UBERDUCK_SECRET=THISISAREALSECRETTOTALLYLOL
+    TWITCH_CLIENT_ID=CANTGETMORECLIENTIDTHENTHIS
+    TWITCH_SECRET=CANTGETMORESECRET
+    TWITCH_USERNAME=mmattbtw
 
 4. Create a config.json with the following keys:
-    ```json
+    ```jsonc
     {
         "MAX_MSG_LENGTH": 300, // The maximum character length for the donation message.
         "MIN_BIT_AMOUNT": 1, // The minimum amount of bits to donate for the TTS to activate.
@@ -60,6 +71,13 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
             <img src=https://avatars.githubusercontent.com/u/35087590?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Auro/>
             <br />
             <sub style="font-size:14px"><b>Auro</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/12beesinatrenchcoat>
+            <img src=https://avatars.githubusercontent.com/u/25379179?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Andy Chan/>
+            <br />
+            <sub style="font-size:14px"><b>Andy Chan</b></sub>
         </a>
     </td>
 </tr>

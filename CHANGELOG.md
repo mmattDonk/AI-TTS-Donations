@@ -14,6 +14,13 @@ Changes unreleased.
 - core:
   - Made the bot re-request if TTS request fails (#36) ([6851250](https://github.com/mmattDonk/AI-TTS-Donations/commit/6851250fdbdd2bf89ab812b6eb65b467704fbd25)) ([#36](https://github.com/mmattDonk/AI-TTS-Donations/pull/36))
 
+### Documentation
+
+- README:
+  - config json → jsonc (#43) ([aa73727](https://github.com/mmattDonk/AI-TTS-Donations/commit/aa73727fabeea80d7909d3b482ced66bc75888a2)) ([#43](https://github.com/mmattDonk/AI-TTS-Donations/pull/43))
+  - Clarified you need to put both URIs in Dev Console ([5dd6775](https://github.com/mmattDonk/AI-TTS-Donations/commit/5dd67750618b0b6782b8e5c17ef4d97ddd088211))
+  - Added more clarification about the notes in .env ([8c42825](https://github.com/mmattDonk/AI-TTS-Donations/commit/8c42825a6da0c3c58ad2ed8630d37c7ac56744e5))
+
 ## [v1.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.4.0) - 2021-10-09 19:43:11
 
 ## What's Changed
@@ -47,7 +54,7 @@ Changes unreleased.
 * feat(ui): Added ui by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/24
 
 ## Known bugs in this release:
-#27 
+#27
 
 **Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.2.1...v1.3.0
@@ -60,6 +67,11 @@ Changes unreleased.
 - core:
   - Added channel points as an option. (#26) ([e8b7883](https://github.com/mmattDonk/AI-TTS-Donations/commit/e8b7883b9675af68b06f8741b6a18e32088e6aea)) ([#26](https://github.com/mmattDonk/AI-TTS-Donations/pull/26))
 
+### Bug Fixes
+
+- bug:
+  - Fixed the auto-delete bug. ([1fd25cc](https://github.com/mmattDonk/AI-TTS-Donations/commit/1fd25cc42e56d0d2e4826fda51ac01713b7a22ce))
+
 ## [v1.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.2.1) - 2021-10-09 03:25:52
 
 ## Fixed the auto-delete bug.
@@ -67,11 +79,6 @@ Changes unreleased.
 
 **Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.2.0...v1.2.1
-
-### Bug Fixes
-
-- bug:
-  - Fixed the auto-delete bug. ([1fd25cc](https://github.com/mmattDonk/AI-TTS-Donations/commit/1fd25cc42e56d0d2e4826fda51ac01713b7a22ce))
 
 ## [v1.2.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.2.0) - 2021-10-08 23:01:53
 
