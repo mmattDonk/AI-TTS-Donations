@@ -89,6 +89,9 @@ Changes unreleased.
 - core:
   - Made it stop requesting once it fails. ([eb9a582](https://github.com/mmattDonk/AI-TTS-Donations/commit/eb9a582d423fb950c7e1fe33fa5622dd57585384))
 
+- LOGGING:
+  - Made it show how many checks it does total. ([d2fd675](https://github.com/mmattDonk/AI-TTS-Donations/commit/d2fd675199a37d31488c58d553aaaf0b49504b95))
+
 ### Bug Fixes
 
 - core:
