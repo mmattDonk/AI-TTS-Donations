@@ -25,6 +25,16 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
     TWITCH_SECRET=<The "Client Secret" from dev.twitch.tv>
     TWITCH_USERNAME=<The streamer's Twitch username from twitch.tv>
     ```
+Replace the <> Notes entirely when pasting in your keys.
+
+Example:
+    ```
+    UBERDUCK_USERNAME=USENAMETHISISAREALUSERNAMELOL
+    UBERDUCK_SECRET=THISISAREALSECRETTOTALLYLOL
+    TWITCH_CLIENT_ID=CANTGETMORECLIENTIDTHENTHIS
+    TWITCH_SECRET=CANTGETMORESECRET
+    TWITCH_USERNAME=mmattbtw
+    ```
 
 4. Create a config.json with the following keys:
     ```json
