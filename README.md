@@ -49,7 +49,6 @@ Example:
         // (also remove all of these // comments before you start the bot)
     }
     ```
-(Remove the comments as well! (text starting with `//`))
 
 5. Run `python3 bot.py`
     - This will install all of the needed dependencies and start the bot.
