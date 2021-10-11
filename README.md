@@ -37,7 +37,7 @@ Example:
     TWITCH_USERNAME=mmattbtw
     
 4. Create a config.json with the following keys:
-    ```json
+    ```jsonc
     {
         "MAX_MSG_LENGTH": 300, // The maximum character length for the donation message.
         "MIN_BIT_AMOUNT": 1, // The minimum amount of bits to donate for the TTS to activate.
