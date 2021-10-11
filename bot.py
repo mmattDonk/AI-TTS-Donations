@@ -214,7 +214,7 @@ def callback_bits(uuid: UUID, data: dict) -> None:
                 elif ud_ai.json()["failed_at"] != None:
                     print("This TTS request failed.")
                     waitingToProcess = False
-                elif checkCount > config["MAX_MSG_LENGTH"]:
+                elif checkCount > config["QUERY_TRIES"]:
                     print(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
