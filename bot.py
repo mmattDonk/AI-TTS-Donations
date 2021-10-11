@@ -91,11 +91,23 @@ def callback_channel_points(
 
         if response.json()["uuid"] is not None:
             print("UUID recieved. Waiting for TTS to process")
-
+            js_string = """<meta http-equiv="refresh" content="1">"""
             checkCount = 0
             waitingToProcess = True
             while waitingToProcess:
                 checkCount += 1
+                with open("index.html", "w") as html:
+                    html_code = f"""<html>
+                    <head>
+                    {js_string}
+                    </head>
+                    <body>
+                        <h1>New TTS Request:</h1>
+                        <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
+                    </body>
+                    </html>"""
+
+                    html.write(html_code)
 
                 ud_ai = httpx.get(
                     f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
@@ -112,6 +124,13 @@ def callback_channel_points(
                     urllib.request.urlretrieve(
                         ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                     )
+                    with open("index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        </head>"""
+
+                    html.write(html_code)
                     time.sleep(1)
                     winsound.PlaySound(
                         f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC
@@ -124,12 +143,27 @@ def callback_channel_points(
                     print("TTS request failed, trying again.")
                     waitingToProcess = False
                     callback_channel_points(uuid=uuid, data=data, failed=True)
+                    with open("index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        </head>"""
+
+                        html.write(html_code)
 
                 elif checkCount > config["QUERY_TRIES"]:
                     print(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
                     waitingToProcess = False
+                    with open("index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        </head>"""
+
+                        html.write(html_code)
+
                 else:
                     print(
                         f"Waiting for TTS to finish processing. {checkCount}/{config['QUERY_TRIES']} checks"
