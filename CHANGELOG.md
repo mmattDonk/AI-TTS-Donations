@@ -14,6 +14,11 @@ Changes unreleased.
 - core:
   - Made the bot re-request if TTS request fails (#36) ([6851250](https://github.com/mmattDonk/AI-TTS-Donations/commit/6851250fdbdd2bf89ab812b6eb65b467704fbd25)) ([#36](https://github.com/mmattDonk/AI-TTS-Donations/pull/36))
 
+### Documentation
+
+- README:
+  - Added more clarification about the notes in .env ([8c42825](https://github.com/mmattDonk/AI-TTS-Donations/commit/8c42825a6da0c3c58ad2ed8630d37c7ac56744e5))
+
 ## [v1.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.4.0) - 2021-10-09 19:43:11
 
 ## What's Changed
@@ -83,9 +88,6 @@ Changes unreleased.
 
 - core:
   - Made it stop requesting once it fails. ([eb9a582](https://github.com/mmattDonk/AI-TTS-Donations/commit/eb9a582d423fb950c7e1fe33fa5622dd57585384))
-
-- LOGGING:
-  - Made it show how many checks it does total. ([d2fd675](https://github.com/mmattDonk/AI-TTS-Donations/commit/d2fd675199a37d31488c58d553aaaf0b49504b95))
 
 ### Bug Fixes
 
