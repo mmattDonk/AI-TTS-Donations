@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Feature
+
+- core:
+  - Use custom number of checks (#39) ([f6ef53c](https://github.com/mmattDonk/AI-TTS-Donations/commit/f6ef53cd84a12d6fc79dd9b3c217bc6e4406386f)) ([#39](https://github.com/mmattDonk/AI-TTS-Donations/pull/39))
+
 ## [v1.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.4.0) - 2021-10-09 19:43:11
 
 ## What's Changed
