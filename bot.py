@@ -123,16 +123,16 @@ def callback_channel_points(
                 elif ud_ai.json()["failed_at"] != None:
                     print("TTS request failed, trying again.")
                     waitingToProcess = False
-                    callback_channel_points(uuid=uuid, data=data)
+                    callback_channel_points(uuid=uuid, data=data, failed=True)
 
-                elif checkCount > 100:
+                elif checkCount > config["QUERY_TRIES"]:
                     print(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
                     waitingToProcess = False
                 else:
                     print(
-                        f"Waiting for TTS to finish processing. {checkCount}/100 checks"
+                        f"Waiting for TTS to finish processing. {checkCount}/{config['QUERY_TRIES']} checks"
                     )
                     if not failed:
                         time.sleep(1)
@@ -228,14 +228,14 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
                     waitingToProcess = False
                     callback_bits(uuid=uuid, data=data, failed=True)
 
-                elif checkCount > 100:
+                elif checkCount > config["QUERY_TRIES"]:
                     print(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
                     waitingToProcess = False
                 else:
                     print(
-                        f"Waiting for TTS to finish processing. {checkCount}/100 checks"
+                        f"Waiting for TTS to finish processing. {checkCount}/{config['QUERY_TRIES']} checks"
                     )
                     if not failed:
                         time.sleep(1)
@@ -344,7 +344,7 @@ def test_tts(self, failed: Optional[bool] = False):
                 waitingToProcess = False
                 test_tts(self, failed=True)
 
-            elif checkCount > 100:
+            elif checkCount > config["QUERY_TRIES"]:
                 print(
                     f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                 )
