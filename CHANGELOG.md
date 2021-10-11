@@ -17,6 +17,7 @@ Changes unreleased.
 ### Documentation
 
 - README:
+  - Clarified you need to put both URIs in Dev Console ([5dd6775](https://github.com/mmattDonk/AI-TTS-Donations/commit/5dd67750618b0b6782b8e5c17ef4d97ddd088211))
   - Added more clarification about the notes in .env ([8c42825](https://github.com/mmattDonk/AI-TTS-Donations/commit/8c42825a6da0c3c58ad2ed8630d37c7ac56744e5))
 
 ## [v1.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.4.0) - 2021-10-09 19:43:11
