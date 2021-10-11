@@ -30,6 +30,20 @@ from typing import Optional
 
 import json
 
+
+def path_exists(filename):
+    return os.path.join(".", f"{filename}")
+
+
+if not os.path.exists(path_exists("./overlay/index.html")):
+    with open("./overlay/index.html", "w") as html:
+        js_script = """<meta http-equiv="refresh" content="1">"""
+        html_code = f"""<head>
+        {js_script}
+        <link rel="stylesheet" href="style.css">
+        </head>"""
+        html.write(html_code)
+
 with open("config.json", "r") as f:
     config = json.load(f)
 
@@ -96,14 +110,18 @@ def callback_channel_points(
             waitingToProcess = True
             while waitingToProcess:
                 checkCount += 1
-                with open("index.html", "w") as html:
+                with open("./overlay/index.html", "w") as html:
                     html_code = f"""<html>
                     <head>
                     {js_string}
+                    <link rel="stylesheet" href="style.css">
                     </head>
                     <body>
-                        <h1>New TTS Request:</h1>
-                        <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
+                        <div class="box">
+                            <h1>New TTS Request:</h1>
+                            <h2>Voice: {voice}</h2>
+                            <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
+                        </div>
                     </body>
                     </html>"""
 
@@ -124,10 +142,11 @@ def callback_channel_points(
                     urllib.request.urlretrieve(
                         ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                     )
-                    with open("index.html", "w") as html:
+                    with open("./overlay/index.html", "w") as html:
                         js_script = """<meta http-equiv="refresh" content="1">"""
                         html_code = f"""<head>
                         {js_script}
+                        <link rel="stylesheet" href="style.css">
                         </head>"""
                         html.write(html_code)
 
@@ -143,10 +162,32 @@ def callback_channel_points(
                     print("TTS request failed, trying again.")
                     waitingToProcess = False
                     callback_channel_points(uuid=uuid, data=data, failed=True)
-                    with open("index.html", "w") as html:
+
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+
+                        html_code = f"""<html>
+                        <head>
+                        {js_string}
+                        <link rel="stylesheet" href="style.css">
+                        </head>
+                        <body>
+                            <div class="box">
+                                <h1 style="color: red">‼️ TTS Request Failed ‼️</h1>
+                                <h2>Retrying...</h2>
+                            </div>
+                        </body>
+                        </html>"""
+
+                        html.write(html_code)
+
+                    time.sleep(2)
+
+                    with open("./overlay/index.html", "w") as html:
                         js_script = """<meta http-equiv="refresh" content="1">"""
                         html_code = f"""<head>
                         {js_script}
+                        <link rel="stylesheet" href="style.css">
                         </head>"""
 
                         html.write(html_code)
@@ -156,10 +197,31 @@ def callback_channel_points(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
                     waitingToProcess = False
-                    with open("index.html", "w") as html:
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+
+                        html_code = f"""<html>
+                        <head>
+                        {js_string}
+                        <link rel="stylesheet" href="style.css">
+                        </head>
+                        <body>
+                            <div class="box">
+                                <h1 style="color: red">‼️ TTS failed to process after {checkCount} tries. ‼️</h1>
+                                <h2>Giving Up.</h2>
+                            </div>
+                        </body>
+                        </html>"""
+
+                        html.write(html_code)
+
+                    time.sleep(5)
+
+                    with open("./overlay/index.html", "w") as html:
                         js_script = """<meta http-equiv="refresh" content="1">"""
                         html_code = f"""<head>
                         {js_script}
+                        <link rel="stylesheet" href="style.css">
                         </head>"""
 
                         html.write(html_code)
@@ -395,6 +457,14 @@ def test_tts(self, failed: Optional[bool] = False):
 def skip_tts(self):
     print("Skipping TTS")
     winsound.PlaySound(None, winsound.SND_ASYNC)
+    with open("./overlay/index.html", "w") as html:
+        js_script = """<meta http-equiv="refresh" content="1">"""
+        html_code = f"""<head>
+        {js_script}
+        <link rel="stylesheet" href="style.css">
+        </head>"""
+
+        html.write(html_code)
 
 
 OUTPUT_PATH = Path(__file__).parent
