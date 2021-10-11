@@ -1,7 +1,8 @@
 # AI-TTS-Donations
-Join the Discord! 
+Join the Discord!
 
 [![Discord](https://img.shields.io/discord/883929594179256350?label=Click%20Here%20to%20Join%21)](https://discord.gg/mvVePs2Hs2)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mmattDonk/AI-TTS-Donations/main.svg)](https://results.pre-commit.ci/latest/github/mmattDonk/AI-TTS-Donations/main)
 
 💰 A bot that uses Uberduck AI to make bit donations have an AI voice.
 
@@ -29,13 +30,13 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
 Replace the <> Notes entirely when pasting in your keys.
 
 Example:
-    
+
     UBERDUCK_USERNAME=USENAMETHISISAREALUSERNAMELOL
     UBERDUCK_SECRET=THISISAREALSECRETTOTALLYLOL
     TWITCH_CLIENT_ID=CANTGETMORECLIENTIDTHENTHIS
     TWITCH_SECRET=CANTGETMORESECRET
     TWITCH_USERNAME=mmattbtw
-    
+
 4. Create a config.json with the following keys:
     ```jsonc
     {
