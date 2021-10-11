@@ -129,8 +129,8 @@ def callback_channel_points(
                         html_code = f"""<head>
                         {js_script}
                         </head>"""
+                        html.write(html_code)
 
-                    html.write(html_code)
                     time.sleep(1)
                     winsound.PlaySound(
                         f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC
