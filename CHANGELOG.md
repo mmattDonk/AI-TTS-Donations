@@ -67,6 +67,11 @@ Changes unreleased.
 - core:
   - Added channel points as an option. (#26) ([e8b7883](https://github.com/mmattDonk/AI-TTS-Donations/commit/e8b7883b9675af68b06f8741b6a18e32088e6aea)) ([#26](https://github.com/mmattDonk/AI-TTS-Donations/pull/26))
 
+### Bug Fixes
+
+- bug:
+  - Fixed the auto-delete bug. ([1fd25cc](https://github.com/mmattDonk/AI-TTS-Donations/commit/1fd25cc42e56d0d2e4826fda51ac01713b7a22ce))
+
 ## [v1.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.2.1) - 2021-10-09 03:25:52
 
 ## Fixed the auto-delete bug.
@@ -74,11 +79,6 @@ Changes unreleased.
 
 **Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.2.0...v1.2.1
-
-### Bug Fixes
-
-- bug:
-  - Fixed the auto-delete bug. ([1fd25cc](https://github.com/mmattDonk/AI-TTS-Donations/commit/1fd25cc42e56d0d2e4826fda51ac01713b7a22ce))
 
 ## [v1.2.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.2.0) - 2021-10-08 23:01:53
 
