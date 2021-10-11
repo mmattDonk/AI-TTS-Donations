@@ -9,6 +9,11 @@ Changes unreleased.
 - core:
   - Use custom number of checks (#39) ([f6ef53c](https://github.com/mmattDonk/AI-TTS-Donations/commit/f6ef53cd84a12d6fc79dd9b3c217bc6e4406386f)) ([#39](https://github.com/mmattDonk/AI-TTS-Donations/pull/39))
 
+### Bug Fixes
+
+- core:
+  - Made the bot re-request if TTS request fails (#36) ([6851250](https://github.com/mmattDonk/AI-TTS-Donations/commit/6851250fdbdd2bf89ab812b6eb65b467704fbd25)) ([#36](https://github.com/mmattDonk/AI-TTS-Donations/pull/36))
+
 ## [v1.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.4.0) - 2021-10-09 19:43:11
 
 ## What's Changed
