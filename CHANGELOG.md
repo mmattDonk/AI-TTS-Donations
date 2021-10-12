@@ -17,6 +17,7 @@ Changes unreleased.
 ### Documentation
 
 - README:
+  - Changed the label for the Discord badge. ([56d02d9](https://github.com/mmattDonk/AI-TTS-Donations/commit/56d02d9a65973c7cfb70619eccdaf5e5f30c3b9d))
   - config json → jsonc (#43) ([aa73727](https://github.com/mmattDonk/AI-TTS-Donations/commit/aa73727fabeea80d7909d3b482ced66bc75888a2)) ([#43](https://github.com/mmattDonk/AI-TTS-Donations/pull/43))
   - Clarified you need to put both URIs in Dev Console ([5dd6775](https://github.com/mmattDonk/AI-TTS-Donations/commit/5dd67750618b0b6782b8e5c17ef4d97ddd088211))
   - Added more clarification about the notes in .env ([8c42825](https://github.com/mmattDonk/AI-TTS-Donations/commit/8c42825a6da0c3c58ad2ed8630d37c7ac56744e5))
