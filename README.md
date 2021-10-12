@@ -1,7 +1,5 @@
 # AI-TTS-Donations
-Join the Discord!
-
-[![Discord](https://img.shields.io/discord/883929594179256350?label=Click%20Here%20to%20Join%21)](https://discord.gg/mvVePs2Hs2)
+[![Discord](https://img.shields.io/discord/883929594179256350?label=Discord)](https://discord.gg/mvVePs2Hs2)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mmattDonk/AI-TTS-Donations/main.svg)](https://results.pre-commit.ci/latest/github/mmattDonk/AI-TTS-Donations/main)
 
 💰 A bot that uses Uberduck AI to make bit donations have an AI voice.
