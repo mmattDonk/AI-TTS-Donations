@@ -54,7 +54,7 @@ Changes unreleased.
 * feat(ui): Added ui by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/24
 
 ## Known bugs in this release:
-#27
+#27 
 
 **Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.2.1...v1.3.0
