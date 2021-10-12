@@ -3,9 +3,13 @@ repos:
     rev: v3.2.0
     hooks:
     -   id: trailing-whitespace
+        exclude: CHANGELOG.md
     -   id: end-of-file-fixer
+        exclude: CHANGELOG.md
     -   id: check-yaml
+        exclude: CHANGELOG.md
     -   id: check-added-large-files
+        exclude: CHANGELOG.md
 
 default_language_version:
   python: python3.9
