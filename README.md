@@ -7,6 +7,10 @@
 ### Are you a viewer?
 Check the instructions [here!](https://mmatt.link/UseTTS)
 
+### Prerequisites
+1. [Python 3.8+](https://www.python.org/downloads/)
+2. [Git](https://git-scm.com/)
+
 ### How to run
 
 1. Clone the repo
