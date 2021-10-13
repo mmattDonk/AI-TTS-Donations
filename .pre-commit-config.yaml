@@ -10,6 +10,8 @@ repos:
         exclude: CHANGELOG.md
     -   id: check-added-large-files
         exclude: CHANGELOG.md
-
-default_language_version:
-  python: python3.9
+  
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v2.29.0
+    hooks:
+    -   id: pyupgrade
