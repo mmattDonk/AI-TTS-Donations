@@ -14,3 +14,4 @@ git+git://github.com/Teekeks/pyTwitchAPI@d842aad6fba985d2e50afee0fc32044e3de67a0
 
 
 pre-commit
+pyupgrade
