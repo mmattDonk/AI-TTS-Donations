@@ -15,7 +15,10 @@ repos:
     rev: v2.29.0
     hooks:
     -   id: pyupgrade
-
+-   repo: https://github.com/psf/black
+    rev: stable
+    hooks:
+    -   id: black
 
 default_language_version:
   python: python3.9
