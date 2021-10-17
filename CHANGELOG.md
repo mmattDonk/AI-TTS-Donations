@@ -6,6 +6,9 @@ Changes unreleased.
 
 ### Feature
 
+- overlay:
+  - Added a overlay (#42) ([d7e1b69](https://github.com/mmattDonk/AI-TTS-Donations/commit/d7e1b697c23596bdf5e54768848b074a64680206)) ([#42](https://github.com/mmattDonk/AI-TTS-Donations/pull/42))
+
 - core:
   - Use custom number of checks (#39) ([f6ef53c](https://github.com/mmattDonk/AI-TTS-Donations/commit/f6ef53cd84a12d6fc79dd9b3c217bc6e4406386f)) ([#39](https://github.com/mmattDonk/AI-TTS-Donations/pull/39))
 
