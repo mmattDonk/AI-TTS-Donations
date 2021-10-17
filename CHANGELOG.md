@@ -1,8 +1,26 @@
 # CHANGELOG
 
-## Unreleased
+## [v1.5.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.5.0) - 2021-10-17 07:13:23
 
-Changes unreleased.
+# Added an overlay.
+You can add this overlay to your stream by adding the `index.html` seen in the `overlay` folder, using the `Local file` option in OBS.
+
+## What's Changed
+* feat(core): Use custom number of checks by @MrAuro in https://github.com/mmattDonk/AI-TTS-Donations/pull/39
+* fix(core): Made the bot re-request if TTS request fails by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/36
+* docs(README): config json → jsonc by @12beesinatrenchcoat in https://github.com/mmattDonk/AI-TTS-Donations/pull/43
+* chore(deps): bump python-dotenv from 0.19.0 to 0.19.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/44
+* chore(pre-commit): Added pre-commit by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/45
+* chore(pre-commit): Made CHANGELOG be excluded from pre-commit by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/46
+* chore(workflows/pre-commit): Moved Black linting to pre-commit by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/49
+* feat(overlay): Added a overlay by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/42
+
+## New Contributors
+* @12beesinatrenchcoat made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/43
+* @dependabot made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/44
+
+**Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.4.0...v1.5.0
+**Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 
 ### Feature
 
