@@ -4,6 +4,7 @@
 
 # Added an overlay.
 You can add this overlay to your stream by adding the `index.html` seen in the `overlay` folder, using the `Local file` option in OBS.
+![](https://i.mrauro.dev/pje2s.png)
 
 ## What's Changed
 * feat(core): Use custom number of checks by @MrAuro in https://github.com/mmattDonk/AI-TTS-Donations/pull/39
