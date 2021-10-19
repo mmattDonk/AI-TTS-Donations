@@ -57,7 +57,7 @@ Example:
     - This will install all of the needed dependencies and start the bot.
 
 
-### �‍��� Developers
+### Developers
 We use `pre-commit` and `pre-commit.ci` to make sure that Pull Requests are quality, even before you commit your changes.
 
 Use `pip install -r requirements-dev.txt` to install the developer dependencies needed.
