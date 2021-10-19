@@ -120,9 +120,6 @@ You can add this overlay to your stream by adding the `index.html` seen in the `
 
 ### Bug Fixes
 
-- core:
-  - Fixed a bug by waiting to remove audio. ([f3782ee](https://github.com/mmattDonk/AI-TTS-Donations/commit/f3782ee6f82f4b6a04c84598ab72ca592bb81e49))
-
 - LOGGING:
   - Reworded logs & quit after 100 false "danks" (#20) ([1c453df](https://github.com/mmattDonk/AI-TTS-Donations/commit/1c453df324bb0705dbc0cb0709509d8e027b56b7)) ([#20](https://github.com/mmattDonk/AI-TTS-Donations/pull/20))
 
