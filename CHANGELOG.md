@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Bug Fixes
+
+- core:
+  - removed auto-update ([c4a6aa2](https://github.com/mmattDonk/AI-TTS-Donations/commit/c4a6aa266e164c7f371a897b83c4445f7ffea0e0))
+
 ## [v1.5.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.5.0) - 2021-10-17 07:13:23
 
 # Added an overlay.
