@@ -4,7 +4,9 @@
 
 ## Removed `auto update` code.
 
-AI-TTS-Donations used some scuffed auto update code to automatically `git pull` and the reinstall the dependencies. This worked.... fine, but there have been a lot of issues surrounding it, and it really wasn't the best solution at all. I would recommend, if you have the `.git` folder in your bot folder, then you can simply do `git pull` in a terminal that is in that directory. If you don't, you can simply just download the releases from here, I will probably start announcing new versions in the [mmattDonk Discord](https://discord.gg/mvVePs2Hs2), so you could join that to stay in touch.
+AI-TTS-Donations used some scuffed auto update code to automatically `git pull` and the reinstall the dependencies. This worked.... fine, but there have been a lot of issues surrounding it, and it really wasn't the best solution at all. I would recommend, if you have the `.git` folder in your bot folder, then you can simply do `git pull` in a terminal that is in that directory. If you don't, you can simply just download the releases from here, I will probably start announcing new versions in the [mmattDonk Discord](https://discord.gg/mvVePs2Hs2), so you could join that to stay in touch. 
+
+And of course, if you need my help, my Twitch Chat `#mmattbtw` and Discord Server https://discord.gg/mvVePs2Hs2 are both great ways to reach me!
 
 **Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.5.0...v1.5.1
 
