@@ -1,34 +1,28 @@
+import json
+import logging
 import os
+import re
 import sys
+import time
+import urllib.request
+import winsound
+from datetime import datetime
+from pathlib import Path
+from tkinter import Button
+from tkinter import Canvas
+from tkinter import Entry
+from tkinter import PhotoImage
+from tkinter import Text
+from tkinter import Tk
+from typing import Optional
+from uuid import UUID
 
-print(sys.argv)
-if "dev".lower() in sys.argv:
-    print("Starting in DEV mode")
-else:
-    os.system("git pull origin main")
-    os.system("pip install -U -r requirements.txt")
-
-
+import httpx
+from dotenv import load_dotenv
+from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
-from uuid import UUID
-from dotenv import load_dotenv
-from twitchAPI.oauth import UserAuthenticator
-from datetime import datetime
-import httpx
-import time
-import re
-import logging
-from datetime import datetime
-import winsound
-import urllib.request
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-from pathlib import Path
-from typing import Optional
-
-
-import json
 
 
 def path_exists(filename):
