@@ -5,20 +5,20 @@ import re
 import sys
 import time
 import urllib.request
-import winsound
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
+from uuid import UUID
+
+import httpx
+import winsound
+from dotenv import load_dotenv
 from tkinter import Button
 from tkinter import Canvas
 from tkinter import Entry
 from tkinter import PhotoImage
 from tkinter import Text
 from tkinter import Tk
-from typing import Optional
-from uuid import UUID
-
-import httpx
-from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
