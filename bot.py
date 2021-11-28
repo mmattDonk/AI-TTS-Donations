@@ -9,26 +9,25 @@ else:
     os.system("pip install -U -r requirements.txt")
 
 
+import json
+import logging
+import queue
+import re
+import threading
+import time
+import urllib.request
+from datetime import datetime
+from pathlib import Path
+from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk
+from uuid import UUID
+
+import httpx
+import simpleaudio
+from dotenv import load_dotenv
+from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
-from uuid import UUID
-from dotenv import load_dotenv
-from twitchAPI.oauth import UserAuthenticator
-from datetime import datetime
-import httpx
-import time
-import re
-import logging
-from datetime import datetime
-import winsound
-import urllib.request
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-from pathlib import Path
-import queue
-import threading
-
-import json
 
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -116,11 +115,8 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
                             ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                         )
                         time.sleep(1)
-                        # winsound.PlaySound(f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC)
                         voice_files.append(f"AI_voice_{date_string}.wav")
                         time.sleep(1)
-                        # os.remove(f"./AI_voice_{date_string}.wav")
-
                         waitingToProcess = False
 
                     elif ud_ai.json()["failed_at"] != None:
@@ -138,22 +134,18 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
                         )
                         time.sleep(1)
 
-        # for voice_file in voice_files:
-        #     time.sleep(0.5)
-        #     winsound.PlaySound(voice_file, winsound.SND_ASYNC)
-        #     time.sleep(2)
-        #     os.remove(voice_file)
-
         def thread_function():
             while True:
                 sound = q.get()
                 if sound is None:
                     break
-                winsound.PlaySound(sound, winsound.SND_FILENAME)
+                sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
+                play_obj = sound_obj.play()
+                play_obj.wait_done()
                 os.remove(sound)
 
         if __name__ == "__main__":
-            t = threading.Thread(target=thread_function, daemon=True)
+            t = threading.Thread(target=thread_function)
             t.start()
             for voice_file in voice_files:
                 q.put(voice_file)
@@ -238,10 +230,8 @@ def callback_bits(uuid: UUID, data: dict) -> None:
                         ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                     )
                     time.sleep(1)
-                    # winsound.PlaySound(f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC)
                     voice_files.append(f"AI_voice_{date_string}.wav")
                     time.sleep(1)
-                    # os.remove(f"./AI_voice_{date_string}.wav")
 
                     waitingToProcess = False
 
@@ -258,18 +248,14 @@ def callback_bits(uuid: UUID, data: dict) -> None:
                     print(f"Waiting for TTS to finish processing. {checkCount} checks")
                     time.sleep(1)
 
-    # for voice_file in voice_files:
-    #     time.sleep(0.5)
-    #     winsound.PlaySound(voice_file, winsound.SND_ASYNC)
-    #     time.sleep(2)
-    #     os.remove(voice_file)
-
     def thread_function():
         while True:
             sound = q.get()
             if sound is None:
                 break
-            winsound.PlaySound(sound, winsound.SND_FILENAME)
+            sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
+            play_obj = sound_obj.play()
+            play_obj.wait_done()
             os.remove(sound)
 
     if __name__ == "__main__":
@@ -382,10 +368,8 @@ def test_tts():
                         ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                     )
                     time.sleep(1)
-                    # winsound.PlaySound(f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC)
                     voice_files.append(f"AI_voice_{date_string}.wav")
                     time.sleep(1)
-                    # os.remove(f"./AI_voice_{date_string}.wav")
 
                     waitingToProcess = False
 
@@ -402,18 +386,14 @@ def test_tts():
                     print(f"Waiting for TTS to finish processing. {checkCount} checks")
                     time.sleep(1)
 
-    # for voice_file in voice_files:
-    #     time.sleep(0.5)
-    #     winsound.PlaySound(voice_file, winsound.SND_ASYNC)
-    #     time.sleep(2)
-    #     os.remove(voice_file)
-
     def thread_function():
         while True:
             sound = q.get()
             if sound is None:
                 break
-            winsound.PlaySound(sound, winsound.SND_FILENAME)
+            sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
+            play_obj = sound_obj.play()
+            play_obj.wait_done()
             os.remove(sound)
 
     if __name__ == "__main__":
@@ -427,7 +407,7 @@ def test_tts():
 
 def skip_tts(self):
     print("Skipping TTS")
-    winsound.PlaySound(None, winsound.SND_ASYNC)
+    simpleaudio.stop_all()
 
 
 OUTPUT_PATH = Path(__file__).parent

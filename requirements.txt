@@ -9,6 +9,8 @@ python_dotenv == 0.19.0
 # C:\Users\notmm\ai-tts-donations\ui.py: 9
 python_dotenv == 0.19.0
 
+simpleaudio==1.0.4
+
 # C:\Users\notmm\ai-tts-donations\bot.py: 12,13,14,17
 git+git://github.com/Teekeks/pyTwitchAPI@d842aad6fba985d2e50afee0fc32044e3de67a01#egg=twitchAPI
 
