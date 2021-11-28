@@ -19,6 +19,7 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
 4. Install Dependencies - Run `python3 -m pip install -r requirements.txt` in a Terminal/PowerShell/Command Prompt window (that is in the same directory as the bot.py file)
 5. Start the bot - Run `python3 bot.py` in a Terminal/PowerShell/Command Prompt window
 
+After this, you just login with the website that opens in your default browser, and you are all good to go! If you have any errors/problems, don't be afraid to join the [Discord Server](https://discord.gg/mvVePs2Hs2) for help.
 
 ### Developers
 We use `pre-commit` and `pre-commit.ci` to make sure that Pull Requests are quality, even before you commit your changes.
