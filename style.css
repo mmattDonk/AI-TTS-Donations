@@ -1,0 +1,124 @@
+:root {
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+body {
+	margin: 4em;
+	background: black;
+	color: white;
+	max-width: 96ch;
+}
+
+a {
+	color: inherit
+}
+
+textarea {
+	display: block;
+	width: 100%;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	overflow-wrap: normal;
+	white-space: pre;
+}
+
+textarea, input {
+	font-size: 1em;
+	border: 3px solid dimgrey;
+	background: dimgrey;
+	color: white;
+	max-width: 48rem;
+	border-radius: 2px
+}
+
+input {
+	font-family: inherit;
+}
+
+textarea:hover, input:hover {
+	border-color: darkgrey;
+}
+
+textarea:focus, input:focus {
+	outline: none;
+	border-color: mediumpurple;
+	background-color: black;
+}
+
+button {
+	background: grey;
+	color: inherit;
+	font-size: inherit;
+	font-family: inherit;
+	border: none;
+	width: 6rem;
+}
+
+label {
+	display: grid;
+	grid-template-columns: 14rem auto;
+	position: relative;
+}
+
+.tooltip {
+	visibility: hidden;
+	position: absolute;
+	left: 24rem; top: 1.5rem;
+	border: 3px solid darkgrey;
+	border-radius: 2px;
+	background: black;
+	z-index: 1;
+	padding: 0.5em;
+	font-size: 0.9rem;
+	min-width: 12ch;
+}
+
+label:hover .tooltip, input:focus + .tooltip {
+	visibility: visible;
+}
+
+label:hover .tooltip {
+	z-index: 2;
+}
+
+input:focus + .tooltip {
+	border-color: mediumpurple;
+}
+
+* + * {
+	margin-top: 0.5em;
+}
+
+.ib {
+	display: inline-block;
+}
+
+.ib  > .tooltip {
+	left: 0;
+}
+.copyable {
+	border: 1px grey dashed;
+	position: relative;
+}
+
+.copyable:hover::after {
+	content: attr(data-text);
+	position: absolute;
+	left: 0;
+	bottom: 1rem;
+	background: grey;
+	font-size: 0.8rem;
+}
+
+a:active {
+	color: mediumpurple;
+}
+
+.copyable:active {
+	border-color: mediumpurple;
+}
+
+.copyable:active::after, button:active {
+	background: mediumpurple;
+}

@@ -9,26 +9,5 @@ repos:
     rev: v4.0.1
     hooks:
     -   id: trailing-whitespace
-        exclude: CHANGELOG.md
     -   id: end-of-file-fixer
-        exclude: CHANGELOG.md
-    -   id: check-yaml
-        exclude: CHANGELOG.md
     -   id: check-added-large-files
-        exclude: CHANGELOG.md
-
--   repo: https://github.com/asottile/pyupgrade
-    rev: v2.29.1
-    hooks:
-    -   id: pyupgrade
--   repo: https://github.com/psf/black
-    rev: 21.11b1
-    hooks:
-    -   id: black
--   repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.6.0
-    hooks:
-    -   id: reorder-python-imports
-
-default_language_version:
-  python: python3.9
