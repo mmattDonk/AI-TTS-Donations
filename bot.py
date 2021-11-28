@@ -9,18 +9,18 @@ import time
 import urllib.request
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
-from uuid import UUID
-
-import httpx
-import simpleaudio
-from dotenv import load_dotenv
 from tkinter import Button
 from tkinter import Canvas
 from tkinter import Entry
 from tkinter import PhotoImage
 from tkinter import Text
 from tkinter import Tk
+from typing import Optional
+from uuid import UUID
+
+import httpx
+import simpleaudio
+from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
@@ -498,7 +498,7 @@ elif (
 print("Pubsub Ready!")
 
 
-def test_tts(self, failed: Optional[bool] = False):
+def test_tts():
 
     message = entry_1.get()
     if message == "":
@@ -608,7 +608,6 @@ def test_tts(self, failed: Optional[bool] = False):
                 elif ud_ai.json()["failed_at"] != None:
                     print("TTS request failed, trying again.")
                     waitingToProcess = False
-                    test_tts(self=self, failed=True)
 
                     with open("./overlay/index.html", "w") as html:
                         js_script = """<meta http-equiv="refresh" content="1">"""
@@ -676,11 +675,7 @@ def test_tts(self, failed: Optional[bool] = False):
                     print(
                         f"Waiting for TTS to finish processing. {checkCount}/100 checks"
                     )
-                    if not failed:
-                        time.sleep(1)
-
-                    else:
-                        time.sleep(2)
+                    time.sleep(1)
 
     def thread_function():
         while True:
@@ -702,7 +697,7 @@ def test_tts(self, failed: Optional[bool] = False):
         print(ud_ai.json())
 
 
-def skip_tts(self):
+def skip_tts():
     print("Skipping TTS")
     simpleaudio.stop_all()
     with open("./overlay/index.html", "w") as html:
