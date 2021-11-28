@@ -102,7 +102,7 @@ document.querySelectorAll("button[value=cp]").forEach(button => {
 document.querySelectorAll("button[value=dl]").forEach(button => {
 	button.addEventListener("click", e => {
 		const {target} = e;
-		const textArea = target.parentElement.nextElementSibling.textContent;
+		const {textContent} = target.parentElement.nextElementSibling;
 		// if json, use "application/json" type
 		const type = target.dataset.saveas.endsWith(".json") ?
 			"application/json" : "text/plain"
@@ -112,7 +112,7 @@ document.querySelectorAll("button[value=dl]").forEach(button => {
 		}
 
 		const a = document.createElement("a");
-		const file = new Blob([textArea.textContent], {type});
+		const file = new Blob([textContent], {type});
 
 		a.href = URL.createObjectURL(file);
 		a.download = target.dataset.saveas; // filename
