@@ -9,18 +9,18 @@ import time
 import urllib.request
 from datetime import datetime
 from pathlib import Path
-from tkinter import Button
-from tkinter import Canvas
-from tkinter import Entry
-from tkinter import PhotoImage
-from tkinter import Text
-from tkinter import Tk
 from typing import Optional
 from uuid import UUID
 
 import httpx
 import simpleaudio
 from dotenv import load_dotenv
+from tkinter import Button
+from tkinter import Canvas
+from tkinter import Entry
+from tkinter import PhotoImage
+from tkinter import Text
+from tkinter import Tk
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
