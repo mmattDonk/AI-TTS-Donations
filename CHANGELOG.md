@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Documentation
+
+- README:
+  - cleaned up instructions ([e10a153](https://github.com/mmattDonk/AI-TTS-Donations/commit/e10a153cd77eba7cd4394e24efa6e92ec6cc7b70))
+
 ## [v1.5.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.5.1) - 2021-11-05 21:39:39
 
 ## Removed `auto update` code.
