@@ -1,33 +1,46 @@
-import os
-import sys
-
-print(sys.argv)
-if "dev".lower() in sys.argv:
-    print("Starting in DEV mode")
-else:
-    os.system("git pull origin main")
-    os.system("pip install -U -r requirements.txt")
-
-
 import json
 import logging
-import queue
+import os
 import re
-import threading
+import sys
 import time
 import urllib.request
 from datetime import datetime
 from pathlib import Path
-from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk
+from typing import Optional
 from uuid import UUID
 
+import queue
+import re
+import threading
 import httpx
 import simpleaudio
 from dotenv import load_dotenv
+
+from tkinter import Button
+from tkinter import Canvas
+from tkinter import Entry
+from tkinter import PhotoImage
+from tkinter import Text
+from tkinter import Tk
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
+
+
+def path_exists(filename):
+    return os.path.join(".", f"{filename}")
+
+
+if not os.path.exists(path_exists("./overlay/index.html")):
+    with open("./overlay/index.html", "w") as html:
+        js_script = """<meta http-equiv="refresh" content="1">"""
+        html_code = f"""<head>
+        {js_script}
+        <link rel="stylesheet" href="style.css">
+        </head>"""
+        html.write(html_code)
 
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -42,7 +55,9 @@ log = logging.getLogger()
 logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%X")
 
 
-def callback_channel_points(uuid: UUID, data: dict) -> None:
+def callback_channel_points(
+    uuid: UUID, data: dict, failed: Optional[bool] = False
+) -> None:
     print(data)
 
     if (
@@ -151,9 +166,141 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
                 q.put(voice_file)
                 time.sleep(1)
             t.join()
+        if response.json()["uuid"] is not None:
+            print("UUID recieved. Waiting for TTS to process")
+            js_string = """<meta http-equiv="refresh" content="1">"""
+            checkCount = 0
+            waitingToProcess = True
+            while waitingToProcess:
+                checkCount += 1
+                with open("./overlay/index.html", "w") as html:
+                    html_code = f"""<html>
+                    <head>
+                    {js_string}
+                    <link rel="stylesheet" href="style.css">
+                    </head>
+                    <body>
+                        <div class="box">
+                            <h1>New TTS Request:</h1>
+                            <h2>Voice: {voice}</h2>
+                            <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
+                        </div>
+                    </body>
+                    </html>"""
+
+                    html.write(html_code)
+
+                ud_ai = httpx.get(
+                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
+                    auth=(
+                        os.environ.get("UBERDUCK_USERNAME"),
+                        os.environ.get("UBERDUCK_SECRET"),
+                    ),
+                )
+
+                print(ud_ai.json())
+                if ud_ai.json()["path"] != None:
+                    print(f"TTS processed after {checkCount} checks")
+                    date_string = datetime.now().strftime("%d%m%Y%H%M%S")
+                    urllib.request.urlretrieve(
+                        ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+                    )
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        <link rel="stylesheet" href="style.css">
+                        </head>"""
+                        html.write(html_code)
+
+                    time.sleep(1)
+                    winsound.PlaySound(
+                        f"./AI_voice_{date_string}.wav", winsound.SND_ASYNC
+                    )
+                    time.sleep(1)
+                    os.remove(f"./AI_voice_{date_string}.wav")
+                    waitingToProcess = False
+
+                elif ud_ai.json()["failed_at"] != None:
+                    print("TTS request failed, trying again.")
+                    waitingToProcess = False
+                    callback_channel_points(uuid=uuid, data=data, failed=True)
+
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+
+                        html_code = f"""<html>
+                        <head>
+                        {js_string}
+                        <link rel="stylesheet" href="style.css">
+                        </head>
+                        <body>
+                            <div class="box">
+                                <h1 style="color: red">‼️ TTS Request Failed ‼️</h1>
+                                <h2>Retrying...</h2>
+                            </div>
+                        </body>
+                        </html>"""
+
+                        html.write(html_code)
+
+                    time.sleep(2)
+
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        <link rel="stylesheet" href="style.css">
+                        </head>"""
+
+                        html.write(html_code)
+
+                elif checkCount > config["QUERY_TRIES"]:
+                    print(
+                        f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
+                    )
+                    waitingToProcess = False
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+
+                        html_code = f"""<html>
+                        <head>
+                        {js_string}
+                        <link rel="stylesheet" href="style.css">
+                        </head>
+                        <body>
+                            <div class="box">
+                                <h1 style="color: red">‼️ TTS failed to process after {checkCount} tries. ‼️</h1>
+                                <h2>Giving Up.</h2>
+                            </div>
+                        </body>
+                        </html>"""
+
+                        html.write(html_code)
+
+                    time.sleep(5)
+
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        <link rel="stylesheet" href="style.css">
+                        </head>"""
+
+                        html.write(html_code)
+
+                else:
+                    print(
+                        f"Waiting for TTS to finish processing. {checkCount}/{config['QUERY_TRIES']} checks"
+                    )
+                    if not failed:
+                        time.sleep(1)
+
+                    else:
+                        time.sleep(2)
 
 
-def callback_bits(uuid: UUID, data: dict) -> None:
+def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> None:
     print(data)
 
     bits = data["data"]["bits_used"]
@@ -166,7 +313,7 @@ def callback_bits(uuid: UUID, data: dict) -> None:
             return
 
     message = re.sub(
-        "(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
+        r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
         "",
         message,
     )
@@ -208,11 +355,27 @@ def callback_bits(uuid: UUID, data: dict) -> None:
 
         if response.json()["uuid"] is not None:
             print("UUID recieved. Waiting for TTS to process")
-
+            js_string = """<meta http-equiv="refresh" content="1">"""
             checkCount = 0
             waitingToProcess = True
             while waitingToProcess:
                 checkCount += 1
+                with open("./overlay/index.html", "w") as html:
+                    html_code = f"""<html>
+                    <head>
+                    {js_string}
+                    <link rel="stylesheet" href="style.css">
+                    </head>
+                    <body>
+                        <div class="box">
+                            <h1>New TTS Request:</h1>
+                            <h2>Voice: {voice}</h2>
+                            <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
+                        </div>
+                    </body>
+                    </html>"""
+
+                    html.write(html_code)
 
                 ud_ai = httpx.get(
                     f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
@@ -229,6 +392,14 @@ def callback_bits(uuid: UUID, data: dict) -> None:
                     urllib.request.urlretrieve(
                         ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
                     )
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        <link rel="stylesheet" href="style.css">
+                        </head>"""
+                        html.write(html_code)
+
                     time.sleep(1)
                     voice_files.append(f"AI_voice_{date_string}.wav")
                     time.sleep(1)
@@ -240,13 +411,81 @@ def callback_bits(uuid: UUID, data: dict) -> None:
                     waitingToProcess = False
 
                 elif checkCount > 100:
+                    print("TTS request failed, trying again.")
+                    waitingToProcess = False
+                    callback_bits(uuid=uuid, data=data, failed=True)
+
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+
+                        html_code = f"""<html>
+                        <head>
+                        {js_string}
+                        <link rel="stylesheet" href="style.css">
+                        </head>
+                        <body>
+                            <div class="box">
+                                <h1 style="color: red">‼️ TTS Request Failed ‼️</h1>
+                                <h2>Retrying...</h2>
+                            </div>
+                        </body>
+                        </html>"""
+
+                        html.write(html_code)
+
+                    time.sleep(2)
+
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        <link rel="stylesheet" href="style.css">
+                        </head>"""
+
+                        html.write(html_code)
+
+                elif checkCount > config["QUERY_TRIES"]:
                     print(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
                     waitingToProcess = False
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+
+                        html_code = f"""<html>
+                        <head>
+                        {js_string}
+                        <link rel="stylesheet" href="style.css">
+                        </head>
+                        <body>
+                            <div class="box">
+                                <h1 style="color: red">‼️ TTS failed to process after {checkCount} tries. ‼️</h1>
+                                <h2>Giving Up.</h2>
+                            </div>
+                        </body>
+                        </html>"""
+
+                        html.write(html_code)
+
+                    time.sleep(5)
+
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        <link rel="stylesheet" href="style.css">
+                        </head>"""
+
+                        html.write(html_code)
                 else:
-                    print(f"Waiting for TTS to finish processing. {checkCount} checks")
-                    time.sleep(1)
+                    print(
+                        f"Waiting for TTS to finish processing. {checkCount}/{config['QUERY_TRIES']} checks"
+                    )
+                    if not failed:
+                        time.sleep(1)
+
+                    else:
+                        time.sleep(2)
 
     def thread_function():
         while True:
@@ -294,12 +533,13 @@ elif (
 print("Pubsub Ready!")
 
 
-def test_tts():
+def test_tts(self, failed: Optional[bool] = False):
+
     message = entry_1.get()
     if message == "":
         return
     message = re.sub(
-        "(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
+        r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
         "",
         message,
     )
@@ -321,6 +561,29 @@ def test_tts():
             message = message[1:]
         elif message == ",":
             continue
+    if response.json()["uuid"] is not None:
+        print("UUID recieved. Waiting for TTS to process")
+        js_string = """<meta http-equiv="refresh" content="1">"""
+        checkCount = 0
+        waitingToProcess = True
+        while waitingToProcess:
+            checkCount += 1
+            with open("./overlay/index.html", "w") as html:
+                html_code = f"""<html>
+                <head>
+                {js_string}
+                <link rel="stylesheet" href="style.css">
+                </head>
+                <body>
+                    <div class="box">
+                        <h1>New TTS Request:</h1>
+                        <h2>Voice: {voice}</h2>
+                        <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
+                    </div>
+                </body>
+                </html>"""
+
+                html.write(html_code)
 
         print(message.split(": "))
 
@@ -370,21 +633,92 @@ def test_tts():
                     time.sleep(1)
                     voice_files.append(f"AI_voice_{date_string}.wav")
                     time.sleep(1)
+                     with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        <link rel="stylesheet" href="style.css">
+                        </head>"""
+                        html.write(html_code)
 
                     waitingToProcess = False
+
 
                 elif ud_ai.json()["failed_at"] != None:
-                    print("TTS request failed.")
+                    print("TTS request failed, trying again.")
                     waitingToProcess = False
+                    test_tts(self=self, failed=True)
 
-                elif checkCount > 100:
-                    print(
-                        f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
-                    )
-                    waitingToProcess = False
-                else:
-                    print(f"Waiting for TTS to finish processing. {checkCount} checks")
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+
+                        html_code = f"""<html>
+                        <head>
+                        {js_string}
+                        <link rel="stylesheet" href="style.css">
+                        </head>
+                        <body>
+                            <div class="box">
+                                <h1 style="color: red">‼️ TTS Request Failed ‼️</h1>
+                                <h2>Retrying...</h2>
+                            </div>
+                        </body>
+                        </html>"""
+
+                        html.write(html_code)
+
+                    time.sleep(2)
+
+                    with open("./overlay/index.html", "w") as html:
+                        js_script = """<meta http-equiv="refresh" content="1">"""
+                        html_code = f"""<head>
+                        {js_script}
+                        <link rel="stylesheet" href="style.css">
+                        </head>"""
+
+                        html.write(html_code)
+
+
+            elif checkCount > config["QUERY_TRIES"]:
+                print(
+                    f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
+                )
+                waitingToProcess = False
+                with open("./overlay/index.html", "w") as html:
+                    js_script = """<meta http-equiv="refresh" content="1">"""
+
+                    html_code = f"""<html>
+                    <head>
+                    {js_string}
+                    <link rel="stylesheet" href="style.css">
+                    </head>
+                    <body>
+                        <div class="box">
+                            <h1 style="color: red">‼️ TTS failed to process after {checkCount} tries. ‼️</h1>
+                            <h2>Giving Up.</h2>
+                        </div>
+                    </body>
+                    </html>"""
+
+                    html.write(html_code)
+
+                time.sleep(5)
+
+                with open("./overlay/index.html", "w") as html:
+                    js_script = """<meta http-equiv="refresh" content="1">"""
+                    html_code = f"""<head>
+                    {js_script}
+                    <link rel="stylesheet" href="style.css">
+                    </head>"""
+
+                    html.write(html_code)
+            else:
+                print(f"Waiting for TTS to finish processing. {checkCount}/100 checks")
+                if not failed:
                     time.sleep(1)
+
+                else:
+                    time.sleep(2)
 
     def thread_function():
         while True:
@@ -403,11 +737,20 @@ def test_tts():
             q.put(voice_file)
             time.sleep(1)
         t.join()
+            print(ud_ai.json())
 
 
 def skip_tts(self):
     print("Skipping TTS")
     simpleaudio.stop_all()
+    with open("./overlay/index.html", "w") as html:
+        js_script = """<meta http-equiv="refresh" content="1">"""
+        html_code = f"""<head>
+        {js_script}
+        <link rel="stylesheet" href="style.css">
+        </head>"""
+
+        html.write(html_code)
 
 
 OUTPUT_PATH = Path(__file__).parent

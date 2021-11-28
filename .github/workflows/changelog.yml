@@ -3,7 +3,7 @@ on:
   release:
     types: [created, edited]
   push:
-    branches: 
+    branches:
       - main
 
 jobs:

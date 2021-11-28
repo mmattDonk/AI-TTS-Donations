@@ -4,13 +4,12 @@
 # C:\Users\notmm\ai-tts-donations\ui.py: 4
 httpx == 1.0.0b0
 
-python_dotenv == 0.19.0
+python_dotenv == 0.19.2
 # C:\Users\notmm\ai-tts-donations\bot.py: 16
 # C:\Users\notmm\ai-tts-donations\ui.py: 9
-python_dotenv == 0.19.0
+python_dotenv == 0.19.2
 
 simpleaudio==1.0.4
 
 # C:\Users\notmm\ai-tts-donations\bot.py: 12,13,14,17
-git+git://github.com/Teekeks/pyTwitchAPI@d842aad6fba985d2e50afee0fc32044e3de67a01#egg=twitchAPI
-
+twitchAPI==2.5.1

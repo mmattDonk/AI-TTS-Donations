@@ -1,8 +1,77 @@
 # CHANGELOG
 
-## Unreleased
+## [v1.5.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.5.1) - 2021-11-05 21:39:39
 
-Changes unreleased.
+## Removed `auto update` code.
+
+AI-TTS-Donations used some scuffed auto update code to automatically `git pull` and the reinstall the dependencies. This worked.... fine, but there have been a lot of issues surrounding it, and it really wasn't the best solution at all. I would recommend, if you have the `.git` folder in your bot folder, then you can simply do `git pull` in a terminal that is in that directory. If you don't, you can simply just download the releases from here, I will probably start announcing new versions in the [mmattDonk Discord](https://discord.gg/mvVePs2Hs2), so you could join that to stay in touch. 
+
+And of course, if you need my help, my Twitch Chat `#mmattbtw` and Discord Server https://discord.gg/mvVePs2Hs2 are both great ways to reach me!
+
+**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.5.0...v1.5.1
+
+### Bug Fixes
+
+- core:
+  - removed auto-update ([c4a6aa2](https://github.com/mmattDonk/AI-TTS-Donations/commit/c4a6aa266e164c7f371a897b83c4445f7ffea0e0))
+
+## [v1.5.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.5.0) - 2021-10-17 07:13:23
+
+# Added an overlay.
+You can add this overlay to your stream by adding the `index.html` seen in the `overlay` folder, using the `Local file` option in OBS.
+![](https://i.mrauro.dev/pje2s.png)
+
+## What's Changed
+* feat(core): Use custom number of checks by @MrAuro in https://github.com/mmattDonk/AI-TTS-Donations/pull/39
+* fix(core): Made the bot re-request if TTS request fails by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/36
+* docs(README): config json → jsonc by @12beesinatrenchcoat in https://github.com/mmattDonk/AI-TTS-Donations/pull/43
+* chore(deps): bump python-dotenv from 0.19.0 to 0.19.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/44
+* chore(pre-commit): Added pre-commit by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/45
+* chore(pre-commit): Made CHANGELOG be excluded from pre-commit by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/46
+* chore(workflows/pre-commit): Moved Black linting to pre-commit by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/49
+* feat(overlay): Added a overlay by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/42
+
+## New Contributors
+* @12beesinatrenchcoat made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/43
+* @dependabot made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/44
+
+**Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.4.0...v1.5.0
+**Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
+### Feature
+
+- overlay:
+  - Added a overlay (#42) ([d7e1b69](https://github.com/mmattDonk/AI-TTS-Donations/commit/d7e1b697c23596bdf5e54768848b074a64680206)) ([#42](https://github.com/mmattDonk/AI-TTS-Donations/pull/42))
+
+- core:
+  - Use custom number of checks (#39) ([f6ef53c](https://github.com/mmattDonk/AI-TTS-Donations/commit/f6ef53cd84a12d6fc79dd9b3c217bc6e4406386f)) ([#39](https://github.com/mmattDonk/AI-TTS-Donations/pull/39))
+
+### Bug Fixes
+
+- core:
+  - Made the bot re-request if TTS request fails (#36) ([6851250](https://github.com/mmattDonk/AI-TTS-Donations/commit/6851250fdbdd2bf89ab812b6eb65b467704fbd25)) ([#36](https://github.com/mmattDonk/AI-TTS-Donations/pull/36))
+
+### Documentation
+
+- README:
+  - Added prerequisites to the README ([939095d](https://github.com/mmattDonk/AI-TTS-Donations/commit/939095dd76a3bedc0a40ab339e489027627388ea))
+  - Changed the label for the Discord badge. ([56d02d9](https://github.com/mmattDonk/AI-TTS-Donations/commit/56d02d9a65973c7cfb70619eccdaf5e5f30c3b9d))
+  - config json → jsonc (#43) ([aa73727](https://github.com/mmattDonk/AI-TTS-Donations/commit/aa73727fabeea80d7909d3b482ced66bc75888a2)) ([#43](https://github.com/mmattDonk/AI-TTS-Donations/pull/43))
+  - Clarified you need to put both URIs in Dev Console ([5dd6775](https://github.com/mmattDonk/AI-TTS-Donations/commit/5dd67750618b0b6782b8e5c17ef4d97ddd088211))
+  - Added more clarification about the notes in .env ([8c42825](https://github.com/mmattDonk/AI-TTS-Donations/commit/8c42825a6da0c3c58ad2ed8630d37c7ac56744e5))
+
+## [v1.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.4.0) - 2021-10-09 19:43:11
+
+## What's Changed
+* feat(core): Support all cheermotes by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/29
+* chore(ui): [ImgBot] Optimize images by @imgbot in https://github.com/mmattDonk/AI-TTS-Donations/pull/31
+* feat(limits): Added a blacklisted words limit by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/33
+
+## New Contributors
+* @imgbot made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/31
+
+**Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.3.0...v1.4.0
 
 ### Feature
 
