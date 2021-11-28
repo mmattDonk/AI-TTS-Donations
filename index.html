@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AI-TTS-Donations Setup</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js" defer></script>
+</head>
+
+<body>
+	<h1>AI-TTS-Donations Setup</h1>
+
+	<nav>
+		Jump to: <a href="#env">.env</a> <a href="#config">config.json</a>
+	</nav>
+
+	<div id="env">
+		<h2>.env</h2>
+			<h3>Uberduck</h3>
+
+			<p>To obtain an Uberduck API key, first <a href="https://uberduck.ai/signup">create an account at uberduck.ai</a>, then <a href="https://uberduck.ai/account/manage">add an API key</a> (under account management).
+			</p>
+			<label>
+				API Key
+				<input name="UBERDUCK_USERNAME" type="text" placeholder="pub_...">
+				<span class="tooltip">The "key" part of the API key.</span>
+			</label>
+
+			<label>
+				API Secret
+				<input name="UBERDUCK_SECRET" type="text" placeholder="pk_...">
+				<span class="tooltip">The "secret" part of the API key.</span>
+			</label>
+
+			<h3>Twitch</h3>
+
+			<p>
+				Log into Twitch's dev platform and <a href="https://dev.twitch.tv/console/apps/create">register an application</a>. Name is unimportant, but you must add two OAuth Redirect URLs: <span class="copyable">http://localhost:17563/</span> and <span					class="copyable">http://localhost:17563</span>. (One has a backslash at the end, the other doesn't.) <br>
+				Make sure to generate a new secret!
+			</p>
+
+			<label>
+				Client ID
+				<input name="TWITCH_CLIENT_ID" type="text">
+				<span class="tooltip">The "Client ID" of the application.</span>
+			</label>
+
+			<label>
+				Secret
+				<input name="TWITCH_SECRET" type="text">
+				<span class="tooltip">The "Client Secret" of the application, obtained after clicking the "New Secret" button.</span>
+			</label>
+
+			<label>
+				Twitch Username
+				<input name="TWITCH_USERNAME" type="text">
+				<span class="tooltip">Your Twitch username.</span>
+			</label>
+
+			<div>
+				<h3>output</h3>
+				<span>
+					<button value="cp">copy</button>
+					<button value="dl" data-saveas=".env">download</button>
+				</span>
+				<textarea rows="5" readonly>test</textarea>
+			</div>
+	</div>
+
+	<div id="config">
+		<h2>config.json</h2>
+
+		<label> Maximum message length
+			<input name="MAX_MSG_LENGTH" type="number" min="0" value="300">
+			<span class="tooltip">The maximum character length for the donation message.</span>
+		</label>
+
+		Use:
+		<label class="ib">
+			<input name="BITS_OR_CHANNEL_POINTS" value="bits" type="radio">
+			Bits
+			<span class="tooltip">Listen for bits.</span>
+		</label>
+
+		<label class="ib">
+			<input name="BITS_OR_CHANNEL_POINTS" value="channel_points" type="radio">
+			Channel Points
+			<span class="tooltip">Listen for Channel Points rewards.</span>
+		</label>
+
+		<label> Minimum Bit Amount
+			<input name="MIN_BIT_AMOUNT" type="number" min="0">
+			<span class="tooltip">The minimum amount of bits to donate for the TTS to activate. <br> (Note: You might want to subtract one from this, just in case.)</span>
+		</label>
+
+		<label> Channel Points Reward
+			<input name="CHANNEL_POINTS_REWARD" type="text">
+			<span class="tooltip">The reward name for your Channel Point reward.</span>
+		</label>
+
+		<label> Blacklisted Words
+			<input name="BLACKLISTED_WORDS" data-type="array" type="text">
+			<span class="tooltip">A list of words that will be blacklisted from the TTS, separated by commas.</span>
+		</label>
+
+		<label> Query Tries
+			<input name="QUERY_TRIES" type="number" value="100">
+			<span class="tooltip">The number of times to query the API for a TTS response. 100 is probably fine.</span>
+		</label>
+
+		<div>
+			<h3>output</h3>
+			<span>
+				<button value="cp">copy</button>
+				<button value="dl" data-saveas="config.json">download</button>
+			</span>
+			<textarea rows="8" readonly></textarea>
+		</div>
+	</div>
+
+</body>
+</html>
