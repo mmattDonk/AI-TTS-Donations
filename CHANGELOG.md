@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Documentation
+
+- README:
+  - change python exec command ([d7ed095](https://github.com/mmattDonk/AI-TTS-Donations/commit/d7ed095787fb9fb64d380f0eeb85cc0379c09a19))
+
 ## [v1.6.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.6.0) - 2021-11-28 22:12:44
 
 ## Added a new setup website.
