@@ -13,48 +13,13 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
 ### How to run
 
 1. Clone the repo
-2. Obtain the following keys:
+    * You can do `git clone https://github.com/mmattdonk/ai-tts-donations` or just download the ZIP from GitHub
+2. Generate your configuration files using this website: https://mmattdonk.github.io/AI-TTS-Donations/
+    * Simply enter in the required keys into the website, then download the configuration files and put them into your bot's folder.
+4. Install Dependencies - Run `python -m pip install -r requirements.txt` in a Terminal/PowerShell/Command Prompt window (that is in the same directory as the bot.py file)
+5. Start the bot - Run `python bot.py` in a Terminal/PowerShell/Command Prompt window
 
-    1. [An Uberduck API key and secret](https://uberduck.ai/account/manage)
-    2. [A Twitch Client Id and secret](https://dev.twitch.tv/console/apps/create)
-        - Add an OAuth Redirect URI of both `http://localhost:17563/` and `http://localhost:17563`
-        - You **HAVE** to put **BOTH URIs**.
-
-3. Create a .env with the following keys:
-    ```
-    UBERDUCK_USERNAME=<The "Key" from uberduck.ai>
-    UBERDUCK_SECRET=<The "Secret" from uberduck.ai>
-    TWITCH_CLIENT_ID=<The "Client Id" from dev.twitch.tv>
-    TWITCH_SECRET=<The "Client Secret" from dev.twitch.tv>
-    TWITCH_USERNAME=<The streamer's Twitch username from twitch.tv>
-    ```
-Replace the <> Notes entirely when pasting in your keys.
-
-Example:
-
-    UBERDUCK_USERNAME=USENAMETHISISAREALUSERNAMELOL
-    UBERDUCK_SECRET=THISISAREALSECRETTOTALLYLOL
-    TWITCH_CLIENT_ID=CANTGETMORECLIENTIDTHENTHIS
-    TWITCH_SECRET=CANTGETMORESECRET
-    TWITCH_USERNAME=mmattbtw
-
-4. Create a config.json with the following keys:
-    ```jsonc
-    {
-        "MAX_MSG_LENGTH": 300, // The maximum character length for the donation message.
-        "MIN_BIT_AMOUNT": 1, // The minimum amount of bits to donate for the TTS to activate.
-        // ^ I'd recommend setting the minimum bit amount to be -1 of the actual limit you want to set, just in case
-        "BITS_OR_CHANNEL_POINTS": "channel_points" or "bits", // What type of even to listen for, you can either do channel points or bits, but not both at the moment
-        "CHANNEL_POINTS_REWARD": "reward name here", // The reward name for your Channel Point reward, if you are using channel points.
-        "BLACKLISTED_WORDS": ["weirdchamp", "bad_word", "bad_words_go_here"], // A list of words that will be blacklisted from the TTS.
-        "QUERY_TRIES": 100 // The number of times to query the API for a TTS response
-        // (also remove all of these // comments before you start the bot)
-    }
-    ```
-
-5. Run `python3 bot.py`
-    - This will install all of the needed dependencies and start the bot.
-
+After this, you just login with the website that opens in your default browser, and you are all good to go! If you have any errors/problems, don't be afraid to join the [Discord Server](https://discord.gg/mvVePs2Hs2) for help.
 
 ### Developers
 We use `pre-commit` and `pre-commit.ci` to make sure that Pull Requests are quality, even before you commit your changes.

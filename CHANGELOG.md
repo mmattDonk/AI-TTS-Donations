@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Feature
+
+- core:
+  - Added the base functionality for multiple voices (#34) ([3cb26f4](https://github.com/mmattDonk/AI-TTS-Donations/commit/3cb26f4f07556f81dc9c3207d909dd1100b43ed0)) ([#34](https://github.com/mmattDonk/AI-TTS-Donations/pull/34))
+
+### Documentation
+
+- README:
+  - change python exec command ([d7ed095](https://github.com/mmattDonk/AI-TTS-Donations/commit/d7ed095787fb9fb64d380f0eeb85cc0379c09a19))
+
+## [v1.6.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.6.0) - 2021-11-28 22:12:44
+
+## Added a new setup website.
+Thanks to @12beesinatrenchcoat, you can now easily setup AI-TTS-Donations using this website! https://mmattdonk.github.io/AI-TTS-Donations/ (#63)
+
+## What's Changed
+* chore(deps): bump python-dotenv from 0.19.1 to 0.19.2 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/57
+* chore(deps): bump black from 21.10b0 to 21.11b0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/59
+* chore(deps): bump pyupgrade from 2.29.0 to 2.29.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/58
+* chore(deps): bump black from 21.11b0 to 21.11b1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/60
+* [pre-commit.ci] pre-commit autoupdate by @pre-commit-ci in https://github.com/mmattDonk/AI-TTS-Donations/pull/61
+* chore(deps): bump twitchapi from 2.5.0 to 2.5.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/62
+
+
+**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.5.1...v1.6.0
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
+### Documentation
+
+- README:
+  - cleaned up instructions ([e10a153](https://github.com/mmattDonk/AI-TTS-Donations/commit/e10a153cd77eba7cd4394e24efa6e92ec6cc7b70))
+
 ## [v1.5.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v1.5.1) - 2021-11-05 21:39:39
 
 ## Removed `auto update` code.
