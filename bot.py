@@ -9,18 +9,18 @@ import time
 import urllib.request
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
-from uuid import UUID
-
-import httpx
-import simpleaudio
-from dotenv import load_dotenv
 from tkinter import Button
 from tkinter import Canvas
 from tkinter import Entry
 from tkinter import PhotoImage
 from tkinter import Text
 from tkinter import Tk
+from typing import Optional
+from uuid import UUID
+
+import httpx
+import simpleaudio
+from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
@@ -572,11 +572,6 @@ def test_tts():
                     </html>"""
 
                     html.write(html_code)
-            checkCount = 0
-            waitingToProcess = True
-            while waitingToProcess:
-                checkCount += 1
-
                 ud_ai = httpx.get(
                     f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
                     auth=(
@@ -749,7 +744,7 @@ button_1 = Button(
     highlightthickness=0,
     relief="flat",
 )
-button_1.bind("<Button-1>", skip_tts)
+button_1.bind("<Button-1>", lambda x: threading.Thread(target=skip_tts).start())
 button_1.place(x=461.9999999999998, y=51.0, width=340.0, height=54.0)
 
 entry_image_1 = PhotoImage(file=relative_to_assets("entry_1.png"))
