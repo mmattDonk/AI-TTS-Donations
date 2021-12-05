@@ -9,6 +9,11 @@ Changes unreleased.
 - core:
   - Added the base functionality for multiple voices (#34) ([3cb26f4](https://github.com/mmattDonk/AI-TTS-Donations/commit/3cb26f4f07556f81dc9c3207d909dd1100b43ed0)) ([#34](https://github.com/mmattDonk/AI-TTS-Donations/pull/34))
 
+### Bug Fixes
+
+- core:
+  - fixed skip button (#66) ([53c62bd](https://github.com/mmattDonk/AI-TTS-Donations/commit/53c62bdcc15ab6cb0fff85bb8441087bf96b146f)) ([#66](https://github.com/mmattDonk/AI-TTS-Donations/pull/66))
+
 ### Documentation
 
 - README:
