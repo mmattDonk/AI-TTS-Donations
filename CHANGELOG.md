@@ -1,8 +1,22 @@
 # CHANGELOG
 
-## Unreleased
+## [v2.0.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.0) - 2021-12-05 19:42:43
 
-Changes unreleased.
+# Multiple Voices!
+This updated adds the support for multiple voices! The reason this is a 'breaking change' is because I changed audio libraries when adding support for multiple voices
+
+To install this new library, go into a terminal into your folder and type:
+```
+pip install simpleaudio
+```
+
+## What's Changed
+* chore(deps): bump pre-commit from 2.15.0 to 2.16.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/65
+* feat(core): Added the base functionality for multiple voices by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/34
+
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v1.6.0...v2.0.0
 
 ### Feature
 
