@@ -1,8 +1,13 @@
 # CHANGELOG
 
-## Unreleased
+## [v2.0.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.1) - 2021-12-06 02:43:39
 
-Changes unreleased.
+Necessary Bug Fixes in this release.
+
+Want to know all the new stuff about v2.0.0 see: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md#v200---2021-12-05-194243
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+**Full Commitlog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.0.0...v2.0.1
 
 ### Bug Fixes
 
