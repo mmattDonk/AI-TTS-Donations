@@ -9,18 +9,18 @@ import time
 import urllib.request
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
-from uuid import UUID
-
-import httpx
-import simpleaudio
-from dotenv import load_dotenv
 from tkinter import Button
 from tkinter import Canvas
 from tkinter import Entry
 from tkinter import PhotoImage
 from tkinter import Text
 from tkinter import Tk
+from typing import Optional
+from uuid import UUID
+
+import httpx
+import simpleaudio
+from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
@@ -433,24 +433,6 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
 
                     else:
                         time.sleep(2)
-
-        def thread_function():
-            while True:
-                sound = q.get()
-                if sound is None:
-                    break
-                sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
-                play_obj = sound_obj.play()
-                play_obj.wait_done()
-                os.remove(sound)
-
-        if __name__ == "__main__":
-            t = threading.Thread(target=thread_function)
-            t.start()
-            for voice_file in voice_files:
-                q.put(voice_file)
-                time.sleep(1)
-            t.join()
 
     def thread_function():
         while True:
