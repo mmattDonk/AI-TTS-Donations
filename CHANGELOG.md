@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Bug Fixes
+
+- core:
+  - deleted repeated threading function ([14bd707](https://github.com/mmattDonk/AI-TTS-Donations/commit/14bd707863594aa0d0915ed06a256ca42f38a633))
+
 ## [v2.0.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.0) - 2021-12-05 19:42:43
 
 # Multiple Voices!
