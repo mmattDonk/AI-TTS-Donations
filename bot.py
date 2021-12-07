@@ -234,10 +234,10 @@ def callback_channel_points(
                             time.sleep(2)
 
         def thread_function():
-            while True:
+            for _ in voice_files:
                 sound = q.get()
                 if sound is None:
-                    break
+                    return
                 sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
                 play_obj = sound_obj.play()
                 play_obj.wait_done()
@@ -435,10 +435,10 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
                         time.sleep(2)
 
     def thread_function():
-        while True:
+        for _ in voice_files:
             sound = q.get()
             if sound is None:
-                break
+                return
             sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
             play_obj = sound_obj.play()
             play_obj.wait_done()
@@ -655,10 +655,10 @@ def test_tts():
                     time.sleep(1)
 
     def thread_function():
-        while True:
+        for _ in voice_files:
             sound = q.get()
             if sound is None:
-                break
+                return
             sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
             play_obj = sound_obj.play()
             play_obj.wait_done()
