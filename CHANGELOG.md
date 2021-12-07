@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Bug Fixes
+
+- limits:
+  - fixed limits being missing (#73) ([225600c](https://github.com/mmattDonk/AI-TTS-Donations/commit/225600c38d431e3da4b6e9c3fe1d2078fc6f3bef)) ([#73](https://github.com/mmattDonk/AI-TTS-Donations/pull/73))
+
 ## [v2.0.2](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.2) - 2021-12-07 00:21:25
 
 ## Fixed the program from not responding after one event
