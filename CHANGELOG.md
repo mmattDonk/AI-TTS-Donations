@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Bug Fixes
+
+- core:
+  - fixed program from not responding (#71) ([34ac48b](https://github.com/mmattDonk/AI-TTS-Donations/commit/34ac48be5fe885ab53e3f3962aef066074c1b627)) ([#71](https://github.com/mmattDonk/AI-TTS-Donations/pull/71))
+
 ## [v2.0.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.1) - 2021-12-06 02:43:39
 
 Necessary Bug Fixes in this release.
