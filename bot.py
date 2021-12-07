@@ -264,6 +264,14 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
             print("Blacklisted word found")
             return
 
+    if config["MIN_BIT_AMOUNT"] > int(bits):
+        print("Cheered bits is less than the minimum bit amount")
+        return
+
+    if len(text) > config["MAX_MSG_LENGTH"]:
+        print("Cheered message is longer than the maximum message length")
+        return
+
     message = re.sub(
         r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
         "",
