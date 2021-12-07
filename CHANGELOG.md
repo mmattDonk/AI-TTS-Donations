@@ -1,8 +1,11 @@
 # CHANGELOG
 
-## Unreleased
+## [v2.0.4](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.4) - 2021-12-07 23:08:49
 
-Changes unreleased.
+Fixed using the wrong variable (oops)
+If you'd like to see what changed in v2.0.0, check: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md#v200---2021-12-05-194243
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.0.3...v2.0.4
 
 ### Bug Fixes
 
