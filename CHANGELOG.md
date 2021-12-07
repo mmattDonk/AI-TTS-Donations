@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Bug Fixes
+
+- limits:
+  - fixed wrong variable ([1f673e3](https://github.com/mmattDonk/AI-TTS-Donations/commit/1f673e3bb748a34b1cbb062087709b9aec3b54fd))
+
 ## [v2.0.3](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.3) - 2021-12-07 21:15:14
 
 ## What's Changed
