@@ -1,8 +1,16 @@
 # CHANGELOG
 
-## Unreleased
+## [v2.0.2](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.2) - 2021-12-07 00:21:25
 
-Changes unreleased.
+## Fixed the program from not responding after one event
+If you'd like to see what changed in v2.0.0, check: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md#v200---2021-12-05-194243
+
+## What's Changed
+* chore(deps): bump black from 21.11b1 to 21.12b0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/69
+* fix(core): fixed program from not responding by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/71
+
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.0.1...v2.0.2
 
 ### Bug Fixes
 
