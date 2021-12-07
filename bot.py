@@ -9,18 +9,18 @@ import time
 import urllib.request
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
-from uuid import UUID
-
-import httpx
-import simpleaudio
-from dotenv import load_dotenv
 from tkinter import Button
 from tkinter import Canvas
 from tkinter import Entry
 from tkinter import PhotoImage
 from tkinter import Text
 from tkinter import Tk
+from typing import Optional
+from uuid import UUID
+
+import httpx
+import simpleaudio
+from dotenv import load_dotenv
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
@@ -268,7 +268,7 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
         print("Cheered bits is less than the minimum bit amount")
         return
 
-    if len(text) > config["MAX_MSG_LENGTH"]:
+    if len(message) > config["MAX_MSG_LENGTH"]:
         print("Cheered message is longer than the maximum message length")
         return
 
