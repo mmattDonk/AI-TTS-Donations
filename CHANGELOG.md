@@ -1,8 +1,13 @@
 # CHANGELOG
 
-## Unreleased
+## [v2.0.3](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.3) - 2021-12-07 21:15:14
 
-Changes unreleased.
+## What's Changed
+* chore(pre-commit): pre-commit autoupdate by @pre-commit-ci in https://github.com/mmattDonk/AI-TTS-Donations/pull/70
+* fix(limits): fixed limits being missing by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/73
+
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.0.2...v2.0.3
 
 ### Bug Fixes
 
