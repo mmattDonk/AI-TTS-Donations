@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Documentation
+
+- SECURITY:
+  - update versions on SECURITY doc ([5af4959](https://github.com/mmattDonk/AI-TTS-Donations/commit/5af4959290bff43b20926181d07e380d118517c0))
+
 ## [v2.0.4](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.4) - 2021-12-07 23:08:49
 
 Fixed using the wrong variable (oops)
