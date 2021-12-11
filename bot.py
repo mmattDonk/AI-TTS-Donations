@@ -21,6 +21,7 @@ from uuid import UUID
 import httpx
 import simpleaudio
 from dotenv import load_dotenv
+from rich.logging import RichHandler
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
@@ -50,236 +51,19 @@ log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
 
 log = logging.getLogger()
 
-logging.basicConfig(level=log_level, format="%(name)s - %(message)s", datefmt="%X")
+
+logging.basicConfig(
+    level=log_level,
+    format="%(name)s - %(message)s",
+    datefmt="%X",
+    handlers=[RichHandler()],
+)
 
 
-def callback_channel_points(
-    uuid: UUID, data: dict, failed: Optional[bool] = False
-) -> None:
-    print(data)
-
-    if (
-        data["data"]["redemption"]["reward"]["title"].lower()
-        == config["CHANNEL_POINTS_REWARD"].lower()
-    ):
-        message = data["data"]["redemption"]["user_input"]
-
-        for i in config["BLACKLISTED_WORDS"]:
-            if i in message.lower():
-                print("Blacklisted word found")
-                return
-
-        messages = message.split("||")
-        print(messages)
-
-        q = queue.Queue()
-
-        voice_files = []
-
-        for message in messages:
-            if message[0] == " ":
-                message = message[1:]
-            elif message == ",":
-                continue
-
-            print(message.split(": "))
-
-            voice = message.split(": ")[0]
-            voice = voice.lower()
-            print(voice)
-            text = message.split(": ")[1]
-            print(text)
-
-            response = httpx.post(
-                "https://api.uberduck.ai/speak",
-                auth=(
-                    os.environ.get("UBERDUCK_USERNAME"),
-                    os.environ.get("UBERDUCK_SECRET"),
-                ),
-                json={
-                    "speech": text,
-                    "voice": voice,
-                },
-            )
-
-            print(response.json())
-
-            if response.json()["uuid"] is not None:
-                print("UUID recieved. Waiting for TTS to process")
-                js_string = """<meta http-equiv="refresh" content="1">"""
-                checkCount = 0
-                waitingToProcess = True
-                while waitingToProcess:
-                    checkCount += 1
-                    with open("./overlay/index.html", "w") as html:
-                        html_code = f"""<html>
-                        <head>
-                        {js_string}
-                        <link rel="stylesheet" href="style.css">
-                        </head>
-                        <body>
-                            <div class="box">
-                                <h1>New TTS Request:</h1>
-                                <h2>Voice: {voice}</h2>
-                                <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
-                            </div>
-                        </body>
-                        </html>"""
-
-                        html.write(html_code)
-
-                    ud_ai = httpx.get(
-                        f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                        auth=(
-                            os.environ.get("UBERDUCK_USERNAME"),
-                            os.environ.get("UBERDUCK_SECRET"),
-                        ),
-                    )
-
-                    print(ud_ai.json())
-                    if ud_ai.json()["path"] != None:
-                        print(f"TTS processed after {checkCount} checks")
-                        date_string = datetime.now().strftime("%d%m%Y%H%M%S")
-                        urllib.request.urlretrieve(
-                            ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
-                        )
-                        with open("./overlay/index.html", "w") as html:
-                            js_script = """<meta http-equiv="refresh" content="1">"""
-                            html_code = f"""<head>
-                            {js_script}
-                            <link rel="stylesheet" href="style.css">
-                            </head>"""
-                            html.write(html_code)
-                        time.sleep(1)
-                        voice_files.append(f"AI_voice_{date_string}.wav")
-                        time.sleep(1)
-                        waitingToProcess = False
-
-                    elif ud_ai.json()["failed_at"] != None:
-                        print("TTS request failed, trying again.")
-                        waitingToProcess = False
-                        callback_channel_points(uuid=uuid, data=data, failed=True)
-
-                        with open("./overlay/index.html", "w") as html:
-                            js_script = """<meta http-equiv="refresh" content="1">"""
-
-                            html_code = f"""<html>
-                                            <head>
-                                            {js_string}
-                                            <link rel="stylesheet" href="style.css">
-                                            </head>
-                                            <body>
-                                                <div class="box">
-                                                    <h1 style="color: red">‼️ TTS Request Failed ‼️</h1>
-                                                    <h2>Retrying...</h2>
-                                                </div>
-                                            </body>
-                                            </html>"""
-
-                            html.write(html_code)
-
-                        time.sleep(2)
-
-                        with open("./overlay/index.html", "w") as html:
-                            js_script = """<meta http-equiv="refresh" content="1">"""
-                            html_code = f"""<head>
-                                            {js_script}
-                                            <link rel="stylesheet" href="style.css">
-                                            </head>"""
-
-                            html.write(html_code)
-
-                    elif checkCount > config["QUERY_TRIES"]:
-                        print(
-                            f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
-                        )
-                        waitingToProcess = False
-                        with open("./overlay/index.html", "w") as html:
-                            js_script = """<meta http-equiv="refresh" content="1">"""
-
-                            html_code = f"""<html>
-                            <head>
-                            {js_string}
-                            <link rel="stylesheet" href="style.css">
-                            </head>
-                            <body>
-                                <div class="box">
-                                    <h1 style="color: red">‼️ TTS failed to process after {checkCount} tries. ‼️</h1>
-                                    <h2>Giving Up.</h2>
-                                </div>
-                            </body>
-                            </html>"""
-
-                            html.write(html_code)
-
-                        time.sleep(5)
-
-                        with open("./overlay/index.html", "w") as html:
-                            js_script = """<meta http-equiv="refresh" content="1">"""
-                            html_code = f"""<head>
-                            {js_script}
-                            <link rel="stylesheet" href="style.css">
-                            </head>"""
-
-                            html.write(html_code)
-
-                    else:
-                        print(
-                            f"Waiting for TTS to finish processing. {checkCount}/{config['QUERY_TRIES']} checks"
-                        )
-                        if not failed:
-                            time.sleep(1)
-
-                        else:
-                            time.sleep(2)
-
-        def thread_function():
-            for _ in voice_files:
-                sound = q.get()
-                if sound is None:
-                    return
-                sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
-                play_obj = sound_obj.play()
-                play_obj.wait_done()
-                os.remove(sound)
-
-        if __name__ == "__main__":
-            t = threading.Thread(target=thread_function)
-            t.start()
-            for voice_file in voice_files:
-                q.put(voice_file)
-                time.sleep(1)
-            t.join()
-
-
-def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> None:
-    print(data)
-
-    bits = data["data"]["bits_used"]
-
-    message = data["data"]["chat_message"]
-
-    for i in config["BLACKLISTED_WORDS"]:
-        if i in message.lower():
-            print("Blacklisted word found")
-            return
-
-    if config["MIN_BIT_AMOUNT"] > int(bits):
-        print("Cheered bits is less than the minimum bit amount")
-        return
-
-    if len(message) > config["MAX_MSG_LENGTH"]:
-        print("Cheered message is longer than the maximum message length")
-        return
-
-    message = re.sub(
-        r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
-        "",
-        message,
-    )
-
+def request_tts(message: str, failed: Optional[bool] = False):
+    # sourcery no-metrics
     messages = message.split("||")
-    print(messages)
+    log.debug(messages)
 
     q = queue.Queue()
 
@@ -291,13 +75,13 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
         elif message == ",":
             continue
 
-        print(message.split(": "))
+        log.debug(message.split(": "))
 
         voice = message.split(": ")[0]
         voice = voice.lower()
-        print(voice)
+        log.debug(voice)
         text = message.split(": ")[1]
-        print(text)
+        log.debug(text)
 
         response = httpx.post(
             "https://api.uberduck.ai/speak",
@@ -311,10 +95,10 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
             },
         )
 
-        print(response.json())
+        log.debug(response.json())
 
         if response.json()["uuid"] is not None:
-            print("UUID recieved. Waiting for TTS to process")
+            log.info("UUID recieved. Waiting for TTS to process")
             js_string = """<meta http-equiv="refresh" content="1">"""
             checkCount = 0
             waitingToProcess = True
@@ -345,9 +129,9 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
                     ),
                 )
 
-                print(ud_ai.json())
+                log.debug(ud_ai.json())
                 if ud_ai.json()["path"] != None:
-                    print(f"TTS processed after {checkCount} checks")
+                    log.info(f"TTS processed after {checkCount} checks")
                     date_string = datetime.now().strftime("%d%m%Y%H%M%S")
                     urllib.request.urlretrieve(
                         ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
@@ -365,9 +149,9 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
                     waitingToProcess = False
 
                 elif ud_ai.json()["failed_at"] != None:
-                    print("TTS request failed, trying again.")
+                    log.info("TTS request failed, trying again.")
                     waitingToProcess = False
-                    callback_channel_points(uuid=uuid, data=data, failed=True)
+                    request_tts(message=message, failed=True)
 
                     with open("./overlay/index.html", "w") as html:
                         js_script = """<meta http-equiv="refresh" content="1">"""
@@ -399,7 +183,7 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
                         html.write(html_code)
 
                 elif checkCount > config["QUERY_TRIES"]:
-                    print(
+                    log.info(
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
                     waitingToProcess = False
@@ -433,7 +217,7 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
                         html.write(html_code)
 
                 else:
-                    print(
+                    log.info(
                         f"Waiting for TTS to finish processing. {checkCount}/{config['QUERY_TRIES']} checks"
                     )
                     if not failed:
@@ -461,6 +245,54 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
         t.join()
 
 
+def callback_channel_points(
+    uuid: UUID, data: dict, failed: Optional[bool] = False
+) -> None:
+    log.debug(data)
+
+    if (
+        data["data"]["redemption"]["reward"]["title"].lower()
+        == config["CHANNEL_POINTS_REWARD"].lower()
+    ):
+        message = data["data"]["redemption"]["user_input"]
+
+        for i in config["BLACKLISTED_WORDS"]:
+            if i in message.lower():
+                log.info("Blacklisted word found")
+                return
+
+        request_tts(message=message, failed=False)
+
+
+def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> None:
+    log.debug(data)
+
+    bits = data["data"]["bits_used"]
+
+    message = data["data"]["chat_message"]
+
+    for i in config["BLACKLISTED_WORDS"]:
+        if i in message.lower():
+            log.info("Blacklisted word found")
+            return
+
+    if config["MIN_BIT_AMOUNT"] > int(bits):
+        log.info("Cheered bits is less than the minimum bit amount")
+        return
+
+    if len(message) > config["MAX_MSG_LENGTH"]:
+        log.info("Cheered message is longer than the maximum message length")
+        return
+
+    message = re.sub(
+        r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
+        "",
+        message,
+    )
+
+    request_tts(message=message, failed=False)
+
+
 # setting up Authentication and getting your user id
 twitch = Twitch(os.environ.get("TWITCH_CLIENT_ID"), os.environ.get("TWITCH_SECRET"))
 target_scope = [AuthScope.BITS_READ, AuthScope.CHANNEL_READ_REDEMPTIONS]
@@ -485,11 +317,11 @@ elif (
 ):
     uuid = pubsub.listen_bits(user_id, callback_bits)
 
-print("Pubsub Ready!")
+log.info("Pubsub Ready!")
 
 
 def test_tts():
-
+    log.info("Testing TTS")
     message = entry_1.get()
     if message == "":
         return
@@ -501,189 +333,14 @@ def test_tts():
 
     for i in config["BLACKLISTED_WORDS"]:
         if i in message.lower():
-            print("Blacklisted word found")
+            log.info("Blacklisted word found")
             return
 
-    messages = message.split("||")
-    print(messages)
-
-    q = queue.Queue()
-
-    voice_files = []
-
-    for message in messages:
-        if message[0] == " ":
-            message = message[1:]
-        elif message == ",":
-            continue
-
-        print(message.split(": "))
-
-        voice = message.split(": ")[0]
-        voice = voice.lower()
-        print(voice)
-        text = message.split(": ")[1]
-        print(text)
-
-        response = httpx.post(
-            "https://api.uberduck.ai/speak",
-            auth=(
-                os.environ.get("UBERDUCK_USERNAME"),
-                os.environ.get("UBERDUCK_SECRET"),
-            ),
-            json={
-                "speech": text,
-                "voice": voice,
-            },
-        )
-
-        print(response.json())
-
-        if response.json()["uuid"] is not None:
-            print("UUID recieved. Waiting for TTS to process")
-            js_string = """<meta http-equiv="refresh" content="1">"""
-            checkCount = 0
-            waitingToProcess = True
-            while waitingToProcess:
-                checkCount += 1
-                with open("./overlay/index.html", "w") as html:
-                    html_code = f"""<html>
-                    <head>
-                    {js_string}
-                    <link rel="stylesheet" href="style.css">
-                    </head>
-                    <body>
-                        <div class="box">
-                            <h1>New TTS Request:</h1>
-                            <h2>Voice: {voice}</h2>
-                            <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
-                        </div>
-                    </body>
-                    </html>"""
-
-                    html.write(html_code)
-                ud_ai = httpx.get(
-                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                    auth=(
-                        os.environ.get("UBERDUCK_USERNAME"),
-                        os.environ.get("UBERDUCK_SECRET"),
-                    ),
-                )
-
-                print(ud_ai.json())
-                if ud_ai.json()["path"] != None:
-                    print(f"TTS processed after {checkCount} checks")
-                    date_string = datetime.now().strftime("%d%m%Y%H%M%S")
-                    urllib.request.urlretrieve(
-                        ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
-                    )
-                    time.sleep(1)
-                    voice_files.append(f"AI_voice_{date_string}.wav")
-                    time.sleep(1)
-                    with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
-                        html_code = f"""<head>
-                        {js_script}
-                        <link rel="stylesheet" href="style.css">
-                        </head>"""
-                        html.write(html_code)
-
-                    waitingToProcess = False
-
-                elif ud_ai.json()["failed_at"] != None:
-                    print("TTS request failed, trying again.")
-                    waitingToProcess = False
-
-                    with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
-
-                        html_code = f"""<html>
-                        <head>
-                        {js_string}
-                        <link rel="stylesheet" href="style.css">
-                        </head>
-                        <body>
-                            <div class="box">
-                                <h1 style="color: red">‼️ TTS Request Failed ‼️</h1>
-                                <h2>Retrying...</h2>
-                            </div>
-                        </body>
-                        </html>"""
-
-                        html.write(html_code)
-
-                    time.sleep(2)
-
-                    with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
-                        html_code = f"""<head>
-                        {js_script}
-                        <link rel="stylesheet" href="style.css">
-                        </head>"""
-
-                        html.write(html_code)
-
-                elif checkCount > config["QUERY_TRIES"]:
-                    print(
-                        f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
-                    )
-                    waitingToProcess = False
-                    with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
-
-                        html_code = f"""<html>
-                        <head>
-                        {js_string}
-                        <link rel="stylesheet" href="style.css">
-                        </head>
-                        <body>
-                            <div class="box">
-                                <h1 style="color: red">‼️ TTS failed to process after {checkCount} tries. ‼️</h1>
-                                <h2>Giving Up.</h2>
-                            </div>
-                        </body>
-                        </html>"""
-
-                        html.write(html_code)
-
-                    time.sleep(5)
-
-                    with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
-                        html_code = f"""<head>
-                        {js_script}
-                        <link rel="stylesheet" href="style.css">
-                        </head>"""
-
-                        html.write(html_code)
-                else:
-                    print(
-                        f"Waiting for TTS to finish processing. {checkCount}/100 checks"
-                    )
-                    time.sleep(1)
-
-    def thread_function():
-        for _ in voice_files:
-            sound = q.get()
-            if sound is None:
-                return
-            sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
-            play_obj = sound_obj.play()
-            play_obj.wait_done()
-            os.remove(sound)
-
-    if __name__ == "__main__":
-        t = threading.Thread(target=thread_function)
-        t.start()
-        for voice_file in voice_files:
-            q.put(voice_file)
-            time.sleep(1)
-        t.join()
-        print(ud_ai.json())
+    request_tts(message=message, failed=False)
 
 
 def skip_tts():
-    print("Skipping TTS")
+    log.info("Skipping TTS")
     simpleaudio.stop_all()
     with open("./overlay/index.html", "w") as html:
         js_script = """<meta http-equiv="refresh" content="1">"""
