@@ -9,6 +9,11 @@ Changes unreleased.
 - SECURITY:
   - update versions on SECURITY doc ([5af4959](https://github.com/mmattDonk/AI-TTS-Donations/commit/5af4959290bff43b20926181d07e380d118517c0))
 
+### Refactor
+
+- core:
+  - refactored the tts (#76) ([904cadf](https://github.com/mmattDonk/AI-TTS-Donations/commit/904cadf0dbb6ed45510a34f5c673100dc3d0f429)) ([#76](https://github.com/mmattDonk/AI-TTS-Donations/pull/76))
+
 ## [v2.0.4](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.4) - 2021-12-07 23:08:49
 
 Fixed using the wrong variable (oops)
