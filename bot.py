@@ -36,6 +36,24 @@ if not os.path.exists(path_exists("./overlay/index.html")):
         </head>"""
         html.write(html_code)
 
+if not os.path.exists(path_exists(".env")):
+    input(
+        "\n\nYou are missing the required `.env` file required to run this program."
+        + "\nPlease feel free to check out the guide in the README.md file (or on the GitHub Repo)"
+        + "\nYour file might also be misnamed, please make sure your `.env` file is named `.env` and not `env.txt` or `env`."
+        "\n\nPress enter to exit"
+    )
+    exit()
+
+if not os.path.exists(path_exists("config.json")):
+    input(
+        "\n\nYou are missing the required `config.json` file required to run this program."
+        + "\nPlease feel free to checkout the guide in the README.md file (or on the GitHub Repo)"
+        + "\nYour file might also be misnamed, please make sure your `config.json` file is named `config.json` and not `config.txt` or `config`."
+        + "\n\nPress enter to exit"
+    )
+    exit()
+
 
 if not os.path.exists("voice_files"):
     os.makedirs("voice_files")
