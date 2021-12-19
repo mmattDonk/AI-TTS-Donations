@@ -1,0 +1,5 @@
+# .kodiak.toml
+# Minimal config. version is the only required field.
+version = 1
+merge.blocking_labels = ["wip"]
+merge.method = "squash"

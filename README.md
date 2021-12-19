@@ -27,31 +27,3 @@ We use `pre-commit` and `pre-commit.ci` to make sure that Pull Requests are qual
 Use `pip install -r requirements-dev.txt` to install the developer dependencies needed.
 
 To install `pre-commit`, do the `pre-commit install` command.
-
-### 🙌 Code Contributors
-
-<table>
-<tr>
-    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
-        <a href=https://github.com/mmattbtw>
-            <img src=https://avatars.githubusercontent.com/u/30363562?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=matt/>
-            <br />
-            <sub style="font-size:14px"><b>matt</b></sub>
-        </a>
-    </td>
-    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
-        <a href=https://github.com/MrAuro>
-            <img src=https://avatars.githubusercontent.com/u/35087590?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Auro/>
-            <br />
-            <sub style="font-size:14px"><b>Auro</b></sub>
-        </a>
-    </td>
-    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
-        <a href=https://github.com/12beesinatrenchcoat>
-            <img src=https://avatars.githubusercontent.com/u/25379179?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Andy Chan/>
-            <br />
-            <sub style="font-size:14px"><b>Andy Chan</b></sub>
-        </a>
-    </td>
-</tr>
-</table>
