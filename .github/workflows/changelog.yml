@@ -2,7 +2,7 @@ name: Generate changelog
 on:
   release:
     types: [created, edited]
-  push:
+  pull_request:
     branches:
       - main
 
