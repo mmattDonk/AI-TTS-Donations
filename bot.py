@@ -7,23 +7,16 @@ import sys
 import threading
 import time
 import urllib.request
-import httpx
-import simpleaudio
-
-from dotenv import load_dotenv
-from rich.logging import RichHandler
 from datetime import datetime
 from pathlib import Path
+from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk
 from typing import Optional
 from uuid import UUID
 
-from tkinter import Button
-from tkinter import Canvas
-from tkinter import Entry
-from tkinter import PhotoImage
-from tkinter import Text
-from tkinter import Tk
-
+import httpx
+import simpleaudio
+from dotenv import load_dotenv
+from rich.logging import RichHandler
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
@@ -42,6 +35,30 @@ if not os.path.exists(path_exists("./overlay/index.html")):
         <link rel="stylesheet" href="style.css">
         </head>"""
         html.write(html_code)
+
+
+if not os.path.exists("voice_files"):
+    os.makedirs("voice_files")
+
+    if not os.path.exists(path_exists("./voice_files/README.md")):
+        with open("./voice_files/README.md", "w") as readme:
+            readme.write(
+                "# This is where the voice files that get downloaded from Uberduck get stored!"
+                + "\n## This folder should usually be empty, but if it isn't, don't worry about it."
+                + "\nYou can delete files after they are done playing on your stream manually if you'd like. The files should be automatically deleted after being played, but sometimes that might not happen if there was a bug. The bot only plays the file once, so it isn't used after that."
+            )
+
+if not os.path.exists("playsounds"):
+    os.makedirs("playsounds")
+
+    if not os.path.exists(path_exists("./playsounds/README.md")):
+        with open("./playsounds/README.md", "w") as readme:
+            readme.write(
+                "# This is where the play sounds are stored!"
+                + "\n## **DO NOT** REMOVE ANY SOUNDS FROM THIS FOLDER!"
+                + "\nThis is used for the play sound functionality in the bot, things like (1) or (2). Don't remove any files from here as it could cause the functionality to not work, and in turn, the bot to not work."
+            )
+
 
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -72,9 +89,15 @@ def request_tts(message: str, failed: Optional[bool] = False):
     voice_files = []
 
     for message in messages:
+        log.debug(f"`{message}`")
         if message[0] == " ":
             message = message[1:]
-        elif message == ",":
+            log.debug(f"`{message}`")
+        if "(1)" in message:
+            voice_files.append(f"./playsounds/resources_sounds_ping2.wav")
+            log.debug("bong")
+            continue
+        if message == ",":
             continue
 
         log.debug(message.split(": "))
@@ -136,7 +159,8 @@ def request_tts(message: str, failed: Optional[bool] = False):
                     log.info(f"TTS processed after {checkCount} checks")
                     date_string = datetime.now().strftime("%d%m%Y%H%M%S")
                     urllib.request.urlretrieve(
-                        ud_ai.json()["path"], f"AI_voice_{date_string}.wav"
+                        ud_ai.json()["path"],
+                        f"./voice_files/AI_voice_{date_string}.wav",
                     )
                     with open("./overlay/index.html", "w") as html:
                         js_script = """<meta http-equiv="refresh" content="1">"""
@@ -146,7 +170,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
                             </head>"""
                         html.write(html_code)
                     time.sleep(1)
-                    voice_files.append(f"AI_voice_{date_string}.wav")
+                    voice_files.append(f"./voice_files/AI_voice_{date_string}.wav")
                     time.sleep(1)
                     waitingToProcess = False
 
@@ -236,7 +260,8 @@ def request_tts(message: str, failed: Optional[bool] = False):
             sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
             play_obj = sound_obj.play()
             play_obj.wait_done()
-            os.remove(sound)
+            if "./playsounds" not in sound:
+                os.remove(sound)
 
     if __name__ == "__main__":
         t = threading.Thread(target=thread_function)
