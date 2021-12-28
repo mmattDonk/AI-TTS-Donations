@@ -129,9 +129,8 @@ dmypy.json
 .pyre/
 
 # Voice
-AI_voice.wav
-*.wav
-AI_voice.mp3
+voice_files/*.wav
+
 #config
 config.json
 
