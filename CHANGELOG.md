@@ -24,11 +24,6 @@ Instructions: https://github.com/mmattDonk/AI-TTS-Donations/wiki/How-to-use-it!-
 - core:
   - added playsounds (#80) ([60bf1ae](https://github.com/mmattDonk/AI-TTS-Donations/commit/60bf1aefa48d7f60c36d134ccda1f8680354ee29)) ([#80](https://github.com/mmattDonk/AI-TTS-Donations/pull/80))
 
-### Refactor
-
-- core:
-  - refactored the tts (#76) ([904cadf](https://github.com/mmattDonk/AI-TTS-Donations/commit/904cadf0dbb6ed45510a34f5c673100dc3d0f429)) ([#76](https://github.com/mmattDonk/AI-TTS-Donations/pull/76))
-
 ## [v2.0.4](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.0.4) - 2021-12-07 23:08:49
 
 Fixed using the wrong variable (oops)
