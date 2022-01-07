@@ -1,8 +1,28 @@
 # CHANGELOG
 
-## Unreleased
+## [v2.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.1.0) - 2021-12-28 21:47:22
 
-Changes unreleased.
+## Added playsounds!
+Instructions: https://github.com/mmattDonk/AI-TTS-Donations/wiki/How-to-use-it!-(viewer)#playsounds
+
+## What's Changed
+* refactor(core): refactored the tts by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/76
+* chore(deps): bump rich from 10.15.2 to 10.16.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/77
+* chore(deps): bump rich from 10.16.0 to 10.16.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/78
+* chore(workflows): remove contributors workflow by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/81
+* chore(pre-commit): pre-commit autoupdate by @pre-commit-ci in https://github.com/mmattDonk/AI-TTS-Donations/pull/82
+* chore(deps): bump pyupgrade from 2.29.1 to 2.30.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/83
+* feat(core): added playsounds by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/80
+
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.0.4...v2.1.0
+
+
+### Feature
+
+- core:
+  - added playsounds (#80) ([60bf1ae](https://github.com/mmattDonk/AI-TTS-Donations/commit/60bf1aefa48d7f60c36d134ccda1f8680354ee29)) ([#80](https://github.com/mmattDonk/AI-TTS-Donations/pull/80))
 
 ### Documentation
 

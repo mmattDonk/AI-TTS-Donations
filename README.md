@@ -1,6 +1,7 @@
 # AI TTS Donations
 [![Discord](https://img.shields.io/discord/883929594179256350?label=Discord)](https://discord.gg/mvVePs2Hs2)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mmattDonk/AI-TTS-Donations/main.svg)](https://results.pre-commit.ci/latest/github/mmattDonk/AI-TTS-Donations/main)
+[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/mmattdonk/ai-tts-donations)](https://github.com/mmattDonk/AI-TTS-Donations/releases)
 
 💰 A bot that uses Uberduck AI to make bit donations have an AI voice.
 
@@ -21,7 +22,7 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
 
 After this, you just login with the website that opens in your default browser, and you are all good to go! If you have any errors/problems, don't be afraid to join the [Discord Server](https://discord.gg/mvVePs2Hs2) for help.
 
-### 🧑‍💻 Developers
+### 💻 Developers
 We use `pre-commit` and `pre-commit.ci` to make sure that Pull Requests are quality, even before you commit your changes.
 
 Use `pip install -r requirements-dev.txt` to install the developer dependencies needed.
