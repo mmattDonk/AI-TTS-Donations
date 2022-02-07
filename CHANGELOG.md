@@ -23,7 +23,8 @@ https://mmattdonk.github.io/AI-TTS-Donations/ has been updated to reflect the ch
 ## New Contributors
 * @github-actions made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/85
 
-**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.1.0...v2.2.0
+**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.1.0...v2.2.0
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 
 ### Feature
 
