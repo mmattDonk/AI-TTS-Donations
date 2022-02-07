@@ -535,6 +535,23 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
         log.debug(response.json())
 
+        if response.json()["detail"] == "That voice does not exist":
+            log.info(
+                "Couldn't find voice specified, using fallback voice: "
+                + config["FALLBACK_VOICE"]
+            )
+            response = httpx.post(
+                "https://api.uberduck.ai/speak",
+                auth=(
+                    os.environ.get("UBERDUCK_USERNAME"),
+                    os.environ.get("UBERDUCK_SECRET"),
+                ),
+                json={
+                    "speech": text,
+                    "voice": config["FALLBACK_VOICE"],
+                },
+            )
+
         if response.json()["uuid"] is not None:
             log.info("UUID recieved. Waiting for TTS to process")
             js_string = """<meta http-equiv="refresh" content="1">"""
