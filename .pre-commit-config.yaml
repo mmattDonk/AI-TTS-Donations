@@ -1,35 +1,32 @@
 ci:
-    autofix_commit_msg: |
-        chore(pre-commit): auto fixes from pre-commit.com hooks
+  autofix_commit_msg: |
+    chore(pre-commit): auto fixes from pre-commit.com hooks
 
-        for more information, see https://pre-commit.ci
+    for more information, see https://pre-commit.ci
 
-    autoupdate_commit_msg: |
-        chore(pre-commit): pre-commit autoupdate
+  autoupdate_commit_msg: |
+    chore(pre-commit): pre-commit autoupdate
 
-        for more information, see https://pre-commit.ci
+    for more information, see https://pre-commit.ci
 
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
     hooks:
-    -   id: trailing-whitespace
+      - id: trailing-whitespace
         exclude: CHANGELOG.md
-    -   id: end-of-file-fixer
+      - id: end-of-file-fixer
         exclude: CHANGELOG.md
-    -   id: check-yaml
+      - id: check-yaml
         exclude: CHANGELOG.md
-    -   id: check-added-large-files
+      - id: check-added-large-files
         exclude: CHANGELOG.md
 
--   repo: https://github.com/asottile/pyupgrade
+  - repo: https://github.com/asottile/pyupgrade
     rev: v2.31.0
     hooks:
-    -   id: pyupgrade
--   repo: https://github.com/psf/black
+      - id: pyupgrade
+  - repo: https://github.com/psf/black
     rev: 22.1.0
     hooks:
-    -   id: black
-
-default_language_version:
-  python: python3.9
+      - id: black
