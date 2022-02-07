@@ -15,7 +15,8 @@ const values = {
 		"BITS_OR_CHANNEL_POINTS": "",
 		"CHANNEL_POINTS_REWARD": "",
 		"BLACKLISTED_WORDS": [],
-		"QUERY_TRIES": 100
+		"QUERY_TRIES": 100,
+		"FALLBACK_VOICE": ""
 	}
 };
 const output = {

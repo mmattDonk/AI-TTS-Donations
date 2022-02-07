@@ -108,13 +108,18 @@
 			<span class="tooltip">The number of times to query the API for a TTS response. 100 is probably fine.</span>
 		</label>
 
+		<label> Fallback Voice
+			<input name="FALLBACK_VOICE" type="text">
+			<span class="tooltip">A voice that the bot automatically falls back to just in case the user's inputted voice doesn't exist. This uses the same voice ID codes as Uberduck.</span>
+		</label>
+
 		<div>
 			<h3>output</h3>
 			<span>
 				<button value="cp">copy</button>
 				<button value="dl" data-saveas="config.json">download</button>
 			</span>
-			<textarea rows="8" readonly></textarea>
+			<textarea rows="9" readonly></textarea>
 		</div>
 	</div>
 
