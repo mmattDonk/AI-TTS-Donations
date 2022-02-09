@@ -14,4 +14,4 @@ simpleaudio==1.0.4
 # C:\Users\notmm\ai-tts-donations\bot.py: 12,13,14,17
 twitchAPI==2.5.1
 
-rich == 11.1.0
+rich == 11.2.0
