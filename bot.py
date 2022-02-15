@@ -24,6 +24,7 @@ from twitchAPI.types import AuthScope
 
 CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*"
 
+
 def path_exists(filename):
     return os.path.join(".", f"{filename}")
 
@@ -728,7 +729,7 @@ def callback_channel_points(
 
 def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> None:
     global CHEER_REGEX
-    
+
     log.debug(data)
 
     bits = data["data"]["bits_used"]
@@ -786,7 +787,7 @@ log.info("Pubsub Ready!")
 
 def test_tts():
     global CHEER_REGEX
-    
+
     log.info("Testing TTS")
     message = entry_1.get()
     if message == "":
