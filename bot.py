@@ -22,6 +22,9 @@ from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
 
+PLAYSOUND_FILES = {
+    "(1)": "001-alarm.wav",
+}
 
 def path_exists(filename):
     return os.path.join(".", f"{filename}")
