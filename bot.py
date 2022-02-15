@@ -26,6 +26,7 @@ PLAYSOUND_FILES = {
     "(1)": "001-alarm.wav",
 }
 
+
 def path_exists(filename):
     return os.path.join(".", f"{filename}")
 
