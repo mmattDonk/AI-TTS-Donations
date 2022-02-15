@@ -4,6 +4,16 @@
 
 Fixed v2.2.0
 
+### Bug Fixes
+
+- core:
+  - fixed fallback voice ([dfc7b46](https://github.com/mmattDonk/AI-TTS-Donations/commit/dfc7b4685f454e2afd17c13d8b93c42a4a08031e))
+
+### Documentation
+
+- SECURITY:
+  - remove 1.6.x as a supported version. ([7d65f24](https://github.com/mmattDonk/AI-TTS-Donations/commit/7d65f243d08a754132ccc38fba9eb6eb13ca140b))
+
 ## [v2.2.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.0) - 2022-02-07 00:16:32
 
 # Added Fallback Voices (#12)
