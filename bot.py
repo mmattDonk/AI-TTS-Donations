@@ -513,13 +513,16 @@ def request_tts(message: str, failed: Optional[bool] = False):
         if message == ",":
             continue
 
-        log.debug(message.split(": "))
+        try:
+            log.debug(message.split(": "))
 
-        voice = message.split(": ")[0]
-        voice = voice.lower()
-        log.debug(voice)
-        text = message.split(": ")[1]
-        log.debug(text)
+            voice = message.split(": ")[0]
+            voice = voice.lower()
+            log.debug(voice)
+            text = message.split(": ")[1]
+            log.debug(text)
+        except IndexError:
+            text = message
 
         response = httpx.post(
             "https://api.uberduck.ai/speak",
@@ -535,22 +538,23 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
         log.debug(response.json())
 
-        if response.json()["detail"] == "That voice does not exist":
-            log.info(
-                "Couldn't find voice specified, using fallback voice: "
-                + config["FALLBACK_VOICE"]
-            )
-            response = httpx.post(
-                "https://api.uberduck.ai/speak",
-                auth=(
-                    os.environ.get("UBERDUCK_USERNAME"),
-                    os.environ.get("UBERDUCK_SECRET"),
-                ),
-                json={
-                    "speech": text,
-                    "voice": config["FALLBACK_VOICE"],
-                },
-            )
+        if response.json().get("detail") != None:
+            if response.json()["detail"] == "That voice does not exist":
+                log.info(
+                    "Couldn't find voice specified, using fallback voice: "
+                    + config["FALLBACK_VOICE"]
+                )
+                response = httpx.post(
+                    "https://api.uberduck.ai/speak",
+                    auth=(
+                        os.environ.get("UBERDUCK_USERNAME"),
+                        os.environ.get("UBERDUCK_SECRET"),
+                    ),
+                    json={
+                        "speech": text,
+                        "voice": config["FALLBACK_VOICE"],
+                    },
+                )
 
         if response.json()["uuid"] is not None:
             log.info("UUID recieved. Waiting for TTS to process")
