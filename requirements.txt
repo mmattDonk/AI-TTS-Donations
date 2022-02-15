@@ -5,9 +5,6 @@
 httpx == 1.0.0b0
 
 python_dotenv == 0.19.2
-# C:\Users\notmm\ai-tts-donations\bot.py: 16
-# C:\Users\notmm\ai-tts-donations\ui.py: 9
-python_dotenv == 0.19.2
 
 simpleaudio==1.0.4
 
