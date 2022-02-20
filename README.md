@@ -23,7 +23,7 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
 
 1. Download the [latest release](https://github.com/mmattDonk/AI-TTS-Donations/releases/latest/) and unzip.
     * You can also `git clone https://github.com/mmattdonk/ai-tts-donations` or download the ZIP from GitHub if you want the latest changes (not guaranteed to be stable!)
-2. [Generate the necessary configuration files](https://mmattdonk.github.io/AI-TTS-Donations/). 
+2. [Generate the necessary configuration files](https://mmattdonk.github.io/AI-TTS-Donations/).
     * Simply enter in the required keys into the website, then download the configuration files and put them into your bot's folder (where `bot.py` is!).
 3. Install Dependencies - Run `python -m pip install -r requirements.txt` in a Terminal/PowerShell/Command Prompt window (that is in the same directory as the bot.py file)
 4. Start the bot - Run `python bot.py` in a Terminal/PowerShell/Command Prompt window
