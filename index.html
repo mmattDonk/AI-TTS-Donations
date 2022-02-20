@@ -14,11 +14,16 @@
 	<h1>AI-TTS-Donations Setup</h1>
 
 	<nav>
-		Jump to: <a href="#env">.env</a> <a href="#config">config.json</a>
+		Jump to: <a href="#env">.env</a> | <a href="#config">config.json</a> | <a href="#how">How do I use these files?</a>
 	</nav>
+
+	<p>AI-TTS-Donations is a bot that uses Uberduck AI to give bit donations (or channel point reward redemptions) an AI voice! If you don't have it, you can <a href="https://github.com/mmattDonk/AI-TTS-Donations/tree/main">download it here.</a></p>
+
+	<hr>
 
 	<div id="env">
 		<h2>.env</h2>
+		<p>This file contains API keys and settings related to the services AI-TTS-Donations uses. You really shouldn't share anything here!</p>
 			<h3>Uberduck</h3>
 
 			<p>To obtain an Uberduck API key, first <a href="https://uberduck.ai/signup">create an account at uberduck.ai</a>, then <a href="https://uberduck.ai/account/manage">add an API key</a> (under account management).
@@ -70,8 +75,11 @@
 			</div>
 	</div>
 
+	<hr>
+
 	<div id="config">
 		<h2>config.json</h2>
+		<p>This file contains config settings for AI-TTS-Donations.</p>
 
 		<label> Maximum message length
 			<input name="MAX_MSG_LENGTH" type="number" min="0" value="300">
@@ -126,5 +134,12 @@
 		</div>
 	</div>
 
+	<hr>
+
+	<div id="how">
+		<h2>How do I even use these files?</h2>
+		<p>After you've filled this out, download both files (there's a download button) and put them in AI-TTS-Donation's folder (where bot.py is).</p>
+		<p>On some systems or browsers, you may need to rename "env" to ".env" (with a dot at the start, and nothing before the dot)! Sorry about that.</p>
+	</div>
 </body>
 </html>

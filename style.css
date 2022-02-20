@@ -5,7 +5,7 @@
 }
 
 body {
-	margin: 4em;
+	margin: 4em auto;
 	background: black;
 	color: white;
 	max-width: 96ch;
@@ -35,6 +35,14 @@ textarea, input {
 
 input {
 	font-family: inherit;
+}
+
+input:invalid {
+	border-color: #fa2828;
+}
+
+input:invalid:hover {
+	border-color: #fc6675;
 }
 
 textarea:hover, input:hover {
@@ -87,7 +95,7 @@ input:focus + .tooltip {
 	border-color: mediumpurple;
 }
 
-* + * {
+:not(span) + :not(span) {
 	margin-top: 0.5em;
 }
 
