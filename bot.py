@@ -134,6 +134,9 @@ def request_tts(message: str, failed: Optional[bool] = False):
                 voice_files.append(f"./playsounds/{playsounds[i]}")
                 continue
 
+        if message == ",":
+            continue
+
         try:
             log.debug(message.split(": "))
 
