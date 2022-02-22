@@ -122,7 +122,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
         # ----------- Playsounds -----------
 
-        playsound = re.match('^\(\d+\)$', message)
+        playsound = re.match(r"^\(\d+\)$", message)
 
         if playsound:
             i = int(playsound.group()[1:-1]) - 1
