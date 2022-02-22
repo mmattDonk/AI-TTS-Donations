@@ -8,6 +8,8 @@ Changes unreleased.
 
 - dependencies:
   - remove duplicate entry ([89f4237](https://github.com/mmattDonk/AI-TTS-Donations/commit/89f42374c3466bc027efcdb4bdae10226df063b1))
+- playsounds:
+  - remove `elif` chaining ([#115](https://github.com/mmattDonk/AI-TTS-Donations/pull/115)) 
 
 ## [v2.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.1) - 2022-02-07 23:32:36
 
