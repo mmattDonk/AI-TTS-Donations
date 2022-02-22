@@ -125,10 +125,10 @@ def request_tts(message: str, failed: Optional[bool] = False):
         playsound = re.match(r"^\(\d+\)$", message)
 
         if playsound:
-            i = int(playsound.group()[1:-1]) - 1
+            i = int(playsound.group()[1:-1]) - 1  # sound 1 = index 0
 
-            if i < 1 or i > (len(playsounds) - 1):
-                print(f"sound {i} does not exist. it will not be played.")
+            if i < 0 or i > (len(playsounds) - 1):
+                log.info(f"sound {i} does not exist. it will not be played.")
                 continue
             else:
                 voice_files.append(f"./playsounds/{playsounds[i]}")
