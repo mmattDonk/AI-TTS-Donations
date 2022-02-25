@@ -77,23 +77,9 @@ if not os.path.exists("playsounds"):
                 + "\nThis is used for the play sound functionality in the bot, things like (1) or (2). Don't remove any files from here as it could cause the functionality to not work, and in turn, the bot to not work."
             )
 
-# array of the playsounds.
-playsounds = []
-for file in os.listdir("playsounds"):
-    # ensures no non-audio files are included (like the README)
-    if file.endswith(".wav"):
-        playsounds.append(file)
-
-with open("config.json", "r") as f:
-    config = json.load(f)
-
-
-load_dotenv()
 log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
 
-
 log = logging.getLogger()
-
 
 logging.basicConfig(
     level=log_level,
@@ -101,6 +87,21 @@ logging.basicConfig(
     datefmt="%X",
     handlers=[RichHandler()],
 )
+
+# array of the playsounds.
+playsounds = []
+# sourcery skip: list-comprehension
+playsounds.extend(file for file in os.listdir("playsounds") if file.endswith(".wav"))
+
+playsounds.sort(
+    key=lambda test_string: list(map(int, re.findall(r"\d+", test_string)))[0]
+)
+
+log.debug(playsounds)
+
+with open("config.json", "r") as f:
+    config = json.load(f)
+load_dotenv()
 
 
 def request_tts(message: str, failed: Optional[bool] = False):
@@ -126,12 +127,14 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
         if playsound:
             i = int(playsound.group()[1:-1]) - 1  # sound 1 = index 0
+            log.debug(i)
 
             if i < 0 or i > (len(playsounds) - 1):
                 log.info(f"sound {i} does not exist. it will not be played.")
                 continue
             else:
                 voice_files.append(f"./playsounds/{playsounds[i]}")
+                log.debug(playsounds[i])
                 continue
 
         if message == ",":
