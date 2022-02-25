@@ -1,14 +1,5 @@
 # CHANGELOG
 
-## Unreleased
-
-Changes unreleased.
-
-### Refactor
-
-- dependencies:
-  - remove duplicate entry ([89f4237](https://github.com/mmattDonk/AI-TTS-Donations/commit/89f42374c3466bc027efcdb4bdae10226df063b1))
-
 ## [v2.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.3.0) - 2022-02-25 00:29:02
 
 # ! ADDED ALL PLAYSOUNDS !
@@ -22,6 +13,27 @@ Changes unreleased.
 
 **Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.2.1...v2.3.0
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
+### Feature
+
+- playsounds:
+  - add all playsounds (#117) ([f86524d](https://github.com/mmattDonk/AI-TTS-Donations/commit/f86524d82dbc6b478ec0f77f5d1623950b4dc2db)) ([#117](https://github.com/mmattDonk/AI-TTS-Donations/pull/117))
+
+### Documentation
+
+- PR_TEMPLATE:
+  - Updated PR Template with more comments ([19bfb43](https://github.com/mmattDonk/AI-TTS-Donations/commit/19bfb438430a28332f69b85991c0493ab1ee01ec))
+
+- README:
+  - include a disclaimer to add Python to PATH ([7b64e80](https://github.com/mmattDonk/AI-TTS-Donations/commit/7b64e804218fd07433e730e208a7d1de6eccc56d))
+
+### Refactor
+
+- playsounds:
+  - use regex instead of elif chaining (#115) ([8c8a70f](https://github.com/mmattDonk/AI-TTS-Donations/commit/8c8a70fa7512ce382f1f9762e5b215ca48ed5987)) ([#115](https://github.com/mmattDonk/AI-TTS-Donations/pull/115))
+
+- dependencies:
+  - remove duplicate entry ([89f4237](https://github.com/mmattDonk/AI-TTS-Donations/commit/89f42374c3466bc027efcdb4bdae10226df063b1))
 
 ## [v2.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.1) - 2022-02-07 23:32:36
 
@@ -67,11 +79,6 @@ https://mmattdonk.github.io/AI-TTS-Donations/ has been updated to reflect the ch
 
 - core:
   - Added fallback voices (#103) ([fb2c726](https://github.com/mmattDonk/AI-TTS-Donations/commit/fb2c72655389f851e7dd1f68d4a0ef4babba28ba)) ([#103](https://github.com/mmattDonk/AI-TTS-Donations/pull/103))
-
-### Bug Fixes
-
-- README:
-  - fixed scuffed developer emoji ([d6eff0c](https://github.com/mmattDonk/AI-TTS-Donations/commit/d6eff0c9a8152ef2b975a756399124c4577a1c6f))
 
 ## [v2.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.1.0) - 2021-12-28 21:47:22
 
