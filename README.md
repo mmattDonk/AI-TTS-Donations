@@ -10,6 +10,8 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
 
 ### 🔧 Prerequisites
 1. [Python 3.8+](https://www.python.org/downloads/)
+   - ** **MAKE SURE PYTHON IS ADDED TO PATH WHILE INSTALLING.** **
+      - This can avoid an error that Python doesn't exist in steps 4/5. To add Python to path after Python has already been installed, please follow [this guide](https://datatofish.com/add-python-to-windows-path/)
 
 ### 🏃 How to run
 

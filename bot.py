@@ -77,17 +77,9 @@ if not os.path.exists("playsounds"):
                 + "\nThis is used for the play sound functionality in the bot, things like (1) or (2). Don't remove any files from here as it could cause the functionality to not work, and in turn, the bot to not work."
             )
 
-
-with open("config.json", "r") as f:
-    config = json.load(f)
-
-
-load_dotenv()
 log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
 
-
 log = logging.getLogger()
-
 
 logging.basicConfig(
     level=log_level,
@@ -95,6 +87,21 @@ logging.basicConfig(
     datefmt="%X",
     handlers=[RichHandler()],
 )
+
+# array of the playsounds.
+playsounds = []
+# sourcery skip: list-comprehension
+playsounds.extend(file for file in os.listdir("playsounds") if file.endswith(".wav"))
+
+playsounds.sort(
+    key=lambda test_string: list(map(int, re.findall(r"\d+", test_string)))[0]
+)
+
+log.debug(playsounds)
+
+with open("config.json", "r") as f:
+    config = json.load(f)
+load_dotenv()
 
 
 def request_tts(message: str, failed: Optional[bool] = False):
@@ -112,404 +119,24 @@ def request_tts(message: str, failed: Optional[bool] = False):
             message = message[1:]
             log.debug(f"`{message}`")
 
+        message = message.strip()  ## cleaning up whitespace
+
         # ----------- Playsounds -----------
-        if "(1)" in message:
-            voice_files.append(f"./playsounds/001-alarm.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(2)" in message:
-            voice_files.append(f"./playsounds/002-beads.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(3)" in message:
-            voice_files.append(f"./playsounds/003-beep1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(4)" in message:
-            voice_files.append(f"./playsounds/004-beep1-faster.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(5)" in message:
-            voice_files.append(f"./playsounds/005-beep1-flatline.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(6)" in message:
-            voice_files.append(f"./playsounds/006-beep2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(7)" in message:
-            voice_files.append(f"./playsounds/007-bell.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(8)" in message:
-            voice_files.append(f"./playsounds/008-bite.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(9)" in message:
-            voice_files.append(f"./playsounds/009-bottle.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(10)" in message:
-            voice_files.append(f"./playsounds/010-bottleuncork.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(11)" in message:
-            voice_files.append(f"./playsounds/011-bubble.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(12)" in message:
-            voice_files.append(f"./playsounds/012-camera.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(13)" in message:
-            voice_files.append(f"./playsounds/013-cardfan.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(14)" in message:
-            voice_files.append(f"./playsounds/014-cardplace.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(15)" in message:
-            voice_files.append(f"./playsounds/015-cardshuffle.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(16)" in message:
-            voice_files.append(f"./playsounds/016-chiplay.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(17)" in message:
-            voice_files.append(f"./playsounds/017-chop1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(18)" in message:
-            voice_files.append(f"./playsounds/018-chop2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(19)" in message:
-            voice_files.append(f"./playsounds/019-clamour.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(20)" in message:
-            voice_files.append(f"./playsounds/020-coin.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(21)" in message:
-            voice_files.append(f"./playsounds/021-coins.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(22)" in message:
-            voice_files.append(f"./playsounds/022-cupboard-open.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(23)" in message:
-            voice_files.append(f"./playsounds/023-dialing-phone.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(24)" in message:
-            voice_files.append(f"./playsounds/024-dicethrow.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(25)" in message:
-            voice_files.append(f"./playsounds/025-die1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(26)" in message:
-            voice_files.append(f"./playsounds/026-dig1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(27)" in message:
-            voice_files.append(f"./playsounds/027-dig2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(28)" in message:
-            voice_files.append(f"./playsounds/028-dig3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(29)" in message:
-            voice_files.append(f"./playsounds/029-dog-bark1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(30)" in message:
-            voice_files.append(f"./playsounds/030-dog-bark2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(31)" in message:
-            voice_files.append(f"./playsounds/031-dog-bark3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(32)" in message:
-            voice_files.append(f"./playsounds/032-dog-bark4.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(33)" in message:
-            voice_files.append(f"./playsounds/033-dog-ruff1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(34)" in message:
-            voice_files.append(f"./playsounds/034-dog-whine1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(35)" in message:
-            voice_files.append(f"./playsounds/035-dog-whine2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(36)" in message:
-            voice_files.append(f"./playsounds/036-dog-whine3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(37)" in message:
-            voice_files.append(f"./playsounds/037-dog-yip1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(38)" in message:
-            voice_files.append(f"./playsounds/038-dog-yip2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(39)" in message:
-            voice_files.append(f"./playsounds/039-donk.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(40)" in message:
-            voice_files.append(f"./playsounds/040-door-close1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(41)" in message:
-            voice_files.append(f"./playsounds/041-door-close2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(42)" in message:
-            voice_files.append(f"./playsounds/042-door-open1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(43)" in message:
-            voice_files.append(f"./playsounds/043-door-open2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(44)" in message:
-            voice_files.append(f"./playsounds/044-door-open-creak.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(45)" in message:
-            voice_files.append(f"./playsounds/045-drink1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(46)" in message:
-            voice_files.append(f"./playsounds/046-drink2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(47)" in message:
-            voice_files.append(f"./playsounds/047-explosion.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(48)" in message:
-            voice_files.append(f"./playsounds/048-finger-snap.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(49)" in message:
-            voice_files.append(f"./playsounds/049-footsteps1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(50)" in message:
-            voice_files.append(f"./playsounds/050-footsteps2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(51)" in message:
-            voice_files.append(f"./playsounds/051-footsteps3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(52)" in message:
-            voice_files.append(f"./playsounds/052-footsteps4.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(53)" in message:
-            voice_files.append(f"./playsounds/053-footsteps5.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(54)" in message:
-            voice_files.append(f"./playsounds/054-footsteps6.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(55)" in message:
-            voice_files.append(f"./playsounds/055-footsteps7.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(56)" in message:
-            voice_files.append(f"./playsounds/056-footsteps7-stop.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(57)" in message:
-            voice_files.append(f"./playsounds/057-gasp.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(58)" in message:
-            voice_files.append(f"./playsounds/058-gulp1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(59)" in message:
-            voice_files.append(f"./playsounds/059-gulp2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(60)" in message:
-            voice_files.append(f"./playsounds/060-guncock1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(61)" in message:
-            voice_files.append(f"./playsounds/061-guncock2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(62)" in message:
-            voice_files.append(f"./playsounds/062-gunreload1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(63)" in message:
-            voice_files.append(f"./playsounds/063-gunreload2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(64)" in message:
-            voice_files.append(f"./playsounds/064-gunshot1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(65)" in message:
-            voice_files.append(f"./playsounds/065-gunshot2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(66)" in message:
-            voice_files.append(f"./playsounds/066-gunshot3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(67)" in message:
-            voice_files.append(f"./playsounds/067-gunshot4.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(68)" in message:
-            voice_files.append(f"./playsounds/068-hang-drop.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(69)" in message:
-            voice_files.append(f"./playsounds/069-hang-swing.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(70)" in message:
-            voice_files.append(f"./playsounds/070-hit01.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(71)" in message:
-            voice_files.append(f"./playsounds/071-hit02.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(72)" in message:
-            voice_files.append(f"./playsounds/072-hit03.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(73)" in message:
-            voice_files.append(f"./playsounds/073-hit04.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(74)" in message:
-            voice_files.append(f"./playsounds/074-hit05.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(75)" in message:
-            voice_files.append(f"./playsounds/075-horse1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(76)" in message:
-            voice_files.append(f"./playsounds/076-knock-knock.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(77)" in message:
-            voice_files.append(f"./playsounds/077-lighter.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(78)" in message:
-            voice_files.append(f"./playsounds/078-machinegun.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(79)" in message:
-            voice_files.append(f"./playsounds/079-mobile-message.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(80)" in message:
-            voice_files.append(f"./playsounds/080-mobile-ring.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(81)" in message:
-            voice_files.append(f"./playsounds/081-mobile-tap.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(82)" in message:
-            voice_files.append(f"./playsounds/082-mud.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(83)" in message:
-            voice_files.append(f"./playsounds/083-mud.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(84)" in message:
-            voice_files.append(f"./playsounds/084-oldphone-ring.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(85)" in message:
-            voice_files.append(f"./playsounds/085-page-turn.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(86)" in message:
-            voice_files.append(f"./playsounds/086-phone-ringing.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(87)" in message:
-            voice_files.append(f"./playsounds/087-phone-vibrate.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(88)" in message:
-            voice_files.append(f"./playsounds/088-pill-bottle.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(89)" in message:
-            voice_files.append(f"./playsounds/089-police-siren.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(90)" in message:
-            voice_files.append(f"./playsounds/090-pop.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(91)" in message:
-            voice_files.append(f"./playsounds/091-sackdrop.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(92)" in message:
-            voice_files.append(f"./playsounds/092-scissors.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(93)" in message:
-            voice_files.append(f"./playsounds/093-scream1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(94)" in message:
-            voice_files.append(f"./playsounds/094-scream2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(95)" in message:
-            voice_files.append(f"./playsounds/095-silence-one-second.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(96)" in message:
-            voice_files.append(f"./playsounds/096-silence-two-seconds.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(97)" in message:
-            voice_files.append(f"./playsounds/097-slime.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(98)" in message:
-            voice_files.append(f"./playsounds/098-slurp.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(99)" in message:
-            voice_files.append(f"./playsounds/099-splash1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        # ----------- End of Playsounds -----------
+
+        playsound = re.match(r"^\(\d+\)$", message)
+
+        if playsound:
+            i = int(playsound.group()[1:-1]) - 1  # sound 1 = index 0
+            log.debug(i)
+
+            if i < 0 or i > (len(playsounds) - 1):
+                log.info(f"sound {i} does not exist. it will not be played.")
+                continue
+            else:
+                voice_files.append(f"./playsounds/{playsounds[i]}")
+                log.debug(playsounds[i])
+                continue
+
         if message == ",":
             continue
 

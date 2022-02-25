@@ -14,6 +14,28 @@
 <!--- For example, markdown files should pass markdownlint locally according to the rules -->
 <!--- See how your change affects other areas of the code, etc. -->
 
+<!-- USE THE TESTING STRINGS!!!! -->
+<!-- Here are some testing strings that will help you test your code, and any edge cases -->
+
+<!-- 1 Voice -->
+<!-- spongebob: test -->
+
+<!-- 2 Voices -->
+<!-- spongebob: test || drake: test -->
+
+<!-- Multiple Voices with Playsounds -->
+<!-- spongebob: test || (1) || drake: test || (2) || kanye-west-rap: test || drake: test -->
+
+<!-- Multiple Playsounds Alone -->
+<!-- (1) || (2) || (3) -->
+
+<!-- Singular Playsound -->
+<!-- (1) -->
+
+<!-- Make sure to use **ALL** of these before submitting your code -->
+<!-- Doesn't matter if you only change playsounds, or just the core TTS function -->
+<!-- You should still use all of these strings in the Testing Window to make sure that nothing else was effected by your change. -->
+
 ## Screenshots(optional)
 <!--- If Screenshots is not necessary or not available in this pull request, you can delete this section -->
 <!--- Changes including html and css are required to have screenshots -->
@@ -37,3 +59,6 @@
 - [ ] Check issues and pull requests first. You don't want to duplicate effort.
 
 ## Other information
+<!-- Just a developer comment: -->
+<!-- Make sure to use `log.info` to replace `print` statements, if the message is intended for the user -->
+<!-- And you can leave in debugging `print` statements, just replace them with `log.debug` -->
