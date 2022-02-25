@@ -9,6 +9,20 @@ Changes unreleased.
 - dependencies:
   - remove duplicate entry ([89f4237](https://github.com/mmattDonk/AI-TTS-Donations/commit/89f42374c3466bc027efcdb4bdae10226df063b1))
 
+## [v2.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.3.0) - 2022-02-25 00:29:02
+
+# ! ADDED ALL PLAYSOUNDS !
+
+## What's Changed
+* chore(deps): bump rich from 11.1.0 to 11.2.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/109
+* docs(CHANGELOG): update release notes by @github-actions in https://github.com/mmattDonk/AI-TTS-Donations/pull/108
+* refactor(playsounds): use regex instead of elif chaining by @12beesinatrenchcoat in https://github.com/mmattDonk/AI-TTS-Donations/pull/115
+* feat(playsounds): add all playsounds by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/117
+
+
+**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.2.1...v2.3.0
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
 ## [v2.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.1) - 2022-02-07 23:32:36
 
 Fixed v2.2.0
