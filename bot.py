@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import json
 import logging
@@ -17,7 +17,19 @@ from uuid import UUID
 
 import httpx
 import simpleaudio
+import soundfile as sf
 from dotenv import load_dotenv
+from pedalboard import (
+    Bitcrush,
+    Chorus,
+    Compressor,
+    Distortion,
+    Gain,
+    Limiter,
+    Pedalboard,
+    PitchShift,
+    Reverb,
+)
 from rich.logging import RichHandler
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
@@ -26,6 +38,16 @@ from twitchAPI.types import AuthScope
 
 JS_STRING = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*"
+
+VOICE_EFFECTS = {
+    "reverb": Reverb(room_size=0.50),
+    "pitchup": PitchShift(semitones=5),
+    "pitchdown": PitchShift(semitones=-5),
+    "loud": [Distortion(), Limiter()],
+    "android": Bitcrush(bit_depth=3),
+    "autotune": Chorus(),
+    "phone": [Gain(gain_db=4), Bitcrush(bit_depth=4)],
+}
 
 
 def path_exists(filename):
@@ -160,6 +182,19 @@ def request_tts(message: str, failed: Optional[bool] = False):
         except IndexError:
             text = message
 
+        voice = voice.split(".")
+
+        voice_name = voice[0]
+
+        try:
+            voice_effect = voice[1:]
+        except IndexError:
+            voice_effect = None
+
+        log.debug("voice effect: " + str(voice_effect))
+        log.debug("voice: " + voice[0])
+        log.debug("voice var: " + str(voice))
+
         response = httpx.post(
             "https://api.uberduck.ai/speak",
             auth=(
@@ -168,7 +203,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
             ),
             json={
                 "speech": text,
-                "voice": voice,
+                "voice": voice_name,
             },
         )
 
@@ -176,9 +211,14 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
         if response.json().get("detail") != None:
             if response.json()["detail"] == "That voice does not exist":
+                try:
+                    fallback_voice = config["FALLBACK_VOICE"]
+                except IndexError:
+                    fallback_voice = "kanye-west-rap"
+
                 log.info(
                     "Couldn't find voice specified, using fallback voice: "
-                    + config["FALLBACK_VOICE"]
+                    + fallback_voice
                 )
                 response = httpx.post(
                     "https://api.uberduck.ai/speak",
@@ -188,7 +228,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
                     ),
                     json={
                         "speech": text,
-                        "voice": config["FALLBACK_VOICE"],
+                        "voice": fallback_voice,
                     },
                 )
 
@@ -207,7 +247,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
                         <body>
                             <div class="box">
                                 <h1>New TTS Request:</h1>
-                                <h2>Voice: {voice}</h2>
+                                <h2>Voice: {", ".join(voice)}</h2>
                                 <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
                             </div>
                         </body>
@@ -232,6 +272,57 @@ def request_tts(message: str, failed: Optional[bool] = False):
                         f"./voice_files/AI_voice_{date_string}.wav",
                     )
                     reset_overlay()
+
+                    if voice_effect:
+                        audio, sample_rate = sf.read(
+                            f"./voice_files/AI_voice_{date_string}.wav"
+                        )
+                        board = Pedalboard([])
+
+                        for effect in voice_effect:
+                            if effect.lower() in VOICE_EFFECTS:
+                                log.debug("Voice Effect Detected " + effect)
+                                if type(VOICE_EFFECTS[effect]) == list:
+                                    for effect_func in VOICE_EFFECTS[effect]:
+                                        board.append(effect_func)
+                                else:
+                                    board.append(VOICE_EFFECTS[effect])
+                            else:
+                                pass
+
+                        effected = board(audio, sample_rate)
+                        sf.write(
+                            f"./voice_files/AI_voice_{date_string}.wav",
+                            effected,
+                            sample_rate,
+                        )
+
+                        for effect in voice_effect:
+                            if effect.lower() in VOICE_EFFECTS:
+                                if effect == "loud":
+                                    # Making the "loud" effect quieter because it's too loud.
+                                    # If anyone knows how to work a limiter or a compressor you can edit the VOICE_EFFECTS if you want :p
+                                    # Also there is probably a way to make this work in the loop above, but idk.
+                                    # So if anyone wants to take a shot at that, then go ahead
+                                    # I love free labor / code
+                                    # FeelsGoodMan
+
+                                    board.append(Gain(gain_db=-15))
+
+                                    effected = board(audio, sample_rate)
+                                    sf.write(
+                                        f"./voice_files/AI_voice_{date_string}.wav",
+                                        effected,
+                                        sample_rate,
+                                    )
+                                else:
+                                    pass
+                            else:
+                                pass
+
+                    else:
+                        pass
+
                     time.sleep(1)
                     voice_files.append(f"./voice_files/AI_voice_{date_string}.wav")
                     time.sleep(1)
