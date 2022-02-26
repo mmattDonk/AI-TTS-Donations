@@ -107,11 +107,6 @@ https://mmattdonk.github.io/AI-TTS-Donations/ has been updated to reflect the ch
 - core:
   - Added fallback voices (#103) ([fb2c726](https://github.com/mmattDonk/AI-TTS-Donations/commit/fb2c72655389f851e7dd1f68d4a0ef4babba28ba)) ([#103](https://github.com/mmattDonk/AI-TTS-Donations/pull/103))
 
-### Bug Fixes
-
-- README:
-  - fixed scuffed developer emoji ([d6eff0c](https://github.com/mmattDonk/AI-TTS-Donations/commit/d6eff0c9a8152ef2b975a756399124c4577a1c6f))
-
 ## [v2.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.1.0) - 2021-12-28 21:47:22
 
 ## Added playsounds!
