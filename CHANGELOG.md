@@ -15,6 +15,18 @@ New dependencies were added, so make sure to update your dependencies using this
 **Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.3.0...v2.4.0
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 
+### Feature
+
+- core:
+  - added voice effects! (#126) ([1385998](https://github.com/mmattDonk/AI-TTS-Donations/commit/1385998a494e08c7f65f41350a96fdcdcbc38c37)) ([#126](https://github.com/mmattDonk/AI-TTS-Donations/pull/126))
+  - added python shebang ([ec59eb5](https://github.com/mmattDonk/AI-TTS-Donations/commit/ec59eb582cc3a01a6207d9175de0c05c0f91d862))
+
+### Refactor
+
+- core:
+  - made a function to reset the overlay (#123) ([1994bc3](https://github.com/mmattDonk/AI-TTS-Donations/commit/1994bc31910e8ebba461eb67407e8e87edee12f3)) ([#123](https://github.com/mmattDonk/AI-TTS-Donations/pull/123))
+  - globalized cheer regex and js refresh (#122) ([4febecb](https://github.com/mmattDonk/AI-TTS-Donations/commit/4febecbbcda9b4068bf8fd919b5d107d4b12fd1b)) ([#122](https://github.com/mmattDonk/AI-TTS-Donations/pull/122))
+
 ## [v2.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.3.0) - 2022-02-25 00:29:02
 
 # ! ADDED ALL PLAYSOUNDS !
