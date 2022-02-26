@@ -25,6 +25,7 @@ from pedalboard import (
     Compressor,
     Distortion,
     Gain,
+    HighpassFilter,
     Limiter,
     Pedalboard,
     PitchShift,
@@ -46,7 +47,7 @@ VOICE_EFFECTS = {
     "loud": [Distortion(), Limiter()],
     "android": Bitcrush(bit_depth=3),
     "autotune": Chorus(),
-    "phone": [Gain(gain_db=4), Bitcrush(bit_depth=4)],
+    "phone": [HighpassFilter(cutoff_frequency_hz=8000), Gain(gain_db=10)],
 }
 
 
