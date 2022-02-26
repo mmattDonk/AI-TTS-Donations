@@ -32,13 +32,18 @@ def path_exists(filename):
     return os.path.join(".", f"{filename}")
 
 
-if not os.path.exists(path_exists("./overlay/index.html")):
+def reset_overlay():
     with open("./overlay/index.html", "w") as html:
         html_code = f"""<head>
         {JS_STRING}
         <link rel="stylesheet" href="style.css">
         </head>"""
+
         html.write(html_code)
+
+
+if not os.path.exists(path_exists("./overlay/index.html")):
+    reset_overlay()
 
 if not os.path.exists(path_exists(".env")):
     input(
@@ -226,12 +231,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
                         ud_ai.json()["path"],
                         f"./voice_files/AI_voice_{date_string}.wav",
                     )
-                    with open("./overlay/index.html", "w") as html:
-                        html_code = f"""<head>
-                            {JS_STRING}
-                            <link rel="stylesheet" href="style.css">
-                            </head>"""
-                        html.write(html_code)
+                    reset_overlay()
                     time.sleep(1)
                     voice_files.append(f"./voice_files/AI_voice_{date_string}.wav")
                     time.sleep(1)
@@ -261,13 +261,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
                     time.sleep(2)
 
-                    with open("./overlay/index.html", "w") as html:
-                        html_code = f"""<head>
-                                            {JS_STRING}
-                                            <link rel="stylesheet" href="style.css">
-                                            </head>"""
-
-                        html.write(html_code)
+                    reset_overlay()
 
                 elif checkCount > config["QUERY_TRIES"]:
                     log.info(
@@ -293,13 +287,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
                     time.sleep(5)
 
-                    with open("./overlay/index.html", "w") as html:
-                        html_code = f"""<head>
-                            {JS_STRING}
-                            <link rel="stylesheet" href="style.css">
-                            </head>"""
-
-                        html.write(html_code)
+                    reset_overlay()
 
                 else:
                     log.info(
@@ -428,13 +416,7 @@ def test_tts():
 def skip_tts():
     log.info("Skipping TTS")
     simpleaudio.stop_all()
-    with open("./overlay/index.html", "w") as html:
-        html_code = f"""<head>
-        {JS_STRING}
-        <link rel="stylesheet" href="style.css">
-        </head>"""
-
-        html.write(html_code)
+    reset_overlay()
 
 
 OUTPUT_PATH = Path(__file__).parent
