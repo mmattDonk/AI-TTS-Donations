@@ -39,6 +39,8 @@ from twitchAPI.types import AuthScope
 JS_STRING = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*"
 
+VOICE_FILES = []
+
 VOICE_EFFECTS = {
     "reverb": Reverb(room_size=0.50),
     "pitchup": PitchShift(semitones=5),
@@ -142,8 +144,6 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
     q = queue.Queue()
 
-    voice_files = []
-
     for message in messages:
         log.debug(f"`{message}`")
         if message[0] == " ":
@@ -164,7 +164,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
                 log.info(f"sound {i} does not exist. it will not be played.")
                 continue
             else:
-                voice_files.append(f"./playsounds/{playsounds[i]}")
+                VOICE_FILES.append(f"./playsounds/{playsounds[i]}")
                 log.debug(playsounds[i])
                 continue
 
@@ -324,7 +324,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
                         pass
 
                     time.sleep(1)
-                    voice_files.append(f"./voice_files/AI_voice_{date_string}.wav")
+                    VOICE_FILES.append(f"./voice_files/AI_voice_{date_string}.wav")
                     time.sleep(1)
                     waitingToProcess = False
 
@@ -391,7 +391,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
                         time.sleep(2)
 
     def thread_function():
-        for _ in voice_files:
+        for _ in VOICE_FILES:
             sound = q.get()
             if sound is None:
                 return
@@ -404,7 +404,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
     if __name__ == "__main__":
         t = threading.Thread(target=thread_function)
         t.start()
-        for voice_file in voice_files:
+        for voice_file in VOICE_FILES:
             q.put(voice_file)
             time.sleep(1)
         t.join()
@@ -510,6 +510,16 @@ def skip_tts():
     reset_overlay()
 
 
+def skip_all_tts():
+    log.info("Skipping ALL TTS")
+    log.debug(VOICE_FILES)
+    for _ in VOICE_FILES:
+        simpleaudio.stop_all()
+        log.debug("pls work")
+
+    reset_overlay()
+
+
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
@@ -551,6 +561,16 @@ button_1 = Button(
 )
 button_1.bind("<Button-1>", lambda x: threading.Thread(target=skip_tts).start())
 button_1.place(x=461.9999999999998, y=51.0, width=340.0, height=54.0)
+
+skip_all_btn = Button(
+    image=button_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+    relief="flat",
+)
+skip_all_btn.bind("<Button-1>", lambda x: threading.Thread(target=skip_all_tts).start())
+skip_all_btn.place(x=461.9999999999998, y=100.0, width=340.0, height=54.0)
+
 
 entry_image_1 = PhotoImage(file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(269.9999999999998, 249.0, image=entry_image_1)
