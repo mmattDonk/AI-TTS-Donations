@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [v2.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.0) - 2022-02-26 19:54:12
+
+# Added Voice Effects!!!
+
+New dependencies were added, so make sure to update your dependencies using this command: `pythom -m pip install -r requirements.txt`
+
+## What's Changed
+* refactor(core): globalized cheer regex and js refresh by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/122
+* refactor(core): made a function to reset the overlay by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/123
+* feat(core): added voice effects! by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/126
+
+
+**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.3.0...v2.4.0
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
 ## [v2.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.3.0) - 2022-02-25 00:29:02
 
 # ! ADDED ALL PLAYSOUNDS !
