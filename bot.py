@@ -24,6 +24,9 @@ from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
 
+JS_STRING = """<meta http-equiv="refresh" content="1">"""
+CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*"
+
 
 def path_exists(filename):
     return os.path.join(".", f"{filename}")
@@ -31,9 +34,8 @@ def path_exists(filename):
 
 if not os.path.exists(path_exists("./overlay/index.html")):
     with open("./overlay/index.html", "w") as html:
-        js_script = """<meta http-equiv="refresh" content="1">"""
         html_code = f"""<head>
-        {js_script}
+        {JS_STRING}
         <link rel="stylesheet" href="style.css">
         </head>"""
         html.write(html_code)
@@ -187,7 +189,6 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
         if response.json()["uuid"] is not None:
             log.info("UUID recieved. Waiting for TTS to process")
-            js_string = """<meta http-equiv="refresh" content="1">"""
             checkCount = 0
             waitingToProcess = True
             while waitingToProcess:
@@ -195,7 +196,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
                 with open("./overlay/index.html", "w") as html:
                     html_code = f"""<html>
                         <head>
-                        {js_string}
+                        {JS_STRING}
                         <link rel="stylesheet" href="style.css">
                         </head>
                         <body>
@@ -226,9 +227,8 @@ def request_tts(message: str, failed: Optional[bool] = False):
                         f"./voice_files/AI_voice_{date_string}.wav",
                     )
                     with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
                         html_code = f"""<head>
-                            {js_script}
+                            {JS_STRING}
                             <link rel="stylesheet" href="style.css">
                             </head>"""
                         html.write(html_code)
@@ -243,11 +243,10 @@ def request_tts(message: str, failed: Optional[bool] = False):
                     request_tts(message=message, failed=True)
 
                     with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
 
                         html_code = f"""<html>
                                             <head>
-                                            {js_string}
+                                            {JS_STRING}
                                             <link rel="stylesheet" href="style.css">
                                             </head>
                                             <body>
@@ -263,9 +262,8 @@ def request_tts(message: str, failed: Optional[bool] = False):
                     time.sleep(2)
 
                     with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
                         html_code = f"""<head>
-                                            {js_script}
+                                            {JS_STRING}
                                             <link rel="stylesheet" href="style.css">
                                             </head>"""
 
@@ -277,11 +275,10 @@ def request_tts(message: str, failed: Optional[bool] = False):
                     )
                     waitingToProcess = False
                     with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
 
                         html_code = f"""<html>
                             <head>
-                            {js_string}
+                            {JS_STRING}
                             <link rel="stylesheet" href="style.css">
                             </head>
                             <body>
@@ -297,9 +294,8 @@ def request_tts(message: str, failed: Optional[bool] = False):
                     time.sleep(5)
 
                     with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
                         html_code = f"""<head>
-                            {js_script}
+                            {JS_STRING}
                             <link rel="stylesheet" href="style.css">
                             </head>"""
 
@@ -375,7 +371,7 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
         return
 
     message = re.sub(
-        r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
+        CHEER_REGEX,
         "",
         message,
     )
@@ -416,7 +412,7 @@ def test_tts():
     if message == "":
         return
     message = re.sub(
-        r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
+        CHEER_REGEX,
         "",
         message,
     )
@@ -433,9 +429,8 @@ def skip_tts():
     log.info("Skipping TTS")
     simpleaudio.stop_all()
     with open("./overlay/index.html", "w") as html:
-        js_script = """<meta http-equiv="refresh" content="1">"""
         html_code = f"""<head>
-        {js_script}
+        {JS_STRING}
         <link rel="stylesheet" href="style.css">
         </head>"""
 
