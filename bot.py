@@ -281,7 +281,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
                         for effect in voice_effect:
                             if effect.lower() in VOICE_EFFECTS:
-                                log.debug("Voice Effect Detected " + effect)
+                                log.info("Voice Effect Detected: " + effect)
                                 if type(VOICE_EFFECTS[effect]) == list:
                                     for effect_func in VOICE_EFFECTS[effect]:
                                         board.append(effect_func)
