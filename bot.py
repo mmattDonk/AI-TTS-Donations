@@ -26,6 +26,7 @@ from pedalboard import (
     Gain,
     HighpassFilter,
     Limiter,
+    LowpassFilter,
     Pedalboard,
     PitchShift,
     Resample,
@@ -48,6 +49,7 @@ VOICE_EFFECTS = {
     "android": [Resample(target_sample_rate=5000), Gain(gain_db=5)],
     "autotune": Chorus(),
     "phone": [HighpassFilter(cutoff_frequency_hz=8000), Gain(gain_db=10)],
+    "muffled": [LowpassFilter(cutoff_frequency_hz=100), Gain(gain_db=16)],
 }
 
 
