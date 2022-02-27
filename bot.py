@@ -20,7 +20,6 @@ import simpleaudio
 import soundfile as sf
 from dotenv import load_dotenv
 from pedalboard import (
-    Bitcrush,
     Chorus,
     Compressor,
     Distortion,
@@ -29,6 +28,7 @@ from pedalboard import (
     Limiter,
     Pedalboard,
     PitchShift,
+    Resample,
     Reverb,
 )
 from rich.logging import RichHandler
@@ -45,7 +45,7 @@ VOICE_EFFECTS = {
     "pitchup": PitchShift(semitones=5),
     "pitchdown": PitchShift(semitones=-5),
     "loud": [Distortion(), Limiter()],
-    "android": Bitcrush(bit_depth=3),
+    "android": Resample(target_sample_rate=5000),
     "autotune": Chorus(),
     "phone": [HighpassFilter(cutoff_frequency_hz=8000), Gain(gain_db=10)],
 }
