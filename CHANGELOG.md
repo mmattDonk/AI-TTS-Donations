@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [v2.4.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.1) - 2022-02-27 06:37:10
+
+## What's Changed
+* feat(voice_effects): new phone filter by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/132
+* chore(deps): bump twitchapi from 2.5.1 to 2.5.2 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/110
+* new android filter by @mopoIo in https://github.com/mmattDonk/AI-TTS-Donations/pull/134
+* new muffled effect by @mopoIo in https://github.com/mmattDonk/AI-TTS-Donations/pull/133
+
+## New Contributors
+* @mopoIo made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/134
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.4.0...v2.4.1
+
 ## [v2.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.0) - 2022-02-26 19:54:12
 
 # Added Voice Effects!!!
