@@ -49,7 +49,7 @@ VOICE_EFFECTS = {
     "android": Bitcrush(bit_depth=3),
     "autotune": Chorus(),
     "phone": [HighpassFilter(cutoff_frequency_hz=8000), Gain(gain_db=10)],
-    "muffled": LowpassFilter(cutoff_frequency_hz=350),
+    "muffled": [LowpassFilter(cutoff_frequency_hz=100) Gain(gain_db=16)],
 }
 
 
