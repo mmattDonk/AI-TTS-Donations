@@ -187,7 +187,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
         voice = voice.split(".")
 
-        voice_name = voice[0]
+        voice_name = voice[0].lower()
 
         try:
             voice_effect = voice[1:]
