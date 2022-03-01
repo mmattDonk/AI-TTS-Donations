@@ -1,14 +1,5 @@
 # CHANGELOG
 
-## Unreleased
-
-Changes unreleased.
-
-### Bug Fixes
-
-- core:
-  - lowered the voice name ([5b829c4](https://github.com/mmattDonk/AI-TTS-Donations/commit/5b829c457bc045cddacaee655a0380c8e34649cf))
-
 ## [v2.5.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.5.0) - 2022-03-01 01:07:54
 
 # Fakeyou.com Support has been added!!!
@@ -18,9 +9,22 @@ Check out the [wiki](https://github.com/mmattDonk/AI-TTS-Donations/wiki/How-to-u
 ## What's Changed
 * feat(core): added fakeyou support! by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/139
 
+## Brought to you by:
+[![](https://fakeyou.com/fakeyou/fakeyou-nav-logo-mascot.webp)](https://fakeyou.com)
+- Fakeyou.com sponsored this release, and made it possible! Thanks FakeYou! <3
 
 **Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.4.1...v2.5.0
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
+### Feature
+
+- core:
+  - added fakeyou support! (#139) ([403551b](https://github.com/mmattDonk/AI-TTS-Donations/commit/403551ba165b3f725ea3b759b21c8de658cf9c8d)) ([#139](https://github.com/mmattDonk/AI-TTS-Donations/pull/139))
+
+### Bug Fixes
+
+- core:
+  - lowered the voice name ([5b829c4](https://github.com/mmattDonk/AI-TTS-Donations/commit/5b829c457bc045cddacaee655a0380c8e34649cf))
 
 ## [v2.4.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.1) - 2022-02-27 06:37:10
 
