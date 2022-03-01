@@ -129,11 +129,6 @@ https://mmattdonk.github.io/AI-TTS-Donations/ has been updated to reflect the ch
 **Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.1.0...v2.2.0
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 
-### Feature
-
-- core:
-  - Added fallback voices (#103) ([fb2c726](https://github.com/mmattDonk/AI-TTS-Donations/commit/fb2c72655389f851e7dd1f68d4a0ef4babba28ba)) ([#103](https://github.com/mmattDonk/AI-TTS-Donations/pull/103))
-
 ## [v2.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.1.0) - 2021-12-28 21:47:22
 
 ## Added playsounds!
