@@ -9,6 +9,19 @@ Changes unreleased.
 - core:
   - lowered the voice name ([5b829c4](https://github.com/mmattDonk/AI-TTS-Donations/commit/5b829c457bc045cddacaee655a0380c8e34649cf))
 
+## [v2.5.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.5.0) - 2022-03-01 01:07:54
+
+# Fakeyou.com Support has been added!!!
+Check out the [wiki](https://github.com/mmattDonk/AI-TTS-Donations/wiki/How-to-use-it!-(viewer)) to see how to use it!
+*Note:* This doesn't remove support for Uberduck, or replace Uberduck in any way. It simply adds another platform for viewers to play around with!
+
+## What's Changed
+* feat(core): added fakeyou support! by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/139
+
+
+**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.4.1...v2.5.0
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
 ## [v2.4.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.1) - 2022-02-27 06:37:10
 
 ## What's Changed
