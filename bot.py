@@ -38,6 +38,9 @@ from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
 
+from API.fakeyou import Fakeyou
+from API.uberduck import Uberduck
+
 JS_STRING = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*"
 
@@ -178,7 +181,6 @@ def request_tts(message: str, failed: Optional[bool] = False):
             log.debug(message.split(": "))
 
             voice = message.split(": ")[0]
-            voice = voice.lower()
             log.debug(voice)
             text = message.split(": ")[1]
             log.debug(text)
@@ -187,7 +189,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
         voice = voice.split(".")
 
-        voice_name = voice[0].lower()
+        voice_name = voice[0]
 
         try:
             voice_effect = voice[1:]
@@ -198,22 +200,20 @@ def request_tts(message: str, failed: Optional[bool] = False):
         log.debug("voice: " + voice[0])
         log.debug("voice var: " + str(voice))
 
-        response = httpx.post(
-            "https://api.uberduck.ai/speak",
-            auth=(
-                os.environ.get("UBERDUCK_USERNAME"),
-                os.environ.get("UBERDUCK_SECRET"),
-            ),
-            json={
-                "speech": text,
-                "voice": voice_name,
-            },
-        )
+        tts_provider = None
 
-        log.debug(response.json())
+        if voice_name.startswith("TM:"):
+            tts_provider = Fakeyou
+        else:
+            tts_provider = Uberduck
+            voice_name.lower()
 
-        if response.json().get("detail") != None:
-            if response.json()["detail"] == "That voice does not exist":
+        job_response = tts_provider.get_job(text, voice_name)
+
+        log.debug(job_response)
+
+        if job_response["detail"] != None:
+            if job_response["detail"] == "That voice does not exist":
                 try:
                     fallback_voice = config["FALLBACK_VOICE"]
                 except IndexError:
@@ -223,19 +223,9 @@ def request_tts(message: str, failed: Optional[bool] = False):
                     "Couldn't find voice specified, using fallback voice: "
                     + fallback_voice
                 )
-                response = httpx.post(
-                    "https://api.uberduck.ai/speak",
-                    auth=(
-                        os.environ.get("UBERDUCK_USERNAME"),
-                        os.environ.get("UBERDUCK_SECRET"),
-                    ),
-                    json={
-                        "speech": text,
-                        "voice": fallback_voice,
-                    },
-                )
+                job_response = Uberduck.get_job(text, fallback_voice)
 
-        if response.json()["uuid"] is not None:
+        if job_response["uuid"] is not None:
             log.info("UUID recieved. Waiting for TTS to process")
             checkCount = 0
             waitingToProcess = True
@@ -258,20 +248,14 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
                     html.write(html_code)
 
-                ud_ai = httpx.get(
-                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                    auth=(
-                        os.environ.get("UBERDUCK_USERNAME"),
-                        os.environ.get("UBERDUCK_SECRET"),
-                    ),
-                )
+                check_tts_response = tts_provider.check_tts(job_response["uuid"])
 
-                log.debug(ud_ai.json())
-                if ud_ai.json()["path"] != None:
+                log.debug(check_tts_response)
+                if check_tts_response["path"] != None:
                     log.info(f"TTS processed after {checkCount} checks")
                     date_string = datetime.now().strftime("%d%m%Y%H%M%S")
                     urllib.request.urlretrieve(
-                        ud_ai.json()["path"],
+                        check_tts_response["path"],
                         f"./voice_files/AI_voice_{date_string}.wav",
                     )
                     reset_overlay()
@@ -331,7 +315,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
                     time.sleep(1)
                     waitingToProcess = False
 
-                elif ud_ai.json()["failed_at"] != None:
+                elif check_tts_response["failed_at"] != None:
                     log.info("TTS request failed, trying again.")
                     waitingToProcess = False
                     request_tts(message=message, failed=True)
