@@ -42,7 +42,7 @@ from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
 JS_STRING = """<meta http-equiv="refresh" content="1">"""
-CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*"
+CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
 
 VOICE_EFFECTS = {
     "reverb": Reverb(room_size=0.50),

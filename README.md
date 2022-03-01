@@ -3,7 +3,7 @@
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mmattDonk/AI-TTS-Donations/main.svg)](https://results.pre-commit.ci/latest/github/mmattDonk/AI-TTS-Donations/main)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/mmattdonk/ai-tts-donations)](https://github.com/mmattDonk/AI-TTS-Donations/releases)
 
-💰 A bot that uses Uberduck AI to make bit donations have an AI voice.
+💰 A bot that uses Uberduck (and now FakeYou!) AI to make bit donations have an AI voice.
 
 ### 👀 Are you a viewer?
 Check the instructions [here!](https://mmatt.link/UseTTS)
