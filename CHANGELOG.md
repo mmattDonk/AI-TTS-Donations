@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## Unreleased
+
+Changes unreleased.
+
+### Bug Fixes
+
+- cheer_regex:
+  - added anon cheermote ([081cee7](https://github.com/mmattDonk/AI-TTS-Donations/commit/081cee72deff4bef02b12ffa0b219096e39ed33c))
+
+### Documentation
+
+- README:
+  - added that we now support fakeyou! ([ed7ec2e](https://github.com/mmattDonk/AI-TTS-Donations/commit/ed7ec2e4746a3cca135a27384e6aa8eda676600c))
+
 ## [v2.5.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.5.0) - 2022-03-01 01:07:54
 
 # Fakeyou.com Support has been added!!!
@@ -109,16 +123,6 @@ New dependencies were added, so make sure to update your dependencies using this
 ## [v2.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.1) - 2022-02-07 23:32:36
 
 Fixed v2.2.0
-
-### Bug Fixes
-
-- core:
-  - fixed fallback voice ([dfc7b46](https://github.com/mmattDonk/AI-TTS-Donations/commit/dfc7b4685f454e2afd17c13d8b93c42a4a08031e))
-
-### Documentation
-
-- SECURITY:
-  - remove 1.6.x as a supported version. ([7d65f24](https://github.com/mmattDonk/AI-TTS-Donations/commit/7d65f243d08a754132ccc38fba9eb6eb13ca140b))
 
 ## [v2.2.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.0) - 2022-02-07 00:16:32
 
