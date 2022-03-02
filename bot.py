@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import json
 import logging
 import os
@@ -15,26 +17,61 @@ from uuid import UUID
 
 import httpx
 import simpleaudio
+import soundfile as sf
 from dotenv import load_dotenv
+from pedalboard import (
+    Chorus,
+    Compressor,
+    Distortion,
+    Gain,
+    HighpassFilter,
+    Limiter,
+    LowpassFilter,
+    Pedalboard,
+    PitchShift,
+    Resample,
+    Reverb,
+)
 from rich.logging import RichHandler
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
 
+from API.fakeyou import Fakeyou
+from API.uberduck import Uberduck
+
+JS_STRING = """<meta http-equiv="refresh" content="1">"""
+CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
+
+VOICE_EFFECTS = {
+    "reverb": Reverb(room_size=0.50),
+    "pitchup": PitchShift(semitones=5),
+    "pitchdown": PitchShift(semitones=-5),
+    "loud": [Distortion(), Limiter()],
+    "android": [Resample(target_sample_rate=5000), Gain(gain_db=5)],
+    "autotune": Chorus(),
+    "phone": [HighpassFilter(cutoff_frequency_hz=8000), Gain(gain_db=10)],
+    "muffled": [LowpassFilter(cutoff_frequency_hz=100), Gain(gain_db=16)],
+}
+
 
 def path_exists(filename):
     return os.path.join(".", f"{filename}")
 
 
-if not os.path.exists(path_exists("./overlay/index.html")):
+def reset_overlay():
     with open("./overlay/index.html", "w") as html:
-        js_script = """<meta http-equiv="refresh" content="1">"""
         html_code = f"""<head>
-        {js_script}
+        {JS_STRING}
         <link rel="stylesheet" href="style.css">
         </head>"""
+
         html.write(html_code)
+
+
+if not os.path.exists(path_exists("./overlay/index.html")):
+    reset_overlay()
 
 if not os.path.exists(path_exists(".env")):
     input(
@@ -77,17 +114,9 @@ if not os.path.exists("playsounds"):
                 + "\nThis is used for the play sound functionality in the bot, things like (1) or (2). Don't remove any files from here as it could cause the functionality to not work, and in turn, the bot to not work."
             )
 
-
-with open("config.json", "r") as f:
-    config = json.load(f)
-
-
-load_dotenv()
 log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
 
-
 log = logging.getLogger()
-
 
 logging.basicConfig(
     level=log_level,
@@ -95,6 +124,21 @@ logging.basicConfig(
     datefmt="%X",
     handlers=[RichHandler()],
 )
+
+# array of the playsounds.
+playsounds = []
+# sourcery skip: list-comprehension
+playsounds.extend(file for file in os.listdir("playsounds") if file.endswith(".wav"))
+
+playsounds.sort(
+    key=lambda test_string: list(map(int, re.findall(r"\d+", test_string)))[0]
+)
+
+log.debug(playsounds)
+
+with open("config.json", "r") as f:
+    config = json.load(f)
+load_dotenv()
 
 
 def request_tts(message: str, failed: Optional[bool] = False):
@@ -112,404 +156,24 @@ def request_tts(message: str, failed: Optional[bool] = False):
             message = message[1:]
             log.debug(f"`{message}`")
 
+        message = message.strip()  ## cleaning up whitespace
+
         # ----------- Playsounds -----------
-        if "(1)" in message:
-            voice_files.append(f"./playsounds/001-alarm.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(2)" in message:
-            voice_files.append(f"./playsounds/002-beads.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(3)" in message:
-            voice_files.append(f"./playsounds/003-beep1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(4)" in message:
-            voice_files.append(f"./playsounds/004-beep1-faster.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(5)" in message:
-            voice_files.append(f"./playsounds/005-beep1-flatline.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(6)" in message:
-            voice_files.append(f"./playsounds/006-beep2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(7)" in message:
-            voice_files.append(f"./playsounds/007-bell.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(8)" in message:
-            voice_files.append(f"./playsounds/008-bite.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(9)" in message:
-            voice_files.append(f"./playsounds/009-bottle.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(10)" in message:
-            voice_files.append(f"./playsounds/010-bottleuncork.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(11)" in message:
-            voice_files.append(f"./playsounds/011-bubble.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(12)" in message:
-            voice_files.append(f"./playsounds/012-camera.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(13)" in message:
-            voice_files.append(f"./playsounds/013-cardfan.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(14)" in message:
-            voice_files.append(f"./playsounds/014-cardplace.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(15)" in message:
-            voice_files.append(f"./playsounds/015-cardshuffle.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(16)" in message:
-            voice_files.append(f"./playsounds/016-chiplay.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(17)" in message:
-            voice_files.append(f"./playsounds/017-chop1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(18)" in message:
-            voice_files.append(f"./playsounds/018-chop2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(19)" in message:
-            voice_files.append(f"./playsounds/019-clamour.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(20)" in message:
-            voice_files.append(f"./playsounds/020-coin.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(21)" in message:
-            voice_files.append(f"./playsounds/021-coins.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(22)" in message:
-            voice_files.append(f"./playsounds/022-cupboard-open.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(23)" in message:
-            voice_files.append(f"./playsounds/023-dialing-phone.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(24)" in message:
-            voice_files.append(f"./playsounds/024-dicethrow.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(25)" in message:
-            voice_files.append(f"./playsounds/025-die1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(26)" in message:
-            voice_files.append(f"./playsounds/026-dig1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(27)" in message:
-            voice_files.append(f"./playsounds/027-dig2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(28)" in message:
-            voice_files.append(f"./playsounds/028-dig3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(29)" in message:
-            voice_files.append(f"./playsounds/029-dog-bark1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(30)" in message:
-            voice_files.append(f"./playsounds/030-dog-bark2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(31)" in message:
-            voice_files.append(f"./playsounds/031-dog-bark3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(32)" in message:
-            voice_files.append(f"./playsounds/032-dog-bark4.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(33)" in message:
-            voice_files.append(f"./playsounds/033-dog-ruff1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(34)" in message:
-            voice_files.append(f"./playsounds/034-dog-whine1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(35)" in message:
-            voice_files.append(f"./playsounds/035-dog-whine2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(36)" in message:
-            voice_files.append(f"./playsounds/036-dog-whine3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(37)" in message:
-            voice_files.append(f"./playsounds/037-dog-yip1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(38)" in message:
-            voice_files.append(f"./playsounds/038-dog-yip2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(39)" in message:
-            voice_files.append(f"./playsounds/039-donk.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(40)" in message:
-            voice_files.append(f"./playsounds/040-door-close1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(41)" in message:
-            voice_files.append(f"./playsounds/041-door-close2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(42)" in message:
-            voice_files.append(f"./playsounds/042-door-open1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(43)" in message:
-            voice_files.append(f"./playsounds/043-door-open2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(44)" in message:
-            voice_files.append(f"./playsounds/044-door-open-creak.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(45)" in message:
-            voice_files.append(f"./playsounds/045-drink1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(46)" in message:
-            voice_files.append(f"./playsounds/046-drink2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(47)" in message:
-            voice_files.append(f"./playsounds/047-explosion.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(48)" in message:
-            voice_files.append(f"./playsounds/048-finger-snap.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(49)" in message:
-            voice_files.append(f"./playsounds/049-footsteps1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(50)" in message:
-            voice_files.append(f"./playsounds/050-footsteps2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(51)" in message:
-            voice_files.append(f"./playsounds/051-footsteps3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(52)" in message:
-            voice_files.append(f"./playsounds/052-footsteps4.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(53)" in message:
-            voice_files.append(f"./playsounds/053-footsteps5.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(54)" in message:
-            voice_files.append(f"./playsounds/054-footsteps6.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(55)" in message:
-            voice_files.append(f"./playsounds/055-footsteps7.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(56)" in message:
-            voice_files.append(f"./playsounds/056-footsteps7-stop.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(57)" in message:
-            voice_files.append(f"./playsounds/057-gasp.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(58)" in message:
-            voice_files.append(f"./playsounds/058-gulp1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(59)" in message:
-            voice_files.append(f"./playsounds/059-gulp2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(60)" in message:
-            voice_files.append(f"./playsounds/060-guncock1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(61)" in message:
-            voice_files.append(f"./playsounds/061-guncock2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(62)" in message:
-            voice_files.append(f"./playsounds/062-gunreload1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(63)" in message:
-            voice_files.append(f"./playsounds/063-gunreload2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(64)" in message:
-            voice_files.append(f"./playsounds/064-gunshot1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(65)" in message:
-            voice_files.append(f"./playsounds/065-gunshot2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(66)" in message:
-            voice_files.append(f"./playsounds/066-gunshot3.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(67)" in message:
-            voice_files.append(f"./playsounds/067-gunshot4.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(68)" in message:
-            voice_files.append(f"./playsounds/068-hang-drop.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(69)" in message:
-            voice_files.append(f"./playsounds/069-hang-swing.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(70)" in message:
-            voice_files.append(f"./playsounds/070-hit01.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(71)" in message:
-            voice_files.append(f"./playsounds/071-hit02.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(72)" in message:
-            voice_files.append(f"./playsounds/072-hit03.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(73)" in message:
-            voice_files.append(f"./playsounds/073-hit04.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(74)" in message:
-            voice_files.append(f"./playsounds/074-hit05.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(75)" in message:
-            voice_files.append(f"./playsounds/075-horse1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(76)" in message:
-            voice_files.append(f"./playsounds/076-knock-knock.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(77)" in message:
-            voice_files.append(f"./playsounds/077-lighter.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(78)" in message:
-            voice_files.append(f"./playsounds/078-machinegun.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(79)" in message:
-            voice_files.append(f"./playsounds/079-mobile-message.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(80)" in message:
-            voice_files.append(f"./playsounds/080-mobile-ring.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(81)" in message:
-            voice_files.append(f"./playsounds/081-mobile-tap.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(82)" in message:
-            voice_files.append(f"./playsounds/082-mud.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(83)" in message:
-            voice_files.append(f"./playsounds/083-mud.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(84)" in message:
-            voice_files.append(f"./playsounds/084-oldphone-ring.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(85)" in message:
-            voice_files.append(f"./playsounds/085-page-turn.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(86)" in message:
-            voice_files.append(f"./playsounds/086-phone-ringing.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(87)" in message:
-            voice_files.append(f"./playsounds/087-phone-vibrate.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(88)" in message:
-            voice_files.append(f"./playsounds/088-pill-bottle.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(89)" in message:
-            voice_files.append(f"./playsounds/089-police-siren.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(90)" in message:
-            voice_files.append(f"./playsounds/090-pop.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(91)" in message:
-            voice_files.append(f"./playsounds/091-sackdrop.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(92)" in message:
-            voice_files.append(f"./playsounds/092-scissors.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(93)" in message:
-            voice_files.append(f"./playsounds/093-scream1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(94)" in message:
-            voice_files.append(f"./playsounds/094-scream2.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(95)" in message:
-            voice_files.append(f"./playsounds/095-silence-one-second.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(96)" in message:
-            voice_files.append(f"./playsounds/096-silence-two-seconds.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(97)" in message:
-            voice_files.append(f"./playsounds/097-slime.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(98)" in message:
-            voice_files.append(f"./playsounds/098-slurp.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        elif "(99)" in message:
-            voice_files.append(f"./playsounds/099-splash1.wav")
-            log.info(f"Added Playsound # {message}")
-            continue
-        # ----------- End of Playsounds -----------
+
+        playsound = re.match(r"^\(\d+\)$", message)
+
+        if playsound:
+            i = int(playsound.group()[1:-1]) - 1  # sound 1 = index 0
+            log.debug(i)
+
+            if i < 0 or i > (len(playsounds) - 1):
+                log.info(f"sound {i} does not exist. it will not be played.")
+                continue
+            else:
+                voice_files.append(f"./playsounds/{playsounds[i]}")
+                log.debug(playsounds[i])
+                continue
+
         if message == ",":
             continue
 
@@ -517,48 +181,52 @@ def request_tts(message: str, failed: Optional[bool] = False):
             log.debug(message.split(": "))
 
             voice = message.split(": ")[0]
-            voice = voice.lower()
             log.debug(voice)
             text = message.split(": ")[1]
             log.debug(text)
         except IndexError:
             text = message
 
-        response = httpx.post(
-            "https://api.uberduck.ai/speak",
-            auth=(
-                os.environ.get("UBERDUCK_USERNAME"),
-                os.environ.get("UBERDUCK_SECRET"),
-            ),
-            json={
-                "speech": text,
-                "voice": voice,
-            },
-        )
+        voice = voice.split(".")
 
-        log.debug(response.json())
+        voice_name = voice[0]
 
-        if response.json().get("detail") != None:
-            if response.json()["detail"] == "That voice does not exist":
+        try:
+            voice_effect = voice[1:]
+        except IndexError:
+            voice_effect = None
+
+        log.debug("voice effect: " + str(voice_effect))
+        log.debug("voice: " + voice[0])
+        log.debug("voice var: " + str(voice))
+
+        tts_provider = None
+
+        if voice_name.startswith("TM:"):
+            tts_provider = Fakeyou
+        else:
+            tts_provider = Uberduck
+            voice_name.lower()
+
+        job_response = tts_provider.get_job(text, voice_name)
+
+        log.debug(job_response)
+
+        if job_response["detail"] != None:
+            if job_response["detail"] == "That voice does not exist":
+                try:
+                    fallback_voice = config["FALLBACK_VOICE"]
+                except IndexError:
+                    fallback_voice = "kanye-west-rap"
+
                 log.info(
                     "Couldn't find voice specified, using fallback voice: "
-                    + config["FALLBACK_VOICE"]
+                    + fallback_voice
                 )
-                response = httpx.post(
-                    "https://api.uberduck.ai/speak",
-                    auth=(
-                        os.environ.get("UBERDUCK_USERNAME"),
-                        os.environ.get("UBERDUCK_SECRET"),
-                    ),
-                    json={
-                        "speech": text,
-                        "voice": config["FALLBACK_VOICE"],
-                    },
-                )
+                job_response = Uberduck.get_job(text, fallback_voice)
 
-        if response.json()["uuid"] is not None:
+        if job_response["uuid"] is not None:
             log.info("UUID recieved. Waiting for TTS to process")
-            js_string = """<meta http-equiv="refresh" content="1">"""
             checkCount = 0
             waitingToProcess = True
             while waitingToProcess:
@@ -566,13 +234,13 @@ def request_tts(message: str, failed: Optional[bool] = False):
                 with open("./overlay/index.html", "w") as html:
                     html_code = f"""<html>
                         <head>
-                        {js_string}
+                        {JS_STRING}
                         <link rel="stylesheet" href="style.css">
                         </head>
                         <body>
                             <div class="box">
                                 <h1>New TTS Request:</h1>
-                                <h2>Voice: {voice}</h2>
+                                <h2>Voice: {", ".join(voice)}</h2>
                                 <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
                             </div>
                         </body>
@@ -580,45 +248,83 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
                     html.write(html_code)
 
-                ud_ai = httpx.get(
-                    f"https://api.uberduck.ai/speak-status?uuid={response.json()['uuid']}",
-                    auth=(
-                        os.environ.get("UBERDUCK_USERNAME"),
-                        os.environ.get("UBERDUCK_SECRET"),
-                    ),
-                )
+                check_tts_response = tts_provider.check_tts(job_response["uuid"])
 
-                log.debug(ud_ai.json())
-                if ud_ai.json()["path"] != None:
+                log.debug(check_tts_response)
+                if check_tts_response["path"] != None:
                     log.info(f"TTS processed after {checkCount} checks")
                     date_string = datetime.now().strftime("%d%m%Y%H%M%S")
                     urllib.request.urlretrieve(
-                        ud_ai.json()["path"],
+                        check_tts_response["path"],
                         f"./voice_files/AI_voice_{date_string}.wav",
                     )
-                    with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
-                        html_code = f"""<head>
-                            {js_script}
-                            <link rel="stylesheet" href="style.css">
-                            </head>"""
-                        html.write(html_code)
+                    reset_overlay()
+
+                    if voice_effect:
+                        audio, sample_rate = sf.read(
+                            f"./voice_files/AI_voice_{date_string}.wav"
+                        )
+                        board = Pedalboard([])
+
+                        for effect in voice_effect:
+                            if effect.lower() in VOICE_EFFECTS:
+                                log.info("Voice Effect Detected: " + effect)
+                                if type(VOICE_EFFECTS[effect]) == list:
+                                    for effect_func in VOICE_EFFECTS[effect]:
+                                        board.append(effect_func)
+                                else:
+                                    board.append(VOICE_EFFECTS[effect])
+                            else:
+                                pass
+
+                        effected = board(audio, sample_rate)
+                        sf.write(
+                            f"./voice_files/AI_voice_{date_string}.wav",
+                            effected,
+                            sample_rate,
+                        )
+
+                        for effect in voice_effect:
+                            if effect.lower() in VOICE_EFFECTS:
+                                if effect == "loud":
+                                    # Making the "loud" effect quieter because it's too loud.
+                                    # If anyone knows how to work a limiter or a compressor you can edit the VOICE_EFFECTS if you want :p
+                                    # Also there is probably a way to make this work in the loop above, but idk.
+                                    # So if anyone wants to take a shot at that, then go ahead
+                                    # I love free labor / code
+                                    # FeelsGoodMan
+
+                                    board.append(Gain(gain_db=-15))
+
+                                    effected = board(audio, sample_rate)
+                                    sf.write(
+                                        f"./voice_files/AI_voice_{date_string}.wav",
+                                        effected,
+                                        sample_rate,
+                                    )
+                                else:
+                                    pass
+                            else:
+                                pass
+
+                    else:
+                        pass
+
                     time.sleep(1)
                     voice_files.append(f"./voice_files/AI_voice_{date_string}.wav")
                     time.sleep(1)
                     waitingToProcess = False
 
-                elif ud_ai.json()["failed_at"] != None:
+                elif check_tts_response["failed_at"] != None:
                     log.info("TTS request failed, trying again.")
                     waitingToProcess = False
                     request_tts(message=message, failed=True)
 
                     with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
 
                         html_code = f"""<html>
                                             <head>
-                                            {js_string}
+                                            {JS_STRING}
                                             <link rel="stylesheet" href="style.css">
                                             </head>
                                             <body>
@@ -633,14 +339,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
                     time.sleep(2)
 
-                    with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
-                        html_code = f"""<head>
-                                            {js_script}
-                                            <link rel="stylesheet" href="style.css">
-                                            </head>"""
-
-                        html.write(html_code)
+                    reset_overlay()
 
                 elif checkCount > config["QUERY_TRIES"]:
                     log.info(
@@ -648,11 +347,10 @@ def request_tts(message: str, failed: Optional[bool] = False):
                     )
                     waitingToProcess = False
                     with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
 
                         html_code = f"""<html>
                             <head>
-                            {js_string}
+                            {JS_STRING}
                             <link rel="stylesheet" href="style.css">
                             </head>
                             <body>
@@ -667,14 +365,7 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
                     time.sleep(5)
 
-                    with open("./overlay/index.html", "w") as html:
-                        js_script = """<meta http-equiv="refresh" content="1">"""
-                        html_code = f"""<head>
-                            {js_script}
-                            <link rel="stylesheet" href="style.css">
-                            </head>"""
-
-                        html.write(html_code)
+                    reset_overlay()
 
                 else:
                     log.info(
@@ -746,7 +437,7 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
         return
 
     message = re.sub(
-        r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
+        CHEER_REGEX,
         "",
         message,
     )
@@ -787,7 +478,7 @@ def test_tts():
     if message == "":
         return
     message = re.sub(
-        r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy)\d*",
+        CHEER_REGEX,
         "",
         message,
     )
@@ -803,14 +494,7 @@ def test_tts():
 def skip_tts():
     log.info("Skipping TTS")
     simpleaudio.stop_all()
-    with open("./overlay/index.html", "w") as html:
-        js_script = """<meta http-equiv="refresh" content="1">"""
-        html_code = f"""<head>
-        {js_script}
-        <link rel="stylesheet" href="style.css">
-        </head>"""
-
-        html.write(html_code)
+    reset_overlay()
 
 
 OUTPUT_PATH = Path(__file__).parent

@@ -19,8 +19,6 @@ repos:
         exclude: CHANGELOG.md
       - id: check-yaml
         exclude: CHANGELOG.md
-      - id: check-added-large-files
-        exclude: CHANGELOG.md
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v2.31.0
