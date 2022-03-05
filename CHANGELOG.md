@@ -62,7 +62,7 @@ Check out the [wiki](https://github.com/mmattDonk/AI-TTS-Donations/wiki/How-to-u
 
 # Added Voice Effects!!!
 
-New dependencies were added, so make sure to update your dependencies using this command: `pythom -m pip install -r requirements.txt`
+New dependencies were added, so make sure to update your dependencies using this command: `python -m pip install -r requirements.txt`
 
 ## What's Changed
 * refactor(core): globalized cheer regex and js refresh by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/122
@@ -116,9 +116,6 @@ New dependencies were added, so make sure to update your dependencies using this
 
 - playsounds:
   - use regex instead of elif chaining (#115) ([8c8a70f](https://github.com/mmattDonk/AI-TTS-Donations/commit/8c8a70fa7512ce382f1f9762e5b215ca48ed5987)) ([#115](https://github.com/mmattDonk/AI-TTS-Donations/pull/115))
-
-- dependencies:
-  - remove duplicate entry ([89f4237](https://github.com/mmattDonk/AI-TTS-Donations/commit/89f42374c3466bc027efcdb4bdae10226df063b1))
 
 ## [v2.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.1) - 2022-02-07 23:32:36
 
