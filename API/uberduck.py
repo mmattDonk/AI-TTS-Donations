@@ -1,8 +1,10 @@
+import logging
 import os
 
 import httpx
 from dotenv import load_dotenv
 
+log = logging.getLogger()
 load_dotenv()
 
 
@@ -23,7 +25,7 @@ class Uberduck:
         }
         """
 
-        print(f"{text} - {voice_name}")
+        log.debug(f"{text} - {voice_name}")
 
         response = httpx.post(
             "https://api.uberduck.ai/speak",
