@@ -17,8 +17,10 @@ repos:
         exclude: CHANGELOG.md
       - id: end-of-file-fixer
         exclude: CHANGELOG.md
-      - id: check-yaml
-        exclude: CHANGELOG.md, .github/workflows/codacy.yml
+      - id: check-shebang-scripts-are-executable
+      - id: double-quote-string-fixer
+      - id: fix-encoding-pragma
+      - id: requirements-txt-fixer
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v2.31.0
