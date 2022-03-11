@@ -18,7 +18,7 @@ repos:
       - id: end-of-file-fixer
         exclude: CHANGELOG.md
       - id: check-yaml
-        exclude: CHANGELOG.md
+        exclude: CHANGELOG.md, .github/workflows/codacy.yml
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v2.31.0
