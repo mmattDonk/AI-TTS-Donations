@@ -5,7 +5,6 @@ import logging
 import os
 import queue
 import re
-import subprocess
 import sys
 import threading
 import time
@@ -16,7 +15,6 @@ from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk
 from typing import Optional
 from uuid import UUID
 
-import git
 import httpx
 import simpleaudio
 import soundfile as sf
@@ -481,7 +479,6 @@ token, refresh_token = auth.authenticate()
 twitch.set_user_authentication(token, target_scope, refresh_token)
 
 user_id = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][0]["id"]
-repo = git.Repo("./")
 
 if os.environ.get("MM_API_KEY") is not None:
     post_version_number(user_id, VERSION)
