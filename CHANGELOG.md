@@ -20,7 +20,7 @@ Changes unreleased.
 Version posting is used for the new API I've built for the new Twitch Extension I've built!
 
 
-This new Twitch extension is a panel you can add to your Twitch channel, that tells your viewers what features are supported or not on your version of ATD (AI-TTS-Donations). This extension is **not** out yet, as I'm typing this, I am submitting it to Twitch for approval, but you can check it out on [/mmattbtw](https://twitch.tv/mmattbtw/about), [/whyrp](https://twitch.tv/whyrp/about), and [/LiptonGod](https://github.com/liptongod/about)!
+This new Twitch extension is a panel you can add to your Twitch channel, that tells your viewers what features are supported or not on your version of ATD (AI-TTS-Donations). This extension is **not** out yet, as I'm typing this, I am submitting it to Twitch for approval, but you can check it out on [/mmattbtw](https://twitch.tv/mmattbtw/about), [/mmattDonk](https://twitch.tv/mmattDonk/about), and [/LiptonGod](https://github.com/liptongod/about)!
 ![image](https://user-images.githubusercontent.com/30363562/157980205-15b84f68-689b-48dc-999a-76d235747220.png)
 
 
@@ -132,9 +132,6 @@ New dependencies were added, so make sure to update your dependencies using this
 
 - PR_TEMPLATE:
   - Updated PR Template with more comments ([19bfb43](https://github.com/mmattDonk/AI-TTS-Donations/commit/19bfb438430a28332f69b85991c0493ab1ee01ec))
-
-- README:
-  - include a disclaimer to add Python to PATH ([7b64e80](https://github.com/mmattDonk/AI-TTS-Donations/commit/7b64e804218fd07433e730e208a7d1de6eccc56d))
 
 ### Refactor
 
