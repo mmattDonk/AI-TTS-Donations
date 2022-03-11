@@ -4,14 +4,14 @@
 # C:\Users\notmm\ai-tts-donations\ui.py: 4
 httpx == 1.0.0b0
 
+pedalboard==0.4.3
+
 python_dotenv == 0.19.2
-
-simpleaudio==1.0.4
-
-# C:\Users\notmm\ai-tts-donations\bot.py: 12,13,14,17
-twitchAPI==2.5.2
 
 rich == 11.2.0
 
-pedalboard==0.4.2
+simpleaudio==1.0.4
 SoundFile==0.10.3.post1
+
+# C:\Users\notmm\ai-tts-donations\bot.py: 12,13,14,17
+twitchAPI==2.5.3
