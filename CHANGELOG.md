@@ -14,6 +14,30 @@ Changes unreleased.
 - README:
   - added that we now support fakeyou! ([ed7ec2e](https://github.com/mmattDonk/AI-TTS-Donations/commit/ed7ec2e4746a3cca135a27384e6aa8eda676600c))
 
+## [v2.6.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.6.0) - 2022-03-11 22:17:44
+
+# Added Version Posting!
+Version posting is used for the new API I've built for the new Twitch Extension I've built!
+
+
+This new Twitch extension is a panel you can add to your Twitch channel, that tells your viewers what features are supported or not on your version of ATD (AI-TTS-Donations). This extension is **not** out yet, as I'm typing this, I am submitting it to Twitch for approval, but you can check it out on [/mmattbtw](https://twitch.tv/mmattbtw/about), [/whyrp](https://twitch.tv/whyrp/about), and [/LiptonGod](https://github.com/liptongod/about)!
+![image](https://user-images.githubusercontent.com/30363562/157980205-15b84f68-689b-48dc-999a-76d235747220.png)
+
+
+## What's Changed
+* chore(deps): bump pedalboard from 0.4.2 to 0.4.3 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/145
+* refactor(api-wrapper): add correct logging by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/147
+* chore(deps): bump twitchapi from 2.5.2 to 2.5.3 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/148
+* refactor(core): added some types by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/151
+* feat(core): added posting version number by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/149
+
+### Support This Release
+Enjoy the update? Enjoy using the program at all? Have some spare cash? 
+https://www.patreon.com/mmattDonk
+
+**Full commit log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.5.0...v2.6.0
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
 ## [v2.5.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.5.0) - 2022-03-01 01:07:54
 
 # Fakeyou.com Support has been added!!!
