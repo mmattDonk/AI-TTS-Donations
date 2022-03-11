@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import json
 import logging
@@ -41,10 +42,10 @@ from twitchAPI.types import AuthScope
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-JS_STRING = """<meta http-equiv="refresh" content="1">"""
-CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
+JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
+CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
 
-VOICE_EFFECTS = {
+VOICE_EFFECTS: dict = {
     "reverb": Reverb(room_size=0.50),
     "pitchup": PitchShift(semitones=5),
     "pitchdown": PitchShift(semitones=-5),
@@ -56,11 +57,11 @@ VOICE_EFFECTS = {
 }
 
 
-def path_exists(filename):
+def path_exists(filename: str):
     return os.path.join(".", f"{filename}")
 
 
-def reset_overlay():
+def reset_overlay() -> None:
     with open("./overlay/index.html", "w") as html:
         html_code = f"""<head>
         {JS_STRING}
@@ -70,6 +71,7 @@ def reset_overlay():
         html.write(html_code)
 
 
+# TODO: Put these checks in a different file, they are just bugging me madge
 if not os.path.exists(path_exists("./overlay/index.html")):
     reset_overlay()
 
@@ -116,7 +118,7 @@ if not os.path.exists("playsounds"):
 
 log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
 
-log = logging.getLogger()
+log: logging.Logger = logging.getLogger()
 
 logging.basicConfig(
     level=log_level,
@@ -126,7 +128,7 @@ logging.basicConfig(
 )
 
 # array of the playsounds.
-playsounds = []
+playsounds: list = []
 # sourcery skip: list-comprehension
 playsounds.extend(file for file in os.listdir("playsounds") if file.endswith(".wav"))
 
@@ -141,19 +143,19 @@ with open("config.json", "r") as f:
 load_dotenv()
 
 
-def request_tts(message: str, failed: Optional[bool] = False):
+def request_tts(message: str, failed: Optional[bool] = False) -> None:
     # sourcery no-metrics
-    messages = message.split("||")
+    messages: list = message.split("||")
     log.debug(messages)
 
     q = queue.Queue()
 
-    voice_files = []
+    voice_files: list = []
 
     for message in messages:
         log.debug(f"`{message}`")
         if message[0] == " ":
-            message = message[1:]
+            message: str = message[1:]
             log.debug(f"`{message}`")
 
         message = message.strip()  ## cleaning up whitespace
@@ -180,19 +182,19 @@ def request_tts(message: str, failed: Optional[bool] = False):
         try:
             log.debug(message.split(": "))
 
-            voice = message.split(": ")[0]
+            voice: str = message.split(": ")[0]
             log.debug(voice)
-            text = message.split(": ")[1]
+            text: str = message.split(": ")[1]
             log.debug(text)
         except IndexError:
-            text = message
+            text: str = message
 
-        voice = voice.split(".")
+        voice: list = voice.split(".")
 
-        voice_name = voice[0]
+        voice_name: str = voice[0]
 
         try:
-            voice_effect = voice[1:]
+            voice_effect: str = voice[1:]
         except IndexError:
             voice_effect = None
 
@@ -208,27 +210,27 @@ def request_tts(message: str, failed: Optional[bool] = False):
             tts_provider = Uberduck
             voice_name.lower()
 
-        job_response = tts_provider.get_job(text, voice_name)
+        job_response: dict = tts_provider.get_job(text, voice_name)
 
         log.debug(job_response)
 
         if job_response["detail"] != None:
             if job_response["detail"] == "That voice does not exist":
                 try:
-                    fallback_voice = config["FALLBACK_VOICE"]
+                    fallback_voice: str = config["FALLBACK_VOICE"]
                 except IndexError:
-                    fallback_voice = "kanye-west-rap"
+                    fallback_voice: str = "kanye-west-rap"
 
                 log.info(
                     "Couldn't find voice specified, using fallback voice: "
                     + fallback_voice
                 )
-                job_response = Uberduck.get_job(text, fallback_voice)
+                job_response: dict = Uberduck.get_job(text, fallback_voice)
 
         if job_response["uuid"] is not None:
             log.info("UUID recieved. Waiting for TTS to process")
-            checkCount = 0
-            waitingToProcess = True
+            checkCount: int = 0
+            waitingToProcess: bool = True
             while waitingToProcess:
                 checkCount += 1
                 with open("./overlay/index.html", "w") as html:
@@ -248,12 +250,12 @@ def request_tts(message: str, failed: Optional[bool] = False):
 
                     html.write(html_code)
 
-                check_tts_response = tts_provider.check_tts(job_response["uuid"])
+                check_tts_response: dict = tts_provider.check_tts(job_response["uuid"])
 
                 log.debug(check_tts_response)
                 if check_tts_response["path"] != None:
                     log.info(f"TTS processed after {checkCount} checks")
-                    date_string = datetime.now().strftime("%d%m%Y%H%M%S")
+                    date_string: str = datetime.now().strftime("%d%m%Y%H%M%S")
                     urllib.request.urlretrieve(
                         check_tts_response["path"],
                         f"./voice_files/AI_voice_{date_string}.wav",
@@ -406,7 +408,7 @@ def callback_channel_points(
         data["data"]["redemption"]["reward"]["title"].lower()
         == config["CHANNEL_POINTS_REWARD"].lower()
     ):
-        message = data["data"]["redemption"]["user_input"]
+        message: str = data["data"]["redemption"]["user_input"]
 
         for i in config["BLACKLISTED_WORDS"]:
             if i in message.lower():
@@ -419,9 +421,9 @@ def callback_channel_points(
 def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> None:
     log.debug(data)
 
-    bits = data["data"]["bits_used"]
+    bits: str = data["data"]["bits_used"]
 
-    message = data["data"]["chat_message"]
+    message: str = data["data"]["chat_message"]
 
     for i in config["BLACKLISTED_WORDS"]:
         if i in message.lower():
@@ -447,7 +449,7 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
 
 # setting up Authentication and getting your user id
 twitch = Twitch(os.environ.get("TWITCH_CLIENT_ID"), os.environ.get("TWITCH_SECRET"))
-target_scope = [AuthScope.BITS_READ, AuthScope.CHANNEL_READ_REDEMPTIONS]
+target_scope: list = [AuthScope.BITS_READ, AuthScope.CHANNEL_READ_REDEMPTIONS]
 
 auth = UserAuthenticator(twitch, target_scope, force_verify=False)
 # this will open your default browser and prompt you with the twitch verification website
@@ -455,7 +457,9 @@ token, refresh_token = auth.authenticate()
 # add User authentication
 twitch.set_user_authentication(token, target_scope, refresh_token)
 
-user_id = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][0]["id"]
+user_id: str = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][0][
+    "id"
+]
 
 # starting up PubSub
 pubsub = PubSub(twitch)
@@ -467,15 +471,15 @@ elif (
     config["BITS_OR_CHANNEL_POINTS"] == "bits"
     or config["BITS_OR_CHANNEL_POINTS"] is None
 ):
-    uuid = pubsub.listen_bits(user_id, callback_bits)
+    uuid: UUID = pubsub.listen_bits(user_id, callback_bits)
 
 log.info("Pubsub Ready!")
 
 
-def test_tts():
+def test_tts() -> None:
     log.info("Testing TTS")
-    message = entry_1.get()
-    if message == "":
+    message: str = entry_1.get()
+    if not message:
         return
     message = re.sub(
         CHEER_REGEX,
@@ -491,11 +495,13 @@ def test_tts():
     request_tts(message=message, failed=False)
 
 
-def skip_tts():
+def skip_tts() -> None:
     log.info("Skipping TTS")
     simpleaudio.stop_all()
     reset_overlay()
 
+
+# <-- UI -->
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets")
