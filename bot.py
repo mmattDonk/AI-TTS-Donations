@@ -5,6 +5,7 @@ import logging
 import os
 import queue
 import re
+import subprocess
 import sys
 import threading
 import time
@@ -15,6 +16,7 @@ from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk
 from typing import Optional
 from uuid import UUID
 
+import git
 import httpx
 import simpleaudio
 import soundfile as sf
@@ -40,6 +42,8 @@ from twitchAPI.types import AuthScope
 
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
+
+VERSION = "2.6.0"
 
 JS_STRING = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
@@ -139,6 +143,27 @@ log.debug(playsounds)
 with open("config.json", "r") as f:
     config = json.load(f)
 load_dotenv()
+
+
+def post_version_number(twitch_id: int, version: str) -> bool:
+    """
+    Posts the version number to mmatt's API for use in the Twitch Extension.
+
+    :param twitch_id: The Twitch ID to be used in teh request
+    :param version: What version to update in the databse
+    :return: If the request was successful
+
+    Returns:
+    --------
+    return True or False
+    """
+
+    response = httpx.post(
+        f"http://localhost:4201/ttsapi/version/{twitch_id}/{version}",
+        json={"apiKey": os.environ.get("MM_API_KEY")},
+    )
+
+    return response.status_code == 200
 
 
 def request_tts(message: str, failed: Optional[bool] = False):
@@ -456,6 +481,10 @@ token, refresh_token = auth.authenticate()
 twitch.set_user_authentication(token, target_scope, refresh_token)
 
 user_id = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][0]["id"]
+repo = git.Repo("./")
+
+if os.environ.get("MM_API_KEY") is not None:
+    post_version_number(user_id, VERSION)
 
 # starting up PubSub
 pubsub = PubSub(twitch)
