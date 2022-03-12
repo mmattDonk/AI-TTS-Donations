@@ -111,11 +111,6 @@ New dependencies were added, so make sure to update your dependencies using this
 - core:
   - added voice effects! (#126) ([1385998](https://github.com/mmattDonk/AI-TTS-Donations/commit/1385998a494e08c7f65f41350a96fdcdcbc38c37)) ([#126](https://github.com/mmattDonk/AI-TTS-Donations/pull/126))
 
-### Refactor
-
-- core:
-  - made a function to reset the overlay (#123) ([1994bc3](https://github.com/mmattDonk/AI-TTS-Donations/commit/1994bc31910e8ebba461eb67407e8e87edee12f3)) ([#123](https://github.com/mmattDonk/AI-TTS-Donations/pull/123))
-
 ## [v2.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.3.0) - 2022-02-25 00:29:02
 
 # ! ADDED ALL PLAYSOUNDS !
