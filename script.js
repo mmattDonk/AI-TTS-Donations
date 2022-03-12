@@ -17,7 +17,10 @@ const values = {
 		"CHANNEL_POINTS_REWARD": "",
 		"BLACKLISTED_WORDS": [],
 		"QUERY_TRIES": 100,
-		"FALLBACK_VOICE": ""
+		"FALLBACK_VOICE": "",
+		"VOICE_ALIASES": {
+		
+		}
 	}
 };
 const output = {
