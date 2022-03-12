@@ -32,7 +32,7 @@ from twitchAPI.types import AuthScope
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "2.6.1"
+VERSION: str = "2.7.0"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
@@ -212,10 +212,15 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             voice_effect = None
 
         log.debug("voice effect: " + str(voice_effect))
-        log.debug("voice: " + voice[0])
+        log.debug("voice: " + voice_name)
         log.debug("voice var: " + str(voice))
 
         tts_provider = None
+
+        try:
+            voice_name = config["VOICE_ALIASES"][voice_name]
+        except KeyError:
+            voice_name = voice_name
 
         if voice_name.startswith("TM:"):
             tts_provider = Fakeyou
