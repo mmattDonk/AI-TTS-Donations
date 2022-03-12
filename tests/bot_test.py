@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
-import pytest
-from ai_tts_donations.bot import request_tts
+import os
 
+import pytest
+from ai_tts_donations.bot.bot import request_tts
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path="../.env")
 
 @pytest.mark.parametrize("test_input", [
     'spongebob: test',

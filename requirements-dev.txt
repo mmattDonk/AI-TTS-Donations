@@ -4,5 +4,6 @@ mypy===0.910
 pre-commit==2.17.0
 pytest==6.2.5 #omg no way 625
 pytest-cov==2.12.1
+pytest-dotenv==0.5.2
 pyupgrade==2.31.0
 tox==3.24.3
