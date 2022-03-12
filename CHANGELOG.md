@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [v2.6.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.6.1) - 2022-03-12 01:16:49
+
+Make sure to install Git now!
+https://git-scm.com
+
+## What's Changed
+* fix(deps): build simpleaudio from a fork instead by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/156
+
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.6.0...v2.6.1
+
 ## [v2.6.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.6.0) - 2022-03-11 22:17:44
 
 # Added Version Posting!
@@ -105,11 +116,6 @@ New dependencies were added, so make sure to update your dependencies using this
 
 **Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.3.0...v2.4.0
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
-
-### Feature
-
-- core:
-  - added voice effects! (#126) ([1385998](https://github.com/mmattDonk/AI-TTS-Donations/commit/1385998a494e08c7f65f41350a96fdcdcbc38c37)) ([#126](https://github.com/mmattDonk/AI-TTS-Donations/pull/126))
 
 ## [v2.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.3.0) - 2022-02-25 00:29:02
 
