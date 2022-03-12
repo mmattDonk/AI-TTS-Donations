@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # Voice
-voice_files/*.wav
+src/ai_tts_donations/voice_files/*.wav
 
 #config
 config.json
