@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [v2.7.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.7.0) - 2022-03-12 08:07:37
+
+## What's Changed
+* feat(core): added voice aliases by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/159
+
+
+**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.6.1...v2.7.0
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+
 ## [v2.6.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.6.1) - 2022-03-12 01:16:49
 
 Make sure to install Git now!
