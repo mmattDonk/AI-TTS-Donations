@@ -42,7 +42,7 @@ from twitchAPI.types import AuthScope
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "2.6.0"
+VERSION: str = "2.6.1"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
