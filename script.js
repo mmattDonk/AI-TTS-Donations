@@ -7,7 +7,8 @@ const values = {
 		"UBERDUCK_SECRET": "",
 		"TWITCH_CLIENT_ID": "",
 		"TWITCH_SECRET": "",
-		"TWITCH_USERNAME": ""
+		"TWITCH_USERNAME": "",
+		"MM_API_KEY": ""
 	},
 	config: {
 		"MAX_MSG_LENGTH": 300,
