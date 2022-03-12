@@ -222,10 +222,15 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             voice_effect = None
 
         log.debug("voice effect: " + str(voice_effect))
-        log.debug("voice: " + voice[0])
+        log.debug("voice: " + voice_name)
         log.debug("voice var: " + str(voice))
 
         tts_provider = None
+
+        try:
+            voice_name = config["VOICE_ALIASES"][voice_name]
+        except KeyError:
+            voice_name = voice_name
 
         if voice_name.startswith("TM:"):
             tts_provider = Fakeyou
