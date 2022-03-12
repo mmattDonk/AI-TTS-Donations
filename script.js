@@ -19,7 +19,7 @@ const values = {
 		"QUERY_TRIES": 100,
 		"FALLBACK_VOICE": "",
 		"VOICE_ALIASES": {
-		
+
 		}
 	}
 };
