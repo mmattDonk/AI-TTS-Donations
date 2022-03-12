@@ -64,7 +64,7 @@
 				<input name="TWITCH_USERNAME" type="text">
 				<span class="tooltip">Your Twitch username.</span>
 			</label>
-		
+
 			<label>
 				Your MM API Key
 				<input name="MM_API_KEY" type="text">
@@ -130,13 +130,18 @@
 			<span class="tooltip">A voice that the bot automatically falls back to just in case the user's inputted voice doesn't exist. This uses the same voice ID codes as Uberduck.</span>
 		</label>
 
+		<label> Voice Aliases
+			<input name="VOICE_ALIASES" data-type="dictionary" placeholder="{'sonic': 'TM:z3mvtbcg4k4z'}" disabled="true">
+			<span class="tooltip">(Optional) A dictionary of aliases for voices. First key being the alias, second key being the original.\nAlso, you must edit this in an external text editor at the moment. The text box shown here has an example of an alias.</span>
+		</label>
+
 		<div>
 			<h3>output</h3>
 			<span>
 				<button value="cp">copy</button>
 				<button value="dl" data-saveas="config.json">download</button>
 			</span>
-			<textarea rows="9" readonly></textarea>
+			<textarea rows="11" readonly></textarea>
 		</div>
 	</div>
 
