@@ -12,7 +12,7 @@ import time
 import urllib.request
 from datetime import datetime
 from pathlib import Path
-from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk
+from tkinter import Button, Canvas, Entry, PhotoImage, Tk
 from typing import Optional
 from uuid import UUID
 
@@ -22,7 +22,6 @@ import soundfile as sf
 from dotenv import load_dotenv
 from pedalboard import (
     Chorus,
-    Compressor,
     Distortion,
     Gain,
     HighpassFilter,
@@ -42,7 +41,7 @@ from twitchAPI.types import AuthScope
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "2.6.1"
+VERSION: str = "2.7.0"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
