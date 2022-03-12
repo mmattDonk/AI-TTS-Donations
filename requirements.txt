@@ -10,7 +10,8 @@ python_dotenv == 0.19.2
 
 rich == 11.2.0
 
-simpleaudio==1.0.4
+git+https://github.com/jps-aldridge/py-simple-audio@master#egg=simpleaudio
+
 SoundFile==0.10.3.post1
 
 # C:\Users\notmm\ai-tts-donations\bot.py: 12,13,14,17

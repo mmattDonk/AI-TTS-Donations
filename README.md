@@ -12,6 +12,10 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
 1. [Python 3.8+](https://www.python.org/downloads/)
    - ** **MAKE SURE PYTHON IS ADDED TO PATH WHILE INSTALLING.** **
       - This can avoid an error that Python doesn't exist in steps 4/5. To add Python to path after Python has already been installed, please follow [this guide](https://datatofish.com/add-python-to-windows-path/)
+2. [Git](https://git-scm.com/download/)
+    - This is required for a dependency we use, which is now being built/cloned directly from GitHub. Just simply use the installer, and spam the "Next" button until it starts installing. As usual, join the Discord in case you have problems!
+    - You can also install this through the command line on Windows (11?) by using `winget`.
+        - `winget install --id Git.Git -e --source winget`
 
 ### 🏃 How to run
 
