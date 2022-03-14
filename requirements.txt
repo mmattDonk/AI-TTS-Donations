@@ -4,7 +4,7 @@
 # C:\Users\notmm\ai-tts-donations\ui.py: 4
 httpx == 1.0.0b0
 
-pedalboard==0.4.3
+pedalboard==0.5.0
 
 python_dotenv == 0.19.2
 
