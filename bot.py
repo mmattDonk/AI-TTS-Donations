@@ -18,11 +18,9 @@ from typing import Optional
 from uuid import UUID
 
 import httpx
-import rel
 import simpleaudio
 import socketio
 import soundfile as sf
-import websocket
 from dotenv import load_dotenv
 from pedalboard import (
     Chorus,
