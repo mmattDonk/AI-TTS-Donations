@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import asyncio
 import json
 import logging
 import os
@@ -17,8 +18,11 @@ from typing import Optional
 from uuid import UUID
 
 import httpx
+import rel
 import simpleaudio
+import socketio
 import soundfile as sf
+import websocket
 from dotenv import load_dotenv
 from pedalboard import (
     Chorus,
@@ -37,6 +41,8 @@ from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
+
+sio = socketio.Client()
 
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
@@ -474,36 +480,76 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
     request_tts(message=message, failed=False)
 
 
-# setting up Authentication and getting your user id
-twitch = Twitch(os.environ.get("TWITCH_CLIENT_ID"), os.environ.get("TWITCH_SECRET"))
-target_scope: list = [AuthScope.BITS_READ, AuthScope.CHANNEL_READ_REDEMPTIONS]
+def connect():
+    sio.emit(
+        "authenticate", {"method": "jwt", "token": os.environ.get("STREAMELEMENTS_JWT")}
+    )
 
-auth = UserAuthenticator(twitch, target_scope, force_verify=False)
-# this will open your default browser and prompt you with the twitch verification website
-token, refresh_token = auth.authenticate()
-# add User authentication
-twitch.set_user_authentication(token, target_scope, refresh_token)
 
-user_id: str = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][0][
-    "id"
-]
+def on_streamelements_event(data, *args):
+    log.debug(data)
 
-if os.environ.get("MM_API_KEY") is not None:
-    post_version_number(user_id, VERSION)
+    if data["listener"] == "tip-latest":
+        if data["event"]["amount"] >= config["MIN_TIP_AMOUNT"]:
+            message: str = data["event"]["message"]
 
-# starting up PubSub
-pubsub = PubSub(twitch)
-pubsub.start()
-# you can either start listening before or after you started pubsub.
-if config["BITS_OR_CHANNEL_POINTS"] == "channel_points":
-    uuid = pubsub.listen_channel_points(user_id, callback_channel_points)
-elif (
-    config["BITS_OR_CHANNEL_POINTS"] == "bits"
-    or config["BITS_OR_CHANNEL_POINTS"] is None
-):
-    uuid: UUID = pubsub.listen_bits(user_id, callback_bits)
+            if len(message) > config["MAX_MSG_LENGTH"]:
+                log.info("Tip message is longer than the maximum message length")
+                return
 
-log.info("Pubsub Ready!")
+            for i in config["BLACKLISTED_WORDS"]:
+                if i in message.lower():
+                    log.info("Blacklisted word found")
+                    return
+
+            request_tts(message=message, failed=False)
+
+
+def on_streamelements_authenticated(data):
+    log.debug(data)
+    log.info("StreamElements connected!")
+
+
+sio.on("connect", connect)
+sio.on("event", on_streamelements_event)
+sio.on("event:test", on_streamelements_event)
+sio.on("authenticated", on_streamelements_authenticated)
+
+
+async def main():
+    # setting up Authentication and getting your user id
+    twitch = Twitch(os.environ.get("TWITCH_CLIENT_ID"), os.environ.get("TWITCH_SECRET"))
+    target_scope: list = [AuthScope.BITS_READ, AuthScope.CHANNEL_READ_REDEMPTIONS]
+
+    auth = UserAuthenticator(twitch, target_scope, force_verify=False)
+    # this will open your default browser and prompt you with the twitch verification website
+    token, refresh_token = auth.authenticate()
+    # add User authentication
+    twitch.set_user_authentication(token, target_scope, refresh_token)
+
+    user_id: str = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][
+        0
+    ]["id"]
+
+    if os.environ.get("MM_API_KEY") is not None:
+        post_version_number(user_id, VERSION)
+
+    # starting up PubSub
+    pubsub = PubSub(twitch)
+    pubsub.start()
+    # you can either start listening before or after you started pubsub.
+    if config["BITS_OR_CHANNEL_POINTS"] == "channel_points":
+        uuid = pubsub.listen_channel_points(user_id, callback_channel_points)
+    elif (
+        config["BITS_OR_CHANNEL_POINTS"] == "bits"
+        or config["BITS_OR_CHANNEL_POINTS"] is None
+    ):
+        uuid: UUID = pubsub.listen_bits(user_id, callback_bits)
+
+    # ### StreamElements ###
+    elif config["BITS_OR_CHANNEL_POINTS"] == "streamelements":
+        sio.connect("https://realtime.streamelements.com", transports=["websocket"])
+    log.info("Pubsub Ready!")
 
 
 def test_tts() -> None:
@@ -595,4 +641,10 @@ button_2.place(x=551.9999999999998, y=227.0, width=192.0, height=44.0)
 window.resizable(False, False)
 window.iconbitmap("./assets/trihard.ico")
 
-window.mainloop()
+
+def main_loop():
+    window.mainloop()
+
+
+asyncio.run(main())
+asyncio.run(main_loop())
