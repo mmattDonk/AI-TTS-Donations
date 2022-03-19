@@ -544,8 +544,9 @@ async def main():
         ):
             uuid: UUID = pubsub.listen_bits(user_id, callback_bits)
 
-    if os.environ.get("MM_API_KEY") is not None:
-        post_version_number(user_id, VERSION)
+        # Only Available to Twitch atm.
+        if os.environ.get("MM_API_KEY") is not None:
+            post_version_number(user_id, VERSION)
 
     # ### StreamElements ###
     if config["BITS_OR_CHANNEL_POINTS"] == "streamelements":
