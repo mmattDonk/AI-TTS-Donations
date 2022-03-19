@@ -515,37 +515,40 @@ sio.on("authenticated", on_streamelements_authenticated)
 
 
 async def main():
-    # setting up Authentication and getting your user id
-    twitch = Twitch(os.environ.get("TWITCH_CLIENT_ID"), os.environ.get("TWITCH_SECRET"))
-    target_scope: list = [AuthScope.BITS_READ, AuthScope.CHANNEL_READ_REDEMPTIONS]
+    if config["BITS_OR_CHANNEL_POINTS"] in ["bits", "channel_points"]:
+        # setting up Authentication and getting your user id
+        twitch = Twitch(
+            os.environ.get("TWITCH_CLIENT_ID"), os.environ.get("TWITCH_SECRET")
+        )
+        target_scope: list = [AuthScope.BITS_READ, AuthScope.CHANNEL_READ_REDEMPTIONS]
 
-    auth = UserAuthenticator(twitch, target_scope, force_verify=False)
-    # this will open your default browser and prompt you with the twitch verification website
-    token, refresh_token = auth.authenticate()
-    # add User authentication
-    twitch.set_user_authentication(token, target_scope, refresh_token)
+        auth = UserAuthenticator(twitch, target_scope, force_verify=False)
+        # this will open your default browser and prompt you with the twitch verification website
+        token, refresh_token = auth.authenticate()
+        # add User authentication
+        twitch.set_user_authentication(token, target_scope, refresh_token)
 
-    user_id: str = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])["data"][
-        0
-    ]["id"]
+        user_id: str = twitch.get_users(logins=[os.environ.get("TWITCH_USERNAME")])[
+            "data"
+        ][0]["id"]
+
+        # starting up PubSub
+        pubsub = PubSub(twitch)
+        pubsub.start()
+        # you can either start listening before or after you started pubsub.
+        if config["BITS_OR_CHANNEL_POINTS"] == "channel_points":
+            uuid = pubsub.listen_channel_points(user_id, callback_channel_points)
+        elif (
+            config["BITS_OR_CHANNEL_POINTS"] == "bits"
+            or config["BITS_OR_CHANNEL_POINTS"] is None
+        ):
+            uuid: UUID = pubsub.listen_bits(user_id, callback_bits)
 
     if os.environ.get("MM_API_KEY") is not None:
         post_version_number(user_id, VERSION)
 
-    # starting up PubSub
-    pubsub = PubSub(twitch)
-    pubsub.start()
-    # you can either start listening before or after you started pubsub.
-    if config["BITS_OR_CHANNEL_POINTS"] == "channel_points":
-        uuid = pubsub.listen_channel_points(user_id, callback_channel_points)
-    elif (
-        config["BITS_OR_CHANNEL_POINTS"] == "bits"
-        or config["BITS_OR_CHANNEL_POINTS"] is None
-    ):
-        uuid: UUID = pubsub.listen_bits(user_id, callback_bits)
-
     # ### StreamElements ###
-    elif config["BITS_OR_CHANNEL_POINTS"] == "streamelements":
+    if config["BITS_OR_CHANNEL_POINTS"] == "streamelements":
         sio.connect("https://realtime.streamelements.com", transports=["websocket"])
     log.info("Pubsub Ready!")
 
