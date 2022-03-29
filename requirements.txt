@@ -1,5 +1,5 @@
 httpx == 1.0.0b0
-pedalboard==0.5.2
+pedalboard==0.5.3
 python_dotenv == 0.19.2
 rich == 11.2.0
 git+https://github.com/jps-aldridge/py-simple-audio@master#egg=simpleaudio
