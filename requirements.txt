@@ -1,8 +1,8 @@
 asyncio==3.4.3
 httpx == 1.0.0b0
+pedalboard==0.5.3
 python-socketio==5.5.2
 python_dotenv == 0.19.2
-pedalboard==0.5.3
 python_dotenv == 0.20.0
 rich == 12.0.1
 git+https://github.com/jps-aldridge/py-simple-audio@master#egg=simpleaudio
