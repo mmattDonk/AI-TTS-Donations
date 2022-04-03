@@ -5,9 +5,9 @@
 If you use the `MM_API_KEY` (mmatt API for the [Twitch Extension](https://dashboard.twitch.tv/extensions/ukchm96ow4u5nykp34y56v8c14refh-0.0.1)) then we store your 1. Twitch ID and 2. AI TTS Donations Version Number.
 
 2) **Why do we need the data, and why do we use this data?** (for the mmatt API for the Twitch Extension)
-    
+
     a) We use the Twitch ID to connect the Twitch Extension panel to your specific version number
-    
+
     b) We use the version number to show what features are supported.
 
 3) **Do we share your data with any 3rd parties?**
