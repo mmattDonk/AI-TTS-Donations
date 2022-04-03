@@ -1,4 +1,5 @@
 # AI TTS Donations
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bf5c54cf99994d4fb0b32c529588d7f5)](https://app.codacy.com/gh/mmattDonk/AI-TTS-Donations?utm_source=github.com&utm_medium=referral&utm_content=mmattDonk/AI-TTS-Donations&utm_campaign=Badge_Grade_Settings)
 [![Discord](https://img.shields.io/discord/883929594179256350?label=Discord)](https://discord.gg/mvVePs2Hs2)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mmattDonk/AI-TTS-Donations/main.svg)](https://results.pre-commit.ci/latest/github/mmattDonk/AI-TTS-Donations/main)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/mmattdonk/ai-tts-donations)](https://github.com/mmattDonk/AI-TTS-Donations/releases)
