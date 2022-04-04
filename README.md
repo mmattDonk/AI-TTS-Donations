@@ -26,7 +26,7 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
     * You can do `git clone https://github.com/mmattdonk/ai-tts-donations` or just download the ZIP from GitHub
 1. Generate your configuration files using this website: https://mmattdonk.github.io/AI-TTS-Donations/
     * Simply enter in the required keys into the website, then download the configuration files and put them into your bot's folder.
-1. Install Prerequisits
+1. Install Prerequisites
     * [On Windows] Open the `scripts` folder, then run the `install-python.bat` file and the `install-git.bat` file. This will install everything you need.
     * [On Macos/Linux] Install Python and Git [(using the links above)](#🔧-prerequisites). Then install the dependencies by running `pip install -r requirements.txt`.
 1. Start the bot - Open `bot.py`
