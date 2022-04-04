@@ -137,3 +137,5 @@ config.json
 .DS_Store
 
 index.html
+config.inf
+python-installer.exe
