@@ -1,4 +1,7 @@
 # AI TTS Donations
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Discord](https://img.shields.io/discord/883929594179256350?label=Discord)](https://discord.gg/mvVePs2Hs2)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mmattDonk/AI-TTS-Donations/main.svg)](https://results.pre-commit.ci/latest/github/mmattDonk/AI-TTS-Donations/main)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e98081b2d30849c8b388ded89ca92cf8)](https://www.codacy.com/gh/mmattDonk/AI-TTS-Donations/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mmattDonk/AI-TTS-Donations&amp;utm_campaign=Badge_Grade)
@@ -39,3 +42,23 @@ Use `pip install -r requirements-dev.txt` to install the developer dependencies 
 To install `pre-commit`, do the `pre-commit install` command.
 
 Need extra logs? Use `python bot.py dev` to launch the bot.
+
+### Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://mmatt.net"><img src="https://avatars.githubusercontent.com/u/30363562?v=4?s=100" width="100px;" alt=""/><br /><sub><b>matt</b></sub></a><br /><a href="#infra-mmattbtw" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=mmattbtw" title="Code">💻</a> <a href="#design-mmattbtw" title="Design">🎨</a> <a href="#audio-mmattbtw" title="Audio">🔊</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=mmattbtw" title="Documentation">📖</a> <a href="#example-mmattbtw" title="Examples">💡</a> <a href="#maintenance-mmattbtw" title="Maintenance">🚧</a> <a href="#business-mmattbtw" title="Business development">💼</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
