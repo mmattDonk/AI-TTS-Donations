@@ -36,6 +36,6 @@ Use `pip install -r requirements-dev.txt` to install the developer dependencies 
 To install `pre-commit`, do the `pre-commit install` command.
 
 ### 👥 Contributors
-([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
+([emoji key](https://allcontributors.org/docs/en/emoji-key))
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
