@@ -1,4 +1,7 @@
 # AI TTS Donations
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Discord](https://img.shields.io/discord/883929594179256350?label=Discord)](https://discord.gg/mvVePs2Hs2)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mmattDonk/AI-TTS-Donations/main.svg)](https://results.pre-commit.ci/latest/github/mmattDonk/AI-TTS-Donations/main)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/mmattdonk/ai-tts-donations)](https://github.com/mmattDonk/AI-TTS-Donations/releases)
@@ -38,4 +41,28 @@ To install `pre-commit`, do the `pre-commit install` command.
 ### 👥 Contributors
 ([emoji key](https://allcontributors.org/docs/en/emoji-key))
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://mmatt.net"><img src="https://avatars.githubusercontent.com/u/30363562?v=4?s=100" width="100px;" alt=""/><br /><sub><b>matt</b></sub></a><br /><a href="#infra-mmattbtw" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=mmattbtw" title="Code">💻</a> <a href="#design-mmattbtw" title="Design">🎨</a> <a href="#audio-mmattbtw" title="Audio">🔊</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=mmattbtw" title="Documentation">📖</a> <a href="#example-mmattbtw" title="Examples">💡</a> <a href="#maintenance-mmattbtw" title="Maintenance">🚧</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
