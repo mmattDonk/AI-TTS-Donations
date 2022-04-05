@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## [v2.7.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.7.1) - 2022-04-05 14:26:51
+
+# Added setup scripts to automatically install Python and Git.
+
+## What's Changed
+* chore(deps): bump pyupgrade from 2.31.0 to 2.31.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/163
+* chore(deps): bump pedalboard from 0.4.3 to 0.5.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/162
+* chore(pre-commit): pre-commit autoupdate by @pre-commit-ci in https://github.com/mmattDonk/AI-TTS-Donations/pull/164
+* chore(deps): bump pedalboard from 0.5.0 to 0.5.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/165
+* chore(deps): bump pedalboard from 0.5.1 to 0.5.2 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/170
+* chore(deps): bump pedalboard from 0.5.2 to 0.5.3 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/173
+* chore(deps): bump python-dotenv from 0.19.2 to 0.20.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/171
+* chore(deps): bump black from 22.1.0 to 22.3.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/172
+* chore(deps): bump rich from 11.2.0 to 12.0.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/169
+* docs(README): add mmattbtw as a contributor for infra, code, design, audio, doc, example, maintenance by @allcontributors in https://github.com/mmattDonk/AI-TTS-Donations/pull/176
+* docs(README): add mmattbtw as a contributor for business by @allcontributors in https://github.com/mmattDonk/AI-TTS-Donations/pull/177
+* chore(deps): bump pre-commit from 2.17.0 to 2.18.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/178
+* chore(deps): bump rich from 12.0.1 to 12.1.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/179
+* chore(pre-commit): pre-commit autoupdate by @pre-commit-ci in https://github.com/mmattDonk/AI-TTS-Donations/pull/181
+* feat(scripts): added scripts to install git+python by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/174
+* chore(deps): bump rich from 12.1.0 to 12.2.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/182
+
+**Full Commitlog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.7.0...v2.7.1
+
 ## [v2.7.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.7.0) - 2022-03-12 08:07:37
 
 ## What's Changed
