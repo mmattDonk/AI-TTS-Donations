@@ -18,6 +18,7 @@ from typing import Optional
 from uuid import UUID
 
 import httpx
+import nest_asyncio
 import simpleaudio
 import socketio
 import soundfile as sf
@@ -487,31 +488,27 @@ def connect():
 def on_streamelements_event(data, *args):
     log.debug(data)
 
-    if data["listener"] == "tip-latest":
-        if data["event"]["amount"] >= config["MIN_TIP_AMOUNT"]:
-            message: str = data["event"]["message"]
+    if (
+        data["listener"] == "tip-latest"
+        and data["event"]["amount"] >= config["MIN_TIP_AMOUNT"]
+    ):
+        message: str = data["event"]["message"]
 
-            if len(message) > config["MAX_MSG_LENGTH"]:
-                log.info("Tip message is longer than the maximum message length")
+        if len(message) > config["MAX_MSG_LENGTH"]:
+            log.info("Tip message is longer than the maximum message length")
+            return
+
+        for i in config["BLACKLISTED_WORDS"]:
+            if i in message.lower():
+                log.info("Blacklisted word found")
                 return
 
-            for i in config["BLACKLISTED_WORDS"]:
-                if i in message.lower():
-                    log.info("Blacklisted word found")
-                    return
-
-            request_tts(message=message, failed=False)
+        request_tts(message=message, failed=False)
 
 
 def on_streamelements_authenticated(data):
     log.debug(data)
     log.info("StreamElements connected!")
-
-
-sio.on("connect", connect)
-sio.on("event", on_streamelements_event)
-sio.on("event:test", on_streamelements_event)
-sio.on("authenticated", on_streamelements_authenticated)
 
 
 async def main():
@@ -550,7 +547,13 @@ async def main():
 
     # ### StreamElements ###
     if config["BITS_OR_CHANNEL_POINTS"] == "streamelements":
+        sio.on("connect", connect)
+        sio.on("event", on_streamelements_event)
+        sio.on("event:test", on_streamelements_event)
+        sio.on("authenticated", on_streamelements_authenticated)
+
         sio.connect("https://realtime.streamelements.com", transports=["websocket"])
+
     log.info("Pubsub Ready!")
 
 
@@ -648,5 +651,6 @@ def main_loop():
     window.mainloop()
 
 
+nest_asyncio.apply()
 asyncio.run(main())
 asyncio.run(main_loop())
