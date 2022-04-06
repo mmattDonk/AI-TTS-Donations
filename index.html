@@ -71,13 +71,26 @@
 				<span class="tooltip">(Optional) The API key you get from either the Twitch extension or other private ways.</span>
 			</label>
 
+			<h3>StreamElements</h3>
+
+			<p>
+				If you are using StraemElements, you can get your JWT token from <a href="https://streamelements.com/dashboard/account/channels">here</a>.
+				Simply go to the channel, check the "Show Secrets" checkbox (!! DO NOT SHOW THIS ON STREAM !!), then copy and paste the JWT token into here!
+			</p>
+
+			<label>
+				JWT Token
+				<input name="STREAMELEMENTS_JWT" type="text">
+				<span class="tooltip">Your JWT token from your StreamElements settings page.</span>
+			</label>
+
 			<div>
 				<h3>output</h3>
 				<span>
 					<button value="cp">copy</button>
 					<button value="dl" data-saveas=".env">download</button>
 				</span>
-				<textarea rows="5" readonly>test</textarea>
+				<textarea rows="7" readonly>test</textarea>
 			</div>
 	</div>
 
@@ -108,6 +121,11 @@
 		<label> Minimum Bit Amount
 			<input name="MIN_BIT_AMOUNT" type="number" min="0">
 			<span class="tooltip">The minimum amount of bits to donate for the TTS to activate. <br> (Note: You might want to subtract one from this, just in case.)</span>
+		</label>
+
+		<label> Minimum Tip Amount
+			<input name="MIN_TIP_AMOUNT" type="number" min="0">
+			<span class="tooltip">The minimum amount of the StreamElements tip amount to donate for the TTS to activate. <br> (Note: You might want to subtract one from this, just in case.)</span>
 		</label>
 
 		<label> Channel Points Reward
@@ -141,7 +159,7 @@
 				<button value="cp">copy</button>
 				<button value="dl" data-saveas="config.json">download</button>
 			</span>
-			<textarea rows="11" readonly></textarea>
+			<textarea rows="12" readonly></textarea>
 		</div>
 	</div>
 

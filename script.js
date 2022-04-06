@@ -8,11 +8,13 @@ const values = {
 		"TWITCH_CLIENT_ID": "",
 		"TWITCH_SECRET": "",
 		"TWITCH_USERNAME": "",
-		"MM_API_KEY": ""
+		"MM_API_KEY": "",
+		"STREAMELEMENTS_JWT": "",
 	},
 	config: {
 		"MAX_MSG_LENGTH": 300,
 		"MIN_BIT_AMOUNT": 1,
+		"MIN_TIP_AMOUNT": 1,
 		"BITS_OR_CHANNEL_POINTS": "",
 		"CHANNEL_POINTS_REWARD": "",
 		"BLACKLISTED_WORDS": [],
