@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [v3.0.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.0.0) - 2022-04-06 23:51:36
+
+## What's Changed
+* feat(scripts): add install dependencies script by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/184
+* feat(core): added streamelements support by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/168
+
+
+**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.7.1...v3.0.0
+
 ## [v2.7.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.7.1) - 2022-04-05 14:26:51
 
 # Added setup scripts to automatically install Python and Git.
