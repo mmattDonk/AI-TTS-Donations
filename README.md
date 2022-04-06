@@ -7,7 +7,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e98081b2d30849c8b388ded89ca92cf8)](https://www.codacy.com/gh/mmattDonk/AI-TTS-Donations/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mmattDonk/AI-TTS-Donations&amp;utm_campaign=Badge_Grade)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/mmattdonk/ai-tts-donations)](https://github.com/mmattDonk/AI-TTS-Donations/releases)
 
-💰 A bot that uses Uberduck (and now FakeYou!) AI to make bit donations have an AI voice.
+💰 A bot that uses Uberduck (and now FakeYou!) AI to make bit (or channel points or streamelements tips!) donations have an AI voice.
 
 ### 👀 Are you a viewer?
 Check the instructions [here!](https://mmatt.link/UseTTS)
