@@ -1,0 +1,31 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mmattbtw",
+      "name": "matt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30363562?v=4",
+      "profile": "https://mmatt.net",
+      "contributions": [
+        "infra",
+        "code",
+        "design",
+        "audio",
+        "doc",
+        "example",
+        "maintenance",
+        "business"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "AI-TTS-Donations",
+  "projectOwner": "mmattDonk",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
