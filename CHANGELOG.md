@@ -117,11 +117,6 @@ Check out the [wiki](https://github.com/mmattDonk/AI-TTS-Donations/wiki/How-to-u
 **Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.4.1...v2.5.0
 **Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
 
-### Feature
-
-- core:
-  - added fakeyou support! (#139) ([403551b](https://github.com/mmattDonk/AI-TTS-Donations/commit/403551ba165b3f725ea3b759b21c8de658cf9c8d)) ([#139](https://github.com/mmattDonk/AI-TTS-Donations/pull/139))
-
 ## [v2.4.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.1) - 2022-02-27 06:37:10
 
 ## What's Changed
