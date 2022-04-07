@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [v3.0.0-patch](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.0.0-patch) - 2022-04-07 21:15:12
+
+bumped version (forgot to do in last release :p)
+
 ## [v3.0.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.0.0) - 2022-04-06 23:51:36
 
 ## What's Changed
