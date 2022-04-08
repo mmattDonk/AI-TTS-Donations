@@ -1,208 +1,51 @@
 # CHANGELOG
 
-## [v2.7.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.7.0) - 2022-03-12 08:07:37
+## [v2.7.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.7.0)
 
-## What's Changed
-* feat(core): added voice aliases by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/159
+- [minor]: feat(core): added voice aliases by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/159
 
+## [v2.6.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.6.1)
 
-**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.6.1...v2.7.0
-**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
+- [patch]: fix(deps): build simpleaudio from a fork instead by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/156
 
-### Feature
+## [v2.6.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.6.0)
 
-- core:
-  - added voice aliases (#159) ([ccc20fc](https://github.com/mmattDonk/AI-TTS-Donations/commit/ccc20fcb12f36735f6a2715201ad214384d6b943)) ([#159](https://github.com/mmattDonk/AI-TTS-Donations/pull/159))
+- [minor]: feat(core): added posting version number by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/149
+- [patch]: chore(deps): bump pedalboard from 0.4.2 to 0.4.3 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/145
+- [patch]: refactor(api-wrapper): add correct logging by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/147
+- [patch]: chore(deps): bump twitchapi from 2.5.2 to 2.5.3 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/148
+- [patch]: refactor(core): added some types by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/151
 
-## [v2.6.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.6.1) - 2022-03-12 01:16:49
+## [v2.5.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.5.0)
 
-Make sure to install Git now!
-https://git-scm.com
+- [minor]: feat(core): added fakeyou support! by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/139
 
-## What's Changed
-* fix(deps): build simpleaudio from a fork instead by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/156
+## [v2.4.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.1)
 
+- [minor]: feat(voice_effects): new phone filter by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/132
+- [minor]: new android filter by @mopoIo in https://github.com/mmattDonk/AI-TTS-Donations/pull/134
+- [minor]: new muffled effect by @mopoIo in https://github.com/mmattDonk/AI-TTS-Donations/pull/133
+- [patch]: chore(deps): bump twitchapi from 2.5.1 to 2.5.2 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/110
 
-**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.6.0...v2.6.1
+## [v2.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.0)
 
-### Bug Fixes
+- [minor]: feat(core): added voice effects! by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/126
+- [patch]: refactor(core): globalized cheer regex and js refresh by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/122
+- [patch]: refactor(core): made a function to reset the overlay by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/123
 
-- deps:
-  - build simpleaudio from a fork instead (#156) ([5374d42](https://github.com/mmattDonk/AI-TTS-Donations/commit/5374d42dd588467e1b95378acbbcc27a88f6fc36)) ([#156](https://github.com/mmattDonk/AI-TTS-Donations/pull/156))
+## [v2.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.3.0)
 
-## [v2.6.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.6.0) - 2022-03-11 22:17:44
+- [minor]: feat(playsounds): add all playsounds by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/117
+- [patch]: chore(deps): bump rich from 11.1.0 to 11.2.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/109
+- [patch]: refactor(playsounds): use regex instead of elif chaining by @12beesinatrenchcoat in https://github.com/mmattDonk/AI-TTS-Donations/pull/115
 
-# Added Version Posting!
-Version posting is used for the new API I've built for the new Twitch Extension I've built!
+## [v2.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.1)
 
-
-This new Twitch extension is a panel you can add to your Twitch channel, that tells your viewers what features are supported or not on your version of ATD (AI-TTS-Donations). This extension is **not** out yet, as I'm typing this, I am submitting it to Twitch for approval, but you can check it out on [/mmattbtw](https://twitch.tv/mmattbtw/about), [/mmattDonk](https://twitch.tv/mmattDonk/about), and [/LiptonGod](https://twitch.tv/liptongod/about)!
-![image](https://user-images.githubusercontent.com/30363562/157980205-15b84f68-689b-48dc-999a-76d235747220.png)
-
-
-## What's Changed
-* chore(deps): bump pedalboard from 0.4.2 to 0.4.3 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/145
-* refactor(api-wrapper): add correct logging by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/147
-* chore(deps): bump twitchapi from 2.5.2 to 2.5.3 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/148
-* refactor(core): added some types by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/151
-* feat(core): added posting version number by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/149
-
-### Support This Release
-Enjoy the update? Enjoy using the program at all? Have some spare cash? 
-https://www.patreon.com/mmattDonk
-
-**Full commit log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.5.0...v2.6.0
-**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
-
-### Feature
-
-- core:
-  - added posting version number (#149) ([ce07fd1](https://github.com/mmattDonk/AI-TTS-Donations/commit/ce07fd12d6f41b23608ad1b3b0ca0a80d6883bdd)) ([#149](https://github.com/mmattDonk/AI-TTS-Donations/pull/149))
-
-### Bug Fixes
-
-- cheer_regex:
-  - added anon cheermote ([081cee7](https://github.com/mmattDonk/AI-TTS-Donations/commit/081cee72deff4bef02b12ffa0b219096e39ed33c))
-
-### Documentation
-
-- README:
-  - added that we now support fakeyou! ([ed7ec2e](https://github.com/mmattDonk/AI-TTS-Donations/commit/ed7ec2e4746a3cca135a27384e6aa8eda676600c))
-
-### Refactor
-
-- core:
-  - added some types (#151) ([5ccd401](https://github.com/mmattDonk/AI-TTS-Donations/commit/5ccd40115ae3935dcbf2297bfa2709175a0bd278)) ([#151](https://github.com/mmattDonk/AI-TTS-Donations/pull/151))
-
-- api-wrapper:
-  - add correct logging (#147) ([18f0c6c](https://github.com/mmattDonk/AI-TTS-Donations/commit/18f0c6c3df977a71f140e89617a08b687bade5af)) ([#147](https://github.com/mmattDonk/AI-TTS-Donations/pull/147))
-
-## [v2.5.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.5.0) - 2022-03-01 01:07:54
-
-# Fakeyou.com Support has been added!!!
-Check out the [wiki](https://github.com/mmattDonk/AI-TTS-Donations/wiki/How-to-use-it!-(viewer)) to see how to use it!
-*Note:* This doesn't remove support for Uberduck, or replace Uberduck in any way. It simply adds another platform for viewers to play around with!
-
-## What's Changed
-* feat(core): added fakeyou support! by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/139
-
-## Brought to you by:
-[![](https://fakeyou.com/fakeyou/fakeyou-nav-logo-mascot.webp)](https://fakeyou.com)
-- Fakeyou.com sponsored this release, and made it possible! Thanks FakeYou! <3
-
-**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.4.1...v2.5.0
-**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
-
-### Feature
-
-- core:
-  - added fakeyou support! (#139) ([403551b](https://github.com/mmattDonk/AI-TTS-Donations/commit/403551ba165b3f725ea3b759b21c8de658cf9c8d)) ([#139](https://github.com/mmattDonk/AI-TTS-Donations/pull/139))
-
-### Bug Fixes
-
-- core:
-  - lowered the voice name ([5b829c4](https://github.com/mmattDonk/AI-TTS-Donations/commit/5b829c457bc045cddacaee655a0380c8e34649cf))
-
-## [v2.4.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.1) - 2022-02-27 06:37:10
-
-## What's Changed
-* feat(voice_effects): new phone filter by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/132
-* chore(deps): bump twitchapi from 2.5.1 to 2.5.2 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/110
-* new android filter by @mopoIo in https://github.com/mmattDonk/AI-TTS-Donations/pull/134
-* new muffled effect by @mopoIo in https://github.com/mmattDonk/AI-TTS-Donations/pull/133
-
-## New Contributors
-* @mopoIo made their first contribution in https://github.com/mmattDonk/AI-TTS-Donations/pull/134
-
-**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.4.0...v2.4.1
-
-### Feature
-
-- voice_effects:
-  - new phone filter (#132) ([ea255a9](https://github.com/mmattDonk/AI-TTS-Donations/commit/ea255a92e1f3e11dc8c6992945b7049d047fb5b8)) ([#132](https://github.com/mmattDonk/AI-TTS-Donations/pull/132))
-
-## [v2.4.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.4.0) - 2022-02-26 19:54:12
-
-# Added Voice Effects!!!
-
-New dependencies were added, so make sure to update your dependencies using this command: `python -m pip install -r requirements.txt`
-
-## What's Changed
-* refactor(core): globalized cheer regex and js refresh by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/122
-* refactor(core): made a function to reset the overlay by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/123
-* feat(core): added voice effects! by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/126
-
-
-**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.3.0...v2.4.0
-**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
-
-### Feature
-
-- core:
-  - added voice effects! (#126) ([1385998](https://github.com/mmattDonk/AI-TTS-Donations/commit/1385998a494e08c7f65f41350a96fdcdcbc38c37)) ([#126](https://github.com/mmattDonk/AI-TTS-Donations/pull/126))
-  - added python shebang ([ec59eb5](https://github.com/mmattDonk/AI-TTS-Donations/commit/ec59eb582cc3a01a6207d9175de0c05c0f91d862))
-
-### Refactor
-
-- core:
-  - made a function to reset the overlay (#123) ([1994bc3](https://github.com/mmattDonk/AI-TTS-Donations/commit/1994bc31910e8ebba461eb67407e8e87edee12f3)) ([#123](https://github.com/mmattDonk/AI-TTS-Donations/pull/123))
-  - globalized cheer regex and js refresh (#122) ([4febecb](https://github.com/mmattDonk/AI-TTS-Donations/commit/4febecbbcda9b4068bf8fd919b5d107d4b12fd1b)) ([#122](https://github.com/mmattDonk/AI-TTS-Donations/pull/122))
-
-## [v2.3.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.3.0) - 2022-02-25 00:29:02
-
-# ! ADDED ALL PLAYSOUNDS !
-
-## What's Changed
-* chore(deps): bump rich from 11.1.0 to 11.2.0 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/109
-* docs(CHANGELOG): update release notes by @github-actions in https://github.com/mmattDonk/AI-TTS-Donations/pull/108
-* refactor(playsounds): use regex instead of elif chaining by @12beesinatrenchcoat in https://github.com/mmattDonk/AI-TTS-Donations/pull/115
-* feat(playsounds): add all playsounds by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/117
-
-
-**Full Commit Log**: https://github.com/mmattDonk/AI-TTS-Donations/compare/v2.2.1...v2.3.0
-**Full Changelog**: https://github.com/mmattDonk/AI-TTS-Donations/blob/main/CHANGELOG.md
-
-### Feature
-
-- playsounds:
-  - add all playsounds (#117) ([f86524d](https://github.com/mmattDonk/AI-TTS-Donations/commit/f86524d82dbc6b478ec0f77f5d1623950b4dc2db)) ([#117](https://github.com/mmattDonk/AI-TTS-Donations/pull/117))
-
-### Documentation
-
-- PR_TEMPLATE:
-  - Updated PR Template with more comments ([19bfb43](https://github.com/mmattDonk/AI-TTS-Donations/commit/19bfb438430a28332f69b85991c0493ab1ee01ec))
-
-- README:
-  - include a disclaimer to add Python to PATH ([7b64e80](https://github.com/mmattDonk/AI-TTS-Donations/commit/7b64e804218fd07433e730e208a7d1de6eccc56d))
-
-### Refactor
-
-- playsounds:
-  - use regex instead of elif chaining (#115) ([8c8a70f](https://github.com/mmattDonk/AI-TTS-Donations/commit/8c8a70fa7512ce382f1f9762e5b215ca48ed5987)) ([#115](https://github.com/mmattDonk/AI-TTS-Donations/pull/115))
-
-- dependencies:
-  - remove duplicate entry ([89f4237](https://github.com/mmattDonk/AI-TTS-Donations/commit/89f42374c3466bc027efcdb4bdae10226df063b1))
-
-## [v2.2.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.1) - 2022-02-07 23:32:36
-
-Fixed v2.2.0
-
-### Bug Fixes
-
-- core:
-  - fixed fallback voice ([dfc7b46](https://github.com/mmattDonk/AI-TTS-Donations/commit/dfc7b4685f454e2afd17c13d8b93c42a4a08031e))
-
-### Documentation
-
-- SECURITY:
-  - remove 1.6.x as a supported version. ([7d65f24](https://github.com/mmattDonk/AI-TTS-Donations/commit/7d65f243d08a754132ccc38fba9eb6eb13ca140b))
+- [patch]: fix(core): fixed fallback voice
+- [patch]: docs(SECURITY): removed 1.6.x as supported version.
 
 ## [v2.2.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.2.0) - 2022-02-07 00:16:32
 
-# Added Fallback Voices (#12)
-https://mmattdonk.github.io/AI-TTS-Donations/ has been updated to reflect the change. You may want to update your `config.json`.
-
-## What's Changed
 * docs(CHANGELOG): update release notes by @github-actions in https://github.com/mmattDonk/AI-TTS-Donations/pull/85
 * chore(deps): bump pyupgrade from 2.30.0 to 2.30.1 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/89
 * chore(deps): bump rich from 10.16.1 to 10.16.2 by @dependabot in https://github.com/mmattDonk/AI-TTS-Donations/pull/94
