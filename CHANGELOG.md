@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [v3.0.0-patch](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.0.0-patch)
+
+- [patch]: chore(version): bumped version
+
+## [v3.0.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.0.0)
+
+- [minor]: feat(core): added streamelements support by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/168
+- [patch]: feat(scripts): add install dependencies script by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/184
+
+## [v2.7.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.7.1)
+
+- [patch]: feat(scripts): added scripts to install git+python by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/174
+
 ## [v2.7.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v2.7.0)
 
 - [minor]: feat(core): added voice aliases by @mmattbtw in https://github.com/mmattDonk/AI-TTS-Donations/pull/159
