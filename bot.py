@@ -46,7 +46,7 @@ sio = socketio.Client()
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "3.0.0"
+VERSION: str = "3.0.1"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
@@ -512,7 +512,7 @@ def on_streamelements_authenticated(data):
 
 
 async def main():
-    if config["BITS_OR_CHANNEL_POINTS"] in ["bits", "channel_points"]:
+    if config["BITS_OR_CHANNEL_POINTS"].lower() in ["bits", "channel_points"]:
         # setting up Authentication and getting your user id
         twitch = Twitch(
             os.environ.get("TWITCH_CLIENT_ID"), os.environ.get("TWITCH_SECRET")
@@ -533,10 +533,10 @@ async def main():
         pubsub = PubSub(twitch)
         pubsub.start()
         # you can either start listening before or after you started pubsub.
-        if config["BITS_OR_CHANNEL_POINTS"] == "channel_points":
+        if config["BITS_OR_CHANNEL_POINTS"].lower() == "channel_points":
             uuid = pubsub.listen_channel_points(user_id, callback_channel_points)
         elif (
-            config["BITS_OR_CHANNEL_POINTS"] == "bits"
+            config["BITS_OR_CHANNEL_POINTS"].lower() == "bits"
             or config["BITS_OR_CHANNEL_POINTS"] is None
         ):
             uuid: UUID = pubsub.listen_bits(user_id, callback_bits)
@@ -546,7 +546,7 @@ async def main():
             post_version_number(user_id, VERSION)
 
     # ### StreamElements ###
-    if config["BITS_OR_CHANNEL_POINTS"] == "streamelements":
+    if config["BITS_OR_CHANNEL_POINTS"].lower() == "streamelements":
         sio.on("connect", connect)
         sio.on("event", on_streamelements_event)
         sio.on("event:test", on_streamelements_event)
