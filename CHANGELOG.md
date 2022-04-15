@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [v3.0.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.0.1)
+- [patch]: fix(core): made part of config be case-insensitive
+
 ## [v3.0.0-patch](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.0.0-patch)
 
 - [patch]: chore(version): bumped version
