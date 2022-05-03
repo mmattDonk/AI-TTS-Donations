@@ -46,7 +46,7 @@ sio = socketio.Client()
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "3.0.1"
+VERSION: str = "3.1.0"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
@@ -122,7 +122,7 @@ if not os.path.exists("playsounds"):
                 + "\nThis is used for the play sound functionality in the bot, things like (1) or (2). Don't remove any files from here as it could cause the functionality to not work, and in turn, the bot to not work."
             )
 
-log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
+log_level = logging.DEBUG if "dev" in sys.argv else logging.INFO
 
 log: logging.Logger = logging.getLogger()
 
@@ -210,6 +210,36 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             log.debug(message.split(": "))
 
             voice: str = message.split(": ")[0]
+
+            if voice in config["BLACKLISTED_VOICES"]:
+                log.info(f"{voice} is blacklisted, applying fallback voice.")
+
+                # There has GOT to be a better way to do optional arguments in the config.json without
+                # - using a try/excpet: maybe I'll do a `config.py` file to load the config.json
+                # - and then returns a dictionary (or a class?) with all the data. I don't know,
+                # - if you see this and know how to do that or know what I want you can go right
+                # - ahead, if I get around to it and this comment is still here then just make an issue
+                # - with these comments highlighted and "Mock" as the title.
+                # ⣿⣿⣿⣿⡿⠋⣁⣤⣴⣶⣶⣶⣤⣌⡙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                # ⣿⣿⡿⢃⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                # ⣿⡟⢠⣾⣿⣿⣿⣿⣿⠏⣉⣙⣿⣿⠿⢿⣿⣀⠙⣿⣿⣿⣿⣿⡿⠛⠛⠛⢿
+                # ⡟⢠⣿⣿⣿⡟⣡⣤⣿⣿⣿⣿⣿⢟⠁⢰⣽⣿⡃⠘⠛⣉⠙⠁⣴⣾⣿⣿⡆
+                # ⢁⣼⣿⣿⣿⣷⣿⣿⣿⣿⣿⣻⣵⡏⠄⢈⣿⣿⣧⣠⣾⣿⣿⣔⣿⣿⣿⣿⡇
+                # ⢸⣿⣿⡍⠛⣿⣿⣿⣿⣿⣿⡿⠟⠄⠄⢸⣿⣿⣷⣿⣿⣿⣿⣻⣝⣻⡿⠋⣴
+                # ⢸⣿⣿⣿⡀⠈⠛⠛⠛⠛⠉⠄⠄⠄⠄⣸⣿⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⠄⣿
+                # ⢸⣿⣿⣿⣷⡀⠄⠄⠄⠄⠄⠄⣀⠄⢰⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⢿⣧⢸⣿
+                # ⠸⣿⣿⣿⣿⣦⣾⣷⠄⠰⠖⠄⠄⣴⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣾⣿⠏⣼⣿
+                # ⡄⢻⣿⢻⣿⣿⣿⢕⣴⣶⡤⣴⣿⣿⣿⣿⣿⣿⣿⡟⢀⣉⠛⠿⠛⣁⣼⣿⣿
+                # ⡗⢨⣭⡼⣿⣿⣿⣼⣿⣫⣾⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣶⣿⣿⣿⣿⣿
+                # ⣧⠙⠛⠿⣿⣿⣿⣿⡏⣿⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                # ⣿⣿⣾⣦⠘⢿⣿⣿⣻⣿⣿⣿⣿⣿⣿⡿⠋⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                # ⣿⣿⣿⣿⣷⣤⣈⠐⠻⠿⠿⠿⠟⠛⣉⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
+                try:
+                    voice = config["FALLBACK_VOICE"]
+                except:
+                    voice = "kanye-west-rap"
+
             log.debug(voice)
             text: str = message.split(": ")[1]
             log.debug(text)
@@ -250,7 +280,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             if job_response["detail"] == "That voice does not exist":
                 try:
                     fallback_voice: str = config["FALLBACK_VOICE"]
-                except IndexError:
+                except:
                     fallback_voice: str = "kanye-west-rap"
 
                 log.info(
@@ -488,9 +518,8 @@ def connect():
 def on_streamelements_event(data, *args):
     log.debug(data)
 
-    if (
-        data["listener"] == "tip-latest"
-        and data["event"]["amount"] >= config["MIN_TIP_AMOUNT"]
+    if data["listener"] == "tip-latest" and data["event"]["amount"] >= int(
+        config["MIN_TIP_AMOUNT"]
     ):
         message: str = data["event"]["message"]
 
