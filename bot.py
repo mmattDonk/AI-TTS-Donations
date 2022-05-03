@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import asyncio
+import contextlib
 import json
 import logging
 import os
@@ -16,6 +17,7 @@ from pathlib import Path
 from tkinter import Button, Canvas, Entry, PhotoImage, Tk
 from typing import Optional
 from uuid import UUID
+from pydub import AudioSegment
 
 import httpx
 import nest_asyncio
@@ -46,7 +48,7 @@ sio = socketio.Client()
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "3.1.0"
+VERSION: str = "3.2.0"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
@@ -172,12 +174,14 @@ def post_version_number(twitch_id: int, version: str) -> bool:
 
 def request_tts(message: str, failed: Optional[bool] = False) -> None:
     # sourcery no-metrics
+
     messages: list = message.split("||")
+    voice_files: list = []
+    date_string: str = datetime.now().strftime("%d%m%Y%H%M%S")
+
     log.debug(messages)
 
     q = queue.Queue()
-
-    voice_files: list = []
 
     for message in messages:
         log.debug(f"`{message}`")
@@ -317,7 +321,6 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                 log.debug(check_tts_response)
                 if check_tts_response["path"] != None:
                     log.info(f"TTS processed after {checkCount} checks")
-                    date_string: str = datetime.now().strftime("%d%m%Y%H%M%S")
                     urllib.request.urlretrieve(
                         check_tts_response["path"],
                         f"./voice_files/AI_voice_{date_string}.wav",
@@ -442,15 +445,41 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                         time.sleep(2)
 
     def thread_function():
+        final_file = AudioSegment.empty()
+
+        log.info("Starting to merge files (this section might take a bit...)")
+
         for _ in voice_files:
             sound = q.get()
             if sound is None:
                 return
-            sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
-            play_obj = sound_obj.play()
-            play_obj.wait_done()
-            if "./playsounds" not in sound:
-                os.remove(sound)
+            sound_obj = AudioSegment.from_file(sound)
+            final_file += sound_obj
+
+        log.info("Merging files done. Writing to file.")
+
+        final_file_name = f"./voice_files/{date_string}_final_file.wav"
+        final_file.export(final_file_name, format="wav")
+        simpleaudio_final_file = simpleaudio.WaveObject.from_wave_file(final_file_name)
+
+        log.info("Writing to file done. Playing file.")
+
+        play_obj = simpleaudio_final_file.play()
+        play_obj.wait_done()
+
+        log.info("File played. Deleting files.")
+
+        os.remove(final_file_name)
+
+        for file in voice_files:
+            if file is None:
+                return
+
+            if "./playsounds" not in file:
+                with contextlib.suppress(FileNotFoundError):
+                    os.remove(file)
+
+        log.info("Files deleted. All done!")
 
     if __name__ == "__main__":
         t = threading.Thread(target=thread_function)
@@ -551,6 +580,9 @@ def on_streamelements_event(data, *args):
 
     elif data["listener"] == "subscriber-latest" and data["event"]["amount"] >= 2:
         check_message(data)
+
+    else:
+        return
 
 
 def on_streamelements_authenticated(data):

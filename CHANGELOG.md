@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [v3.2.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.2.0)
+- [minor]: feat(core): made skip button skip everything (https://github.com/mmattDonk/AI-TTS-Donations/pull/198)
+
 ## [v3.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.0)
 - [minor]: feat(limits): added `BLACKLISTED_VOICES` limit (https://github.com/mmattDonk/AI-TTS-Donations/pull/196)
 - [minor]: feat(core): add more streamelements listeners (https://github.com/mmattDonk/AI-TTS-Donations/pull/197)
