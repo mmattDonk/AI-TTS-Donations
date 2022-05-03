@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [v3.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.0)
+- [minor]: feat(limits): added `BLACKLISTED_VOICES` limit
+
 ## [v3.0.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.0.1)
 - [patch]: fix(core): made part of config be case-insensitive
 
