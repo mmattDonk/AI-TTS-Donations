@@ -122,7 +122,7 @@ if not os.path.exists("playsounds"):
                 + "\nThis is used for the play sound functionality in the bot, things like (1) or (2). Don't remove any files from here as it could cause the functionality to not work, and in turn, the bot to not work."
             )
 
-log_level = logging.DEBUG if "dev".lower() in sys.argv else logging.INFO
+log_level = logging.DEBUG if "dev" in sys.argv else logging.INFO
 
 log: logging.Logger = logging.getLogger()
 
