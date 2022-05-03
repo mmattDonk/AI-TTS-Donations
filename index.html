@@ -138,6 +138,11 @@
 			<span class="tooltip">A list of words that will be blacklisted from the TTS, separated by commas.</span>
 		</label>
 
+		<label> Blacklisted Voices
+			<input name="BLACKLISTED_VOICES" data-type="array" type="text">
+			<span class="tooltip">A list of voices that will be blacklisted from the TTS, separated by commas.</span>
+		</label>
+
 		<label> Query Tries
 			<input name="QUERY_TRIES" type="number" value="100">
 			<span class="tooltip">The number of times to query the API for a TTS response. 100 is probably fine.</span>
@@ -159,7 +164,7 @@
 				<button value="cp">copy</button>
 				<button value="dl" data-saveas="config.json">download</button>
 			</span>
-			<textarea rows="12" readonly></textarea>
+			<textarea rows="13" readonly></textarea>
 		</div>
 	</div>
 
