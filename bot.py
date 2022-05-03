@@ -518,9 +518,7 @@ def connect():
 def on_streamelements_event(data, *args):
     log.debug(data)
 
-    if data["listener"] == "tip-latest" and data["event"]["amount"] >= int(
-        config["MIN_TIP_AMOUNT"]
-    ):
+    def check_message(data) -> None:
         message: str = data["event"]["message"]
 
         if len(message) > config["MAX_MSG_LENGTH"]:
@@ -532,7 +530,27 @@ def on_streamelements_event(data, *args):
                 log.info("Blacklisted word found")
                 return
 
+        if data["listener"] == "cheer-latest":
+            message = re.sub(
+                CHEER_REGEX,
+                "",
+                message,
+            )
+
         request_tts(message=message, failed=False)
+
+    if data["listener"] == "tip-latest" and data["event"]["amount"] >= int(
+        config["MIN_TIP_AMOUNT"]
+    ):
+        check_message(data)
+
+    elif data["listener"] == "cheer-latest" and data["event"]["amount"] >= int(
+        config["MIN_BIT_AMOUNT"]
+    ):
+        check_message(data)
+
+    elif data["listener"] == "subscriber-latest" and data["event"]["amount"] >= 2:
+        check_message(data)
 
 
 def on_streamelements_authenticated(data):

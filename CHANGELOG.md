@@ -2,6 +2,7 @@
 
 ## [v3.1.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.0)
 - [minor]: feat(limits): added `BLACKLISTED_VOICES` limit (https://github.com/mmattDonk/AI-TTS-Donations/pull/196)
+- [minor]: feat(core): 
 - [patch]: fix(core): fix some config errors and streamelements errors
 
 ## [v3.0.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.0.1)
