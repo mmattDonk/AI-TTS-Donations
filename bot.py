@@ -46,7 +46,7 @@ sio = socketio.Client()
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "3.0.1"
+VERSION: str = "3.1.0"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
@@ -210,6 +210,36 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             log.debug(message.split(": "))
 
             voice: str = message.split(": ")[0]
+
+            if voice in config["BLACKLISTED_VOICES"]:
+                log.info(f"{voice} is blacklisted, applying fallback voice.")
+
+                # There has GOT to be a better way to do optional arguments in the config.json without
+                # - using a try/excpet: maybe I'll do a `config.py` file to load the config.json
+                # - and then returns a dictionary (or a class?) with all the data. I don't know,
+                # - if you see this and know how to do that or know what I want you can go right
+                # - ahead, if I get around to it and this comment is still here then just make an issue
+                # - with these comments highlighted and "Mock" as the title.
+                # ⣿⣿⣿⣿⡿⠋⣁⣤⣴⣶⣶⣶⣤⣌⡙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                # ⣿⣿⡿⢃⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                # ⣿⡟⢠⣾⣿⣿⣿⣿⣿⠏⣉⣙⣿⣿⠿⢿⣿⣀⠙⣿⣿⣿⣿⣿⡿⠛⠛⠛⢿
+                # ⡟⢠⣿⣿⣿⡟⣡⣤⣿⣿⣿⣿⣿⢟⠁⢰⣽⣿⡃⠘⠛⣉⠙⠁⣴⣾⣿⣿⡆
+                # ⢁⣼⣿⣿⣿⣷⣿⣿⣿⣿⣿⣻⣵⡏⠄⢈⣿⣿⣧⣠⣾⣿⣿⣔⣿⣿⣿⣿⡇
+                # ⢸⣿⣿⡍⠛⣿⣿⣿⣿⣿⣿⡿⠟⠄⠄⢸⣿⣿⣷⣿⣿⣿⣿⣻⣝⣻⡿⠋⣴
+                # ⢸⣿⣿⣿⡀⠈⠛⠛⠛⠛⠉⠄⠄⠄⠄⣸⣿⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⠄⣿
+                # ⢸⣿⣿⣿⣷⡀⠄⠄⠄⠄⠄⠄⣀⠄⢰⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⢿⣧⢸⣿
+                # ⠸⣿⣿⣿⣿⣦⣾⣷⠄⠰⠖⠄⠄⣴⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣾⣿⠏⣼⣿
+                # ⡄⢻⣿⢻⣿⣿⣿⢕⣴⣶⡤⣴⣿⣿⣿⣿⣿⣿⣿⡟⢀⣉⠛⠿⠛⣁⣼⣿⣿
+                # ⡗⢨⣭⡼⣿⣿⣿⣼⣿⣫⣾⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣶⣿⣿⣿⣿⣿
+                # ⣧⠙⠛⠿⣿⣿⣿⣿⡏⣿⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                # ⣿⣿⣾⣦⠘⢿⣿⣿⣻⣿⣿⣿⣿⣿⣿⡿⠋⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                # ⣿⣿⣿⣿⣷⣤⣈⠐⠻⠿⠿⠿⠟⠛⣉⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
+                try:
+                    voice = config["FALLBACK_VOICE"]
+                except KeyError:
+                    voice = "kanye-west-rap"
+
             log.debug(voice)
             text: str = message.split(": ")[1]
             log.debug(text)
