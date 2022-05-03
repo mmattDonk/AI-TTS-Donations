@@ -237,7 +237,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
 
                 try:
                     voice = config["FALLBACK_VOICE"]
-                except KeyError:
+                except:
                     voice = "kanye-west-rap"
 
             log.debug(voice)
@@ -280,7 +280,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             if job_response["detail"] == "That voice does not exist":
                 try:
                     fallback_voice: str = config["FALLBACK_VOICE"]
-                except IndexError:
+                except:
                     fallback_voice: str = "kanye-west-rap"
 
                 log.info(
@@ -518,9 +518,8 @@ def connect():
 def on_streamelements_event(data, *args):
     log.debug(data)
 
-    if (
-        data["listener"] == "tip-latest"
-        and data["event"]["amount"] >= config["MIN_TIP_AMOUNT"]
+    if data["listener"] == "tip-latest" and data["event"]["amount"] >= int(
+        config["MIN_TIP_AMOUNT"]
     ):
         message: str = data["event"]["message"]
 
