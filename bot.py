@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import asyncio
+import contextlib
 import json
 import logging
 import os
@@ -41,12 +42,11 @@ from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
 
-sio = socketio.Client()
 
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "3.1.0"
+VERSION: str = "3.1.1"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
@@ -132,6 +132,8 @@ logging.basicConfig(
     datefmt="%X",
     handlers=[RichHandler()],
 )
+
+sio = socketio.Client(logger=log)
 
 # array of the playsounds.
 playsounds: list = []
@@ -450,7 +452,8 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             play_obj = sound_obj.play()
             play_obj.wait_done()
             if "./playsounds" not in sound:
-                os.remove(sound)
+                with contextlib.suppress(FileNotFoundError):
+                    os.remove(sound)
 
     if __name__ == "__main__":
         t = threading.Thread(target=thread_function)
