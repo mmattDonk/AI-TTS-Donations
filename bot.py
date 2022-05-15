@@ -43,7 +43,6 @@ from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
 
-sio = socketio.Client()
 
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
@@ -134,6 +133,8 @@ logging.basicConfig(
     datefmt="%X",
     handlers=[RichHandler()],
 )
+
+sio = socketio.Client(logger=log)
 
 # array of the playsounds.
 playsounds: list = []
