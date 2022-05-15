@@ -215,35 +215,37 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             log.debug(message.split(": "))
 
             voice: str = message.split(": ")[0]
+            try:
+                if voice in config["BLACKLISTED_VOICES"]:
+                    log.info(f"{voice} is blacklisted, applying fallback voice.")
 
-            if voice in config["BLACKLISTED_VOICES"]:
-                log.info(f"{voice} is blacklisted, applying fallback voice.")
+                    # There has GOT to be a better way to do optional arguments in the config.json without
+                    # - using a try/excpet: maybe I'll do a `config.py` file to load the config.json
+                    # - and then returns a dictionary (or a class?) with all the data. I don't know,
+                    # - if you see this and know how to do that or know what I want you can go right
+                    # - ahead, if I get around to it and this comment is still here then just make an issue
+                    # - with these comments highlighted and "Mock" as the title.
+                    # ⣿⣿⣿⣿⡿⠋⣁⣤⣴⣶⣶⣶⣤⣌⡙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                    # ⣿⣿⡿⢃⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                    # ⣿⡟⢠⣾⣿⣿⣿⣿⣿⠏⣉⣙⣿⣿⠿⢿⣿⣀⠙⣿⣿⣿⣿⣿⡿⠛⠛⠛⢿
+                    # ⡟⢠⣿⣿⣿⡟⣡⣤⣿⣿⣿⣿⣿⢟⠁⢰⣽⣿⡃⠘⠛⣉⠙⠁⣴⣾⣿⣿⡆
+                    # ⢁⣼⣿⣿⣿⣷⣿⣿⣿⣿⣿⣻⣵⡏⠄⢈⣿⣿⣧⣠⣾⣿⣿⣔⣿⣿⣿⣿⡇
+                    # ⢸⣿⣿⡍⠛⣿⣿⣿⣿⣿⣿⡿⠟⠄⠄⢸⣿⣿⣷⣿⣿⣿⣿⣻⣝⣻⡿⠋⣴
+                    # ⢸⣿⣿⣿⡀⠈⠛⠛⠛⠛⠉⠄⠄⠄⠄⣸⣿⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⠄⣿
+                    # ⢸⣿⣿⣿⣷⡀⠄⠄⠄⠄⠄⠄⣀⠄⢰⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⢿⣧⢸⣿
+                    # ⠸⣿⣿⣿⣿⣦⣾⣷⠄⠰⠖⠄⠄⣴⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣾⣿⠏⣼⣿
+                    # ⡄⢻⣿⢻⣿⣿⣿⢕⣴⣶⡤⣴⣿⣿⣿⣿⣿⣿⣿⡟⢀⣉⠛⠿⠛⣁⣼⣿⣿
+                    # ⡗⢨⣭⡼⣿⣿⣿⣼⣿⣫⣾⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣶⣿⣿⣿⣿⣿
+                    # ⣧⠙⠛⠿⣿⣿⣿⣿⡏⣿⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                    # ⣿⣿⣾⣦⠘⢿⣿⣿⣻⣿⣿⣿⣿⣿⣿⡿⠋⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                    # ⣿⣿⣿⣿⣷⣤⣈⠐⠻⠿⠿⠿⠟⠛⣉⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 
-                # There has GOT to be a better way to do optional arguments in the config.json without
-                # - using a try/excpet: maybe I'll do a `config.py` file to load the config.json
-                # - and then returns a dictionary (or a class?) with all the data. I don't know,
-                # - if you see this and know how to do that or know what I want you can go right
-                # - ahead, if I get around to it and this comment is still here then just make an issue
-                # - with these comments highlighted and "Mock" as the title.
-                # ⣿⣿⣿⣿⡿⠋⣁⣤⣴⣶⣶⣶⣤⣌⡙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                # ⣿⣿⡿⢃⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                # ⣿⡟⢠⣾⣿⣿⣿⣿⣿⠏⣉⣙⣿⣿⠿⢿⣿⣀⠙⣿⣿⣿⣿⣿⡿⠛⠛⠛⢿
-                # ⡟⢠⣿⣿⣿⡟⣡⣤⣿⣿⣿⣿⣿⢟⠁⢰⣽⣿⡃⠘⠛⣉⠙⠁⣴⣾⣿⣿⡆
-                # ⢁⣼⣿⣿⣿⣷⣿⣿⣿⣿⣿⣻⣵⡏⠄⢈⣿⣿⣧⣠⣾⣿⣿⣔⣿⣿⣿⣿⡇
-                # ⢸⣿⣿⡍⠛⣿⣿⣿⣿⣿⣿⡿⠟⠄⠄⢸⣿⣿⣷⣿⣿⣿⣿⣻⣝⣻⡿⠋⣴
-                # ⢸⣿⣿⣿⡀⠈⠛⠛⠛⠛⠉⠄⠄⠄⠄⣸⣿⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⠄⣿
-                # ⢸⣿⣿⣿⣷⡀⠄⠄⠄⠄⠄⠄⣀⠄⢰⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⢿⣧⢸⣿
-                # ⠸⣿⣿⣿⣿⣦⣾⣷⠄⠰⠖⠄⠄⣴⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣾⣿⠏⣼⣿
-                # ⡄⢻⣿⢻⣿⣿⣿⢕⣴⣶⡤⣴⣿⣿⣿⣿⣿⣿⣿⡟⢀⣉⠛⠿⠛⣁⣼⣿⣿
-                # ⡗⢨⣭⡼⣿⣿⣿⣼⣿⣫⣾⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣶⣿⣿⣿⣿⣿
-                # ⣧⠙⠛⠿⣿⣿⣿⣿⡏⣿⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                # ⣿⣿⣾⣦⠘⢿⣿⣿⣻⣿⣿⣿⣿⣿⣿⡿⠋⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                # ⣿⣿⣿⣿⣷⣤⣈⠐⠻⠿⠿⠿⠟⠛⣉⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-
-                try:
-                    voice = config["FALLBACK_VOICE"]
-                except:
-                    voice = "kanye-west-rap"
+                    try:
+                        voice = config["FALLBACK_VOICE"]
+                    except:
+                        voice = "kanye-west-rap"
+            except KeyError:
+                pass
 
             log.debug(voice)
             text: str = message.split(": ")[1]
