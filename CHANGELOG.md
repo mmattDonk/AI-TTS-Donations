@@ -2,7 +2,7 @@
 
 ## [v3.2.0](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.2.0)
 - [minor]: feat(core): made skip button skip everything (https://github.com/mmattDonk/AI-TTS-Donations/pull/198)
-- [patch]: fix(core): optional blacklisted_voices
+- [patch]: fix(core): added optional blacklisted_voices
 
 ## [v3.1.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.1)
 - [patch]: fix(core): fixed FileNotFound and added logging to the websocket
