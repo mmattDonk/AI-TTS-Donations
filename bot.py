@@ -336,7 +336,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                         for effect in voice_effect:
                             if effect.lower() in VOICE_EFFECTS:
                                 log.info("Voice Effect Detected: " + effect)
-                                if isinstance(VOICE_EFFECTS[effect]) == list:
+                                if type(VOICE_EFFECTS[effect]) == list:
                                     for effect_func in VOICE_EFFECTS[effect]:
                                         board.append(effect_func)
                                 else:
@@ -364,6 +364,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                                     board.append(Gain(gain_db=-15))
 
                                     effected = board(audio, sample_rate)
+                                    log.debug("?")
                                     sf.write(
                                         f"./voice_files/AI_voice_{date_string}.wav",
                                         effected,
