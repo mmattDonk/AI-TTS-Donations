@@ -6,8 +6,7 @@ import httpx
 
 class Fakeyou:
     def get_job(text: str, voice_name: str) -> dict:
-        """
-        Get the FakeYou Voice job.
+        """Get the FakeYou Voice job.
 
         :param text: The text to be spoken.
         :param voice_name: The name of the voice to be used.

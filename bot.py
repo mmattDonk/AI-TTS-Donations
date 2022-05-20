@@ -46,7 +46,7 @@ from twitchAPI.types import AuthScope
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "3.1.1"
+VERSION: str = "3.1.2"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
@@ -152,8 +152,7 @@ load_dotenv()
 
 
 def post_version_number(twitch_id: int, version: str) -> bool:
-    """
-    Posts the version number to mmatt's API for use in the Twitch Extension.
+    """Posts the version number to mmatt's API for use in the Twitch Extension.
 
     :param twitch_id: The Twitch ID to be used in teh request
     :param version: What version to update in the databse
@@ -212,35 +211,37 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             log.debug(message.split(": "))
 
             voice: str = message.split(": ")[0]
+            try:
+                if voice in config["BLACKLISTED_VOICES"]:
+                    log.info(f"{voice} is blacklisted, applying fallback voice.")
 
-            if voice in config["BLACKLISTED_VOICES"]:
-                log.info(f"{voice} is blacklisted, applying fallback voice.")
+                    # There has GOT to be a better way to do optional arguments in the config.json without
+                    # - using a try/excpet: maybe I'll do a `config.py` file to load the config.json
+                    # - and then returns a dictionary (or a class?) with all the data. I don't know,
+                    # - if you see this and know how to do that or know what I want you can go right
+                    # - ahead, if I get around to it and this comment is still here then just make an issue
+                    # - with these comments highlighted and "Mock" as the title.
+                    # ⣿⣿⣿⣿⡿⠋⣁⣤⣴⣶⣶⣶⣤⣌⡙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                    # ⣿⣿⡿⢃⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                    # ⣿⡟⢠⣾⣿⣿⣿⣿⣿⠏⣉⣙⣿⣿⠿⢿⣿⣀⠙⣿⣿⣿⣿⣿⡿⠛⠛⠛⢿
+                    # ⡟⢠⣿⣿⣿⡟⣡⣤⣿⣿⣿⣿⣿⢟⠁⢰⣽⣿⡃⠘⠛⣉⠙⠁⣴⣾⣿⣿⡆
+                    # ⢁⣼⣿⣿⣿⣷⣿⣿⣿⣿⣿⣻⣵⡏⠄⢈⣿⣿⣧⣠⣾⣿⣿⣔⣿⣿⣿⣿⡇
+                    # ⢸⣿⣿⡍⠛⣿⣿⣿⣿⣿⣿⡿⠟⠄⠄⢸⣿⣿⣷⣿⣿⣿⣿⣻⣝⣻⡿⠋⣴
+                    # ⢸⣿⣿⣿⡀⠈⠛⠛⠛⠛⠉⠄⠄⠄⠄⣸⣿⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⠄⣿
+                    # ⢸⣿⣿⣿⣷⡀⠄⠄⠄⠄⠄⠄⣀⠄⢰⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⢿⣧⢸⣿
+                    # ⠸⣿⣿⣿⣿⣦⣾⣷⠄⠰⠖⠄⠄⣴⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣾⣿⠏⣼⣿
+                    # ⡄⢻⣿⢻⣿⣿⣿⢕⣴⣶⡤⣴⣿⣿⣿⣿⣿⣿⣿⡟⢀⣉⠛⠿⠛⣁⣼⣿⣿
+                    # ⡗⢨⣭⡼⣿⣿⣿⣼⣿⣫⣾⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣶⣿⣿⣿⣿⣿
+                    # ⣧⠙⠛⠿⣿⣿⣿⣿⡏⣿⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                    # ⣿⣿⣾⣦⠘⢿⣿⣿⣻⣿⣿⣿⣿⣿⣿⡿⠋⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                    # ⣿⣿⣿⣿⣷⣤⣈⠐⠻⠿⠿⠿⠟⠛⣉⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 
-                # There has GOT to be a better way to do optional arguments in the config.json without
-                # - using a try/excpet: maybe I'll do a `config.py` file to load the config.json
-                # - and then returns a dictionary (or a class?) with all the data. I don't know,
-                # - if you see this and know how to do that or know what I want you can go right
-                # - ahead, if I get around to it and this comment is still here then just make an issue
-                # - with these comments highlighted and "Mock" as the title.
-                # ⣿⣿⣿⣿⡿⠋⣁⣤⣴⣶⣶⣶⣤⣌⡙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                # ⣿⣿⡿⢃⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                # ⣿⡟⢠⣾⣿⣿⣿⣿⣿⠏⣉⣙⣿⣿⠿⢿⣿⣀⠙⣿⣿⣿⣿⣿⡿⠛⠛⠛⢿
-                # ⡟⢠⣿⣿⣿⡟⣡⣤⣿⣿⣿⣿⣿⢟⠁⢰⣽⣿⡃⠘⠛⣉⠙⠁⣴⣾⣿⣿⡆
-                # ⢁⣼⣿⣿⣿⣷⣿⣿⣿⣿⣿⣻⣵⡏⠄⢈⣿⣿⣧⣠⣾⣿⣿⣔⣿⣿⣿⣿⡇
-                # ⢸⣿⣿⡍⠛⣿⣿⣿⣿⣿⣿⡿⠟⠄⠄⢸⣿⣿⣷⣿⣿⣿⣿⣻⣝⣻⡿⠋⣴
-                # ⢸⣿⣿⣿⡀⠈⠛⠛⠛⠛⠉⠄⠄⠄⠄⣸⣿⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⠄⣿
-                # ⢸⣿⣿⣿⣷⡀⠄⠄⠄⠄⠄⠄⣀⠄⢰⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⢿⣧⢸⣿
-                # ⠸⣿⣿⣿⣿⣦⣾⣷⠄⠰⠖⠄⠄⣴⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣾⣿⠏⣼⣿
-                # ⡄⢻⣿⢻⣿⣿⣿⢕⣴⣶⡤⣴⣿⣿⣿⣿⣿⣿⣿⡟⢀⣉⠛⠿⠛⣁⣼⣿⣿
-                # ⡗⢨⣭⡼⣿⣿⣿⣼⣿⣫⣾⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣶⣿⣿⣿⣿⣿
-                # ⣧⠙⠛⠿⣿⣿⣿⣿⡏⣿⣿⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                # ⣿⣿⣾⣦⠘⢿⣿⣿⣻⣿⣿⣿⣿⣿⣿⡿⠋⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                # ⣿⣿⣿⣿⣷⣤⣈⠐⠻⠿⠿⠿⠟⠛⣉⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-
-                try:
-                    voice = config["FALLBACK_VOICE"]
-                except:
-                    voice = "kanye-west-rap"
+                    try:
+                        voice = config["FALLBACK_VOICE"]
+                    except:
+                        voice = "kanye-west-rap"
+            except:
+                pass
 
             log.debug(voice)
             text: str = message.split(": ")[1]
@@ -335,7 +336,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                         for effect in voice_effect:
                             if effect.lower() in VOICE_EFFECTS:
                                 log.info("Voice Effect Detected: " + effect)
-                                if type(VOICE_EFFECTS[effect]) == list:
+                                if isinstance(VOICE_EFFECTS[effect]) == list:
                                     for effect_func in VOICE_EFFECTS[effect]:
                                         board.append(effect_func)
                                 else:
@@ -584,7 +585,7 @@ async def main():
         pubsub.start()
         # you can either start listening before or after you started pubsub.
         if config["BITS_OR_CHANNEL_POINTS"].lower() == "channel_points":
-            uuid = pubsub.listen_channel_points(user_id, callback_channel_points)
+            uuid: UUID = pubsub.listen_channel_points(user_id, callback_channel_points)
         elif (
             config["BITS_OR_CHANNEL_POINTS"].lower() == "bits"
             or config["BITS_OR_CHANNEL_POINTS"] is None

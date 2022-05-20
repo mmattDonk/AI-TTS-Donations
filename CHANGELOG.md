@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [v3.1.2](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.2)
+- [patch]: fix(core): maybe fix blacklisted_voices bug?
+
 ## [v3.1.1](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.1)
 - [patch]: fix(core): fixed FileNotFound and added logging to the websocket
 

@@ -11,8 +11,7 @@ load_dotenv()
 
 class Uberduck:
     def get_job(text: str, voice_name: str) -> dict:
-        """
-        Get the Uberduck Voice job.
+        """Get the Uberduck Voice job.
 
         :param text: The text to be spoken.
         :param voice_name: The name of the voice to be used.
