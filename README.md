@@ -1,6 +1,6 @@
 # AI TTS Donations
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Discord](https://img.shields.io/discord/883929594179256350?label=Discord)](https://discord.gg/mvVePs2Hs2)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/mmattDonk/AI-TTS-Donations/main.svg)](https://results.pre-commit.ci/latest/github/mmattDonk/AI-TTS-Donations/main)
@@ -53,6 +53,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://mmatt.net"><img src="https://avatars.githubusercontent.com/u/30363562?v=4?s=100" width="100px;" alt=""/><br /><sub><b>matt</b></sub></a><br /><a href="#infra-mmattbtw" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=mmattbtw" title="Code">💻</a> <a href="#design-mmattbtw" title="Design">🎨</a> <a href="#audio-mmattbtw" title="Audio">🔊</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=mmattbtw" title="Documentation">📖</a> <a href="#example-mmattbtw" title="Examples">💡</a> <a href="#maintenance-mmattbtw" title="Maintenance">🚧</a> <a href="#business-mmattbtw" title="Business development">💼</a></td>
+    <td align="center"><a href="http://12beesinatrenchcoat.github.io"><img src="https://avatars.githubusercontent.com/u/25379179?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andy Chan</b></sub></a><br /><a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=12beesinatrenchcoat" title="Documentation">📖</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=12beesinatrenchcoat" title="Code">💻</a></td>
   </tr>
 </table>
 
