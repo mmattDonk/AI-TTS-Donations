@@ -20,6 +20,16 @@
         "maintenance",
         "business"
       ]
+    },
+    {
+      "login": "12beesinatrenchcoat",
+      "name": "Andy Chan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25379179?v=4",
+      "profile": "http://12beesinatrenchcoat.github.io",
+      "contributions": [
+        "doc",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
