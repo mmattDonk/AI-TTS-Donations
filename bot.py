@@ -17,6 +17,8 @@ from pathlib import Path
 from tkinter import Button, Canvas, Entry, PhotoImage, Tk
 from typing import Optional
 from uuid import UUID
+import sentry_sdk
+
 
 import httpx
 import nest_asyncio
@@ -61,6 +63,15 @@ VOICE_EFFECTS: dict = {
     "phone": [HighpassFilter(cutoff_frequency_hz=8000), Gain(gain_db=10)],
     "muffled": [LowpassFilter(cutoff_frequency_hz=100), Gain(gain_db=16)],
 }
+
+sentry_sdk.init(
+    # hopefully this is public but if its not OOPS LMFAO
+    dsn="https://5f3066b9247248749b2f133bd672eb7d@o1284007.ingest.sentry.io/6494525",
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+)
 
 
 def path_exists(filename: str):
