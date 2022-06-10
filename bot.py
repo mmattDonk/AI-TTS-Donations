@@ -46,7 +46,7 @@ from twitchAPI.types import AuthScope
 from API.fakeyou import Fakeyou
 from API.uberduck import Uberduck
 
-VERSION: str = "3.1.2"
+VERSION: str = "3.1.3"
 
 JS_STRING: str = """<meta http-equiv="refresh" content="1">"""
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
@@ -149,6 +149,63 @@ log.debug(playsounds)
 with open("config.json", "r") as f:
     config = json.load(f)
 load_dotenv()
+
+
+def update_overlay(checkCount: int, voice: list) -> None:
+    with open("./overlay/index.html", "w") as html:
+        html_code = f"""<html>
+                        <head>
+                        {JS_STRING}
+                        <link rel="stylesheet" href="style.css">
+                        </head>
+                        <body>
+                            <div class="box">
+                                <h1>New TTS Request:</h1>
+                                <h2>Voice: {", ".join(voice)}</h2>
+                                <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
+                            </div>
+                        </body>
+                        </html>"""
+
+        html.write(html_code)
+
+
+def request_failed_overlay() -> None:
+    with open("./overlay/index.html", "w") as html:
+
+        html_code = f"""<html>
+                                            <head>
+                                            {JS_STRING}
+                                            <link rel="stylesheet" href="style.css">
+                                            </head>
+                                            <body>
+                                                <div class="box">
+                                                    <h1 style="color: red">‼️ TTS Request Failed ‼️</h1>
+                                                    <h2>Retrying...</h2>
+                                                </div>
+                                            </body>
+                                            </html>"""
+
+        html.write(html_code)
+
+
+def too_many_tries_overlay(checkCount: int) -> None:
+    with open("./overlay/index.html", "w") as html:
+
+        html_code = f"""<html>
+                            <head>
+                            {JS_STRING}
+                            <link rel="stylesheet" href="style.css">
+                            </head>
+                            <body>
+                                <div class="box">
+                                    <h1 style="color: red">‼️ TTS failed to process after {checkCount} tries. ‼️</h1>
+                                    <h2>Giving Up.</h2>
+                                </div>
+                            </body>
+                            </html>"""
+
+        html.write(html_code)
 
 
 def post_version_number(twitch_id: int, version: str) -> bool:
@@ -298,22 +355,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             waitingToProcess: bool = True
             while waitingToProcess:
                 checkCount += 1
-                with open("./overlay/index.html", "w") as html:
-                    html_code = f"""<html>
-                        <head>
-                        {JS_STRING}
-                        <link rel="stylesheet" href="style.css">
-                        </head>
-                        <body>
-                            <div class="box">
-                                <h1>New TTS Request:</h1>
-                                <h2>Voice: {", ".join(voice)}</h2>
-                                <h2>{checkCount}/{config["QUERY_TRIES"]} checks</h2>
-                            </div>
-                        </body>
-                        </html>"""
-
-                    html.write(html_code)
+                update_overlay(checkCount, voice)
 
                 check_tts_response: dict = tts_provider.check_tts(job_response["uuid"])
 
@@ -388,22 +430,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                     waitingToProcess = False
                     request_tts(message=message, failed=True)
 
-                    with open("./overlay/index.html", "w") as html:
-
-                        html_code = f"""<html>
-                                            <head>
-                                            {JS_STRING}
-                                            <link rel="stylesheet" href="style.css">
-                                            </head>
-                                            <body>
-                                                <div class="box">
-                                                    <h1 style="color: red">‼️ TTS Request Failed ‼️</h1>
-                                                    <h2>Retrying...</h2>
-                                                </div>
-                                            </body>
-                                            </html>"""
-
-                        html.write(html_code)
+                    request_failed_overlay()
 
                     time.sleep(2)
 
@@ -414,22 +441,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
                     waitingToProcess = False
-                    with open("./overlay/index.html", "w") as html:
-
-                        html_code = f"""<html>
-                            <head>
-                            {JS_STRING}
-                            <link rel="stylesheet" href="style.css">
-                            </head>
-                            <body>
-                                <div class="box">
-                                    <h1 style="color: red">‼️ TTS failed to process after {checkCount} tries. ‼️</h1>
-                                    <h2>Giving Up.</h2>
-                                </div>
-                            </body>
-                            </html>"""
-
-                        html.write(html_code)
+                    too_many_tries_overlay()
 
                     time.sleep(5)
 
