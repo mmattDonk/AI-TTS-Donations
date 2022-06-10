@@ -77,50 +77,53 @@ def reset_overlay() -> None:
         html.write(html_code)
 
 
-# TODO: Put these checks in a different file, they are just bugging me madge
-if not os.path.exists(path_exists("./overlay/index.html")):
-    reset_overlay()
+def startup_checks() -> None:
+    # TODO: Put these checks in a different file, they are just bugging me madge
+    if not os.path.exists(path_exists("./overlay/index.html")):
+        reset_overlay()
 
-if not os.path.exists(path_exists(".env")):
-    input(
-        "\n\nYou are missing the required `.env` file required to run this program."
-        + "\nPlease feel free to check out the guide in the README.md file (or on the GitHub Repo)"
-        + "\nYour file might also be misnamed, please make sure your `.env` file is named `.env` and not `env.txt` or `env`."
-        "\n\nPress enter to exit"
-    )
-    exit()
+    if not os.path.exists(path_exists(".env")):
+        input(
+            "\n\nYou are missing the required `.env` file required to run this program."
+            + "\nPlease feel free to check out the guide in the README.md file (or on the GitHub Repo)"
+            + "\nYour file might also be misnamed, please make sure your `.env` file is named `.env` and not `env.txt` or `env`."
+            "\n\nPress enter to exit"
+        )
+        exit()
 
-if not os.path.exists(path_exists("config.json")):
-    input(
-        "\n\nYou are missing the required `config.json` file required to run this program."
-        + "\nPlease feel free to checkout the guide in the README.md file (or on the GitHub Repo)"
-        + "\nYour file might also be misnamed, please make sure your `config.json` file is named `config.json` and not `config.txt` or `config`."
-        + "\n\nPress enter to exit"
-    )
-    exit()
+    if not os.path.exists(path_exists("config.json")):
+        input(
+            "\n\nYou are missing the required `config.json` file required to run this program."
+            + "\nPlease feel free to checkout the guide in the README.md file (or on the GitHub Repo)"
+            + "\nYour file might also be misnamed, please make sure your `config.json` file is named `config.json` and not `config.txt` or `config`."
+            + "\n\nPress enter to exit"
+        )
+        exit()
+
+    if not os.path.exists("voice_files"):
+        os.makedirs("voice_files")
+
+        if not os.path.exists(path_exists("./voice_files/README.md")):
+            with open("./voice_files/README.md", "w") as readme:
+                readme.write(
+                    "# This is where the voice files that get downloaded from Uberduck get stored!"
+                    + "\n## This folder should usually be empty, but if it isn't, don't worry about it."
+                    + "\nYou can delete files after they are done playing on your stream manually if you'd like. The files should be automatically deleted after being played, but sometimes that might not happen if there was a bug. The bot only plays the file once, so it isn't used after that."
+                )
+
+    if not os.path.exists("playsounds"):
+        os.makedirs("playsounds")
+
+        if not os.path.exists(path_exists("./playsounds/README.md")):
+            with open("./playsounds/README.md", "w") as readme:
+                readme.write(
+                    "# This is where the play sounds are stored!"
+                    + "\n## **DO NOT** REMOVE ANY SOUNDS FROM THIS FOLDER!"
+                    + "\nThis is used for the play sound functionality in the bot, things like (1) or (2). Don't remove any files from here as it could cause the functionality to not work, and in turn, the bot to not work."
+                )
 
 
-if not os.path.exists("voice_files"):
-    os.makedirs("voice_files")
-
-    if not os.path.exists(path_exists("./voice_files/README.md")):
-        with open("./voice_files/README.md", "w") as readme:
-            readme.write(
-                "# This is where the voice files that get downloaded from Uberduck get stored!"
-                + "\n## This folder should usually be empty, but if it isn't, don't worry about it."
-                + "\nYou can delete files after they are done playing on your stream manually if you'd like. The files should be automatically deleted after being played, but sometimes that might not happen if there was a bug. The bot only plays the file once, so it isn't used after that."
-            )
-
-if not os.path.exists("playsounds"):
-    os.makedirs("playsounds")
-
-    if not os.path.exists(path_exists("./playsounds/README.md")):
-        with open("./playsounds/README.md", "w") as readme:
-            readme.write(
-                "# This is where the play sounds are stored!"
-                + "\n## **DO NOT** REMOVE ANY SOUNDS FROM THIS FOLDER!"
-                + "\nThis is used for the play sound functionality in the bot, things like (1) or (2). Don't remove any files from here as it could cause the functionality to not work, and in turn, the bot to not work."
-            )
+startup_checks()
 
 log_level = logging.DEBUG if "dev" in sys.argv else logging.INFO
 
@@ -133,7 +136,7 @@ logging.basicConfig(
     handlers=[RichHandler()],
 )
 
-sio = socketio.Client(logger=log)
+sio = socketio.AsyncClient(logger=log)
 
 # array of the playsounds.
 playsounds: list = []
@@ -526,8 +529,8 @@ def callback_bits(uuid: UUID, data: dict, failed: Optional[bool] = False) -> Non
     request_tts(message=message, failed=False)
 
 
-def connect():
-    sio.emit(
+async def connect():
+    await sio.emit(
         "authenticate", {"method": "jwt", "token": os.environ.get("STREAMELEMENTS_JWT")}
     )
 
@@ -615,8 +618,11 @@ async def main():
         sio.on("event", on_streamelements_event)
         sio.on("event:test", on_streamelements_event)
         sio.on("authenticated", on_streamelements_authenticated)
+        sio.on("unauthorized", log.info("Could not authorize StreamElements"))
 
-        sio.connect("https://realtime.streamelements.com", transports=["websocket"])
+        await sio.connect(
+            "https://realtime.streamelements.com", transports=["websocket"]
+        )
 
     log.info("Pubsub Ready!")
 
