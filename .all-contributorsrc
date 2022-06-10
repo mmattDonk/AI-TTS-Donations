@@ -20,6 +20,16 @@
         "maintenance",
         "business"
       ]
+    },
+    {
+      "login": "MrAuro",
+      "name": "Auro",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35087590?v=4",
+      "profile": "http://mrauro.dev",
+      "contributions": [
+        "doc",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
