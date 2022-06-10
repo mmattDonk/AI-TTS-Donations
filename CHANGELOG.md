@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [v3.1.3](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.3)
+- [patch]: refactor(core): move HTML overlay code outside of the main `request_tts` function
+
 ## [v3.1.2](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.2)
 - [patch]: fix(core): maybe fix blacklisted_voices bug?
 
