@@ -30,7 +30,8 @@
         "doc",
         "code"
       ]
-    }
+    },
+    {
       "login": "MrAuro",
       "name": "Auro",
       "avatar_url": "https://avatars.githubusercontent.com/u/35087590?v=4",
@@ -39,7 +40,7 @@
         "doc",
         "code"
       ]
-    }
+    },
   ],
   "contributorsPerLine": 7,
   "projectName": "AI-TTS-Donations",
