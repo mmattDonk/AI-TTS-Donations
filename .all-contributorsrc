@@ -20,6 +20,15 @@
         "maintenance",
         "business"
       ]
+    },
+    {
+      "login": "mopoIo",
+      "name": "mopolo#1020",
+      "avatar_url": "https://avatars.githubusercontent.com/u/41168773?v=4",
+      "profile": "https://github.com/mopoIo",
+      "contributions": [
+        "audio"
+      ]
     }
   ],
   "contributorsPerLine": 7,
