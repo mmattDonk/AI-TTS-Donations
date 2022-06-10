@@ -29,7 +29,27 @@
       "contributions": [
         "audio"
       ]
-    }
+    },
+    {
+      "login": "12beesinatrenchcoat",
+      "name": "Andy Chan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25379179?v=4",
+      "profile": "http://12beesinatrenchcoat.github.io",
+      "contributions": [
+        "doc",
+        "code"
+      ]
+    },
+    {
+      "login": "MrAuro",
+      "name": "Auro",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35087590?v=4",
+      "profile": "http://mrauro.dev",
+      "contributions": [
+        "doc",
+        "code"
+      ]
+    },
   ],
   "contributorsPerLine": 7,
   "projectName": "AI-TTS-Donations",
