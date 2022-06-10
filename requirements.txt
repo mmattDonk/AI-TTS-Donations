@@ -4,8 +4,8 @@ nest-asyncio==1.5.5
 pedalboard==0.5.4
 python-socketio[client]==5.6.0
 python_dotenv == 0.20.0
-rich == 12.4.1
+rich == 12.4.4
 git+https://github.com/jps-aldridge/py-simple-audio@master#egg=simpleaudio
 SoundFile==0.10.3.post1
-twitchAPI==2.5.3
+twitchAPI==2.5.5
 wheel==0.37.1
