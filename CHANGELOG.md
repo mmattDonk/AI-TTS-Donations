@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [v3.1.4](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.4)
+## [v3.1.5](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.5)
 - [patch]: refactor(core): performance improvements for Uberduck (#225)
 
 ## [v3.1.3](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.3)
