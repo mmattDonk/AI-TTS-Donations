@@ -452,7 +452,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                         f"Failed to recieve a processed TTS after {checkCount} checks. Giving up."
                     )
                     waitingToProcess = False
-                    too_many_tries_overlay()
+                    too_many_tries_overlay(checkCount)
 
                     time.sleep(5)
 
