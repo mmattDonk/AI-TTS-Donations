@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import contextlib
 import logging
 import os
+import re
 
 import httpx
 from dotenv import load_dotenv
@@ -26,6 +28,8 @@ class Uberduck:
         """
 
         log.debug(f"{text} - {voice_name}")
+        text = "\n".join(re.split(r"(?<=[\.\!\?])\s*", re.sub(r'[-"]', "", text)))
+        log.debug(text)
 
         response = httpx.post(
             "https://api.uberduck.ai/speak",

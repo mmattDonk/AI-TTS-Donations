@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [v3.1.4](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.4)
+- [patch]: refactor(core): performance improvements for Uberduck
+
 ## [v3.1.3](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.3)
 - [minor]: feat(core): add sentry error report tracking (#219)
 - [patch]: refactor(core): move HTML overlay code outside of the main `request_tts` function (#217)
