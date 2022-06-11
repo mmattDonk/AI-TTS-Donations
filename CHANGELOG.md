@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## [v3.1.4](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.4)
-- [patch]: refactor(core): performance improvements for Uberduck
+- [patch]: refactor(core): performance improvements for Uberduck (#225)
 
 ## [v3.1.3](https://github.com/mmattDonk/AI-TTS-Donations/releases/tag/v3.1.3)
 - [minor]: feat(core): add sentry error report tracking (#219)
