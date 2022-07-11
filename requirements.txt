@@ -5,7 +5,7 @@ pedalboard==0.5.4
 python-socketio[client]==5.7.0
 python_dotenv == 0.20.0
 rich == 12.4.4
-sentry-sdk==1.6.0
+sentry-sdk==1.7.0
 git+https://github.com/jps-aldridge/py-simple-audio@master#egg=simpleaudio
 SoundFile==0.10.3.post1
 twitchAPI==2.5.5
