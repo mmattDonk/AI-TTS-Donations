@@ -9,6 +9,7 @@
 
 💰 A bot that uses Uberduck (and now FakeYou!) AI to make bit (or channel points or streamelements tips!) donations have an AI voice.
 
+🇪🇸 Una versión en Español del bot puede ser encontrada [aquí](https://github.com/mopoIo/AI-TTS-Donations/).
 ### 👀 Are you a viewer?
 Check the instructions [here!](https://mmatt.link/UseTTS)
 
@@ -28,7 +29,7 @@ Check the instructions [here!](https://mmatt.link/UseTTS)
     * Simply enter in the required keys into the website, then download the configuration files and put them into your bot's folder.
 1. Install Prerequisites
     * [On Windows] Open the `scripts` folder, then run the `install-python.bat` file and the `install-git.bat` file. This will install everything you need.
-    * [On Macos/Linux] Install Python and Git [(using the links above)](#🔧-prerequisites). Then install the dependencies by running `pip install -r requirements.txt`.
+    * [On Macos/Linux] Install Python and Git [(using the links above)](#-prerequisites). Then install the dependencies by running `pip install -r requirements.txt`.
 1. Start the bot - Open `bot.py`
     * You can open this in a Terminal too: `python bot.py`
 
@@ -53,7 +54,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://mmatt.net"><img src="https://avatars.githubusercontent.com/u/30363562?v=4?s=100" width="100px;" alt=""/><br /><sub><b>matt</b></sub></a><br /><a href="#infra-mmattbtw" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=mmattbtw" title="Code">💻</a> <a href="#design-mmattbtw" title="Design">🎨</a> <a href="#audio-mmattbtw" title="Audio">🔊</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=mmattbtw" title="Documentation">📖</a> <a href="#example-mmattbtw" title="Examples">💡</a> <a href="#maintenance-mmattbtw" title="Maintenance">🚧</a> <a href="#business-mmattbtw" title="Business development">💼</a></td>
-    <td align="center"><a href="https://github.com/mopoIo"><img src="https://avatars.githubusercontent.com/u/41168773?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mopolo#1020</b></sub></a><br /><a href="#audio-mopoIo" title="Audio">🔊</a></td>
+    <td align="center"><a href="https://github.com/mopoIo"><img src="https://avatars.githubusercontent.com/u/41168773?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mopolo</b></sub></a><br /><a href="#audio-mopoIo" title="Audio">🔊</a></td>
     <td align="center"><a href="http://12beesinatrenchcoat.github.io"><img src="https://avatars.githubusercontent.com/u/25379179?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andy Chan</b></sub></a><br /><a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=12beesinatrenchcoat" title="Documentation">📖</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=12beesinatrenchcoat" title="Code">💻</a></td>
     <td align="center"><a href="http://mrauro.dev"><img src="https://avatars.githubusercontent.com/u/35087590?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Auro</b></sub></a><br /><a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=MrAuro" title="Documentation">📖</a> <a href="https://github.com/mmattDonk/AI-TTS-Donations/commits?author=MrAuro" title="Code">💻</a></td>
   </tr>
