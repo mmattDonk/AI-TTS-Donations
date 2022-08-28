@@ -50,8 +50,8 @@ const Dashboard: NextPage = () => {
             <>
               <p>
                 your overlay URL:{" "}
-                {process.env.VERCEL
-                  ? process.env.VERCEL_URL
+                {process.env.VERCEL_URL
+                  ? `${process.env.VERCEL_URL}`
                   : "http://localhost:3000/overlay/"}
                 {userData?.streamers[0]?.overlayId}
               </p>
