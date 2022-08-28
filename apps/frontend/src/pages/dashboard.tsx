@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import LoadingPage, { LoadingSpinner } from "../components/Loading";
 import Spring from "../components/Spring";
 import { trpc } from "../utils/trpc";
+import { getBaseUrl } from "./_app";
 
 const Dashboard: NextPage = () => {
   const { data: session, isLoading: isSessionLoading } = trpc.useQuery([
@@ -49,10 +50,7 @@ const Dashboard: NextPage = () => {
           ) : (
             <>
               <p>
-                your overlay URL:{" "}
-                {process.env.VERCEL_URL
-                  ? `${process.env.VERCEL_URL}`
-                  : "http://localhost:3000/overlay/"}
+                your overlay URL: {getBaseUrl() + "/overlay/"}
                 {userData?.streamers[0]?.overlayId}
               </p>
             </>
