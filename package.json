@@ -1,0 +1,12 @@
+{
+  "name": "solrock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "pnpm --filter @solrock/frontend -- "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
