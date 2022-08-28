@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate --data-proxy"
+    "postinstall": "prisma generate --data-proxy",
+    "prisma": "prisma"
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.78",

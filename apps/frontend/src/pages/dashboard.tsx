@@ -1,13 +1,17 @@
 import { Avatar, Button, Container, Group, Stack } from "@mantine/core";
 import { NextPage } from "next";
 import { signIn } from "next-auth/react";
-import LoadingPage from "../components/Loading";
+import LoadingPage, { LoadingSpinner } from "../components/Loading";
 import Spring from "../components/Spring";
 import { trpc } from "../utils/trpc";
 
 const Dashboard: NextPage = () => {
   const { data: session, isLoading: isSessionLoading } = trpc.useQuery([
     "auth.getSession",
+  ]);
+  const { data: userData, isLoading } = trpc.useQuery([
+    "user.get-user",
+    session?.user?.name ?? "",
   ]);
 
   if (isSessionLoading) return <LoadingPage />;
@@ -40,6 +44,19 @@ const Dashboard: NextPage = () => {
             <Avatar src={session.user?.image} size="lg" />
             <h1>Logged in as {session.user?.name}</h1>
           </Group>
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <>
+              <p>
+                your overlay URL:{" "}
+                {process.env.VERCEL
+                  ? process.env.VERCEL_URL
+                  : "http://localhost:3000/overlay/"}
+                {userData?.streamers[0]?.overlayId}
+              </p>
+            </>
+          )}
         </Spring>
       </Container>
     );

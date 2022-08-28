@@ -1,9 +1,25 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
+import NextAuth, { User, type NextAuthOptions } from "next-auth";
 import TwitchProvider from "next-auth/providers/twitch";
 
 // Prisma adapter for NextAuth, optional and can be removed
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "../../../server/db/client";
+
+async function createStreamerIfNotExists(user: User) {
+  if (
+    !(await prisma.streamer.findFirst({
+      where: {
+        id: user.id,
+      },
+    }))
+  ) {
+    await prisma.streamer.create({
+      data: {
+        id: user.id,
+      },
+    });
+  }
+}
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -16,6 +32,21 @@ export const authOptions: NextAuthOptions = {
     }),
     // ...add more providers here
   ],
+  events: {
+    createUser: async (user) => {
+      await prisma.streamer.create({
+        data: {
+          id: user.user.id,
+        },
+      });
+    },
+    updateUser: async (user) => {
+      await createStreamerIfNotExists(user.user);
+    },
+    signIn: async (user) => {
+      await createStreamerIfNotExists(user.user);
+    },
+  },
 };
 
 export default NextAuth(authOptions);
