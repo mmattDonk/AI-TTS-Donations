@@ -1,0 +1,21 @@
+ci:
+  autofix_commit_msg: |
+    chore(pre-commit): auto fixes from pre-commit.com hooks
+
+    for more information, see https://pre-commit.ci
+
+  autoupdate_commit_msg: |
+    chore(pre-commit): pre-commit autoupdate
+
+    for more information, see https://pre-commit.ci
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: CHANGELOG.md
+      - id: end-of-file-fixer
+        exclude: CHANGELOG.md
+      - id: check-shebang-scripts-are-executable
+      - id: fix-encoding-pragma
