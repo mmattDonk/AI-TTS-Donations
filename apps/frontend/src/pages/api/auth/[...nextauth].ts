@@ -29,6 +29,12 @@ export const authOptions: NextAuthOptions = {
     TwitchProvider({
       clientId: process.env.TWITCH_ID ?? "",
       clientSecret: process.env.TWITCH_SECRET ?? "",
+      authorization: {
+        params: {
+          scope:
+            "openid user:read:email channel:read:redemptions channel:read:subscriptions bits:read",
+        },
+      },
     }),
     // ...add more providers here
   ],
