@@ -1,0 +1,13 @@
+{
+  "name": "@solrock/processor",
+  "version": "0.0.1",
+  "description": "python audio processor.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "mmattbtw <matt@mmatt.net>",
+  "license": "ISC",
+  "private": true
+}

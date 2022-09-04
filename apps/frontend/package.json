@@ -1,6 +1,7 @@
 {
   "name": "@solrock/frontend",
-  "version": "0.1.0",
+  "version": "0.0.1",
+  "description": "frontend dashboard and overlay.",
   "private": true,
   "scripts": {
     "dev": "next dev",

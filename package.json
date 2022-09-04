@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "frontend": "pnpm --filter @solrock/frontend -- "
+    "frontend": "pnpm --filter @solrock/frontend -- ",
+    "backend": "pnpm --filter @solrock/backend -- ",
+    "processor": "pnpm --filter @solrock/processor -- "
   },
   "keywords": [],
-  "author": "",
+  "author": "mmattbtw <matt@mmatt.net>",
   "license": "ISC"
 }
