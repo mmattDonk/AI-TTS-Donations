@@ -1,7 +1,8 @@
 {
   "name": "solrock",
   "version": "1.0.0",
-  "description": "",
+  "description": "the new ai tts donations",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "frontend": "pnpm --filter @solrock/frontend -- ",
