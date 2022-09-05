@@ -4,3 +4,4 @@ __pycache__
 voice_files
 .DS_Store
 upbeat-airfoil-361520-c46e5c4a5b6d.json
+.pytest_cache

@@ -4,7 +4,7 @@
   "description": "python audio processor.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "source ./.venv/bin/activate && python3 main.py"
   },
   "keywords": [],
   "author": "mmattbtw <matt@mmatt.net>",
