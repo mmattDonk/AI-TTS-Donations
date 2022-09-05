@@ -1,0 +1,4 @@
+generator py {
+  provider             = "prisma-client-py"
+  recursive_type_depth = -1
+}

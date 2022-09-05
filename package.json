@@ -7,7 +7,8 @@
   "scripts": {
     "frontend": "yarn workspace @solrock/frontend",
     "backend": "yarn workspace @solrock/backend",
-    "processor": "yarn workspace @solrock/processor"
+    "processor": "yarn workspace @solrock/processor",
+    "prisma": "yarn workspace @solrock/prisma"
   },
   "keywords": [],
   "workspaces": [

@@ -1,0 +1,3 @@
+generator ts {
+  provider = "prisma-client-js"
+}
