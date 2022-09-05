@@ -4,7 +4,7 @@ import TwitchProvider from "next-auth/providers/twitch";
 // Prisma adapter for NextAuth, optional and can be removed
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { withSentry } from "@sentry/nextjs";
-import { prisma } from "../../../server/db/client";
+import { prisma } from "@solrock/prisma";
 
 async function createStreamerIfNotExists(user: User) {
   if (

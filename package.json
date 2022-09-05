@@ -5,11 +5,14 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "frontend": "pnpm --filter @solrock/frontend -- ",
-    "backend": "pnpm --filter @solrock/backend -- ",
-    "processor": "pnpm --filter @solrock/processor -- "
+    "frontend": "yarn workspace @solrock/frontend",
+    "backend": "yarn workspace @solrock/backend",
+    "processor": "yarn workspace @solrock/processor"
   },
   "keywords": [],
+  "workspaces": [
+    "apps/*"
+  ],
   "author": "mmattbtw <matt@mmatt.net>",
   "license": "ISC"
 }

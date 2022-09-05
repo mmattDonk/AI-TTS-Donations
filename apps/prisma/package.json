@@ -1,0 +1,22 @@
+{
+  "name": "@solrock/prisma",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "prisma generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prisma": "^4.3.1",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.3.1"
+  }
+}

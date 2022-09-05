@@ -8,7 +8,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate --data-proxy",
     "prisma": "prisma"
   },
   "dependencies": {
@@ -18,8 +17,8 @@
     "@mantine/hooks": "^4.2.12",
     "@mantine/next": "^4.2.12",
     "@next-auth/prisma-adapter": "^1.0.3",
-    "@prisma/client": "^4.0.0",
     "@sentry/nextjs": "^7.12.1",
+    "@solrock/prisma": "workspace:*",
     "@trpc/client": "^9.25.3",
     "@trpc/next": "^9.25.3",
     "@trpc/react": "^9.25.3",
@@ -44,7 +43,6 @@
     "@types/react-typist": "^2.0.3",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
-    "prisma": "^4.0.0",
     "typescript": "4.7.4"
   }
 }
