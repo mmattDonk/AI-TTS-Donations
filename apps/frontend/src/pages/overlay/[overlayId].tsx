@@ -33,6 +33,7 @@ export default function Overlay({
     console.log(PUSHER_APP_KEY);
     const channel = pusher.subscribe(overlayId as string);
     channel.bind("new-file", (data: { file: string }) => {
+      console.log(data.file);
       setAudioFile(data.file);
     });
     channel.bind("connected", () => {
@@ -45,5 +46,17 @@ export default function Overlay({
     };
   });
 
-  return <div>{audioFile && <audio src={audioFile} autoPlay />}</div>;
+  return (
+    <div>
+      {audioFile && (
+        <audio
+          src={audioFile}
+          onEnded={() => {
+            setAudioFile(null);
+          }}
+          autoPlay
+        />
+      )}
+    </div>
+  );
 }

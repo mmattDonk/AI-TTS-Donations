@@ -82,7 +82,7 @@ const features = [
   {
     icon: Globe,
     title: "Open Source",
-    description: `AI TTS Donations is completely open sourced under the 'GPL-3.0' licence. You can view the Source Code and contribute to it on the GitHub page.`,
+    description: `AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.`,
   },
   {
     icon: Volume,

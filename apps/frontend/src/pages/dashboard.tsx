@@ -13,6 +13,13 @@ import LoadingPage, { LoadingSpinner } from "../components/Loading";
 import Spring from "../components/Spring";
 import { trpc } from "../utils/trpc";
 
+export async function getInitialProps(ctx: NextPageContext) {
+  const { req } = ctx;
+  if (req) {
+    return { baseUrl: req.headers.host };
+  }
+}
+
 export default function Dashboard({ baseUrl }: { baseUrl: string }) {
   const router = useRouter();
   const { data: session, isLoading: isSessionLoading } = trpc.useQuery([
@@ -82,10 +89,3 @@ export default function Dashboard({ baseUrl }: { baseUrl: string }) {
 
   return <LoadingPage />;
 }
-
-Dashboard.getInitialProps = async (ctx: NextPageContext) => {
-  const { req } = ctx;
-  if (req) {
-    return { baseUrl: req.headers.host };
-  }
-};
