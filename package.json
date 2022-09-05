@@ -14,5 +14,8 @@
     "apps/*"
   ],
   "author": "mmattbtw <matt@mmatt.net>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^2.7.1"
+  }
 }
