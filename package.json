@@ -14,7 +14,7 @@
     "apps/*"
   ],
   "author": "mmattbtw <matt@mmatt.net>",
-  "license": "ISC",
+  "license": "AGPL-3",
   "devDependencies": {
     "prettier": "^2.7.1",
     "vercel": "^28.2.2"

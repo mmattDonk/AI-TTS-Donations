@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "frontend dashboard and overlay.",
   "private": true,
+  "license": "AGPL-3",
+  "author": "mmattbtw <matt@mmatt.net>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
