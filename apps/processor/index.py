@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import contextlib
-import json
 import logging
 import os
 import queue
@@ -21,6 +19,7 @@ from dotenv import load_dotenv
 from pedalboard import (Chorus, Distortion, Gain, HighpassFilter, Limiter,
                         LowpassFilter, Pedalboard, PitchShift, Resample,
                         Reverb)
+from pydub import AudioSegment
 from rich.logging import RichHandler
 
 from API.fakeyou import Fakeyou
@@ -80,8 +79,8 @@ playsounds.sort(
 
 log.debug(playsounds)
 
-with open("config.json", "r") as f:
-    config = json.load(f)
+# with open("config.json", "r") as f:
+#     config = json.load(f)
 load_dotenv()
 
 def request_tts(message: str, failed: Optional[bool] = False) -> None:
@@ -111,15 +110,15 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
         try:
             log.debug(message.split(": "))
             voice: str = message.split(": ")[0]
-            try:
-                if voice in config["BLACKLISTED_VOICES"]:
-                    log.info(f"{voice} is blacklisted, applying fallback voice.")
-                    try:
-                        voice = config["FALLBACK_VOICE"]
-                    except Exception:
-                        voice = "kanye-west-rap"
-            except Exception:
-                pass
+            # try:
+            #     if voice in config["BLACKLISTED_VOICES"]:
+            #         log.info(f"{voice} is blacklisted, applying fallback voice.")
+            #         try:
+            #             voice = config["FALLBACK_VOICE"]
+            #         except Exception:
+            #             voice = "kanye-west-rap"
+            # except Exception:
+            #     pass
             log.debug(voice)
             text: str = message.split(": ")[1]
             log.debug(text)
@@ -135,10 +134,10 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
         log.debug(f"voice: {voice_name}")
         log.debug(f"voice var: {voice}")
         tts_provider = None
-        try:
-            voice_name = config["VOICE_ALIASES"][voice_name]
-        except KeyError:
-            voice_name = voice_name
+        # try:
+        #     voice_name = config["VOICE_ALIASES"][voice_name]
+        # except KeyError:
+        #     voice_name = voice_name
         if voice_name.startswith("TM:"):
             tts_provider = Fakeyou
         else:
@@ -147,10 +146,10 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
         job_response: dict = tts_provider.get_job(text, voice_name)
         log.debug(job_response)
         if job_response["detail"] != None and job_response["detail"] == "That voice does not exist":
-            try:
-                fallback_voice: str = config["FALLBACK_VOICE"]
-            except Exception:
-                fallback_voice: str = "kanye-west-rap"
+            # try:
+            #     fallback_voice: str = config["FALLBACK_VOICE"]
+            # except Exception:
+            fallback_voice: str = "kanye-west-rap"
             log.info("Couldn't find voice specified, using fallback voice: " + fallback_voice)
 
             job_response: dict = Uberduck.get_job(text, fallback_voice)
@@ -195,29 +194,33 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                     waitingToProcess = False
                     request_tts(message=message, failed=True)
                     time.sleep(2)
-                elif checkCount > config["QUERY_TRIES"]:
+                elif checkCount > 100:
                     log.info(f"Failed to recieve a processed TTS after {checkCount} checks. Giving up.")
 
                     waitingToProcess = False
                     time.sleep(5)
                 else:
-                    log.info(f"Waiting for TTS to finish processing. {checkCount}/{config['QUERY_TRIES']} checks")
+                    log.info(f"Waiting for TTS to finish processing. {checkCount}/100 checks")
 
                     if not failed:
                         time.sleep(1)
                     else:
                         time.sleep(2)
     def thread_function():
+        final_file = AudioSegment.empty()
+        log.info("Starting to merge files (this section might take a bit...)")
         for _ in voice_files:
             sound = q.get()
             if sound is None:
                 return
-            sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
-            play_obj = sound_obj.play()
-            play_obj.wait_done()
-            if "./playsounds" not in sound:
-                with contextlib.suppress(FileNotFoundError):
-                    os.remove(sound)
+            sound_obj = AudioSegment.from_file(sound)
+            final_file += sound_obj
+
+        log.info("Merging files done. Writing to file.")
+
+        final_file_name = f"./voice_files/{date_string}_final_file.wav"
+        final_file.export(final_file_name, format="wav")
+        simpleaudio_final_file = simpleaudio.WaveObject.from_wave_file(final_file_name)
 
     if __name__ == "__main__":
         t = threading.Thread(target=thread_function)
@@ -227,7 +230,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             time.sleep(1)
         t.join()
 
-def test_tts() -> None:
+def test_tts(message: str) -> None:
     log.info("Testing TTS")
     if not message:
         return
@@ -237,9 +240,11 @@ def test_tts() -> None:
         message,
     )
 
-    for i in config["BLACKLISTED_WORDS"]:
-        if i in message.lower():
-            log.info("Blacklisted word found")
-            return
+    # for i in config["BLACKLISTED_WORDS"]:
+    #     if i in message.lower():
+    #         log.info("Blacklisted word found")
+    #         return
 
     request_tts(message=message, failed=False)
+
+test_tts("spongebob: test")
