@@ -13,12 +13,12 @@ from typing import Optional
 
 import functions_framework
 import pusher
-import soundfile as sf
 from dotenv import load_dotenv
 from google.cloud import storage
 from pedalboard import (Chorus, Distortion, Gain, HighpassFilter, Limiter,
                         LowpassFilter, Pedalboard, PitchShift, Resample,
                         Reverb)
+from pedalboard.io import AudioFile
 from pydub import AudioSegment
 from rich.logging import RichHandler
 
@@ -173,24 +173,28 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
                     urllib.request.urlretrieve(check_tts_response["path"], f"./voice_files/AI_voice_{date_string}.wav")
 
                     if voice_effect:
-                        audio, sample_rate = sf.read(f"./voice_files/AI_voice_{date_string}.wav")
-                        board = Pedalboard([])
-                        for effect in voice_effect:
-                            if effect.lower() in VOICE_EFFECTS:
-                                log.info(f"Voice Effect Detected: {effect}")
-                                if type(VOICE_EFFECTS[effect]) == list:
-                                    for effect_func in VOICE_EFFECTS[effect]:
-                                        board.append(effect_func)
-                                else:
-                                    board.append(VOICE_EFFECTS[effect])
-                        effected = board(audio, sample_rate)
-                        sf.write(f"./voice_files/AI_voice_{date_string}.wav", effected, sample_rate)
-                        for effect in voice_effect:
-                            if effect.lower() in VOICE_EFFECTS and effect == "loud":
-                                board.append(Gain(gain_db=-15))
-                                effected = board(audio, sample_rate)
-                                log.debug("?")
-                                sf.write(f"./voice_files/AI_voice_{date_string}.wav", effected, sample_rate)
+                        with AudioFile(f"./voice_files/AI_voice_{date_string}.wav") as f:
+                            audio = f.read()
+                            sample_rate = f.samplerate
+                            board = Pedalboard([])
+                            for effect in voice_effect:
+                                if effect.lower() in VOICE_EFFECTS:
+                                    log.info(f"Voice Effect Detected: {effect}")
+                                    if type(VOICE_EFFECTS[effect]) == list:
+                                        for effect_func in VOICE_EFFECTS[effect]:
+                                            board.append(effect_func)
+                                    else:
+                                        board.append(VOICE_EFFECTS[effect])
+                            effected = board(audio, sample_rate)
+                            with AudioFile(f"./voice_files/AI_voice_{date_string}.wav", "w") as f:
+                                f.write(effected, sample_rate)
+                            for effect in voice_effect:
+                                if effect.lower() in VOICE_EFFECTS and effect == "loud":
+                                    board.append(Gain(gain_db=-15))
+                                    effected = board(audio, sample_rate)
+                                    log.debug("?")
+                                    with AudioFile(f"./voice_files/AI_voice_{date_string}.wav", "w") as f:
+                                        f.write(effected, sample_rate)
                     time.sleep(1)
                     voice_files.append(f"./voice_files/AI_voice_{date_string}.wav")
                     time.sleep(1)
@@ -213,7 +217,6 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
                     else:
                         time.sleep(2)
     def thread_function():
-        print("HELLO???")
         final_file = AudioSegment.empty()
         log.info("Starting to merge files (this section might take a bit...)")
         for _ in voice_files:
@@ -239,7 +242,6 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
         })
         return "success!"
 
-    print("PLEASE???")
     t = threading.Thread(target=thread_function)
     t.start()
     for voice_file in voice_files:
