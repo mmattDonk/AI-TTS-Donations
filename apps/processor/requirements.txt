@@ -8,3 +8,4 @@ wheel==0.37.1
 pydub==0.25.1
 functions-framework==3.*
 google-cloud-storage==2.5.0
+pusher == 3.2.0

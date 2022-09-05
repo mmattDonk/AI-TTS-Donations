@@ -12,7 +12,7 @@ from datetime import datetime
 from typing import Optional
 
 import functions_framework
-import sentry_sdk
+import pusher
 import soundfile as sf
 from dotenv import load_dotenv
 from google.cloud import storage
@@ -38,10 +38,10 @@ VOICE_EFFECTS: dict = {
     "muffled": [LowpassFilter(cutoff_frequency_hz=100), Gain(gain_db=16)],
 }
 
-sentry_sdk.init(
-    dsn="https://5f3066b9247248749b2f133bd672eb7d@o1284007.ingest.sentry.io/6494525",
-    traces_sample_rate=1.0,
-)
+# sentry_sdk.init(
+#     dsn="https://5f3066b9247248749b2f133bd672eb7d@o1284007.ingest.sentry.io/6494525",
+#     traces_sample_rate=1.0,
+# )
 
 def path_exists(filename: str):
     return os.path.join(".", f"{filename}")
@@ -82,8 +82,14 @@ log.debug(playsounds)
 # with open("config.json", "r") as f:
 #     config = json.load(f)
 load_dotenv()
+pusher_client = pusher.Pusher(
+    app_id=os.getenv("PUSHER_APP_ID"),
+    key=os.getenv("PUSHER_KEY"),
+    secret=os.getenv("PUSHER_SECRET"),
+    cluster=os.getenv("PUSHER_CLUSTER"),
+)
 
-def request_tts(message: str, failed: Optional[bool] = False) -> None:
+def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "") -> None:
     messages: list = message.split("||")
     log.debug(messages)
     q = queue.Queue()
@@ -228,6 +234,10 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
 
         blob.upload_from_filename(final_file_name)
 
+        pusher_client.trigger(overlayId, 'new-file', {
+            'file': blob.public_url
+        })
+        return "success!"
 
     print("PLEASE???")
     t = threading.Thread(target=thread_function)
@@ -237,24 +247,10 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
         time.sleep(1)
     t.join()
 
-def test_tts(message: str) -> None:
-    log.info("Testing TTS")
-    if not message:
-        return
-    message = re.sub(
-        CHEER_REGEX,
-        "",
-        message,
-    )
-
     # for i in config["BLACKLISTED_WORDS"]:
     #     if i in message.lower():
     #         log.info("Blacklisted word found")
     #         return
-
-    request_tts(message=message, failed=False)
-
-# test_tts("spongebob: test")
 
 @functions_framework.http
 def hello_http(request):
@@ -268,9 +264,25 @@ def hello_http(request):
        <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
    """
     request_json = request.get_json(silent=True)
-
-
     message = request_json["message"]
-    response = request_tts(message)
+    message = re.sub(
+        CHEER_REGEX,
+        "",
+        message,
+    )
+
+    overlayId = request_json["overlayId"]
+
+    # prisma = Prisma()
+    # prisma.connect()
+
+    # streamer = prisma.streamer.find_first(where={
+    #     "overlayId": overlayId
+    # }, include={
+    #     "user": True,
+    # })
+
+    # prisma.disconnect()
+    response = request_tts(message, False, overlayId)
 
     return {"response": response}

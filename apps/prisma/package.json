@@ -8,7 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "./update_schema.sh typescript && prisma generate",
-    "python": "./update_schema.sh python && source .venv/bin/activate && python3 -m prisma generate"
+    "typescript": "./update_schema.sh typescript && prisma generate",
+    "python": "./update_schema.sh python"
   },
   "keywords": [],
   "author": "mmattbtw <matt@mmatt.net>",
