@@ -8,6 +8,7 @@ import {
 import { withTRPC } from "@trpc/next";
 import { SessionProvider } from "next-auth/react";
 import type { AppType } from "next/dist/shared/lib/utils";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import superjson from "superjson";
 import type { AppRouter } from "../server/router";
@@ -61,13 +62,24 @@ const MyApp: AppType = ({
         "\n\n>>>>>>>>>>>>>>>>>>>>>>>>>> open source software for allllllll: https://mmattDonk.com <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
     );
   }, []);
-  return (
-    <MantineTheme>
+
+  const router = useRouter();
+
+  if (router.pathname.split("/")[1] !== "overlay") {
+    return (
+      <MantineTheme>
+        <SessionProvider session={session}>
+          <Component {...pageProps} />
+        </SessionProvider>
+      </MantineTheme>
+    );
+  } else {
+    return (
       <SessionProvider session={session}>
         <Component {...pageProps} />
       </SessionProvider>
-    </MantineTheme>
-  );
+    );
+  }
 };
 
 export const getBaseUrl = () => {

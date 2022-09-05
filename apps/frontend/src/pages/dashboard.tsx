@@ -1,12 +1,20 @@
-import { Avatar, Button, Container, Group, Stack } from "@mantine/core";
-import { NextPage } from "next";
+import {
+  Avatar,
+  Button,
+  Container,
+  Group,
+  Stack,
+  Tooltip,
+} from "@mantine/core";
+import { NextPageContext } from "next";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 import LoadingPage, { LoadingSpinner } from "../components/Loading";
 import Spring from "../components/Spring";
 import { trpc } from "../utils/trpc";
-import { getBaseUrl } from "./_app";
 
-const Dashboard: NextPage = () => {
+export default function Dashboard({ baseUrl }: { baseUrl: string }) {
+  const router = useRouter();
   const { data: session, isLoading: isSessionLoading } = trpc.useQuery([
     "auth.getSession",
   ]);
@@ -50,8 +58,20 @@ const Dashboard: NextPage = () => {
           ) : (
             <>
               <p>
-                your overlay URL: {getBaseUrl() + "/overlay/"}
-                {userData?.streamers[0]?.overlayId}
+                your overlay URL: {baseUrl + "/overlay/"}
+                <Tooltip label="click to copy!">
+                  <span
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        baseUrl +
+                          "/overlay/" +
+                          userData?.streamers[0]?.overlayId
+                      );
+                    }}
+                  >
+                    {userData?.streamers[0]?.overlayId}
+                  </span>
+                </Tooltip>
               </p>
             </>
           )}
@@ -61,6 +81,11 @@ const Dashboard: NextPage = () => {
   }
 
   return <LoadingPage />;
-};
+}
 
-export default Dashboard;
+Dashboard.getInitialProps = async (ctx: NextPageContext) => {
+  const { req } = ctx;
+  if (req) {
+    return { baseUrl: req.headers.host };
+  }
+};
