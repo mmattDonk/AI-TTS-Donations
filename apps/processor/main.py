@@ -5,17 +5,17 @@ import logging
 import os
 import queue
 import re
-import sys
 import threading
 import time
 import urllib.request
 from datetime import datetime
 from typing import Optional
 
+import functions_framework
 import sentry_sdk
-import simpleaudio
 import soundfile as sf
 from dotenv import load_dotenv
+from google.cloud import storage
 from pedalboard import (Chorus, Distortion, Gain, HighpassFilter, Limiter,
                         LowpassFilter, Pedalboard, PitchShift, Resample,
                         Reverb)
@@ -57,7 +57,7 @@ if not os.path.exists("playsounds"):
                 + "\nThis is used for the play sound functionality in the bot, things like (1) or (2). Don't remove any files from here as it could cause the functionality to not work, and in turn, the bot to not work."
             )
 
-log_level = logging.DEBUG if "dev" in sys.argv else logging.INFO
+log_level = logging.DEBUG
 
 log: logging.Logger = logging.getLogger()
 
@@ -207,12 +207,13 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                     else:
                         time.sleep(2)
     def thread_function():
+        print("HELLO???")
         final_file = AudioSegment.empty()
         log.info("Starting to merge files (this section might take a bit...)")
         for _ in voice_files:
             sound = q.get()
-            if sound is None:
-                return
+            # if sound is None:
+            #     return
             sound_obj = AudioSegment.from_file(sound)
             final_file += sound_obj
 
@@ -220,15 +221,21 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
 
         final_file_name = f"./voice_files/{date_string}_final_file.wav"
         final_file.export(final_file_name, format="wav")
-        simpleaudio_final_file = simpleaudio.WaveObject.from_wave_file(final_file_name)
 
-    if __name__ == "__main__":
-        t = threading.Thread(target=thread_function)
-        t.start()
-        for voice_file in voice_files:
-            q.put(voice_file)
-            time.sleep(1)
-        t.join()
+        storage_client = storage.Client()
+        bucket = storage_client.bucket("solrock-files")
+        blob = bucket.blob(f"voice_files/{date_string}_final_file.wav")
+
+        blob.upload_from_filename(final_file_name)
+
+
+    print("PLEASE???")
+    t = threading.Thread(target=thread_function)
+    t.start()
+    for voice_file in voice_files:
+        q.put(voice_file)
+        time.sleep(1)
+    t.join()
 
 def test_tts(message: str) -> None:
     log.info("Testing TTS")
@@ -247,4 +254,23 @@ def test_tts(message: str) -> None:
 
     request_tts(message=message, failed=False)
 
-test_tts("spongebob: test")
+# test_tts("spongebob: test")
+
+@functions_framework.http
+def hello_http(request):
+    """HTTP Cloud Function.
+   Args:
+       request (flask.Request): The request object.
+       <https://flask.palletsprojects.com/en/1.1.x/api/#incoming-request-data>
+   Returns:
+       The response text, or any set of values that can be turned into a
+       Response object using `make_response`
+       <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
+   """
+    request_json = request.get_json(silent=True)
+
+
+    message = request_json["message"]
+    response = request_tts(message)
+
+    return {"response": response}
