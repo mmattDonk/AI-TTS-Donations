@@ -36,6 +36,9 @@ export default function Overlay({
       console.log(data.file);
       setAudioFile(data.file);
     });
+    channel.bind("skip-tts", () => {
+      setAudioFile(null);
+    });
     channel.bind("connected", () => {
       console.log("Connected to channel");
     });

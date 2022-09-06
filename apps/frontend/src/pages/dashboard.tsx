@@ -18,6 +18,10 @@ import { trpc } from "../utils/trpc";
 export default function Dashboard() {
   const [sensitiveOpen, setSensitiveOpen] = useState(false);
 
+  const [skipLoading, setSkipLoading] = useState(false);
+  const [skipMessage, setSkipMessage] = useState("");
+
+  const skipMutation = trpc.useMutation(["tts.skip-tts"]);
   const { data: session, isLoading: isSessionLoading } = trpc.useQuery([
     "auth.getSession",
   ]);
@@ -25,6 +29,25 @@ export default function Dashboard() {
     "user.get-user",
     session?.user?.name ?? "",
   ]);
+
+  const skipTts = async (e: any) => {
+    e.preventDefault();
+
+    skipMutation.mutate({ overlayId: userData?.streamers[0]?.overlayId ?? "" });
+
+    if (skipMutation.isLoading) {
+      setSkipMessage("Skipping TTS");
+      setSkipLoading(true);
+    } else {
+      if (skipMutation.data?.success) {
+        setSkipMessage("");
+        setSkipLoading(false);
+      } else {
+        setSkipMessage("Failed to skip TTS");
+        setSkipLoading(false);
+      }
+    }
+  };
 
   if (isSessionLoading) return <LoadingPage />;
 
@@ -70,6 +93,15 @@ export default function Dashboard() {
             <LoadingSpinner />
           ) : (
             <>
+              <Group>
+                <Button onClick={skipTts}>Skip TTS</Button>
+                {skipLoading && (
+                  <>
+                    <LoadingSpinner /> <p>{skipMessage}</p>
+                  </>
+                )}
+              </Group>
+              <Space h="md" />
               <Button color="red" onClick={() => setSensitiveOpen((o) => !o)}>
                 Open Sensitive Information (DO NOT OPEN ON STREAM.)
               </Button>
