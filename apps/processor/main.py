@@ -15,9 +15,9 @@ import functions_framework
 import pusher
 from dotenv import load_dotenv
 from google.cloud import storage
-from pedalboard import (Chorus, Distortion, Gain, HighpassFilter, Limiter,
-                        LowpassFilter, Pedalboard, PitchShift, Resample,
-                        Reverb)
+from pedalboard import (Chorus, Distortion, Gain,  # type: ignore
+                        HighpassFilter, Limiter, LowpassFilter, Pedalboard,
+                        PitchShift, Resample, Reverb)
 from pedalboard.io import AudioFile
 from pydub import AudioSegment
 from rich.logging import RichHandler
@@ -89,7 +89,7 @@ pusher_client = pusher.Pusher(
     cluster=os.getenv("PUSHER_CLUSTER"),
 )
 
-def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "") -> None:
+def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "") -> None:  # type: ignore
     messages: list = message.split("||")
     log.debug(messages)
     q = queue.Queue()
@@ -115,7 +115,7 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
             continue
         try:
             log.debug(message.split(": "))
-            voice: str = message.split(": ")[0]
+            voice: str = message.split(": ")[0]  # type: ignore
             # try:
             #     if voice in config["BLACKLISTED_VOICES"]:
             #         log.info(f"{voice} is blacklisted, applying fallback voice.")
@@ -130,12 +130,12 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
             log.debug(text)
         except IndexError:
             text: str = message
-        voice: list = voice.split(".")
+        voice: list = voice.split(".")  # type: ignore
         voice_name: str = voice[0]
         try:
-            voice_effect: str = voice[1:]
+            voice_effect: str = voice[1:]  # type: ignore
         except IndexError:
-            voice_effect = None
+            voice_effect = None  # type: ignore
         log.debug(f"voice effect: {str(voice_effect)}")
         log.debug(f"voice: {voice_name}")
         log.debug(f"voice var: {voice}")
@@ -149,7 +149,7 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
         else:
             tts_provider = Uberduck
             voice_name.lower()
-        job_response: dict = tts_provider.get_job(text, voice_name)
+        job_response: dict = tts_provider.get_job(text, voice_name)  # type: ignore
         log.debug(job_response)
         if job_response["detail"] != None and job_response["detail"] == "That voice does not exist":
             # try:
@@ -158,14 +158,14 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
             fallback_voice: str = "kanye-west-rap"
             log.info("Couldn't find voice specified, using fallback voice: " + fallback_voice)
 
-            job_response: dict = Uberduck.get_job(text, fallback_voice)
+            job_response: dict = Uberduck.get_job(text, fallback_voice)  # type: ignore
         if job_response["uuid"] is not None:
             log.info("UUID recieved. Waiting for TTS to process")
             checkCount: int = 0
             waitingToProcess: bool = True
             while waitingToProcess:
                 checkCount += 1
-                check_tts_response: dict = tts_provider.check_tts(job_response["uuid"])
+                check_tts_response: dict = tts_provider.check_tts(job_response["uuid"])  # type: ignore
                 log.debug(check_tts_response)
                 if check_tts_response["path"] != None:
                     log.info(f"TTS processed after {checkCount} checks")
@@ -173,28 +173,32 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
                     urllib.request.urlretrieve(check_tts_response["path"], f"./voice_files/AI_voice_{date_string}.wav")
 
                     if voice_effect:
-                        with AudioFile(f"./voice_files/AI_voice_{date_string}.wav") as f:
-                            audio = f.read()
-                            sample_rate = f.samplerate
-                            board = Pedalboard([])
-                            for effect in voice_effect:
-                                if effect.lower() in VOICE_EFFECTS:
-                                    log.info(f"Voice Effect Detected: {effect}")
-                                    if type(VOICE_EFFECTS[effect]) == list:
-                                        for effect_func in VOICE_EFFECTS[effect]:
-                                            board.append(effect_func)
-                                    else:
-                                        board.append(VOICE_EFFECTS[effect])
-                            effected = board(audio, sample_rate)
-                            with AudioFile(f"./voice_files/AI_voice_{date_string}.wav", "w") as f:
-                                f.write(effected, sample_rate)
-                            for effect in voice_effect:
-                                if effect.lower() in VOICE_EFFECTS and effect == "loud":
-                                    board.append(Gain(gain_db=-15))
-                                    effected = board(audio, sample_rate)
-                                    log.debug("?")
-                                    with AudioFile(f"./voice_files/AI_voice_{date_string}.wav", "w") as f:
-                                        f.write(effected, sample_rate)
+                        with AudioFile(f"./voice_files/AI_voice_{date_string}.wav", 'r') as f:  # type: ignore
+                            audio = f.read(f.frames)
+                            samplerate=f.samplerate
+                        
+                        board = Pedalboard([])
+                        for effect in voice_effect:
+                            if effect.lower() in VOICE_EFFECTS:
+                                log.info(f"Applying {effect} effect")
+                                if type(VOICE_EFFECTS[effect]) == list:
+                                    for effect_func in VOICE_EFFECTS[effect]:  # type: ignore
+                                        board.append(effect_func)
+                                else:
+                                    board.append(VOICE_EFFECTS[effect])
+                        
+                        effected = board(audio, samplerate)
+
+                        with AudioFile(f"./voice_files/AI_voice_{date_string}.wav", "w", samplerate, effected.shape[0]) as f:  # type: ignore
+                            f.write(effected)
+                        
+                        for effect in voice_effect:
+                            if effect.lower() in VOICE_EFFECTS and effect =="loud":
+                                board.append(Gain(gain_db=-15))
+                                effected = board(effected, samplerate)
+                                with AudioFile(f"./voice_files/AI_voice_{date_string}.wav", "w", samplerate, effected.shape[0]) as f:  # type: ignore
+                                    f.write(effected)
+
                     time.sleep(1)
                     voice_files.append(f"./voice_files/AI_voice_{date_string}.wav")
                     time.sleep(1)
@@ -266,14 +270,14 @@ def hello_http(request):
        <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
    """
     request_json = request.get_json(silent=True)
-    message = request_json["message"]
-    message = re.sub(
+    request_message = request_json["message"]
+    request_message = re.sub(
         CHEER_REGEX,
         "",
-        message,
+        request_message,
     )
 
-    overlayId = request_json["overlayId"]
+    overlay_id = request_json["overlayId"]
 
     # prisma = Prisma()
     # prisma.connect()
@@ -285,6 +289,6 @@ def hello_http(request):
     # })
 
     # prisma.disconnect()
-    response = request_tts(message, False, overlayId)
+    response = request_tts(message=request_message, failed=False, overlayId=overlay_id)
 
     return {"response": response}

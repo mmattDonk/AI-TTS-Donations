@@ -1,27 +1,23 @@
 import {
   Avatar,
   Button,
+  Code,
+  Collapse,
   Container,
   Group,
+  Space,
   Stack,
   Tooltip,
 } from "@mantine/core";
-import { NextPageContext } from "next";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { signIn, signOut } from "next-auth/react";
+import { useState } from "react";
 import LoadingPage, { LoadingSpinner } from "../components/Loading";
 import Spring from "../components/Spring";
 import { trpc } from "../utils/trpc";
 
-export async function getInitialProps(ctx: NextPageContext) {
-  const { req } = ctx;
-  if (req) {
-    return { baseUrl: req.headers.host };
-  }
-}
+export default function Dashboard() {
+  const [sensitiveOpen, setSensitiveOpen] = useState(false);
 
-export default function Dashboard({ baseUrl }: { baseUrl: string }) {
-  const router = useRouter();
   const { data: session, isLoading: isSessionLoading } = trpc.useQuery([
     "auth.getSession",
   ]);
@@ -56,30 +52,43 @@ export default function Dashboard({ baseUrl }: { baseUrl: string }) {
     return (
       <Container>
         <Spring>
-          <Group mt="xl">
-            <Avatar src={session.user?.image} size="lg" />
-            <h1>Logged in as {session.user?.name}</h1>
-          </Group>
+          <Stack mt="xl" mb="xl" spacing="xs">
+            <Group>
+              <Avatar src={session.user?.image} size="lg" />
+              <h1>Your Dashboard</h1>
+            </Group>
+            <Group>
+              <p>Logged in as {session.user?.name}</p>
+              <Button color="gray" size="xs" onClick={() => signOut()}>
+                Sign Out
+              </Button>
+            </Group>
+          </Stack>
+          <hr />
+          <Space h="xl" />
           {isLoading ? (
             <LoadingSpinner />
           ) : (
             <>
-              <p>
-                your overlay URL: {baseUrl + "/overlay/"}
-                <Tooltip label="click to copy!">
-                  <span
-                    onClick={() => {
-                      navigator.clipboard.writeText(
-                        baseUrl +
-                          "/overlay/" +
-                          userData?.streamers[0]?.overlayId
-                      );
-                    }}
-                  >
-                    {userData?.streamers[0]?.overlayId}
-                  </span>
-                </Tooltip>
-              </p>
+              <Button color="red" onClick={() => setSensitiveOpen((o) => !o)}>
+                Open Sensitive Information (DO NOT OPEN ON STREAM.)
+              </Button>
+              <Collapse in={sensitiveOpen}>
+                <p>
+                  <Tooltip label="WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.">
+                    <a
+                      href={`/overlay/${userData?.streamers[0]?.overlayId}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      TTS Overlay
+                    </a>
+                  </Tooltip>{" "}
+                  - This is where your TTS audio will be playing, simply copy
+                  the link, and paste it into a <Code>Browser Source</Code> in
+                  your preferred streaming software (like OBS).
+                </p>
+              </Collapse>
             </>
           )}
         </Spring>

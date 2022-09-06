@@ -29,6 +29,7 @@ class Fakeyou:
                 "tts_model_token": voice_name,
                 "uuid_idempotency_token": uuid_str,
             },
+            timeout=60,
         )
 
         uuid = None
@@ -68,7 +69,7 @@ class Fakeyou:
         }
         """
 
-        response = httpx.get(f"https://api.fakeyou.com/tts/job/{uuid}")
+        response = httpx.get(f"https://api.fakeyou.com/tts/job/{uuid}",timeout=60)
 
         # THIS IS ELF IS CANCER BUT IM STUPID AND MY OTHER ATTEMPTS WERENT WORKING LOL!
         if response.json()["state"]["status"] == "attempt_failed":
