@@ -69,7 +69,7 @@ class Fakeyou:
         }
         """
 
-        response = httpx.get(f"https://api.fakeyou.com/tts/job/{uuid}",timeout=60)
+        response = httpx.get(f"https://api.fakeyou.com/tts/job/{uuid}", timeout=60)
 
         # THIS IS ELF IS CANCER BUT IM STUPID AND MY OTHER ATTEMPTS WERENT WORKING LOL!
         if response.json()["state"]["status"] == "attempt_failed":

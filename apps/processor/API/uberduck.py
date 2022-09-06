@@ -40,7 +40,7 @@ class Uberduck:
                 "speech": text,
                 "voice": voice_name,
             },
-            timeout=60
+            timeout=60,
         )
 
         uuid = None
@@ -82,7 +82,7 @@ class Uberduck:
                 os.environ.get("UBERDUCK_USERNAME"),
                 os.environ.get("UBERDUCK_SECRET"),
             ),
-            timeout=60
+            timeout=60,
         )
 
         return {
