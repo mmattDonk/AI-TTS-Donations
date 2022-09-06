@@ -16,9 +16,17 @@ import pusher
 from dotenv import load_dotenv
 from google.cloud import storage
 from pedalboard import Gain  # type: ignore
-from pedalboard import (Chorus, Distortion, HighpassFilter, Limiter,
-                        LowpassFilter, Pedalboard, PitchShift, Resample,
-                        Reverb)
+from pedalboard import (
+    Chorus,
+    Distortion,
+    HighpassFilter,
+    Limiter,
+    LowpassFilter,
+    Pedalboard,
+    PitchShift,
+    Resample,
+    Reverb,
+)
 from pedalboard.io import AudioFile
 from pydub import AudioSegment
 from rich.logging import RichHandler
@@ -268,7 +276,7 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
     t.join()
 
     return "assuming all went well... success!"
-    
+
     # for i in config["BLACKLISTED_WORDS"]:
     #     if i in message.lower():
     #         log.info("Blacklisted word found")
