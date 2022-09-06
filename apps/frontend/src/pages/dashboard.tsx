@@ -103,7 +103,8 @@ export default function Dashboard() {
               </Group>
               <Space h="md" />
               <Button color="red" onClick={() => setSensitiveOpen((o) => !o)}>
-                Open Sensitive Information (DO NOT OPEN ON STREAM.)
+                {sensitiveOpen ? "Close" : "Open"} Sensitive Information (DO NOT
+                OPEN ON STREAM.)
               </Button>
               <Collapse in={sensitiveOpen}>
                 <p>
