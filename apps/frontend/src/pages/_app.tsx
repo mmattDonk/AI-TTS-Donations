@@ -5,6 +5,7 @@ import {
   Global,
   MantineProvider,
 } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 import { withTRPC } from "@trpc/next";
 import { SessionProvider } from "next-auth/react";
 import type { AppType } from "next/dist/shared/lib/utils";
@@ -130,32 +131,34 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
         withNormalizeCSS
         withGlobalStyles
       >
-        <Global
-          styles={(theme) => ({
-            a: {
-              color:
-                theme.colorScheme === "dark"
-                  ? theme.colors.dark![0]
-                  : theme.colors.gray![7],
-              textDecoration: "underline",
-
-              "&:hover": {
-                backgroundColor:
-                  theme.colorScheme === "dark"
-                    ? //@ts-ignore
-                      theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-                    : //@ts-ignore
-                      theme.colors[theme.primaryColor][0],
+        <NotificationsProvider>
+          <Global
+            styles={(theme) => ({
+              a: {
                 color:
-                  theme.colors[theme.primaryColor]![
-                    theme.colorScheme === "dark" ? 3 : 7
-                  ],
-                textDecoration: "none",
+                  theme.colorScheme === "dark"
+                    ? theme.colors.dark![0]
+                    : theme.colors.gray![7],
+                textDecoration: "underline",
+
+                "&:hover": {
+                  backgroundColor:
+                    theme.colorScheme === "dark"
+                      ? //@ts-ignore
+                        theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
+                      : //@ts-ignore
+                        theme.colors[theme.primaryColor][0],
+                  color:
+                    theme.colors[theme.primaryColor]![
+                      theme.colorScheme === "dark" ? 3 : 7
+                    ],
+                  textDecoration: "none",
+                },
               },
-            },
-          })}
-        />
-        {children}
+            })}
+          />
+          {children}
+        </NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   );

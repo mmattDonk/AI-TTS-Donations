@@ -18,6 +18,7 @@
     "@mantine/form": "^4.2.12",
     "@mantine/hooks": "^4.2.12",
     "@mantine/next": "^4.2.12",
+    "@mantine/notifications": "^5.2.6",
     "@next-auth/prisma-adapter": "^1.0.3",
     "@sentry/nextjs": "^7.12.1",
     "@solrock/prisma": "*",

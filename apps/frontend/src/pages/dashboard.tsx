@@ -10,6 +10,7 @@ import {
   Table,
   Tooltip,
 } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
 import { signIn, signOut } from "next-auth/react";
 import { useState } from "react";
 import LoadingPage, { LoadingSpinner } from "../components/Loading";
@@ -18,6 +19,7 @@ import { trpc } from "../utils/trpc";
 
 export default function Dashboard() {
   const [sensitiveOpen, setSensitiveOpen] = useState(false);
+  const [showTable, setShowTable] = useState(false);
 
   const [skipMessage, setSkipMessage] = useState("");
   // const [recentTtsMessages, setRecentTtsMessages] = useState<
@@ -25,6 +27,8 @@ export default function Dashboard() {
   // >(null);
 
   const skipMutation = trpc.useMutation(["tts.skip-tts"]);
+  const ttsMutation = trpc.useMutation(["tts.retrigger-tts"]);
+
   const { data: session, isLoading: isSessionLoading } = trpc.useQuery([
     "auth.getSession",
   ]);
@@ -46,6 +50,29 @@ export default function Dashboard() {
   //     if (!ttsMessages.success) setRecentTtsMessages(ttsMessages.messages);
   //   }
   // }
+
+  const replayTts = async (e: any) => {
+    e.preventDefault();
+
+    ttsMutation.mutate({
+      overlayId: userData?.streamers[0]?.overlayId ?? "",
+      audioUrl: e.currentTarget.value,
+    });
+    console.debug(e.currentTarget.value);
+
+    showNotification({
+      title: "Sending TTS",
+      message: "",
+      loading: ttsMutation.isLoading,
+    });
+    if (ttsMutation.isError) {
+      showNotification({
+        title: "Error sending TTS",
+        message: ttsMutation.error?.message ?? "",
+        color: "red",
+      });
+    }
+  };
 
   const skipTts = async (e: any) => {
     e.preventDefault();
@@ -101,6 +128,55 @@ export default function Dashboard() {
               </Button>
             </Group>
           </Stack>
+          {isTtsMessagesLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <>
+              <Button onClick={() => setShowTable((o) => !o)}>
+                {showTable ? "Close" : "Open"} Recent TTS Messages
+              </Button>
+              <Space h="sm" />
+              <Collapse in={showTable}>
+                <Table
+                  highlightOnHover
+                  style={{
+                    textAlign: "left",
+                  }}
+                >
+                  <thead>
+                    <th>Message</th>
+                    <th>Created At</th>
+                    <th>Replay</th>
+                  </thead>
+
+                  <tbody>
+                    {ttsMessages?.messages?.map((message) => (
+                      <tr key={message.id}>
+                        <td>{message.message}</td>
+                        <td>
+                          {new Date(
+                            // @ts-ignore
+                            message.createdAt
+                          ).toLocaleDateString()}{" "}
+                          at {/* @ts-ignore */}
+                          {new Date(message.createdAt).toLocaleTimeString()}
+                        </td>
+                        <td>
+                          <Button
+                            value={message.audioUrl}
+                            color="gray"
+                            onClickCapture={replayTts}
+                          >
+                            ♻️
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Collapse>
+            </>
+          )}
           <hr />
           <Space h="xl" />
           {isLoading ? (
@@ -116,30 +192,7 @@ export default function Dashboard() {
                 )}
               </Group>
               <Space h="md" />
-              {isTtsMessagesLoading ? (
-                <LoadingSpinner />
-              ) : (
-                <div>
-                  {
-                    <Table>
-                      <thead>
-                        <tr>Message</tr>
-                        <tr>Audio Url</tr>
-                      </thead>
 
-                      <tbody>
-                        {ttsMessages?.messages?.map((message) => (
-                          <tr key={message.id}>
-                            <td>{message.message}</td>
-                            <td>{message.audioUrl}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </Table>
-                  }
-                </div>
-              )}
-              <Space h="md" />
               <Button color="red" onClick={() => setSensitiveOpen((o) => !o)}>
                 {sensitiveOpen ? "Close" : "Open"} Sensitive Information (DO NOT
                 OPEN ON STREAM.)

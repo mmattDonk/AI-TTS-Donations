@@ -2,6 +2,27 @@ import { z } from "zod";
 import { createRouter } from "./context";
 
 export const ttsRouter = createRouter()
+  .mutation("retrigger-tts", {
+    input: z.object({
+      audioUrl: z.string(),
+      overlayId: z.string(),
+    }),
+    async resolve({ input, ctx }) {
+      const { audioUrl, overlayId } = input;
+      const { pusher } = ctx;
+      try {
+        pusher.trigger(overlayId, "new-file", { file: audioUrl });
+      } catch (e) {
+        return {
+          success: false,
+        };
+      }
+
+      return {
+        success: true,
+      };
+    },
+  })
   .mutation("skip-tts", {
     input: z.object({
       overlayId: z.string(),

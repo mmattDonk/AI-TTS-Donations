@@ -42,10 +42,15 @@ export default function Overlay({
       if (currentAudioFile === null) {
         setCurrentAudioFile(data.file);
         setAudioFiles(audioFiles.filter((file) => file !== data.file));
+      } else {
+        // if audioRef not playing, go to next file
+        if (audioRef.current?.paused) {
+          playNextAudioFile();
+        }
       }
     });
     channel.bind("skip-tts", () => {
-      setCurrentAudioFile(null);
+      playNextAudioFile();
     });
     channel.bind("connected", () => {
       console.log("Connected to channel");
