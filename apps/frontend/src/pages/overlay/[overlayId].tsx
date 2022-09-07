@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Pusher from "pusher-js";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export async function getServerSideProps() {
   const PUSHER_APP_KEY = process.env.PUSHER_APP_KEY;
@@ -21,7 +21,9 @@ export default function Overlay({
   PUSHER_APP_KEY: string | undefined;
   PUSHER_APP_CLUSTER: string | undefined;
 }) {
-  const [audioFile, setAudioFile] = useState<string | null>(null);
+  const [audioFiles, setAudioFiles] = useState<Array<string>>([]);
+  const [currentAudioFile, setCurrentAudioFile] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const router = useRouter();
   const { overlayId } = router.query;
@@ -30,14 +32,20 @@ export default function Overlay({
     const pusher = new Pusher(PUSHER_APP_KEY ?? "", {
       cluster: PUSHER_APP_CLUSTER,
     });
-    console.log(PUSHER_APP_KEY);
+    console.debug(PUSHER_APP_KEY);
     const channel = pusher.subscribe(overlayId as string);
     channel.bind("new-file", (data: { file: string }) => {
-      console.log(data.file);
-      setAudioFile(data.file);
+      console.debug(data.file);
+      setAudioFiles([data.file, ...audioFiles]);
+      console.debug(audioFiles);
+      console.debug(currentAudioFile);
+      if (currentAudioFile === null) {
+        setCurrentAudioFile(data.file);
+        setAudioFiles(audioFiles.filter((file) => file !== data.file));
+      }
     });
     channel.bind("skip-tts", () => {
-      setAudioFile(null);
+      setCurrentAudioFile(null);
     });
     channel.bind("connected", () => {
       console.log("Connected to channel");
@@ -49,17 +57,27 @@ export default function Overlay({
     };
   });
 
+  const playNextAudioFile = () => {
+    console.debug("PLAY NEXT AUDIO FILE");
+    if (audioFiles.length > 0) {
+      console.debug(audioFiles);
+      setCurrentAudioFile(audioFiles[0] ?? null);
+      setAudioFiles(audioFiles.filter((file) => file !== audioFiles[0]));
+    } else {
+      setCurrentAudioFile(null);
+    }
+  };
+
   return (
     <div>
-      {audioFile && (
-        <audio
-          src={audioFile}
-          onEnded={() => {
-            setAudioFile(null);
-          }}
-          autoPlay
-        />
-      )}
+      <audio
+        src={currentAudioFile ?? ""}
+        ref={audioRef}
+        onEnded={() => {
+          playNextAudioFile();
+        }}
+        autoPlay
+      />
     </div>
   );
 }

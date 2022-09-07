@@ -15,19 +15,20 @@ import functions_framework
 import pusher
 from dotenv import load_dotenv
 from google.cloud import storage
-from pedalboard import Gain  # type: ignore
+from pedalboard import Pedalboard  # type: ignore
 from pedalboard import (
     Chorus,
     Distortion,
+    Gain,
     HighpassFilter,
     Limiter,
     LowpassFilter,
-    Pedalboard,
     PitchShift,
     Resample,
     Reverb,
 )
 from pedalboard.io import AudioFile
+from prisma import Prisma
 from pydub import AudioSegment
 from rich.logging import RichHandler
 
@@ -101,7 +102,7 @@ pusher_client = pusher.Pusher(
 )
 
 
-def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "") -> str:  # type: ignore
+def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = ""):  # type: ignore
     messages: list = message.split("||")
     log.debug(messages)
     q = queue.Queue()
@@ -267,6 +268,9 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
         blob.upload_from_filename(final_file_name)
 
         pusher_client.trigger(overlayId, "new-file", {"file": blob.public_url})
+        global public_url
+        public_url = blob.public_url
+        return {"success": True, "message": message, "audioUrl": blob.public_url}
 
     t = threading.Thread(target=thread_function)
     t.start()
@@ -275,7 +279,7 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
         time.sleep(1)
     t.join()
 
-    return "assuming all went well... success!"
+    return {"success": True, "message": message, "audioUrl": public_url}
 
     # for i in config["BLACKLISTED_WORDS"]:
     #     if i in message.lower():
@@ -303,17 +307,28 @@ def hello_http(request):
     )
 
     overlay_id = request_json["overlayId"]
-
-    # prisma = Prisma()
-    # prisma.connect()
-
-    # streamer = prisma.streamer.find_first(where={
-    #     "overlayId": overlayId
-    # }, include={
-    #     "user": True,
-    # })
-
-    # prisma.disconnect()
     response = request_tts(message=request_message, failed=False, overlayId=overlay_id)
 
+    prisma = Prisma(log_queries=True)
+    prisma.connect()
+
+    streamer = prisma.streamer.find_first(
+        where={"overlayId": overlay_id},
+        include={
+            "user": True,
+        },
+    )
+
+    if streamer is None:
+        return "streamer not found"
+
+    prisma.ttsmessages.create(
+        {
+            "streamerId": streamer.id,
+            "message": request_message,
+            "audioUrl": response["audioUrl"],
+        }
+    )
+
+    prisma.disconnect()
     return {"response": response}

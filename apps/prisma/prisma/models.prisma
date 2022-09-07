@@ -43,8 +43,21 @@ model User {
 model Streamer {
   id        String @id @default(cuid())
   overlayId String @unique @default(cuid())
+  ttsmessages TTSMessages[]
 
   user    User @relation(fields: [id], references: [id], onDelete: Cascade)
+}
+
+model TTSMessages {
+  id        String @id @default(cuid())
+  streamerId String
+
+  message   String
+  audioUrl String
+
+  createdAt DateTime? @default(now())
+
+  streamer Streamer @relation(fields: [streamerId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {

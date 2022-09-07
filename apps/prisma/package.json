@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "./update_schema.sh typescript && prisma generate",
     "typescript": "./update_schema.sh typescript && prisma generate",
-    "python": "./update_schema.sh python"
+    "python": "./update_schema.sh python",
+    "prisma": "prisma"
   },
   "keywords": [],
   "author": "mmattbtw <matt@mmatt.net>",
