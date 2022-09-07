@@ -28,7 +28,6 @@ from pedalboard import (
     Reverb,
 )
 from pedalboard.io import AudioFile
-from prisma import Prisma
 from pydub import AudioSegment
 from rich.logging import RichHandler
 
@@ -309,26 +308,30 @@ def hello_http(request):
     overlay_id = request_json["overlayId"]
     response = request_tts(message=request_message, failed=False, overlayId=overlay_id)
 
-    prisma = Prisma(log_queries=True)
-    prisma.connect()
+    """
+        TODO: rebuild python prisma into just backend api with typescript
+    """
 
-    streamer = prisma.streamer.find_first(
-        where={"overlayId": overlay_id},
-        include={
-            "user": True,
-        },
-    )
+    # prisma = Prisma(log_queries=True)
+    # prisma.connect()
 
-    if streamer is None:
-        return "streamer not found"
+    # streamer = prisma.streamer.find_first(
+    #     where={"overlayId": overlay_id},
+    #     include={
+    #         "user": True,
+    #     },
+    # )
 
-    prisma.ttsmessages.create(
-        {
-            "streamerId": streamer.id,
-            "message": request_message,
-            "audioUrl": response["audioUrl"],
-        }
-    )
+    # if streamer is None:
+    #     return "streamer not found"
 
-    prisma.disconnect()
+    # prisma.ttsmessages.create(
+    #     {
+    #         "streamerId": streamer.id,
+    #         "message": request_message,
+    #         "audioUrl": response["audioUrl"],
+    #     }
+    # )
+
+    # prisma.disconnect()
     return {"response": response}

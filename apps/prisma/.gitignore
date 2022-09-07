@@ -3,4 +3,3 @@ node_modules
 generated/*
 dist/*
 .venv/
-schema.prisma

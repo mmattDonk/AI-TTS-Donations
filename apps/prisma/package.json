@@ -7,9 +7,7 @@
   "types": "./index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./update_schema.sh typescript && prisma generate",
-    "typescript": "./update_schema.sh typescript && prisma generate",
-    "python": "./update_schema.sh python",
+    "postinstall": "prisma generate",
     "prisma": "prisma"
   },
   "keywords": [],
