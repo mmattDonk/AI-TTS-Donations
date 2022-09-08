@@ -52,7 +52,7 @@ export default function Dashboard() {
     );
   } else if (session) {
     return (
-      <Container>
+      <Container size="xl">
         <Spring>
           <Stack mt="xl" mb="xl" spacing="xs">
             <Group>
