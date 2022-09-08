@@ -123,7 +123,7 @@ export default function MediaControls() {
         </Button>
         <Space h="sm" />
         <Collapse in={showTable}>
-          <div size="sm">
+          <div>
             <Table>
               <thead>
                 <th>Message</th>
