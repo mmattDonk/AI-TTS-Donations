@@ -54,7 +54,7 @@ export const ttsRouter = createRouter()
           success: false,
           message: "streamer not found",
         };
-      const messages = await prisma.tTSMessages.findMany({
+      const messages = await prisma.ttsMessages.findMany({
         where: {
           streamerId,
         },

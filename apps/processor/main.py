@@ -12,6 +12,7 @@ from datetime import datetime
 from typing import Optional
 
 import functions_framework
+import httpx
 import pusher
 from dotenv import load_dotenv
 from google.cloud import storage
@@ -307,31 +308,29 @@ def hello_http(request):
 
     overlay_id = request_json["overlayId"]
     response = request_tts(message=request_message, failed=False, overlayId=overlay_id)
+    API_URL = ""
+    API_SECRET = ""
+    if os.environ.get("API_URL") is None:
+        API_URL = "http://localhost:3000"
+    else:
+        API_URL = os.environ.get("API_URL")
 
-    """
-        TODO: rebuild python prisma into just backend api with typescript
-    """
+    if os.environ.get("API_SECRET") is None:
+        API_SECRET = "secret"
+    else:
+        API_SECRET = os.environ.get("API_SECRET")
 
-    # prisma = Prisma(log_queries=True)
-    # prisma.connect()
+    headers = {
+        "secret": API_SECRET,
+    }
 
-    # streamer = prisma.streamer.find_first(
-    #     where={"overlayId": overlay_id},
-    #     include={
-    #         "user": True,
-    #     },
-    # )
+    httpx.post(
+        f"{API_URL}/api/streamers/{overlay_id}",
+        data={
+            "audioUrl": response["audioUrl"],
+            "message": response["message"],
+        },
+        headers=headers,
+    )  # type: ignore
 
-    # if streamer is None:
-    #     return "streamer not found"
-
-    # prisma.ttsmessages.create(
-    #     {
-    #         "streamerId": streamer.id,
-    #         "message": request_message,
-    #         "audioUrl": response["audioUrl"],
-    #     }
-    # )
-
-    # prisma.disconnect()
     return {"response": response}

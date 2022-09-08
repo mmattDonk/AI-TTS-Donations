@@ -47,12 +47,12 @@ model User {
 model Streamer {
   id        String @id @default(cuid())
   overlayId String @unique @default(cuid())
-  ttsmessages TTSMessages[]
+  ttsmessages ttsMessages[]
 
   user    User @relation(fields: [id], references: [id], onDelete: Cascade)
 }
 
-model TTSMessages {
+model ttsMessages {
   id        String @id @default(cuid())
   streamerId String
 
