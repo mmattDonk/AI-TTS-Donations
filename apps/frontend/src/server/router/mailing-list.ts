@@ -21,7 +21,7 @@ export const mailingListRouter = createRouter().mutation("subscribe", {
 
       return { success: true };
     } catch (error: any) {
-      console.log(error);
+      console.debug(error);
       return { success: false, error: error.message || error.toString() };
     }
   },

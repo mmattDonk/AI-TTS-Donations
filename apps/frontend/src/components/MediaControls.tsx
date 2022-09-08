@@ -123,44 +123,46 @@ export default function MediaControls() {
         </Button>
         <Space h="sm" />
         <Collapse in={showTable}>
-          <Table
-            highlightOnHover
-            style={{
-              textAlign: "left",
-            }}
-          >
-            <thead>
-              <th>Message</th>
-              <th>Created At</th>
-              <th>Replay</th>
-            </thead>
+          <div size="sm">
+            <Table>
+              <thead>
+                <th>Message</th>
+                <th>Created At</th>
+                <th>Replay</th>
+              </thead>
 
-            <tbody>
-              {/* @ts-ignore */}
-              {ttsMessages?.messages?.map((message: any) => (
-                <tr key={message.id}>
-                  <td>{message.message}</td>
-                  <td>
-                    {new Date(
-                      // @ts-ignore
-                      message.createdAt
-                    ).toLocaleDateString()}{" "}
-                    at {/* @ts-ignore */}
-                    {new Date(message.createdAt).toLocaleTimeString()}
-                  </td>
-                  <td>
-                    <Button
-                      value={message.audioUrl}
-                      color="gray"
-                      onClickCapture={replayTts}
-                    >
-                      <Rotate />
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+              <tbody></tbody>
+            </Table>
+            {/* @ts-ignore */}
+            {ttsMessages?.messages?.map((message: any) => (
+              <Group
+                key={message.id}
+                style={{
+                  maxWidth: "100%",
+                  overflow: "hidden",
+                }}
+              >
+                <p>{message.message}</p>
+                <p>
+                  {new Date(
+                    // @ts-ignore
+                    message.createdAt
+                  ).toLocaleDateString()}{" "}
+                  at {/* @ts-ignore */}
+                  {new Date(message.createdAt).toLocaleTimeString()}
+                </p>
+                <div>
+                  <Button
+                    value={message.audioUrl}
+                    color="gray"
+                    onClickCapture={replayTts}
+                  >
+                    <Rotate />
+                  </Button>
+                </div>
+              </Group>
+            ))}
+          </div>
         </Collapse>
       </div>
     );

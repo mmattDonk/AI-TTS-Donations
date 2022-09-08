@@ -15,7 +15,7 @@ export default async function handler(
   }
 
   const { overlayId } = req.query;
-  console.log(overlayId);
+  console.debug(overlayId);
   const streamer = await prisma.streamer.findFirst({
     where: {
       overlayId: overlayId as string,
@@ -33,9 +33,9 @@ export default async function handler(
 
   switch (req.method) {
     case "GET":
-      console.log(overlayId);
+      console.debug(overlayId);
 
-      console.log(streamer);
+      console.debug(streamer);
       res.status(200).json({
         message: "streamer found!",
         streamer: streamer,
@@ -47,7 +47,7 @@ export default async function handler(
         message: string;
         audioUrl: string;
       };
-      console.log(streamer?.id);
+      console.debug(streamer?.id);
       const newMessage = await prisma.ttsMessages.create({
         data: {
           message: message,
