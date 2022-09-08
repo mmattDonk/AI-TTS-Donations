@@ -3,7 +3,7 @@ httpx == 1.0.0b0
 nest-asyncio==1.5.5
 pedalboard==0.5.10
 python-socketio[client]==5.7.1
-python_dotenv == 0.20.0
+python_dotenv == 0.21.0
 rich == 12.5.1
 sentry-sdk==1.9.8
 git+https://github.com/jps-aldridge/py-simple-audio@master#egg=simpleaudio
