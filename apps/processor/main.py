@@ -330,7 +330,7 @@ def hello_http(request):
             "audioUrl": response["audioUrl"],
             "message": response["message"],
         },
-        headers=headers,
-    )  # type: ignore
+        headers=headers,  # type: ignore
+    )
 
     return {"response": response}
