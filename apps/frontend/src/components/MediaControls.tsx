@@ -136,7 +136,8 @@ export default function MediaControls() {
             </thead>
 
             <tbody>
-              {ttsMessages?.messages?.map((message) => (
+              {/* @ts-ignore */}
+              {ttsMessages?.messages?.map((message: any) => (
                 <tr key={message.id}>
                   <td>{message.message}</td>
                   <td>
