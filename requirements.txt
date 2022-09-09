@@ -1,7 +1,7 @@
 asyncio==3.4.3
 httpx == 1.0.0b0
 nest-asyncio==1.5.5
-pedalboard==0.5.10
+pedalboard==0.6.0
 python-socketio[client]==5.7.1
 python_dotenv == 0.21.0
 rich == 12.5.1
