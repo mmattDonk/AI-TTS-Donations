@@ -10,6 +10,7 @@ export default function MediaControlsPage() {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
+        width: "100vw",
       }}
     >
       <MediaControls />
