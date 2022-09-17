@@ -10,21 +10,21 @@
     "avatar": "Foto de perfil de {name}."
   },
   "Landing": {
-    "description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads.",
-    "getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
-    "getStarted": "Get started",
-    "goToDashboard": "Go to Dashboard",
-    "getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
-    "howItWorks": "How It Works",
-    "emailSignUp": "Sign up to the mailing list!",
-    "emailNotReadyDescription": "We aren't ready to launch yet, but you can sign up to the mailing list to get notified when we are.",
-    "emailSubscribeSuccess": "You have been subscribed!"
+    "description": "AI TTS Donations es un servicio gratuito y de código abierto de Texto-a-Voz para Twitch (y otras plataformas). Es el primero de su clase, sin servicios de suscripción, sin complementos y sin anuncios.",
+    "getStartedTooltip": "¡Aún no estamos listos! Apúntate a la lista de correo de abajo.",
+    "getStarted": "Comenzar",
+    "goToDashboard": "Ir al Panel",
+    "getStartedToday": "¿Suena bien? ¡Empieza hoy mismo a utilizar AI TTS Donations de forma gratuita!",
+    "howItWorks": "Cómo funciona",
+    "emailSignUp": "¡Inscríbase a la lista de correo!",
+    "emailNotReadyDescription": "Todavía no estamos listos para el lanzamiento, pero puedes inscribirte a la lista de correo para que te avisemos cuando lo estemos.",
+    "emailSubscribeSuccess": "¡Te has suscrito con éxito!"
   },
   "Dashboard": {
-    "yourDash": "Your Dashboard",
-    "sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
-    "sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
-    "ttsOverlay": "TTS Overlay",
-    "ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS)."
+    "yourDash": "Tu Panel",
+    "sensitiveInfo": "Información sensible (NO ABRIR EN STREAM.)",
+    "sensitiveInfoWarning": "ADVERTENCIA: NO MOSTRAR EL ENLACE DEL OVERLAY EN STREAM. CONTIENE INFORMACIÓN SENSIBLE.",
+    "ttsOverlay": "Overlay de TTS",
+    "ttsOverlayDescription": "Aquí es donde se reproducirá su audio de TTS, simplemente copie el enlace, y péguelo en una <Code>Fuente del navegador</Code> en su software de streaming preferido (como OBS)."
   }
 }
