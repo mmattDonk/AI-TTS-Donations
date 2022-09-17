@@ -23,7 +23,7 @@
   "Dashboard": {
     "yourDash": "Twój Panel",
     "sensitiveInfo": "Wrażliwe Informacje (NIE OTWIERAĆ NA TRANSMISJI.)",
-    "sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
+    "sensitiveInfoWarning": "OSTRZEŻENIE: NIE POKAZUJ LINKU DO NAKŁADKI NA TRANSMISJI. ZAWIERO ON SENSYTYWNE INFORMACJE.",
     "ttsOverlay": "Nakładka TTS",
     "ttsOverlayDescription": "Tutaj twoje audio TTS będzie grało, po prostu skopiuj link i wklej go do <Code>Źródło Przeglądarki</Code> w twoim preferowanym programie do streamingu (jak OBS)."
   }
