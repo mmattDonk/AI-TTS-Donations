@@ -22,9 +22,9 @@
   },
   "Dashboard": {
     "yourDash": "Панель Управления",
-    "sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
-    "sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
-    "ttsOverlay": "TTS Overlay",
-    "ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS)."
+    "sensitiveInfo": "Чувствительная информация (НЕ ОТКРЫВАЙТЕ В ВАШЕМ СТРИМЕ)",
+    "sensitiveInfoWarning": "ВНИМАНИЕ: НЕ ПОКАЗЫВАЙТЕ ОВЕРЛЕЙ ССЫЛКУ В СТРИМ. ТАМ МОЖЕТ БЫТЬ ЧТО-ТО ЧУВСТВИТЕЛЬНАЯ ИНФОРМАЦИЯ.",
+    "ttsOverlay": "TTS Оверлей",
+    "ttsOverlayDescription": "Здесь будет проигрывать ваши TTS аудио, просто копируйте ссылку и вставляйте в <Code>Браузер</Code> на вашем стриминг программы (как OBS)."
   }
 }
