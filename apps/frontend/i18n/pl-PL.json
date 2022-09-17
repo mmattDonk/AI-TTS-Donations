@@ -1,10 +1,10 @@
 {
-  "close": "Close",
-  "open": "Open",
-  "loggedIn": "Logged in as {name}",
-  "signOut": "Sign Out",
-  "signIn": "Sign In",
-  "learnMore": "Learn more",
+  "close": "Zamknij",
+  "open": "Otwórz",
+  "loggedIn": "Zalogowano jako {name}",
+  "signOut": "Wyloguj Się",
+  "signIn": "Zaloguj Się",
+  "learnMore": "Dowiedz się więcej",
   "submit": "Submit",
   "alt": {
     "avatar": "{name}'s profile picture."
