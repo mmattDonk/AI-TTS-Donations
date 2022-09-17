@@ -10,18 +10,18 @@
     "avatar": "{name} Аватар."
   },
   "Landing": {
-    "description": "AI TTS Donations это бесплатно и даже Open Source AI TTS сервис для Twitch (и другие платформы). Это первый своим классом, без платного подписки, без дополнительных зарплат, и нет рекламы.",
-    "getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
-    "getStarted": "Get started",
-    "goToDashboard": "Go to Dashboard",
-    "getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
-    "howItWorks": "How It Works",
-    "emailSignUp": "Sign up to the mailing list!",
-    "emailNotReadyDescription": "We aren't ready to launch yet, but you can sign up to the mailing list to get notified when we are.",
-    "emailSubscribeSuccess": "You have been subscribed!"
+    "description": "AI TTS Донаты это бесплатно и даже Open Source AI TTS сервис для Twitch (и другие платформы). Это первый своим классом, без платного подписки, без дополнительных зарплат, и нет рекламы.",
+    "getStartedTooltip": "Мы ещё не готовы! Подпишись в рассылку ниже.",
+    "getStarted": "Начать здесь",
+    "goToDashboard": "Зайти в Панель Управлений",
+    "getStartedToday": "Звучит хорошо? Тогда воспользуйтесь с AI TTS Донаты бесплатно!",
+    "howItWorks": "Как оно работает",
+    "emailSignUp": "Подписаться к рассылкам!",
+    "emailNotReadyDescription": "Мы ещё не готовы к запуску, но вы можете подписаться к рассылке, чтобы, получить уведомления когда будет готово.",
+    "emailSubscribeSuccess": "Вы подписались!"
   },
   "Dashboard": {
-    "yourDash": "Your Dashboard",
+    "yourDash": "Панель Управления",
     "sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
     "sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
     "ttsOverlay": "TTS Overlay",
