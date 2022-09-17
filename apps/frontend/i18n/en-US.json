@@ -6,11 +6,9 @@
   "signIn": "Sign In",
   "learnMore": "Learn more",
   "submit": "Submit",
-
   "alt": {
     "avatar": "{name}'s profile picture."
   },
-
   "Landing": {
     "description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads.",
     "getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
@@ -22,7 +20,6 @@
     "emailNotReadyDescription": "We aren't ready to launch yet, but you can sign up to the mailing list to get notified when we are.",
     "emailSubscribeSuccess": "You have been subscribed!"
   },
-
   "Dashboard": {
     "yourDash": "Your Dashboard",
     "sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
