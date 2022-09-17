@@ -12,6 +12,7 @@ const nextConfig = {
       "de-DE",
       "el-GR",
       "en-US",
+      "en-PT",
       "es-ES",
       "fi-FI",
       "fr-FR",
