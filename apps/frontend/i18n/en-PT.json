@@ -1,7 +1,7 @@
 {
   "close": "Close",
   "open": "Open",
-  "loggedIn": "Logged in as {name}",
+  "loggedIn": "Aboard as {name}",
   "signOut": "Sign Out",
   "signIn": "Sign In",
   "learnMore": "Learn more",

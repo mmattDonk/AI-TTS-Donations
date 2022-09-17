@@ -1,30 +1,30 @@
 {
-  "close": "Close",
-  "open": "Open",
-  "loggedIn": "Logged in as {name}",
-  "signOut": "Sign Out",
-  "signIn": "Sign In",
-  "learnMore": "Learn more",
+  "close": "Chiudi",
+  "open": "Apri",
+  "loggedIn": "Entrato come {name}",
+  "signOut": "Disconnettiti",
+  "signIn": "Connettiti",
+  "learnMore": "Scopri di più",
   "submit": "Submit",
   "alt": {
-    "avatar": "{name}'s profile picture."
+    "avatar": "Immagine profilo di {name}"
   },
   "Landing": {
-    "description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads.",
-    "getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
-    "getStarted": "Get started",
-    "goToDashboard": "Go to Dashboard",
-    "getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
-    "howItWorks": "How It Works",
-    "emailSignUp": "Sign up to the mailing list!",
-    "emailNotReadyDescription": "We aren't ready to launch yet, but you can sign up to the mailing list to get notified when we are.",
-    "emailSubscribeSuccess": "You have been subscribed!"
+    "description": "AI TTS Donations è un servizio AI TTS gratuito e Open Source per Twitch (ed altre piattaforme). È il primo della sua categoria, nessun servizio a pagamento, nessun add-on addizionale e nessuna pubblicità.",
+    "getStartedTooltip": "Non siamo ancora pronti! Iscriviti alla lista mail qua sotto.",
+    "getStarted": "Iniziare",
+    "goToDashboard": "Vai alla Dashboard",
+    "getStartedToday": "Suona bene? Inizia oggi con le donazioni AI TTS gratuitamente!",
+    "howItWorks": "Come funziona",
+    "emailSignUp": "Iscriviti alla lista mail!",
+    "emailNotReadyDescription": "Non siamo ancora pronti per il lancio, ma puoi iscriverti alla lista mail per ricevere una notifica quando lo saremo.",
+    "emailSubscribeSuccess": "Sei stato iscritto!"
   },
   "Dashboard": {
-    "yourDash": "Your Dashboard",
-    "sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
-    "sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
+    "yourDash": "La tua Dashboard",
+    "sensitiveInfo": "Informazioni sensibili (NON APRIRE IN STREAM.)",
+    "sensitiveInfoWarning": "ATTENZIONE: NON MOSTRARE IL LINK IN SOVRAPPOSIZIONE IN STREAM. CONTIENE INFORMAZIONI SENSIBILI.",
     "ttsOverlay": "TTS Overlay",
-    "ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS)."
+    "ttsOverlayDescription": "Qui è dove verrà riprodotto il tuo audio TTS, copia semplicemente il collegamento e incollalo in un <Code>Sorgente browser</Code> nel tuo software di streaming preferito (come OBS)."
   }
 }
