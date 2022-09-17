@@ -1,0 +1,33 @@
+{
+  "close": "Close",
+  "open": "Open",
+  "loggedIn": "Logged in as {name}",
+  "signOut": "Sign Out",
+  "signIn": "Sign In",
+  "learnMore": "Learn more",
+  "submit": "Submit",
+
+  "alt": {
+    "avatar": "{name}'s profile picture."
+  },
+
+  "Landing": {
+    "description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads.",
+    "getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
+    "getStarted": "Get started",
+    "goToDashboard": "Go to Dashboard",
+    "getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
+    "howItWorks": "How It Works",
+    "emailSignUp": "Sign up to the mailing list!",
+    "emailNotReadyDescription": "We aren't ready to launch yet, but you can sign up to the mailing list to get notified when we are.",
+    "emailSubscribeSuccess": "You have been subscribed!"
+  },
+
+  "Dashboard": {
+    "yourDash": "Your Dashboard",
+    "sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
+    "sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
+    "ttsOverlay": "TTS Overlay",
+    "ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS)."
+  }
+}
