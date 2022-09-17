@@ -1,16 +1,16 @@
 {
   "close": "Закрыть",
   "open": "Открыть",
-  "loggedIn": "Logged in as {name}",
-  "signOut": "Sign Out",
-  "signIn": "Sign In",
-  "learnMore": "Learn more",
-  "submit": "Submit",
+  "loggedIn": "Зашёл как {name}",
+  "signOut": "Выйти",
+  "signIn": "Вход",
+  "learnMore": "Узнать больше",
+  "submit": "Отправить",
   "alt": {
-    "avatar": "{name}'s profile picture."
+    "avatar": "{name} Аватар."
   },
   "Landing": {
-    "description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads.",
+    "description": "AI TTS Donations это бесплатно и даже Open Source AI TTS сервис для Twitch (и другие платформы). Это первый своим классом, без платного подписки, без дополнительных зарплат, и нет рекламы.",
     "getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
     "getStarted": "Get started",
     "goToDashboard": "Go to Dashboard",
