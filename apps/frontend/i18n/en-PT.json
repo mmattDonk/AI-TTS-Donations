@@ -1,6 +1,6 @@
 {
-  "close": "Закрыть",
-  "open": "Открыть",
+  "close": "Close",
+  "open": "Open",
   "loggedIn": "Logged in as {name}",
   "signOut": "Sign Out",
   "signIn": "Sign In",
