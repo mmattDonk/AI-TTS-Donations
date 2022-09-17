@@ -25,6 +25,6 @@
     "sensitiveInfo": "Informazioni sensibili (NON APRIRE IN STREAM.)",
     "sensitiveInfoWarning": "ATTENZIONE: NON MOSTRARE IL LINK IN SOVRAPPOSIZIONE IN STREAM. CONTIENE INFORMAZIONI SENSIBILI.",
     "ttsOverlay": "TTS Overlay",
-    "ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS)."
+    "ttsOverlayDescription": "Qui è dove verrà riprodotto il tuo audio TTS, copia semplicemente il collegamento e incollalo in un <Code>Sorgente browser</Code> nel tuo software di streaming preferito (come OBS)."
   }
 }
