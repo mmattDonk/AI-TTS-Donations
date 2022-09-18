@@ -7,9 +7,9 @@
   "learnMore": "Dowiedz się więcej",
   "submit": "Prześlij",
   "404": {
-    "title": "You have found a secret place.",
-    "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
-    "link": "Take me back to the landing page."
+    "title": "Znalazłeś sekretne miejsce.",
+    "description": "Niestety, jest to tylko strona 404. Możliwe, że błędnie wpisałeś adres, lub strona została przeniesiona pod inny adres URL.",
+    "link": "\nZabierz mnie z powrotem na stronę docelową."
   },
   "alt": {
     "avatar": "Zdjęcie profilowe {name}."
