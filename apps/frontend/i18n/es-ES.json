@@ -6,6 +6,11 @@
   "signIn": "Iniciar sesión",
   "learnMore": "Aprende más",
   "submit": "Subir",
+  "404": {
+    "title": "You have found a secret place.",
+    "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
+    "link": "Take me back to the landing page."
+  },
   "alt": {
     "avatar": "Foto de perfil de {name}."
   },
