@@ -5,11 +5,11 @@
   "signOut": "Disconnettiti",
   "signIn": "Connettiti",
   "learnMore": "Scopri di più",
-  "submit": "Submit",
+  "submit": "Invia",
   "404": {
-    "title": "You have found a secret place.",
-    "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
-    "link": "Take me back to the landing page."
+    "title": "Hai trovato un posto segreto.",
+    "description": "Sfortunatamente, questa è solo una pagina 404. Potresti aver digitato in modo errato l'indirizzo o la pagina è stata spostata su un altro URL.",
+    "link": "Riportami alla pagina di destinazione."
   },
   "alt": {
     "avatar": "Immagine profilo di {name}"
