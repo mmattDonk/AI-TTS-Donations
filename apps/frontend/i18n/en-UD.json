@@ -1,35 +1,35 @@
 {
-  "close": "Close",
-  "open": "Open",
-  "loggedIn": "Logged in as {name}",
-  "signOut": "Sign Out",
-  "signIn": "Sign In",
-  "learnMore": "Learn more",
-  "submit": "Submit",
+  "close": "ǝsolƆ",
+  "open": "uǝdO",
+  "loggedIn": "{ǝɯɐu} sɐ uᴉ pǝƃƃo˥",
+  "signOut": "ʇnO uƃᴉS",
+  "signIn": "uI uƃᴉS",
+  "learnMore": "ǝɹoɯ uɹɐǝ˥ ",
+  "submit": "ʇᴉɯqnS",
   "404": {
-    "title": "You have found a secret place.",
-    "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
-    "link": "Take me back to the landing page."
+    "title": "˙ǝɔɐld ʇǝɹɔǝs ɐ punoɟ ǝʌɐɥ no⅄",
+    "description": "˙˥ɹ∩ ɹǝɥʇouɐ oʇ pǝʌoɯ uǝǝq sɐɥ ǝƃɐd ǝɥʇ ɹo 'ssǝɹppɐ ǝɥʇ pǝdʎʇsᴉɯ ǝʌɐɥ ʎɐɯ no⅄ ˙ǝƃɐd ㄣ0ㄣ ɐ ʎluo sᴉ sᴉɥʇ 'ʎlǝʇɐunʇɹoɟu∩",
+    "link": "˙ǝƃɐd ƃuᴉpuɐl ǝɥʇ oʇ ʞɔɐq ǝɯ ǝʞɐ┴"
   },
   "alt": {
-    "avatar": "{name}'s profile picture."
+    "avatar": "˙ǝɹnʇɔᴉd ǝlᴉɟoɹd s,{ǝɯɐu}"
   },
   "Landing": {
-    "description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads.",
-    "getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
-    "getStarted": "Get started",
-    "goToDashboard": "Go to Dashboard",
-    "getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
-    "howItWorks": "How It Works",
-    "emailSignUp": "Sign up to the mailing list!",
-    "emailNotReadyDescription": "We aren't ready to launch yet, but you can sign up to the mailing list to get notified when we are.",
-    "emailSubscribeSuccess": "You have been subscribed!"
+    "description": "˙spɐ ou puɐ 'suo-ppɐ lɐuoᴉʇᴉppɐ ou 'sǝɔᴉʌɹǝs uoᴉʇdᴉɹɔsqns ou 'ssɐlɔ sʇᴉ ɟo ʇsɹᴉɟ ǝɥʇ s,ʇI ˙(sɯɹoɟʇɐld ɹǝɥʇo puɐ) ɥɔʇᴉʍ┴ ɹoɟ ǝɔᴉʌɹǝs S┴┴ I∀ ǝɔɹnoS uǝdO puɐ ǝǝɹɟ ɐ sᴉ suoᴉʇɐuop S┴┴ I∀",
+    "getStartedTooltip": "˙ʍolǝq ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉS ¡ʇǝʎ ʎpɐǝɹ ʇ,uǝɹɐ ǝM",
+    "getStarted": "pǝʇɹɐʇs ʇǝפ",
+    "goToDashboard": "pɹɐoqɥsɐp oʇ oפ",
+    "getStartedToday": "¡ǝǝɹɟ ɹoɟ ʎɐpoʇ suoᴉʇɐuop S┴┴ I∀ ɥʇᴉʍ pǝʇɹɐʇs ʇǝפ ¿pooƃ spunoS",
+    "howItWorks": "sʞɹoM ʇI ʍoH",
+    "emailSignUp": "¡ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉS",
+    "emailNotReadyDescription": "˙ǝɹɐ ǝʍ uǝɥʍ pǝᴉɟᴉʇou ʇǝƃ oʇ ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉs uɐɔ noʎ ʇnq 'ʇǝʎ ɥɔunɐl oʇ ʎpɐǝɹ ʇ,uǝɹɐ ǝM",
+    "emailSubscribeSuccess": "¡pǝqᴉɹɔsqns uǝǝq ǝʌɐɥ no⅄"
   },
   "Dashboard": {
-    "yourDash": "Your Dashboard",
-    "sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
-    "sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
-    "ttsOverlay": "TTS Overlay",
-    "ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS)."
+    "yourDash": "pɹɐoqɥsɐp ɹno⅄",
+    "sensitiveInfo": "(˙W∀Ǝɹ┴S NO NƎԀO ┴ON Op) uoᴉʇɐɯɹoɟuI ǝʌᴉʇᴉsuǝS",
+    "sensitiveInfoWarning": "˙NOI┴∀WɹOℲNI ƎΛI┴ISNƎS SNI∀┴NOƆ ┴I ˙W∀Ǝɹ┴S NO ʞNI˥ ⅄∀˥ɹƎΛO MOHS ┴ON Op :פNINɹ∀M",
+    "ttsOverlay": "ʎɐlɹǝʌO S┴┴",
+    "ttsOverlayDescription": "˙(SqO ǝʞᴉl) ǝɹɐʍʇɟos ƃuᴉɯɐǝɹʇs pǝɹɹǝɟǝɹd ɹnoʎ uᴉ <ǝpoƆ/>ǝɔɹnoS ɹǝsʍoɹq<ǝpoƆ> ɐ oʇuᴉ ʇᴉ ǝʇsɐd puɐ 'ʞuᴉl ǝɥʇ ʎdoɔ ʎldɯᴉs 'ƃuᴉʎɐld ǝq llᴉʍ oᴉpnɐ S┴┴ ɹnoʎ ǝɹǝɥʍ sᴉ sᴉɥ┴"
   }
 }
