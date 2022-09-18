@@ -10,6 +10,12 @@ export default class _Document extends Document {
     return (
       <Html>
         <Head />
+        <script
+          async
+          defer
+          data-website-id="3b77bd4a-0e2a-4f03-b03e-ca47c99725e4"
+          src="https://slayalytics.mmattdonk.com/umami.js"
+        ></script>
         <body>
           <Main />
           <NextScript />
