@@ -8,7 +8,7 @@
   "submit": "Invia",
   "404": {
     "title": "Hai trovato un posto segreto.",
-    "description": "Sfortunatamente, questa è solo una pagina 404. Potresti aver digitato in modo errato l'indirizzo o la pagina è stata spostata su un altro URL.",
+    "description": "Sfortunatamente questa è solo una pagina 404. Potresti aver digitato in modo errato l'indirizzo o la pagina è stata spostata su un altro URL.",
     "link": "Riportami alla pagina di destinazione."
   },
   "alt": {
