@@ -377,6 +377,10 @@ const Home: NextPage = () => {
               <div>{!formMutation.isLoading && message}</div>
             </Group>
           </form>
+          <p>
+            {t("Landing.emailPapertrail")} -{" "}
+            <a href="https://www.mmatt.net/blog">{t("learnMore")}</a>
+          </p>
         </div>
       </div>
     </>
