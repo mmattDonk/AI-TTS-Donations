@@ -23,7 +23,8 @@
     "howItWorks": "Как оно работает",
     "emailSignUp": "Подписаться к рассылкам!",
     "emailNotReadyDescription": "Мы ещё не готовы к запуску, но вы можете подписаться к рассылке, чтобы, получить уведомления когда будет готово.",
-    "emailSubscribeSuccess": "Вы подписались!"
+    "emailSubscribeSuccess": "Вы подписались!",
+    "emailPapertrail": "Want to see past emails? Check out the paper trail on mmatt's personal website!"
   },
   "Dashboard": {
     "yourDash": "Панель Управления",
