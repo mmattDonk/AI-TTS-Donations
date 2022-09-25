@@ -8,6 +8,7 @@ import {
 import { NotificationsProvider } from "@mantine/notifications";
 import { withTRPC } from "@trpc/next";
 import { SessionProvider } from "next-auth/react";
+import { NextIntlProvider } from "next-intl";
 import type { AppType } from "next/dist/shared/lib/utils";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -70,7 +71,9 @@ const MyApp: AppType = ({
     return (
       <MantineTheme>
         <SessionProvider session={session}>
-          <Component {...pageProps} />
+          <NextIntlProvider messages={pageProps.messages}>
+            <Component {...pageProps} />
+          </NextIntlProvider>
         </SessionProvider>
       </MantineTheme>
     );

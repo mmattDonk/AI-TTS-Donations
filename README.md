@@ -1,4 +1,4 @@
-# project solrock. (wip name) [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/mmattdonk/solrock)
+# project solrock. (wip name) [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/mmattdonk/solrock) [![Crowdin](https://badges.crowdin.net/solrock/localized.svg)](https://crowdin.com/project/solrock)
 
 the next generation of ai tts donations.
 

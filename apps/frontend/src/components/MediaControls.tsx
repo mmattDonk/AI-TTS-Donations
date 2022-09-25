@@ -139,6 +139,7 @@ export default function MediaControls() {
                 key={message.id}
                 style={{
                   maxWidth: "100%",
+                  textOverflow: "ellipsis",
                   overflow: "hidden",
                 }}
               >

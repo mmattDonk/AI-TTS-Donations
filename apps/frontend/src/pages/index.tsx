@@ -10,8 +10,9 @@ import {
   Title,
   Tooltip,
 } from "@mantine/core";
-import type { NextPage } from "next";
+import type { GetStaticPropsContext, NextPage } from "next";
 import { signIn, signOut } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import Bubbles from "../components/Bubbles";
@@ -112,6 +113,7 @@ const useStyles = createStyles((theme) => ({
 const Home: NextPage = () => {
   const { data: session, isLoading } = trpc.useQuery(["auth.getSession"]);
   const { classes } = useStyles();
+  const t = useTranslations();
 
   const BRRef = useRef<HTMLBRElement>(null);
   const inputElement = useRef<HTMLInputElement>(null);
@@ -132,13 +134,12 @@ const Home: NextPage = () => {
         setMessage(formMutation.data?.error);
         return;
       } else {
-        setMessage("You have been subscribed!");
+        setMessage(t("Landing.emailSubscribeSuccess"));
       }
     }
   };
 
   return (
-    // <h1>asdf</h1>
     <>
       <Container>
         <Spring>
@@ -148,24 +149,24 @@ const Home: NextPage = () => {
             ) : session ? (
               <>
                 <Link href="/dashboard" prefetch>
-                  Go To Dashboard
+                  {t("Landing.goToDashboard")}
                 </Link>
                 <Tooltip
-                  label={`Logged in as ${session.user?.name}`}
+                  label={t("loggedIn", { name: session.user?.name })}
                   position="bottom"
                 >
                   <Avatar
                     src={session.user?.image}
-                    alt={`${session.user?.name}'s profile picture.`}
+                    alt={t("alt.avatar", { name: session.user?.name })}
                   />
                 </Tooltip>
                 <Button onClick={() => signOut()} size="xs">
-                  Sign Out
+                  {t("signOut")}
                 </Button>
               </>
             ) : (
               <Button onClick={() => signIn()} size="xs">
-                Sign In
+                {t("signIn")}
               </Button>
             )}
           </Group>
@@ -198,23 +199,21 @@ const Home: NextPage = () => {
 
               <Container p={0} size={600}>
                 <Text size="lg" color="dimmed" className={classes.description}>
-                  AI TTS Donations is a free and Open Source AI TTS service for
-                  Twitch (and other platforms). It's the first of its class, no
-                  subscription services, no additional add-ons, and no ads.
+                  {t("Landing.description")}
                 </Text>
               </Container>
 
               <div className={classes.controls}>
                 <Group>
                   {/* <Link href="/dashboard" prefetch> */}
-                  <Tooltip label="We aren't ready yet! Sign up to the mailing list below.">
+                  <Tooltip label={t("Landing.getStartedTooltip")}>
                     <Button
                       className={classes.control}
                       size="lg"
                       // disabled={isLoading}
                       disabled
                     >
-                      Get started
+                      {t("Landing.getStarted")}
                     </Button>
                   </Tooltip>
                   {/* </Link> */}
@@ -224,14 +223,14 @@ const Home: NextPage = () => {
                     size="lg"
                     onClick={scrollToPositions}
                   >
-                    Learn more
+                    {t("learnMore")}
                   </Button>
                 </Group>
               </div>
             </div>
           </Container>
 
-          <h2 style={{ textAlign: "center" }}>How It Works</h2>
+          <h2 style={{ textAlign: "center" }}>{t("Landing.howItWorks")}</h2>
 
           <Center>
             <div
@@ -349,17 +348,16 @@ const Home: NextPage = () => {
           }}
         >
           {/* <h1 style={{ textAlign: "center" }}>
-            Sounds good? Get started with AI TTS Donations today for free!
+            {t("Landing.getStartedToday")}
           </h1>
           <Link href="/dashboard" prefetch>
             <Center>
-              <Button>Get started</Button>
+              <Button>{t("Landing.getStarted")}</Button>
             </Center>
           </Link> */}
-          <h1 style={{ textAlign: "center" }}>Sign up to the mailing list!</h1>
+          <h1 style={{ textAlign: "center" }}>{t("Landing.emailSignUp")}</h1>
           <p style={{ textAlign: "center" }}>
-            We aren't ready to launch yet, but you can sign up to the mailing
-            list to get notified when we are.
+            {t("Landing.emailNotReadyDescription")}
           </p>
 
           <form onSubmit={subscribe}>
@@ -373,7 +371,7 @@ const Home: NextPage = () => {
               />
 
               <Button type="submit" disabled={formMutation.isLoading}>
-                Submit
+                {t("submit")}
               </Button>
               {formMutation.isLoading && <LoadingSpinner />}
               <div>{!formMutation.isLoading && message}</div>
@@ -386,3 +384,11 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: (await import(`../../i18n/${locale}.json`)).default,
+    },
+  };
+}
