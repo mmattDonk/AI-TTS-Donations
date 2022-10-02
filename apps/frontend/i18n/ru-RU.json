@@ -7,9 +7,9 @@
   "learnMore": "Узнать больше",
   "submit": "Отправить",
   "404": {
-    "title": "You have found a secret place.",
-    "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
-    "link": "Take me back to the landing page."
+    "title": "Ты нашёл тайное место.",
+    "description": "К сожалению, это только страница 404. Возможно, вы неправильно указали веб адрес или это страница перенесло в другой веб URL.",
+    "link": "Верните меня на целевую страницу."
   },
   "alt": {
     "avatar": "{name} Аватар."
@@ -23,7 +23,8 @@
     "howItWorks": "Как оно работает",
     "emailSignUp": "Подписаться к рассылкам!",
     "emailNotReadyDescription": "Мы ещё не готовы к запуску, но вы можете подписаться к рассылке, чтобы, получить уведомления когда будет готово.",
-    "emailSubscribeSuccess": "Вы подписались!"
+    "emailSubscribeSuccess": "Вы подписались!",
+    "emailPapertrail": "Хотите просмотреть прошлые письма? Тогда посмотрите бумажный след на личном сайте mmatt!"
   },
   "Dashboard": {
     "yourDash": "Панель Управления",

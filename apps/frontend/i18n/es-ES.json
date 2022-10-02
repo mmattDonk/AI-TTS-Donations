@@ -23,7 +23,8 @@
     "howItWorks": "Cómo funciona",
     "emailSignUp": "¡Inscríbase a la lista de correo!",
     "emailNotReadyDescription": "Todavía no estamos listos para el lanzamiento, pero puedes inscribirte a la lista de correo para que te avisemos cuando lo estemos.",
-    "emailSubscribeSuccess": "¡Te has suscrito con éxito!"
+    "emailSubscribeSuccess": "¡Te has suscrito con éxito!",
+    "emailPapertrail": "Want to see past emails? Check out the paper trail on mmatt's personal website!"
   },
   "Dashboard": {
     "yourDash": "Tu Panel",
