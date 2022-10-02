@@ -9,7 +9,7 @@
     "backend": "yarn workspace @solrock/backend",
     "processor": "yarn workspace @solrock/processor",
     "prisma": "yarn workspace @solrock/prisma",
-    "dev": "concurrently --names \"frontend,processor\" --prefix \"[{name}]\" -c \"bgBlue.bold,bgMagenta.bold\" \"yarn workspace @solrock/frontend dev\" \"yarn workspace @solrock/processor start\""
+    "dev": "concurrently --names \"frontend,processor,backend\" --prefix \"[{name}]\" -c \"bgBlue.bold,bgMagenta.bold,bgYellow.bold\" \"yarn workspace @solrock/frontend dev\" \"yarn workspace @solrock/processor start\" \"yarn workspace @solrock/backend dev\""
   },
   "keywords": [],
   "workspaces": [

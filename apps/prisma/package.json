@@ -1,5 +1,6 @@
 {
   "name": "@solrock/prisma",
+  "type": "module",
   "version": "1.0.0",
   "description": "the database schema for solrock",
   "private": true,

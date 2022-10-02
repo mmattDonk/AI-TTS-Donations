@@ -1,11 +1,13 @@
 {
   "name": "@solrock/backend",
+  "type": "module",
   "version": "0.0.1",
   "description": "twitch eventsub websocket server.",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "yarn build && node dist/index.js"
+    "start": "yarn build && node dist/index.js",
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "mmattbtw <matt@mmatt.net>",
@@ -18,6 +20,8 @@
     "typescript": "^4.8.2"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "pusher": "^5.1.1-beta"
   }

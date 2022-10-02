@@ -9,7 +9,9 @@ import {
   Stack,
   Tooltip,
 } from "@mantine/core";
+import { GetStaticPropsContext } from "next";
 import { signIn, signOut } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { WindowMaximize } from "tabler-icons-react";
 import LoadingPage, { LoadingSpinner } from "../components/Loading";
@@ -19,6 +21,7 @@ import { trpc } from "../utils/trpc";
 
 export default function Dashboard() {
   const [sensitiveOpen, setSensitiveOpen] = useState(false);
+  const t = useTranslations();
 
   const { data: session, isLoading: isSessionLoading } = trpc.useQuery([
     "auth.getSession",
@@ -57,12 +60,12 @@ export default function Dashboard() {
           <Stack mt="xl" mb="xl" spacing="xs">
             <Group>
               <Avatar src={session.user?.image} size="lg" />
-              <h1>Your Dashboard</h1>
+              <h1>{t("Dashboard.yourDash")}</h1>
             </Group>
             <Group>
-              <p>Logged in as {session.user?.name}</p>
+              <p>{t("loggedIn", { name: session.user?.name })}</p>
               <Button color="gray" size="xs" onClick={() => signOut()}>
-                Sign Out
+                {t("signOut")}
               </Button>
             </Group>
           </Stack>
@@ -93,23 +96,25 @@ export default function Dashboard() {
               <Space h="md" />
 
               <Button color="red" onClick={() => setSensitiveOpen((o) => !o)}>
-                {sensitiveOpen ? "Close" : "Open"} Sensitive Information (DO NOT
-                OPEN ON STREAM.)
+                {sensitiveOpen ? t("close") : t("open")}{" "}
+                {t("Dashboard.sensitiveInfo")}
               </Button>
               <Collapse in={sensitiveOpen}>
                 <p>
-                  <Tooltip label="WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.">
+                  <Tooltip label={t("Dashboard.sensitiveInfoWarning")}>
                     <a
                       href={`/overlay/${userData?.streamers[0]?.overlayId}`}
                       target="_blank"
                       rel="noreferrer"
                     >
-                      TTS Overlay
+                      {t("Dashboard.ttsOverlay")}
                     </a>
                   </Tooltip>{" "}
-                  - This is where your TTS audio will be playing, simply copy
-                  the link, and paste it into a <Code>Browser Source</Code> in
-                  your preferred streaming software (like OBS).
+                  -{" "}
+                  {t.rich("Dashboard.ttsOverlayDescription", {
+                    // @ts-ignore
+                    Code: (children) => <Code>{children}</Code>,
+                  })}
                 </p>
               </Collapse>
             </>
@@ -120,4 +125,12 @@ export default function Dashboard() {
   }
 
   return <LoadingPage />;
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: (await import(`../../i18n/${locale}.json`)).default,
+    },
+  };
 }
