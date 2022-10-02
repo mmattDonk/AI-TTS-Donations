@@ -299,6 +299,7 @@ def hello_http(request):
         <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
     """
     request_json = request.get_json(silent=True)
+    print(request_json)
     request_message = request_json["message"]
     request_message = re.sub(
         CHEER_REGEX,
@@ -325,7 +326,7 @@ def hello_http(request):
     }
 
     httpx.post(
-        f"{API_URL}/api/streamers/{overlay_id}",
+        f"{API_URL}/api/streamers/overlayId/{overlay_id}",
         data={
             "audioUrl": response["audioUrl"],
             "message": response["message"],
