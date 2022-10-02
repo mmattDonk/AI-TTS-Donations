@@ -1,6 +1,6 @@
 asyncio==3.4.3
 httpx == 1.0.0b0
-nest-asyncio==1.5.5
+nest-asyncio==1.5.6
 pedalboard==0.6.2
 python-socketio[client]==5.7.1
 python_dotenv == 0.21.0
