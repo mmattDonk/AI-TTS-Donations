@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import asyncio
+import base64
 import contextlib
 import json
 import logging
@@ -17,11 +18,10 @@ from pathlib import Path
 from tkinter import Button, Canvas, Entry, PhotoImage, Tk
 from typing import Optional
 from uuid import UUID
-import sentry_sdk
-
 
 import httpx
 import nest_asyncio
+import sentry_sdk
 import simpleaudio
 import socketio
 import soundfile as sf
@@ -44,8 +44,8 @@ from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.types import AuthScope
 
-
 from API.fakeyou import Fakeyou
+from API.tiktok import Tiktok
 from API.uberduck import Uberduck
 
 VERSION: str = "3.1.5"
@@ -239,6 +239,48 @@ def post_version_number(twitch_id: int, version: str) -> bool:
     return response.status_code == 200
 
 
+def apply_voice_effect(date_string, voice_effect) -> str:
+    audio, sample_rate = sf.read(f"./voice_files/AI_voice_{date_string}.wav")
+    board = Pedalboard([])
+
+    for effect in voice_effect:
+        if effect.lower() in VOICE_EFFECTS:
+            log.info(f"Voice Effect Detected: {effect}")
+            if type(VOICE_EFFECTS[effect]) == list:
+                for effect_func in VOICE_EFFECTS[effect]:
+                    board.append(effect_func)
+            else:
+                board.append(VOICE_EFFECTS[effect])
+
+    effected = board(audio, sample_rate)
+    sf.write(
+        f"./voice_files/AI_voice_{date_string}.wav",
+        effected,
+        sample_rate,
+    )
+
+    for effect in voice_effect:
+        if effect.lower() in VOICE_EFFECTS and effect == "loud":
+            # Making the "loud" effect quieter because it's too loud.
+            # If anyone knows how to work a limiter or a compressor you can edit the VOICE_EFFECTS if you want :p
+            # Also there is probably a way to make this work in the loop above, but idk.
+            # So if anyone wants to take a shot at that, then go ahead
+            # I love free labor / code
+            # FeelsGoodMan
+
+            board.append(Gain(gain_db=-15))
+
+            effected = board(audio, sample_rate)
+            log.debug("?")
+            sf.write(
+                f"./voice_files/AI_voice_{date_string}.wav",
+                effected,
+                sample_rate,
+            )
+
+    return f"./voice_files/AI_voice_{date_string}.wav"
+
+
 def request_tts(message: str, failed: Optional[bool] = False) -> None:
     # sourcery no-metrics
     messages: list = message.split("||")
@@ -339,15 +381,47 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
 
         if voice_name.startswith("TM:"):
             tts_provider = Fakeyou
+        elif voice_name.startswith("TT:"):
+            tts_provider = Tiktok
         else:
             tts_provider = Uberduck
             voice_name.lower()
 
-        job_response: dict = tts_provider.get_job(text, voice_name)
+        if tts_provider is not Tiktok:
+            job_response: dict = tts_provider.get_job(text, voice_name)
+        elif tts_provider is Tiktok:
+            base64_data: str = tts_provider.get_tts(text, voice_name)
 
-        log.debug(job_response)
+            if base64_data is None:
+                try:
+                    fallback_voice: str = config["FALLBACK_VOICE"]
+                except:
+                    fallback_voice: str = "kanye-west-rap"
 
-        if job_response["detail"] != None:
+                log.info(
+                    "Couldn't find voice specified, using fallback voice: "
+                    + fallback_voice
+                )
+                job_response: dict = Uberduck.get_job(text, fallback_voice)
+            else:
+                date_string: str = datetime.now().strftime("%d%m%Y%H%M%S")
+                file_name = f"./voice_files/AI_voice_{date_string}.wav"
+
+                decode_string = base64.b64decode(base64_data)
+                sf.write(file_name, decode_string, 24000)
+
+                # this entire script needs a rewrite SO bad.
+                job_response = {"detail": None, "uuid": None}
+
+                if voice_effect:
+                    apply_voice_effect(date_string, voice_effect)
+
+                voice_files.append(file_name)
+
+        # if job_response != None:
+        # log.debug(job_response)
+
+        if tts_provider is not Tiktok or job_response["detail"] != None:
             if job_response["detail"] == "That voice does not exist":
                 try:
                     fallback_voice: str = config["FALLBACK_VOICE"]
@@ -360,7 +434,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                 )
                 job_response: dict = Uberduck.get_job(text, fallback_voice)
 
-        if job_response["uuid"] is not None:
+        if tts_provider is not Tiktok or job_response["detail"] != None:
             log.info("UUID recieved. Waiting for TTS to process")
             checkCount: int = 0
             waitingToProcess: bool = True
@@ -381,53 +455,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
                     reset_overlay()
 
                     if voice_effect:
-                        audio, sample_rate = sf.read(
-                            f"./voice_files/AI_voice_{date_string}.wav"
-                        )
-                        board = Pedalboard([])
-
-                        for effect in voice_effect:
-                            if effect.lower() in VOICE_EFFECTS:
-                                log.info("Voice Effect Detected: " + effect)
-                                if type(VOICE_EFFECTS[effect]) == list:
-                                    for effect_func in VOICE_EFFECTS[effect]:
-                                        board.append(effect_func)
-                                else:
-                                    board.append(VOICE_EFFECTS[effect])
-                            else:
-                                pass
-
-                        effected = board(audio, sample_rate)
-                        sf.write(
-                            f"./voice_files/AI_voice_{date_string}.wav",
-                            effected,
-                            sample_rate,
-                        )
-
-                        for effect in voice_effect:
-                            if effect.lower() in VOICE_EFFECTS:
-                                if effect == "loud":
-                                    # Making the "loud" effect quieter because it's too loud.
-                                    # If anyone knows how to work a limiter or a compressor you can edit the VOICE_EFFECTS if you want :p
-                                    # Also there is probably a way to make this work in the loop above, but idk.
-                                    # So if anyone wants to take a shot at that, then go ahead
-                                    # I love free labor / code
-                                    # FeelsGoodMan
-
-                                    board.append(Gain(gain_db=-15))
-
-                                    effected = board(audio, sample_rate)
-                                    log.debug("?")
-                                    sf.write(
-                                        f"./voice_files/AI_voice_{date_string}.wav",
-                                        effected,
-                                        sample_rate,
-                                    )
-                                else:
-                                    pass
-                            else:
-                                pass
-
+                        apply_voice_effect(date_string, voice_effect)
                     else:
                         pass
 
@@ -473,6 +501,7 @@ def request_tts(message: str, failed: Optional[bool] = False) -> None:
             sound = q.get()
             if sound is None:
                 return
+            print(sound)
             sound_obj = simpleaudio.WaveObject.from_wave_file(sound)
             play_obj = sound_obj.play()
             play_obj.wait_done()
