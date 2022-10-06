@@ -1,36 +1,36 @@
 {
-  "close": "CLOSE",
-  "open": "OPEN",
-  "loggedIn": "LOGGD IN AS {name}",
-  "signOut": "SIGN OUT",
-  "signIn": "SIGN IN",
-  "learnMore": "LERN MOAR",
-  "submit": "SUBMIT",
-  "404": {
-    "title": "U HAS FINDZ SEEKRET PLACE.",
-    "description": "UNFORTUNATELY, DIS AR TEH ONLY 404 PAEG. U CUD HAS MISTYPD TEH ADDRES, OR TEH PAEG HAS BEEN MOVD 2 ANOTHR URL.",
-    "link": "TAEK MEH BAK 2 TEH LANDIN PAEG."
-  },
-  "alt": {
-    "avatar": "{name}'S PROFILE PICCHUR."
-  },
-  "Landing": {
-    "description": "AI TTS DONASHUNS IZ FREE AN OPEN SOURCE AI TTS SERVICE 4 TWITCH (AN OTHR PLATFORMS). IZ TEH FURST OV ITZ CLAS, NO SUBSCRIPSHUN SERVICEZ, NO ADDISHUNAL ADD-ONS, AN NO ADZ.",
-    "getStartedTooltip": "WE ARENT READY YET! SIGN UP 2 TEH MAILIN LIST BELOW.",
-    "getStarted": "GIT STARTD",
-    "goToDashboard": "GO 2 DASHBORD",
-    "getStartedToday": "SOUNDZ GUD? GIT STARTD WIF AI TTS DONASHUNS TODAI 4 FREE!",
-    "howItWorks": "HOW IT WERKZ",
-    "emailSignUp": "SIGN UP 2 TEH MAILIN LIST!",
-    "emailNotReadyDescription": "WE ARENT READY 2 LAUNCH YET, BUT U CAN SIGN UP 2 TEH MAILIN LIST 2 GIT NOTIFID WHEN WE R.",
-    "emailSubscribeSuccess": "U HAS BEEN SUBSCRIBD!",
-    "emailPapertrail": "Want to see past emails? Check out the paper trail on mmatt's personal website!"
-  },
-  "Dashboard": {
-    "yourDash": "UR DASHBORD",
-    "sensitiveInfo": "SENSITIV INFORMASHUN (DO NOT OPEN ON STREAM.)",
-    "sensitiveInfoWarning": "WARNIN: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIV INFORMASHUN.",
-    "ttsOverlay": "TTS OVERLAY",
-    "ttsOverlayDescription": "DIS AR TEH WER UR TTS AUDIO WILL BE PLAYIN, SIMPLY COPY TEH LINK, AN PASTE IT INTO <Code>BROWSR SOURCE</Code> IN UR PREFERRD STREAMIN SOFTWARE (LIEK OBS)."
-  }
+	"close": "CLOSE",
+	"open": "OPEN",
+	"loggedIn": "LOGGD IN AS {name}",
+	"signOut": "SIGN OUT",
+	"signIn": "SIGN IN",
+	"learnMore": "LERN MOAR",
+	"submit": "SUBMIT",
+	"404": {
+		"title": "U HAS FINDZ SEEKRET PLACE.",
+		"description": "UNFORTUNATELY, DIS AR TEH ONLY 404 PAEG. U CUD HAS MISTYPD TEH ADDRES, OR TEH PAEG HAS BEEN MOVD 2 ANOTHR URL.",
+		"link": "TAEK MEH BAK 2 TEH LANDIN PAEG."
+	},
+	"alt": {
+		"avatar": "{name}'S PROFILE PICCHUR."
+	},
+	"Landing": {
+		"description": "AI TTS DONASHUNS IZ FREE AN OPEN SOURCE AI TTS SERVICE 4 TWITCH (AN OTHR PLATFORMS). IZ TEH FURST OV ITZ CLAS, NO SUBSCRIPSHUN SERVICEZ, NO ADDISHUNAL ADD-ONS, AN NO ADZ.",
+		"getStartedTooltip": "WE ARENT READY YET! SIGN UP 2 TEH MAILIN LIST BELOW.",
+		"getStarted": "GIT STARTD",
+		"dashboard": "Dashboard",
+		"getStartedToday": "SOUNDZ GUD? GIT STARTD WIF AI TTS DONASHUNS TODAI 4 FREE!",
+		"howItWorks": "HOW IT WERKZ",
+		"emailSignUp": "SIGN UP 2 TEH MAILIN LIST!",
+		"emailNotReadyDescription": "WE ARENT READY 2 LAUNCH YET, BUT U CAN SIGN UP 2 TEH MAILIN LIST 2 GIT NOTIFID WHEN WE R.",
+		"emailSubscribeSuccess": "U HAS BEEN SUBSCRIBD!",
+		"emailPapertrail": "Want to see past emails? Check out the paper trail on mmatt's personal website!"
+	},
+	"Dashboard": {
+		"yourDash": "UR DASHBORD",
+		"sensitiveInfo": "SENSITIV INFORMASHUN (DO NOT OPEN ON STREAM.)",
+		"sensitiveInfoWarning": "WARNIN: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIV INFORMASHUN.",
+		"ttsOverlay": "TTS OVERLAY",
+		"ttsOverlayDescription": "DIS AR TEH WER UR TTS AUDIO WILL BE PLAYIN, SIMPLY COPY TEH LINK, AN PASTE IT INTO <Code>BROWSR SOURCE</Code> IN UR PREFERRD STREAMIN SOFTWARE (LIEK OBS)."
+	}
 }
