@@ -160,6 +160,7 @@ const Home: NextPage = () => {
 									control={
 										<UnstyledButton>
 											<Avatar
+												radius="xl"
 												src={session.user?.image}
 												alt={t('alt.avatar', { name: session.user?.name })}
 											/>
