@@ -7,13 +7,6 @@ const port = process.env.PORT || 4200;
 const app = express();
 dotenv.config();
 
-// const pusher = new Pusher({
-//   appId: process.env.PUSHER_APP_ID ?? "",
-//   cluster: process.env.PUSHER_APP_CLUSTER ?? "",
-//   key: process.env.PUSHER_APP_KEY ?? "",
-//   secret: process.env.PUSHER_APP_SECRET ?? "",
-// });
-
 // Notification request headers
 const TWITCH_MESSAGE_ID = "Twitch-Eventsub-Message-Id".toLowerCase();
 const TWITCH_MESSAGE_TIMESTAMP =
