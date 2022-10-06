@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.78",
+    "@mantine/carousel": "^5.5.4",
     "@mantine/core": "^4.2.12",
     "@mantine/form": "^4.2.12",
     "@mantine/hooks": "^4.2.12",
@@ -26,6 +27,8 @@
     "@trpc/next": "^9.25.3",
     "@trpc/react": "^9.25.3",
     "@trpc/server": "^9.25.3",
+    "embla-carousel-autoplay": "^7.0.3",
+    "embla-carousel-react": "^7.0.3",
     "framer-motion": "^6.4.1",
     "next": "12.2.0",
     "next-auth": "^4.8.0",
