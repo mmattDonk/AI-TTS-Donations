@@ -13,6 +13,7 @@ import {
 import type { GetStaticPropsContext, NextPage } from "next";
 import { signIn, signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
+import Head from "next/head";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import Bubbles from "../components/Bubbles";
@@ -141,6 +142,24 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>AI TTS Donations</title>
+        {/* Open Graph tags */}
+        <meta property="og:title" content="AI TTS Donations" />
+        <meta
+          property="og:description"
+          content="AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads."
+        />
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@mmattbtw" />
+        <meta name="twitter:creator" content="@mmattbtw" />
+        <meta name="twitter:title" content="AI TTS Donations" />
+        <meta
+          name="twitter:description"
+          content="AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads."
+        />
+      </Head>
       <Container>
         <Spring>
           <Group mb={"1rem"} mt={"1rem"} position="right">
