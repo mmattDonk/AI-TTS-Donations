@@ -18,7 +18,7 @@
     "description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads.",
     "getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
     "getStarted": "Get started",
-    "goToDashboard": "Go to Dashboard",
+    "dashboard": "Dashboard",
     "getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
     "howItWorks": "How It Works",
     "emailSignUp": "Sign up to the mailing list!",

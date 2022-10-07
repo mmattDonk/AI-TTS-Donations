@@ -18,7 +18,7 @@
     "description": "Donacje AI TTS to darmowa usługa z Otwartym Kodem Źródłowym dla Twitch (oraz innych platform). Jest pierwsza w swoim rodzaju, bez usług subskrypcji, bez dodatkowych rozszerzeń i bez reklam.",
     "getStartedTooltip": "Nie jesteśmy jeszcze gotowi! Zaloguj się do listy mailingowej niżej.",
     "getStarted": "Zacznij",
-    "goToDashboard": "Przejdź do Panelu",
+    "dashboard": "Dashboard",
     "getStartedToday": "Brzmi dobrze? Zacznij z Donacjami AI TTS już dziś za darmo!",
     "howItWorks": "Jak To Działa",
     "emailSignUp": "Zaloguj się do listy mailingowej!",
