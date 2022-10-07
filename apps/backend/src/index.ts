@@ -136,6 +136,60 @@ app.post("/eventsub", async (req, res) => {
   }
 });
 
+app.post("/newuser", async (req, res) => {
+  // if bearer token not equal to process.env.secret
+  const secret = req.headers.authorization?.split(" ")[1];
+  const data = JSON.parse(req.body);
+  if (secret !== process.env.API_SECRET) {
+    return res.status(403).send("Forbidden");
+  }
+
+  const [subscribeResub, subscribeCheers] = await Promise.all([
+    axios.post(
+      "https://api.twitch.tv/helix/eventsub/subscriptions",
+      {
+        type: "channel.subscription.message",
+        version: "1",
+        condition: { broadcaster_user_id: data.streamerId },
+        transport: {
+          method: "webhook",
+          callback: "https://eventsub.solrock.mmattdonk.com/eventsub",
+          secret: process.env.API_SECRET,
+        },
+      },
+      {
+        headers: {
+          "Client-Id": process.env.CLIENT_ID ?? "",
+          Authorization: "Bearer " + process.env.TWITCH_ACCESS_TOKEN,
+        },
+      }
+    ),
+    axios.post(
+      "https://api.twitch.tv/helix/eventsub/subscriptions",
+      {
+        type: "channel.cheer",
+        version: "1",
+        condition: { broadcaster_user_id: data.streamerId },
+        transport: {
+          method: "webhook",
+          callback: "https://eventsub.solrock.mmattdonk.com/eventsub",
+          secret: process.env.API_SECRET,
+        },
+      },
+      {
+        headers: {
+          "Client-Id": process.env.CLIENT_ID ?? "",
+          Authorization: "Bearer " + process.env.TWITCH_ACCESS_TOKEN,
+        },
+      }
+    ),
+  ]);
+
+  if (subscribeResub.status === 200 && subscribeCheers.status === 200) {
+    res.status(200).send("OK");
+  }
+});
+
 app.listen(port, () => {
   console.log(`@solrock/backend started at port ${port} 🎉`);
 });
