@@ -304,7 +304,7 @@ const Home: NextPage = () => {
 						>
 							unrivaled
 						</Text>{' '}
-						compared to anyone else available.
+						compared to anything else available.
 					</h1>
 
 					<Features />
