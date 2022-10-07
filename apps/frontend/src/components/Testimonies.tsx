@@ -14,6 +14,16 @@ const useStyles = createStyles((theme) => ({
 const testimonies: CommentSimpleProps[] = [
   {
     author: {
+      name: "K_A_L_Y",
+      image:
+        "https://static-cdn.jtvnw.net/jtv_user_pictures/83c01131-e303-4a04-b2ec-7445facad5b1-profile_image-70x70.png",
+      followers: "2.9K",
+    },
+    body: "I had a lot of fun playing around with AI TTS thank you for making this plugin.",
+    stars: 5,
+  },
+  {
+    author: {
       name: "LiptonGod",
       image:
         "https://cdn.7tv.app/pp/60532eaab4d31e459f727bcd/4d77d7a5f1824289a3c67188046d02d3",
@@ -24,22 +34,22 @@ const testimonies: CommentSimpleProps[] = [
   },
   {
     author: {
+      name: "WhatTheWoda",
+      image:
+        "https://static-cdn.jtvnw.net/jtv_user_pictures/662e281d-3883-4d27-86c3-2b24d48f6195-profile_image-70x70.png",
+      followers: "234",
+    },
+    body: "Really fun to use and have people join in on the fun when streaming. It has its features, but for the price, you can't go wrong! Try it, you'll love it!",
+    stars: 5,
+  },
+  {
+    author: {
       name: "AuroR6S",
       image:
         "https://static-cdn.jtvnw.net/jtv_user_pictures/73cca255-1a58-40a8-8cb9-983aa9392372-profile_image-300x300.png",
       followers: "146",
     },
     body: "I love this app! It breaks sometimes but its very good!",
-    stars: 5,
-  },
-  {
-    author: {
-      name: "K_A_L_Y",
-      image:
-        "https://static-cdn.jtvnw.net/jtv_user_pictures/83c01131-e303-4a04-b2ec-7445facad5b1-profile_image-70x70.png",
-      followers: "2.9K",
-    },
-    body: "I had a lot of fun playing around with AI TTS thank you for making this plugin.",
     stars: 5,
   },
 ];
