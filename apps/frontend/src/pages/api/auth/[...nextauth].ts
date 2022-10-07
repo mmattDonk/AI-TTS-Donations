@@ -52,6 +52,18 @@ export const authOptions: NextAuthOptions = {
     },
     signIn: async (user) => {
       await createStreamerIfNotExists(user.user);
+      if (!user.isNewUser) return;
+      await fetch(process.env.EVENTSUB_API_URL + "/newuser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + process.env.API_SECRET,
+        },
+        body: JSON.stringify({
+          streamerAuth: user.account?.access_token,
+          streamerId: user.account.providerAccountId,
+        }),
+      });
     },
   },
 };
