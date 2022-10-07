@@ -32,6 +32,16 @@ const testimonies: CommentSimpleProps[] = [
     body: "I love this app! It breaks sometimes but its very good!",
     stars: 5,
   },
+  {
+    author: {
+      name: "K_A_L_Y",
+      image:
+        "https://static-cdn.jtvnw.net/jtv_user_pictures/83c01131-e303-4a04-b2ec-7445facad5b1-profile_image-70x70.png",
+      followers: "2.9K",
+    },
+    body: "I had a lot of fun playing around with AI TTS thank you for making this plugin.",
+    stars: 5,
+  },
 ];
 
 interface CommentSimpleProps {
