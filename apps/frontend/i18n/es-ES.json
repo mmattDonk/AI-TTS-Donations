@@ -7,9 +7,9 @@
   "learnMore": "Aprende más",
   "submit": "Subir",
   "404": {
-    "title": "You have found a secret place.",
-    "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
-    "link": "Take me back to the landing page."
+    "title": "Has encontrado un espacio secreto.",
+    "description": "Desafortunadamente, esto es tan solo una página de 404. Puede que hayas mal escrito la dirección, o que la página se haya movido a otro URL.",
+    "link": "Devuélveme a la página de inicio."
   },
   "alt": {
     "avatar": "Foto de perfil de {name}."
@@ -18,13 +18,13 @@
     "description": "AI TTS Donations es un servicio gratuito y de código abierto de Texto-a-Voz para Twitch (y otras plataformas). Es el primero de su clase, sin servicios de suscripción, sin complementos y sin anuncios.",
     "getStartedTooltip": "¡Aún no estamos listos! Apúntate a la lista de correo de abajo.",
     "getStarted": "Comenzar",
-    "dashboard": "Dashboard",
+    "dashboard": "Panel",
     "getStartedToday": "¿Suena bien? ¡Empieza hoy mismo a utilizar AI TTS Donations de forma gratuita!",
     "howItWorks": "Cómo funciona",
     "emailSignUp": "¡Inscríbase a la lista de correo!",
     "emailNotReadyDescription": "Todavía no estamos listos para el lanzamiento, pero puedes inscribirte a la lista de correo para que te avisemos cuando lo estemos.",
     "emailSubscribeSuccess": "¡Te has suscrito con éxito!",
-    "emailPapertrail": "Want to see past emails? Check out the paper trail on mmatt's personal website!"
+    "emailPapertrail": "¿Quieres ver correos antigüos? ¡Chequea el historial de correos en el sitio web personal de mmatt!"
   },
   "Dashboard": {
     "yourDash": "Tu Panel",
