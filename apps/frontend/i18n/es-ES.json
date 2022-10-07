@@ -1,36 +1,36 @@
 {
-  "close": "Cerrar",
-  "open": "Abrir",
-  "loggedIn": "Sesión iniciada como {name}",
-  "signOut": "Cerrar sesión",
-  "signIn": "Iniciar sesión",
-  "learnMore": "Aprende más",
-  "submit": "Subir",
-  "404": {
-    "title": "Has encontrado un espacio secreto.",
-    "description": "Desafortunadamente, esto es tan solo una página de 404. Puede que hayas mal escrito la dirección, o que la página se haya movido a otro URL.",
-    "link": "Devuélveme a la página de inicio."
-  },
-  "alt": {
-    "avatar": "Foto de perfil de {name}."
-  },
-  "Landing": {
-    "description": "AI TTS Donations es un servicio gratuito y de código abierto de Texto-a-Voz para Twitch (y otras plataformas). Es el primero de su clase, sin servicios de suscripción, sin complementos y sin anuncios.",
-    "getStartedTooltip": "¡Aún no estamos listos! Apúntate a la lista de correo de abajo.",
-    "getStarted": "Comenzar",
-    "dashboard": "Panel",
-    "getStartedToday": "¿Suena bien? ¡Empieza hoy mismo a utilizar AI TTS Donations de forma gratuita!",
-    "howItWorks": "Cómo funciona",
-    "emailSignUp": "¡Inscríbase a la lista de correo!",
-    "emailNotReadyDescription": "Todavía no estamos listos para el lanzamiento, pero puedes inscribirte a la lista de correo para que te avisemos cuando lo estemos.",
-    "emailSubscribeSuccess": "¡Te has suscrito con éxito!",
-    "emailPapertrail": "¿Quieres ver correos antigüos? ¡Chequea el historial de correos en el sitio web personal de mmatt!"
-  },
-  "Dashboard": {
-    "yourDash": "Tu Panel",
-    "sensitiveInfo": "Información sensible (NO ABRIR EN STREAM.)",
-    "sensitiveInfoWarning": "ADVERTENCIA: NO MOSTRAR EL ENLACE DEL OVERLAY EN STREAM. CONTIENE INFORMACIÓN SENSIBLE.",
-    "ttsOverlay": "Overlay de TTS",
-    "ttsOverlayDescription": "Aquí es donde se reproducirá su audio de TTS, simplemente copie el enlace, y péguelo en una <Code>Fuente del navegador</Code> en su software de streaming preferido (como OBS)."
-  }
+	"close": "Cerrar",
+	"open": "Abrir",
+	"loggedIn": "Sesión iniciada como {name}",
+	"signOut": "Cerrar sesión",
+	"signIn": "Iniciar sesión",
+	"learnMore": "Aprende más",
+	"submit": "Subir",
+	"404": {
+		"title": "Has encontrado un espacio secreto.",
+		"description": "Desafortunadamente, esto es tan solo una página de 404. Puede que hayas mal escrito la dirección, o que la página se haya movido a otro URL.",
+		"link": "Devuélveme a la página de inicio."
+	},
+	"alt": {
+		"avatar": "Foto de perfil de {name}."
+	},
+	"Landing": {
+		"description": "AI TTS Donations es un servicio gratuito y de código abierto de Texto-a-Voz para Twitch (y otras plataformas). Es el primero de su clase, sin servicios de suscripción, sin complementos y sin anuncios.",
+		"getStartedTooltip": "¡Aún no estamos listos! Apúntate a la lista de correo de abajo.",
+		"getStarted": "Comenzar",
+		"dashboard": "Panel",
+		"getStartedToday": "¿Suena bien? ¡Empieza hoy mismo a utilizar AI TTS Donations de forma gratuita!",
+		"howItWorks": "Cómo funciona",
+		"emailSignUp": "¡Inscríbase a la lista de correo!",
+		"emailNotReadyDescription": "Todavía no estamos listos para el lanzamiento, pero puedes inscribirte a la lista de correo para que te avisemos cuando lo estemos.",
+		"emailSubscribeSuccess": "¡Te has suscrito con éxito!",
+		"emailPapertrail": "¿Quieres ver correos antigüos? ¡Chequea el historial de correos en el sitio web personal de mmatt!"
+	},
+	"Dashboard": {
+		"yourDash": "Tu Panel",
+		"sensitiveInfo": "Información sensible (NO ABRIR EN STREAM.)",
+		"sensitiveInfoWarning": "ADVERTENCIA: NO MOSTRAR EL ENLACE DEL OVERLAY EN STREAM. CONTIENE INFORMACIÓN SENSIBLE.",
+		"ttsOverlay": "Overlay de TTS",
+		"ttsOverlayDescription": "Aquí es donde se reproducirá su audio de TTS, simplemente copie el enlace, y péguelo en una <Code>Fuente del navegador</Code> en su software de streaming preferido (como OBS)."
+	}
 }

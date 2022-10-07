@@ -1,17 +1,4 @@
-import {
-	Avatar,
-	Button,
-	Center,
-	Container,
-	createStyles,
-	Group,
-	Menu,
-	Text,
-	TextInput,
-	Title,
-	Tooltip,
-	UnstyledButton,
-} from '@mantine/core';
+import { Avatar, Button, Center, Container, createStyles, Group, Menu, Text, TextInput, Title, Tooltip, UnstyledButton } from '@mantine/core';
 import { NextLink } from '@mantine/next';
 import type { GetStaticPropsContext, NextPage } from 'next';
 import { signIn, signOut } from 'next-auth/react';
@@ -155,19 +142,11 @@ const Home: NextPage = () => {
 								<Menu>
 									<Menu.Target>
 										<UnstyledButton>
-											<Avatar
-												radius="xl"
-												src={session.user?.image}
-												alt={t('alt.avatar', { name: session.user?.name })}
-											/>
+											<Avatar radius="xl" src={session.user?.image} alt={t('alt.avatar', { name: session.user?.name })} />
 										</UnstyledButton>
 									</Menu.Target>
 									<Menu.Dropdown>
-										<Menu.Item
-											icon={<Dashboard size={18} />}
-											component={NextLink}
-											href="/dashboard"
-										>
+										<Menu.Item icon={<Dashboard size={18} />} component={NextLink} href="/dashboard">
 											{t('Landing.dashboard')}
 										</Menu.Item>
 										<Menu.Item icon={<DoorExit size={18} />} color="red" onClick={() => signOut()}>
@@ -227,22 +206,12 @@ const Home: NextPage = () => {
 										</>
 									) : (
 										<>
-											<Button
-												className={classes.control}
-												size="lg"
-												disabled={isLoading}
-												onClick={() => signIn()}
-											>
+											<Button className={classes.control} size="lg" disabled={isLoading} onClick={() => signIn()}>
 												{t('Landing.getStarted')}
 											</Button>
 										</>
 									)}
-									<Button
-										variant="outline"
-										className={classes.control}
-										size="lg"
-										onClick={scrollToPositions}
-									>
+									<Button variant="outline" className={classes.control} size="lg" onClick={scrollToPositions}>
 										{t('learnMore')}
 									</Button>
 								</Group>
@@ -342,13 +311,10 @@ const Home: NextPage = () => {
 					<br />
 
 					<h1 style={{ textAlign: 'center' }}>Don't believe us?</h1>
-					<h2 style={{ textAlign: 'center', marginBottom: '-30px' }}>
-						Just look at what streamers say about it.
-					</h2>
+					<h2 style={{ textAlign: 'center', marginBottom: '-30px' }}>Just look at what streamers say about it.</h2>
 					<TestimoniesComponent />
 					<p style={{ textAlign: 'center' }}>
-						Are you a streamer that uses AI TTS Donations? Give us a review{' '}
-						<a href="https://mmatt.link/TTSTestimonies">here!</a>
+						Are you a streamer that uses AI TTS Donations? Give us a review <a href="https://mmatt.link/TTSTestimonies">here!</a>
 					</p>
 
 					<FaqSimple />
@@ -392,13 +358,7 @@ const Home: NextPage = () => {
 
 					<form onSubmit={subscribe}>
 						<Group>
-							<TextInput
-								required
-								placeholder="yo@youremail.com"
-								ref={inputElement}
-								type="email"
-								id="email-input"
-							/>
+							<TextInput required placeholder="yo@youremail.com" ref={inputElement} type="email" id="email-input" />
 
 							<Button type="submit" disabled={formMutation.isLoading}>
 								{t('submit')}

@@ -1,36 +1,36 @@
 {
-  "close": "ǝsolƆ",
-  "open": "uǝdO",
-  "loggedIn": "{name} sɐ uᴉ pǝƃƃo˥",
-  "signOut": "ʇnO uƃᴉS",
-  "signIn": "uI uƃᴉS",
-  "learnMore": "ǝɹoɯ uɹɐǝ˥ ",
-  "submit": "ʇᴉɯqnS",
-  "404": {
-    "title": "˙ǝɔɐld ʇǝɹɔǝs ɐ punoɟ ǝʌɐɥ no⅄",
-    "description": "˙˥ɹ∩ ɹǝɥʇouɐ oʇ pǝʌoɯ uǝǝq sɐɥ ǝƃɐd ǝɥʇ ɹo 'ssǝɹppɐ ǝɥʇ pǝdʎʇsᴉɯ ǝʌɐɥ ʎɐɯ no⅄ ˙ǝƃɐd ㄣ0ㄣ ɐ ʎluo sᴉ sᴉɥʇ 'ʎlǝʇɐunʇɹoɟu∩",
-    "link": "˙ǝƃɐd ƃuᴉpuɐl ǝɥʇ oʇ ʞɔɐq ǝɯ ǝʞɐ┴"
-  },
-  "alt": {
-    "avatar": "˙ǝɹnʇɔᴉd ǝlᴉɟoɹd s,{name}"
-  },
-  "Landing": {
-    "description": "˙spɐ ou puɐ 'suo-ppɐ lɐuoᴉʇᴉppɐ ou 'sǝɔᴉʌɹǝs uoᴉʇdᴉɹɔsqns ou 'ssɐlɔ sʇᴉ ɟo ʇsɹᴉɟ ǝɥʇ s,ʇI ˙(sɯɹoɟʇɐld ɹǝɥʇo puɐ) ɥɔʇᴉʍ┴ ɹoɟ ǝɔᴉʌɹǝs S┴┴ I∀ ǝɔɹnoS uǝdO puɐ ǝǝɹɟ ɐ sᴉ suoᴉʇɐuop S┴┴ I∀",
-    "getStartedTooltip": "˙ʍolǝq ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉS ¡ʇǝʎ ʎpɐǝɹ ʇ,uǝɹɐ ǝM",
-    "getStarted": "pǝʇɹɐʇs ʇǝפ",
-    "dashboard": "Dashboard",
-    "getStartedToday": "¡ǝǝɹɟ ɹoɟ ʎɐpoʇ suoᴉʇɐuop S┴┴ I∀ ɥʇᴉʍ pǝʇɹɐʇs ʇǝפ ¿pooƃ spunoS",
-    "howItWorks": "sʞɹoM ʇI ʍoH",
-    "emailSignUp": "¡ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉS",
-    "emailNotReadyDescription": "˙ǝɹɐ ǝʍ uǝɥʍ pǝᴉɟᴉʇou ʇǝƃ oʇ ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉs uɐɔ noʎ ʇnq 'ʇǝʎ ɥɔunɐl oʇ ʎpɐǝɹ ʇ,uǝɹɐ ǝM",
-    "emailSubscribeSuccess": "¡pǝqᴉɹɔsqns uǝǝq ǝʌɐɥ no⅄",
-    "emailPapertrail": "Want to see past emails? Check out the paper trail on mmatt's personal website!"
-  },
-  "Dashboard": {
-    "yourDash": "pɹɐoqɥsɐp ɹno⅄",
-    "sensitiveInfo": "(˙W∀Ǝɹ┴S NO NƎԀO ┴ON Op) uoᴉʇɐɯɹoɟuI ǝʌᴉʇᴉsuǝS",
-    "sensitiveInfoWarning": "˙NOI┴∀WɹOℲNI ƎΛI┴ISNƎS SNI∀┴NOƆ ┴I ˙W∀Ǝɹ┴S NO ʞNI˥ ⅄∀˥ɹƎΛO MOHS ┴ON Op :פNINɹ∀M",
-    "ttsOverlay": "ʎɐlɹǝʌO S┴┴",
-    "ttsOverlayDescription": "˙(SqO ǝʞᴉl) ǝɹɐʍʇɟos ƃuᴉɯɐǝɹʇs pǝɹɹǝɟǝɹd ɹnoʎ uᴉ <Code>ǝɔɹnoS ɹǝsʍoɹq</Code> ɐ oʇuᴉ ʇᴉ ǝʇsɐd puɐ 'ʞuᴉl ǝɥʇ ʎdoɔ ʎldɯᴉs 'ƃuᴉʎɐld ǝq llᴉʍ oᴉpnɐ S┴┴ ɹnoʎ ǝɹǝɥʍ sᴉ sᴉɥ┴"
-  }
+	"close": "ǝsolƆ",
+	"open": "uǝdO",
+	"loggedIn": "{name} sɐ uᴉ pǝƃƃo˥",
+	"signOut": "ʇnO uƃᴉS",
+	"signIn": "uI uƃᴉS",
+	"learnMore": "ǝɹoɯ uɹɐǝ˥ ",
+	"submit": "ʇᴉɯqnS",
+	"404": {
+		"title": "˙ǝɔɐld ʇǝɹɔǝs ɐ punoɟ ǝʌɐɥ no⅄",
+		"description": "˙˥ɹ∩ ɹǝɥʇouɐ oʇ pǝʌoɯ uǝǝq sɐɥ ǝƃɐd ǝɥʇ ɹo 'ssǝɹppɐ ǝɥʇ pǝdʎʇsᴉɯ ǝʌɐɥ ʎɐɯ no⅄ ˙ǝƃɐd ㄣ0ㄣ ɐ ʎluo sᴉ sᴉɥʇ 'ʎlǝʇɐunʇɹoɟu∩",
+		"link": "˙ǝƃɐd ƃuᴉpuɐl ǝɥʇ oʇ ʞɔɐq ǝɯ ǝʞɐ┴"
+	},
+	"alt": {
+		"avatar": "˙ǝɹnʇɔᴉd ǝlᴉɟoɹd s,{name}"
+	},
+	"Landing": {
+		"description": "˙spɐ ou puɐ 'suo-ppɐ lɐuoᴉʇᴉppɐ ou 'sǝɔᴉʌɹǝs uoᴉʇdᴉɹɔsqns ou 'ssɐlɔ sʇᴉ ɟo ʇsɹᴉɟ ǝɥʇ s,ʇI ˙(sɯɹoɟʇɐld ɹǝɥʇo puɐ) ɥɔʇᴉʍ┴ ɹoɟ ǝɔᴉʌɹǝs S┴┴ I∀ ǝɔɹnoS uǝdO puɐ ǝǝɹɟ ɐ sᴉ suoᴉʇɐuop S┴┴ I∀",
+		"getStartedTooltip": "˙ʍolǝq ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉS ¡ʇǝʎ ʎpɐǝɹ ʇ,uǝɹɐ ǝM",
+		"getStarted": "pǝʇɹɐʇs ʇǝפ",
+		"dashboard": "Dashboard",
+		"getStartedToday": "¡ǝǝɹɟ ɹoɟ ʎɐpoʇ suoᴉʇɐuop S┴┴ I∀ ɥʇᴉʍ pǝʇɹɐʇs ʇǝפ ¿pooƃ spunoS",
+		"howItWorks": "sʞɹoM ʇI ʍoH",
+		"emailSignUp": "¡ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉS",
+		"emailNotReadyDescription": "˙ǝɹɐ ǝʍ uǝɥʍ pǝᴉɟᴉʇou ʇǝƃ oʇ ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉs uɐɔ noʎ ʇnq 'ʇǝʎ ɥɔunɐl oʇ ʎpɐǝɹ ʇ,uǝɹɐ ǝM",
+		"emailSubscribeSuccess": "¡pǝqᴉɹɔsqns uǝǝq ǝʌɐɥ no⅄",
+		"emailPapertrail": "Want to see past emails? Check out the paper trail on mmatt's personal website!"
+	},
+	"Dashboard": {
+		"yourDash": "pɹɐoqɥsɐp ɹno⅄",
+		"sensitiveInfo": "(˙W∀Ǝɹ┴S NO NƎԀO ┴ON Op) uoᴉʇɐɯɹoɟuI ǝʌᴉʇᴉsuǝS",
+		"sensitiveInfoWarning": "˙NOI┴∀WɹOℲNI ƎΛI┴ISNƎS SNI∀┴NOƆ ┴I ˙W∀Ǝɹ┴S NO ʞNI˥ ⅄∀˥ɹƎΛO MOHS ┴ON Op :פNINɹ∀M",
+		"ttsOverlay": "ʎɐlɹǝʌO S┴┴",
+		"ttsOverlayDescription": "˙(SqO ǝʞᴉl) ǝɹɐʍʇɟos ƃuᴉɯɐǝɹʇs pǝɹɹǝɟǝɹd ɹnoʎ uᴉ <Code>ǝɔɹnoS ɹǝsʍoɹq</Code> ɐ oʇuᴉ ʇᴉ ǝʇsɐd puɐ 'ʞuᴉl ǝɥʇ ʎdoɔ ʎldɯᴉs 'ƃuᴉʎɐld ǝq llᴉʍ oᴉpnɐ S┴┴ ɹnoʎ ǝɹǝɥʍ sᴉ sᴉɥ┴"
+	}
 }

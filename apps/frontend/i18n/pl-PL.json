@@ -1,36 +1,36 @@
 {
-  "close": "Zamknij",
-  "open": "Otwórz",
-  "loggedIn": "Zalogowano jako {name}",
-  "signOut": "Wyloguj Się",
-  "signIn": "Zaloguj Się",
-  "learnMore": "Dowiedz się więcej",
-  "submit": "Prześlij",
-  "404": {
-    "title": "Znalazłeś sekretne miejsce.",
-    "description": "Niestety, jest to tylko strona 404. Możliwe, że błędnie wpisałeś adres, lub strona została przeniesiona pod inny adres URL.",
-    "link": "\nZabierz mnie z powrotem na stronę docelową."
-  },
-  "alt": {
-    "avatar": "Zdjęcie profilowe {name}."
-  },
-  "Landing": {
-    "description": "Donacje AI TTS to darmowa usługa z Otwartym Kodem Źródłowym dla Twitch (oraz innych platform). Jest pierwsza w swoim rodzaju, bez usług subskrypcji, bez dodatkowych rozszerzeń i bez reklam.",
-    "getStartedTooltip": "Nie jesteśmy jeszcze gotowi! Zaloguj się do listy mailingowej niżej.",
-    "getStarted": "Zacznij",
-    "dashboard": "Dashboard",
-    "getStartedToday": "Brzmi dobrze? Zacznij z Donacjami AI TTS już dziś za darmo!",
-    "howItWorks": "Jak To Działa",
-    "emailSignUp": "Zaloguj się do listy mailingowej!",
-    "emailNotReadyDescription": "Nie jesteśmy jeszcze gotowi do startu, ale możesz zalogować się na listę mailingową, aby dostać powiadomienie kiedy, będziemy.",
-    "emailSubscribeSuccess": "Zostałeś zasubskrybowany!",
-    "emailPapertrail": "Chcesz zobaczyć wcześniejsze e-maile? Sprawdź szlak papierowy na prywatnej stronie mmatt'a!"
-  },
-  "Dashboard": {
-    "yourDash": "Twój Panel",
-    "sensitiveInfo": "Wrażliwe Informacje (NIE OTWIERAJ NA TRANSMISJI.)",
-    "sensitiveInfoWarning": "OSTRZEŻENIE: NIE POKAZUJ LINKU DO NAKŁADKI NA TRANSMISJI. ZAWIERO ON SENSYTYWNE INFORMACJE.",
-    "ttsOverlay": "Nakładka TTS",
-    "ttsOverlayDescription": "Tutaj twoje audio TTS będzie grało, po prostu skopiuj link i wklej go do <Code>Źródło Przeglądarki</Code> w twoim preferowanym programie do streamingu (jak OBS)."
-  }
+	"close": "Zamknij",
+	"open": "Otwórz",
+	"loggedIn": "Zalogowano jako {name}",
+	"signOut": "Wyloguj Się",
+	"signIn": "Zaloguj Się",
+	"learnMore": "Dowiedz się więcej",
+	"submit": "Prześlij",
+	"404": {
+		"title": "Znalazłeś sekretne miejsce.",
+		"description": "Niestety, jest to tylko strona 404. Możliwe, że błędnie wpisałeś adres, lub strona została przeniesiona pod inny adres URL.",
+		"link": "\nZabierz mnie z powrotem na stronę docelową."
+	},
+	"alt": {
+		"avatar": "Zdjęcie profilowe {name}."
+	},
+	"Landing": {
+		"description": "Donacje AI TTS to darmowa usługa z Otwartym Kodem Źródłowym dla Twitch (oraz innych platform). Jest pierwsza w swoim rodzaju, bez usług subskrypcji, bez dodatkowych rozszerzeń i bez reklam.",
+		"getStartedTooltip": "Nie jesteśmy jeszcze gotowi! Zaloguj się do listy mailingowej niżej.",
+		"getStarted": "Zacznij",
+		"dashboard": "Dashboard",
+		"getStartedToday": "Brzmi dobrze? Zacznij z Donacjami AI TTS już dziś za darmo!",
+		"howItWorks": "Jak To Działa",
+		"emailSignUp": "Zaloguj się do listy mailingowej!",
+		"emailNotReadyDescription": "Nie jesteśmy jeszcze gotowi do startu, ale możesz zalogować się na listę mailingową, aby dostać powiadomienie kiedy, będziemy.",
+		"emailSubscribeSuccess": "Zostałeś zasubskrybowany!",
+		"emailPapertrail": "Chcesz zobaczyć wcześniejsze e-maile? Sprawdź szlak papierowy na prywatnej stronie mmatt'a!"
+	},
+	"Dashboard": {
+		"yourDash": "Twój Panel",
+		"sensitiveInfo": "Wrażliwe Informacje (NIE OTWIERAJ NA TRANSMISJI.)",
+		"sensitiveInfoWarning": "OSTRZEŻENIE: NIE POKAZUJ LINKU DO NAKŁADKI NA TRANSMISJI. ZAWIERO ON SENSYTYWNE INFORMACJE.",
+		"ttsOverlay": "Nakładka TTS",
+		"ttsOverlayDescription": "Tutaj twoje audio TTS będzie grało, po prostu skopiuj link i wklej go do <Code>Źródło Przeglądarki</Code> w twoim preferowanym programie do streamingu (jak OBS)."
+	}
 }
