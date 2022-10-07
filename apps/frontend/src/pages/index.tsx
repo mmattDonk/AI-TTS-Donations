@@ -5,17 +5,19 @@ import {
   Container,
   createStyles,
   Group,
+  Menu,
   Text,
   TextInput,
   Title,
   Tooltip,
+  UnstyledButton,
 } from "@mantine/core";
+import { NextLink } from "@mantine/next";
 import type { GetStaticPropsContext, NextPage } from "next";
 import { signIn, signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import Head from "next/head";
-import Link from "next/link";
 import { useRef, useState } from "react";
+import { Dashboard, DoorExit } from "tabler-icons-react";
 import Bubbles from "../components/Bubbles";
 import Dots from "../components/Dots";
 import FaqSimple from "../components/FAQ";
@@ -143,24 +145,6 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Head>
-        <title>AI TTS Donations</title>
-        {/* Open Graph tags */}
-        <meta property="og:title" content="AI TTS Donations" />
-        <meta
-          property="og:description"
-          content="AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads."
-        />
-        {/* Twitter Card Tags */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@mmattbtw" />
-        <meta name="twitter:creator" content="@mmattbtw" />
-        <meta name="twitter:title" content="AI TTS Donations" />
-        <meta
-          name="twitter:description"
-          content="AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads."
-        />
-      </Head>
       <Container>
         <Spring>
           <Group mb={"1rem"} mt={"1rem"} position="right">
@@ -168,21 +152,33 @@ const Home: NextPage = () => {
               <LoadingSpinner />
             ) : session ? (
               <>
-                <Link href="/dashboard" prefetch>
-                  {t("Landing.goToDashboard")}
-                </Link>
-                <Tooltip
-                  label={t("loggedIn", { name: session.user?.name })}
-                  position="bottom"
-                >
-                  <Avatar
-                    src={session.user?.image}
-                    alt={t("alt.avatar", { name: session.user?.name })}
-                  />
-                </Tooltip>
-                <Button onClick={() => signOut()} size="xs">
-                  {t("signOut")}
-                </Button>
+                <Menu>
+                  <Menu.Target>
+                    <UnstyledButton>
+                      <Avatar
+                        radius="xl"
+                        src={session.user?.image}
+                        alt={t("alt.avatar", { name: session.user?.name })}
+                      />
+                    </UnstyledButton>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Item
+                      icon={<Dashboard size={18} />}
+                      component={NextLink}
+                      href="/dashboard"
+                    >
+                      {t("Landing.dashboard")}
+                    </Menu.Item>
+                    <Menu.Item
+                      icon={<DoorExit size={18} />}
+                      color="red"
+                      onClick={() => signOut()}
+                    >
+                      {t("signOut")}
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
               </>
             ) : (
               <Button onClick={() => signIn()} size="xs">
