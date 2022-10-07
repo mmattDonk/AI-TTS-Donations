@@ -324,10 +324,42 @@
     dotenv "^8.2.0"
     superagent "3.8.1"
 
-"@mantine/carousel@^5.5.4":
+"@mantine/core@^5.5.4":
   version "5.5.4"
-  resolved "https://registry.yarnpkg.com/@mantine/carousel/-/carousel-5.5.4.tgz#b6a4e61e635a0fe25102ed93c5460b4959071ae9"
-  integrity sha512-mwTp0OP+rx3XkkE974kPxRFCOsINwTk3oQC9E9cAaow5VXB2BlEeCgtreqsx9isRaIM0rNyLC6n/gGAv7UeGvw==
+  resolved "https://registry.yarnpkg.com/@mantine/core/-/core-5.5.4.tgz#afe31b8d5c644e856048027e75155eb7ab978661"
+  integrity sha512-N0k8vBxuJOAwfchxd8gr1HXjsSw1HumQR9WR2OVCHmRR84ur2VniRB8iN4pCYSvnIXjUqpN1rzfnmAYTTogS+A==
+  dependencies:
+    "@floating-ui/react-dom-interactions" "^0.10.1"
+    "@mantine/styles" "5.5.4"
+    "@mantine/utils" "5.5.4"
+    "@radix-ui/react-scroll-area" "1.0.0"
+    react-textarea-autosize "8.3.4"
+
+"@mantine/form@^5.5.4":
+  version "5.5.4"
+  resolved "https://registry.yarnpkg.com/@mantine/form/-/form-5.5.4.tgz#3ad7280e2d1be2eef494bc6f2eb335cc22906627"
+  integrity sha512-SKfVBmJGykwmEfMpRacXmhC2pwaKiR3fGPHppT0w1Gy/DDQx9BpwR7XgCcnPJFoR70CUZrVo5J/aglxPOIGSoA==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    klona "^2.0.5"
+
+"@mantine/hooks@^5.5.4":
+  version "5.5.4"
+  resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-5.5.4.tgz#5b7f14dfffba4f59aed21ee6bccf336a438f96a3"
+  integrity sha512-4lPIcZgoMkq+GCILN8CDTVxYzsE/Gfi6ICjHhPZU1Ufmw0mftpjTQhLx3+TFMtBlqnamgBia2ZS1o2BpvTLazA==
+
+"@mantine/next@^5.5.4":
+  version "5.5.4"
+  resolved "https://registry.yarnpkg.com/@mantine/next/-/next-5.5.4.tgz#1c0da5c72db251dac0e1a9147e271de095f6aa8a"
+  integrity sha512-7vVZEyW4rN7O1ytVT0mW7jnsd7GkcFwphdvXJq6sa8pzWvOUpIo5uG2zsIzoxxv27mjhfF1bxIolL0vAdwgfwA==
+  dependencies:
+    "@mantine/ssr" "5.5.4"
+    "@mantine/styles" "5.5.4"
+
+"@mantine/notifications@^5.5.4":
+  version "5.5.4"
+  resolved "https://registry.yarnpkg.com/@mantine/notifications/-/notifications-5.5.4.tgz#da06b82de4b6a757ab4fef76bf14b0a73e66a14a"
+  integrity sha512-icX+uhGE+5DmZFPfcxLdjetyJhDzy1HtDT+F4Z898EJoFasHZZrd9dcOpc9wxESe73aHR1UsiEsJQz3wllKqUg==
   dependencies:
     "@mantine/utils" "5.5.4"
 
