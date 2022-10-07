@@ -1,0 +1,8 @@
+comment: labeled :^)
+
+# Labels is an object where:
+# - keys are labels
+# - values are array of string patterns to match against title + body in issues/prs
+labels:
+  "i18n 🌐":
+    - "/\bcrowdin\b/gi"
