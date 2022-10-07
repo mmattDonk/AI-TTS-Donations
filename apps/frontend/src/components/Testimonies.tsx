@@ -1,22 +1,73 @@
 import { Carousel } from "@mantine/carousel";
-import { Group } from "@mantine/core";
-import Image from "next/image";
+import { Avatar, createStyles, Group, Text } from "@mantine/core";
 
-function Testimonial() {
+const useStyles = createStyles((theme) => ({
+  body: {
+    paddingLeft: 54,
+    paddingTop: theme.spacing.sm,
+  },
+}));
+
+const testimonies: CommentSimpleProps[] = [
+  {
+    author: {
+      name: "mmattbtw",
+      image:
+        "https://static-cdn.jtvnw.net/jtv_user_pictures/aef1b6dd-d45f-4e68-92e5-8c9dfac4122c-profile_image-70x70.png",
+    },
+    body: "lorem ipsum dolor sit amet",
+  },
+];
+
+interface CommentSimpleProps {
+  body: string;
+  author: {
+    name: string;
+    image: string;
+  };
+}
+
+function Testimonial({ body, author }: CommentSimpleProps) {
+  const { classes } = useStyles();
   return (
-    <Group position="center">
-      <div>
-        <Image src="" alt="" />
-      </div>
-    </Group>
+    <div>
+      <Group>
+        <Avatar src={author.image} alt={author.name} radius="xl" />
+        <div>
+          <Text size="lg">{author.name}</Text>
+        </div>
+      </Group>
+      <Text className={classes.body} size="lg">
+        {body}
+      </Text>
+    </div>
   );
 }
 
 export default function TestimoniesComponent() {
   return (
-    <Carousel>
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-        <Testimonial key={i} />
+    <Carousel
+      style={{
+        marginBottom: "2rem",
+        maxWidth: 620,
+      }}
+      withIndicators
+      height={200}
+      loop
+      mx="auto"
+      align="center"
+    >
+      {testimonies.map((t) => (
+        <Carousel.Slide
+          key={t.author.name}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Testimonial {...t} />
+        </Carousel.Slide>
       ))}
     </Carousel>
   );

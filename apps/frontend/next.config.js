@@ -40,6 +40,9 @@ const nextConfig = {
     ],
     defaultLocale: "en-US",
   },
+  images: {
+    domains: ["static-cdn.jtvnw.net"],
+  },
 };
 
 module.exports = nextConfig;
