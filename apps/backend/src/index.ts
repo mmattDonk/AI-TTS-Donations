@@ -144,10 +144,12 @@ app.post("/eventsub", async (req, res) => {
 });
 
 app.post("/newuser", async (req, res) => {
+  console.log("new user!");
   // if bearer token not equal to process.env.secret
   const secret = req.headers.authorization?.split(" ")[1];
   const data = JSON.parse(req.body);
   if (secret !== process.env.API_SECRET) {
+    console.log("rejected :p");
     return res.status(403).send("Forbidden");
   }
 
