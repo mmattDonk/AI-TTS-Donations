@@ -16,6 +16,7 @@ import { NextLink } from "@mantine/next";
 import type { GetStaticPropsContext, NextPage } from "next";
 import { signIn, signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { Dashboard, DoorExit } from "tabler-icons-react";
 import Bubbles from "../components/Bubbles";
@@ -221,18 +222,15 @@ const Home: NextPage = () => {
 
               <div className={classes.controls}>
                 <Group>
-                  {/* <Link href="/dashboard" prefetch> */}
-                  <Tooltip label={t("Landing.getStartedTooltip")}>
+                  <Link href="/dashboard" prefetch>
                     <Button
                       className={classes.control}
                       size="lg"
-                      // disabled={isLoading}
-                      disabled
+                      disabled={isLoading}
                     >
                       {t("Landing.getStarted")}
                     </Button>
-                  </Tooltip>
-                  {/* </Link> */}
+                  </Link>
                   <Button
                     variant="outline"
                     className={classes.control}
