@@ -41,7 +41,7 @@ const nextConfig = {
     defaultLocale: "en-US",
   },
   images: {
-    domains: ["static-cdn.jtvnw.net"],
+    domains: ["static-cdn.jtvnw.net", "cdn.7tv.app"],
   },
 };
 
