@@ -33,3 +33,4 @@ updates:
         - "@solrock/processor"
       commit-message:
         prefix: "chore(deps): "
+
