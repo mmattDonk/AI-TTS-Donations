@@ -334,7 +334,7 @@ def hello_http(request):
         f"{API_URL}/api/streamers/overlayId/{overlay_id}",
         data={
             "audioUrl": response["audioUrl"],
-            "message": response["message"],
+            "message": request_message,
         },
         headers=headers,  # type: ignore
     )

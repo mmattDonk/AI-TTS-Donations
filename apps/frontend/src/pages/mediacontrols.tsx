@@ -9,8 +9,6 @@ export default function MediaControlsPage() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "100vh",
-        width: "100vw",
       }}
     >
       <MediaControls />

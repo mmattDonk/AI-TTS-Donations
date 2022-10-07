@@ -123,53 +123,56 @@ export default function MediaControls() {
         </Button>
         <Space h="sm" />
         <Collapse in={showTable}>
-          <div>
-            {/* @ts-ignore */}
-            {ttsMessages?.messages > 0 ? (
-              ttsMessages?.messages?.map((message: any) => (
-                <>
-                  <Table>
-                    <thead>
-                      <th>Message</th>
-                      <th>Created At</th>
-                      <th>Replay</th>
-                    </thead>
-
-                    <tbody></tbody>
-                  </Table>
-                  <Group
-                    key={message.id}
-                    style={{
-                      maxWidth: "100%",
-                      textOverflow: "ellipsis",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <p>{message.message}</p>
-                    <p>
-                      {new Date(
-                        // @ts-ignore
-                        message.createdAt
-                      ).toLocaleDateString()}{" "}
-                      at {/* @ts-ignore */}
-                      {new Date(message.createdAt).toLocaleTimeString()}
-                    </p>
-                    <div>
-                      <Button
-                        value={message.audioUrl}
-                        color="gray"
-                        onClickCapture={replayTts}
+          {ttsMessages?.messages?.length ?? 0 > 0 ? (
+            <Table style={{ textAlign: "center" }}>
+              <thead>
+                <th>Replay</th>
+                <th>Message</th>
+                <th>Created At</th>
+              </thead>
+              <tbody>
+                {/* @ts-ignore */}
+                {ttsMessages?.messages?.map((message: any, i) => (
+                  <tr key={i}>
+                    <td>
+                      <div>
+                        <Button
+                          value={message.audioUrl}
+                          color="gray"
+                          onClickCapture={replayTts}
+                        >
+                          <Rotate />
+                        </Button>
+                      </div>
+                    </td>
+                    <td>
+                      <p
+                        style={{
+                          maxWidth: "50rem",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
                       >
-                        <Rotate />
-                      </Button>
-                    </div>
-                  </Group>
-                </>
-              ))
-            ) : (
-              <p>No messages found</p>
-            )}
-          </div>
+                        {message.message}
+                      </p>
+                    </td>
+                    <td>
+                      <p>
+                        {new Date(
+                          // @ts-ignore
+                          message.createdAt
+                        ).toLocaleDateString()}{" "}
+                        at {/* @ts-ignore */}
+                        {new Date(message.createdAt).toLocaleTimeString()}
+                      </p>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          ) : (
+            <p>No recent TTS messages</p>
+          )}
         </Collapse>
       </div>
     );
