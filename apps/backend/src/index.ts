@@ -194,8 +194,19 @@ app.post("/newuser", async (req, res) => {
     ),
   ]);
 
-  if (subscribeResub.status === 200 && subscribeCheers.status === 200) {
-    res.status(200).send("OK");
+  if (
+    subscribeCheers.status === 401 ||
+    subscribeResub.status === 401 ||
+    subscribeCheers.status === 403 ||
+    subscribeResub.status === 403 ||
+    subscribeCheers.status === 429 ||
+    subscribeResub.status === 429 ||
+    subscribeCheers.status === 400 ||
+    subscribeResub.status === 400
+  )
+    return res.status(500).send("Error subscribing to eventsub");
+  else {
+    return res.status(200).send("OK, in theory.");
   }
 });
 
