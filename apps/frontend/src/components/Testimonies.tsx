@@ -34,6 +34,16 @@ const testimonies: CommentSimpleProps[] = [
   },
   {
     author: {
+      name: "C3AGLE",
+      image:
+        "https://static-cdn.jtvnw.net/jtv_user_pictures/96af8b14-8b41-4948-af83-da7d925304df-profile_image-70x70.png",
+      followers: "496",
+    },
+    body: "This is a very good tts app and I love it very much",
+    stars: 5,
+  },
+  {
+    author: {
       name: "WhatTheWoda",
       image:
         "https://static-cdn.jtvnw.net/jtv_user_pictures/662e281d-3883-4d27-86c3-2b24d48f6195-profile_image-70x70.png",
