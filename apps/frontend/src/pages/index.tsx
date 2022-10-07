@@ -24,6 +24,7 @@ import FaqSimple from "../components/FAQ";
 import Features from "../components/Features";
 import { LoadingSpinner } from "../components/Loading";
 import Spring from "../components/Spring";
+import TestimoniesComponent from "../components/Testimonies";
 import { trpc } from "../utils/trpc";
 
 const useStyles = createStyles((theme) => ({
@@ -334,6 +335,14 @@ const Home: NextPage = () => {
           </h1>
 
           <Features />
+          <br />
+
+          <h1 style={{ textAlign: "center" }}>Don't believe us?</h1>
+          <h2 style={{ textAlign: "center" }}>
+            Just look at what streamers say about it.
+          </h2>
+          <TestimoniesComponent />
+
           <FaqSimple />
         </Spring>
         <Bubbles />
