@@ -105,24 +105,16 @@ app.post("/eventsub", async (req, res) => {
     if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
       console.log(`Event type: ${notification.subscription.type}`);
       if (notification.subscription.type === "channel.subscription.message") {
-        try {
-          await subscriptionCallback(notification.event);
-        } catch (e) {
-          return res.status(500).send(e);
-        }
+        res.status(204).send("success!");
+        await subscriptionCallback(notification.event);
       } else if (notification.subscription.type === "channel.cheer") {
-        try {
-          await cheerCallback(notification.event);
-        } catch (e) {
-          return res.status(500).send(e);
-        }
+        res.status(204).send("success!");
+        await cheerCallback(notification.event);
       } else console.log(JSON.stringify(notification.event, null, 4));
-
-      res.sendStatus(204);
     } else if (MESSAGE_TYPE_VERIFICATION === req.headers[MESSAGE_TYPE]) {
       res.status(200).send(notification.challenge);
     } else if (MESSAGE_TYPE_REVOCATION === req.headers[MESSAGE_TYPE]) {
-      res.sendStatus(204);
+      res.status(204).send("success!");
 
       console.log(`${notification.subscription.type} notifications revoked!`);
       console.log(`reason: ${notification.subscription.status}`);
