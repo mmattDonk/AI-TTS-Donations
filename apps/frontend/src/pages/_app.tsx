@@ -1,5 +1,6 @@
 // src/pages/_app.tsx
 import {
+  Center,
   ColorScheme,
   ColorSchemeProvider,
   Global,
@@ -13,6 +14,7 @@ import type { AppType } from "next/dist/shared/lib/utils";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import superjson from "superjson";
+import BetaBanner from "../components/BetaBanner";
 import type { AppRouter } from "../server/router";
 
 const MyApp: AppType = ({
@@ -72,6 +74,9 @@ const MyApp: AppType = ({
       <MantineTheme>
         <SessionProvider session={session}>
           <NextIntlProvider messages={pageProps.messages}>
+            <Center>
+              <BetaBanner />
+            </Center>
             <Component {...pageProps} />
           </NextIntlProvider>
         </SessionProvider>
