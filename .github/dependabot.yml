@@ -1,35 +1,35 @@
 version: 2
 
 updates:
-  - package-ecosystem: "npm"
-    directory: "/apps/backend"
-    schedule:
-      interval: "daily"
-    target-branch: "v5"
-    labels:
-      - "dependencies"
-      - "@solrock/backend"
-    commit-message:
-      prefix: "chore(deps): "
+    - package-ecosystem: 'npm'
+      directory: '/apps/backend'
+      schedule:
+          interval: 'daily'
+      target-branch: 'v5'
+      labels:
+          - 'dependencies'
+          - '@solrock/backend'
+      commit-message:
+          prefix: 'chore(deps): '
 
-  - package-ecosystem: "npm"
-    directory: "/apps/frontend"
-    schedule:
-      interval: "daily"
-    target-branch: "v5"
-    labels:
-      - "dependencies"
-      - "@solrock/frontend"
-    commit-message:
-      prefix: "chore(deps): "
+    - package-ecosystem: 'npm'
+      directory: '/apps/frontend'
+      schedule:
+          interval: 'daily'
+      target-branch: 'v5'
+      labels:
+          - 'dependencies'
+          - '@solrock/frontend'
+      commit-message:
+          prefix: 'chore(deps): '
 
-  - package-ecosystem: "pip"
-    directory: "/apps/processor"
-    schedule:
-      interval: "daily"
-    target-branch: "v5"
-    labels:
-      - "dependencies"
-      - "@solrock/processor"
-    commit-message:
-      prefix: "chore(deps): "
+    - package-ecosystem: 'pip'
+      directory: '/apps/processor'
+      schedule:
+          interval: 'daily'
+      target-branch: 'v5'
+      labels:
+          - 'dependencies'
+          - '@solrock/processor'
+      commit-message:
+          prefix: 'chore(deps): '
