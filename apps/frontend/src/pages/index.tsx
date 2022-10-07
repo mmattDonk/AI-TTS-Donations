@@ -338,10 +338,14 @@ const Home: NextPage = () => {
           <br />
 
           <h1 style={{ textAlign: "center" }}>Don't believe us?</h1>
-          <h2 style={{ textAlign: "center" }}>
+          <h2 style={{ textAlign: "center", marginBottom: "-30px" }}>
             Just look at what streamers say about it.
           </h2>
           <TestimoniesComponent />
+          <p style={{ textAlign: "center" }}>
+            Are you a streamer that uses AI TTS Donations? Give us a review{" "}
+            <a href="https://mmatt.link/TTSTestimonies">here!</a>
+          </p>
 
           <FaqSimple />
         </Spring>
