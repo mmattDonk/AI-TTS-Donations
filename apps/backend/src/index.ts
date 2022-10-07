@@ -3,9 +3,9 @@ import crypto from "crypto";
 import dotenv from "dotenv";
 import express from "express";
 import { cheerEvent, subscriptionEvent } from "./typings";
-const port = process.env.PORT || 4200;
 const app = express();
 dotenv.config();
+const port = process.env.PORT || 4200;
 
 // Notification request headers
 const TWITCH_MESSAGE_ID = "Twitch-Eventsub-Message-Id".toLowerCase();
