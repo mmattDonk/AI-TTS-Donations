@@ -63,10 +63,16 @@ async function processEvent(broadcasterId: string, message: string) {
   if (streamerJson) {
     console.log("EVENT MESSAGE???", message);
     console.log("STRAEMER OVERLAY?", streamerJson.streamer.overlayId);
-    const serverlessRequest = await axios.post(SERVERLESS_PROCESSOR_URL, {
-      message: message,
-      overlayId: streamerJson.streamer.overlayId,
-    });
+    const serverlessRequest = await axios.post(
+      SERVERLESS_PROCESSOR_URL,
+      {
+        message: message,
+        overlayId: streamerJson.streamer.overlayId,
+      },
+      {
+        headers: { Authorization: "Bearer " + process.env.API_SECRET },
+      }
+    );
     console.log("SERVERLESS REQUEST", serverlessRequest.data);
   } else {
     throw new Error("Streamer not found");
