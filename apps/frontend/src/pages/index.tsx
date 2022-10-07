@@ -1,21 +1,23 @@
 import {
-  Avatar,
-  Button,
-  Center,
-  Container,
-  createStyles,
-  Group,
-  Text,
-  TextInput,
-  Title,
-  Tooltip,
+	Avatar,
+	Button,
+	Center,
+	Container,
+	createStyles,
+	Group,
+	Menu,
+	Text,
+	TextInput,
+	Title,
+	Tooltip,
+	UnstyledButton
 } from "@mantine/core";
+import { NextLink } from "@mantine/next";
 import type { GetStaticPropsContext, NextPage } from "next";
 import { signIn, signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import Head from "next/head";
-import Link from "next/link";
 import { useRef, useState } from "react";
+import { Dashboard, DoorExit } from "tabler-icons-react";
 import Bubbles from "../components/Bubbles";
 import Dots from "../components/Dots";
 import FaqSimple from "../components/FAQ";
@@ -168,21 +170,33 @@ const Home: NextPage = () => {
               <LoadingSpinner />
             ) : session ? (
               <>
-                <Link href="/dashboard" prefetch>
-                  {t("Landing.goToDashboard")}
-                </Link>
-                <Tooltip
-                  label={t("loggedIn", { name: session.user?.name })}
-                  position="bottom"
-                >
-                  <Avatar
-                    src={session.user?.image}
-                    alt={t("alt.avatar", { name: session.user?.name })}
-                  />
-                </Tooltip>
-                <Button onClick={() => signOut()} size="xs">
-                  {t("signOut")}
-                </Button>
+                <Menu>
+                  <Menu.Target>
+                    <UnstyledButton>
+                      <Avatar
+                        radius="xl"
+                        src={session.user?.image}
+                        alt={t("alt.avatar", { name: session.user?.name })}
+                      />
+                    </UnstyledButton>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Item
+                      icon={<Dashboard size={18} />}
+                      component={NextLink}
+                      href="/dashboard"
+                    >
+                      {t("Landing.dashboard")}
+                    </Menu.Item>
+                    <Menu.Item
+                      icon={<DoorExit size={18} />}
+                      color="red"
+                      onClick={() => signOut()}
+                    >
+                      {t("signOut")}
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
               </>
             ) : (
               <Button onClick={() => signIn()} size="xs">
