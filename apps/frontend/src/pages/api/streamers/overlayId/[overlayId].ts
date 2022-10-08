@@ -20,6 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		include: {
 			ttsmessages: true,
 			user: true,
+			config: true,
 		},
 	});
 

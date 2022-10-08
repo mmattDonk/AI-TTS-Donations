@@ -26,3 +26,22 @@ export interface cheerEvent {
 	message: string;
 	bits: number;
 }
+
+export interface redemptionEvent {
+	id: string;
+	broadcaster_user_id: string;
+	broadcaster_user_login: string;
+	broadcaster_user_name: string;
+	user_id: string;
+	user_login: string;
+	user_name: string;
+	user_input: string;
+	status: string;
+	reward: {
+		id: string;
+		title: string;
+		prompt: string;
+		cost: number;
+	};
+	redeemed_at: string;
+}

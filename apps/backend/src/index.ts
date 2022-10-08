@@ -2,7 +2,7 @@ import axios from 'axios';
 import crypto from 'crypto';
 import dotenv from 'dotenv';
 import express from 'express';
-import { cheerEvent, subscriptionEvent } from './typings';
+import { cheerEvent, redemptionEvent, subscriptionEvent } from './typings';
 const app = express();
 dotenv.config();
 const port = process.env.PORT || 4200;
@@ -85,6 +85,10 @@ async function cheerCallback(event: cheerEvent) {
 	console.log('cheerCallback', event);
 }
 
+async function redemptionCallback(event: redemptionEvent) {
+	await processEvent(event.broadcaster_user_id, event.user_input);
+}
+
 app.post('/eventsub', async (req, res) => {
 	let secret = getSecret();
 	let message = getHmacMessage(req);
@@ -104,6 +108,9 @@ app.post('/eventsub', async (req, res) => {
 			} else if (notification.subscription.type === 'channel.cheer') {
 				res.status(204).send('success!');
 				await cheerCallback(notification.event);
+			} else if (notification.subscription.type === 'channel.channel_points_custom_reward_redemption.add') {
+				res.status(204).send('success!');
+				await redemptionCallback(notification.event);
 			} else console.log(JSON.stringify(notification.event, null, 4));
 		} else if (MESSAGE_TYPE_VERIFICATION === req.headers[MESSAGE_TYPE]) {
 			res.status(200).send(notification.challenge);
@@ -127,11 +134,11 @@ app.post('/newuser', async (req, res) => {
 	console.log('new user!');
 	// if bearer token not equal to process.env.secret
 	const secret = req.headers.authorization?.split(' ')[1];
-	const data = JSON.parse(req.body);
 	if (secret !== process.env.API_SECRET) {
 		console.log('rejected :p');
 		return res.status(403).send('Forbidden');
 	}
+	const data = JSON.parse(req.body);
 
 	const [subscribeResub, subscribeCheers] = await Promise.all([
 		axios.post(
@@ -184,6 +191,43 @@ app.post('/newuser', async (req, res) => {
 		subscribeCheers.status === 400 ||
 		subscribeResub.status === 400
 	)
+		return res.status(500).send('Error subscribing to eventsub');
+	else {
+		return res.status(200).send('OK, in theory.');
+	}
+});
+
+app.post('/channelpoints', async (req, res) => {
+	console.log('new channel points user :^)');
+
+	const secret = req.headers.authorization?.split(' ')[1];
+	if (secret !== process.env.API_SECRET) {
+		console.log('rejected :p');
+		return res.status(403).send('Forbidden');
+	}
+	const data = JSON.parse(req.body);
+
+	const subscribeReward = await axios.post(
+		'https://api.twitch.tv/helix/eventsub/subscriptions',
+		{
+			type: 'channel.channel_points_custom_reward.add',
+			version: '1',
+			condition: { broadcaster_user_id: data.streamerId },
+			transport: {
+				method: 'webhook',
+				callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
+				secret: process.env.API_SECRET,
+			},
+		},
+		{
+			headers: {
+				'Client-Id': process.env.CLIENT_ID ?? '',
+				Authorization: 'Bearer ' + process.env.TWITCH_ACCESS_TOKEN,
+			},
+		}
+	);
+
+	if (subscribeReward.status === 401 || subscribeReward.status === 403 || subscribeReward.status === 429 || subscribeReward.status === 400)
 		return res.status(500).send('Error subscribing to eventsub');
 	else {
 		return res.status(200).send('OK, in theory.');

@@ -1,4 +1,4 @@
-import { Avatar, Button, Code, Collapse, Container, Group, Space, Stack, Tooltip } from '@mantine/core';
+import { Avatar, Button, Code, Collapse, Container, Group, Space, Stack, Switch, TextInput, Tooltip } from '@mantine/core';
 import { GetStaticPropsContext } from 'next';
 import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
@@ -16,6 +16,11 @@ export default function Dashboard() {
 
 	const { data: session, isLoading: isSessionLoading } = trpc.useQuery(['auth.getSession']);
 	const { data: userData, isLoading } = trpc.useQuery(['user.get-user', session?.user?.name ?? '']);
+	const { data: streamerData, isLoading: isStreamerLoading } = trpc.useQuery(['streamer.get-streamer', session?.user?.name ?? '']);
+	console.debug(streamerData);
+
+	const [rewardName, setRewardName] = useState(streamerData?.config[0]?.channelPointsName ?? '');
+	const [channelPointsEnabled, setChannelPointsEnabled] = useState(streamerData?.config[0]?.channelPointsEnabled ?? false);
 
 	if (isSessionLoading) return <LoadingPage />;
 
@@ -112,15 +117,40 @@ export default function Dashboard() {
 							/>
 							<MediaControls />
 						</div>
-						<hr />
-						<Space h="xl" />
 						{isLoading ? (
 							<LoadingSpinner />
 						) : (
 							<>
-								<Space h="md" />
+								{isStreamerLoading ? (
+									<LoadingSpinner />
+								) : (
+									<>
+										<h2>Configuration</h2>
+										<h3>Channel Points</h3>
+										<Group>
+											<TextInput
+												value={rewardName}
+												onChange={(event) => {
+													setRewardName(event.target.value);
+												}}
+												label="Channel Point Reward Name (Case Sensitive)"
+											/>
+											<Switch
+												checked={channelPointsEnabled}
+												onChange={(event) => {
+													setChannelPointsEnabled(event.target.checked);
+												}}
+												label="Enabled"
+											/>
+										</Group>
+										<Space h="md" />
+										<Button>Save</Button>
+									</>
+								)}
 
-								<Button color="red" onClick={() => setSensitiveOpen((o) => !o)}>
+								<Space h="xl" />
+
+								<Button mb={'xl'} color="red" onClick={() => setSensitiveOpen((o) => !o)}>
 									{sensitiveOpen ? t('close') : t('open')} {t('Dashboard.sensitiveInfo')}
 								</Button>
 								<Collapse in={sensitiveOpen}>
