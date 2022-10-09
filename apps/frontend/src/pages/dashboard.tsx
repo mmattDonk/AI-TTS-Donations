@@ -15,12 +15,57 @@ export default function Dashboard() {
 	const t = useTranslations();
 
 	const { data: session, isLoading: isSessionLoading } = trpc.useQuery(['auth.getSession']);
+
+	// TODO: these are returning undefined because session didn't finish loading yet, fix this?
 	const { data: userData, isLoading } = trpc.useQuery(['user.get-user', session?.user?.name ?? '']);
 	const { data: streamerData, isLoading: isStreamerLoading } = trpc.useQuery(['streamer.get-streamer', session?.user?.name ?? '']);
-	console.debug(streamerData);
+
+	console.log('user data???', userData);
+	console.log(' streamer data/?!?!?', streamerData);
+
+	const configMutation = trpc.useMutation('streamer.update-streamer-config');
 
 	const [rewardName, setRewardName] = useState(streamerData?.config[0]?.channelPointsName ?? '');
 	const [channelPointsEnabled, setChannelPointsEnabled] = useState(streamerData?.config[0]?.channelPointsEnabled ?? false);
+
+	const [maxMsgLength, setMaxMsgLength] = useState(streamerData?.config[0]?.maxMsgLength ?? 0);
+	const [minBitAmount, setMinBitAmount] = useState(streamerData?.config[0]?.minBitAmount ?? 0);
+	const [minTipAmount, setMinTipAmount] = useState(streamerData?.config[0]?.minTipAmount ?? 0);
+
+	const [blacklistedWords, setBlacklistedWords] = useState(streamerData?.config[0]?.blacklistedWords ?? []);
+	const [blacklistedVoices, setBlacklistedVoices] = useState(streamerData?.config[0]?.blacklistedVoices ?? []);
+	const [blacklistedUsers, setBlacklistedUsers] = useState(streamerData?.config[0]?.blacklistedUsers ?? []);
+
+	const [fallbackVoice, setFallbackVoice] = useState(streamerData?.config[0]?.fallbackVoice ?? '');
+
+	const [message, setMessage] = useState('');
+
+	const saveConfig = async (e: any) => {
+		e.preventDefault();
+
+		configMutation.mutate({
+			streamerId: userData?.accounts[0]?.providerAccountId ?? '',
+			config: {
+				channelPointsName: rewardName,
+				channelPointsEnabled: channelPointsEnabled,
+				maxMsgLength: maxMsgLength,
+				minBitAmount: minBitAmount,
+				minTipAmount: minTipAmount,
+				blacklistedWords: blacklistedWords,
+				blacklistedVoices: blacklistedVoices,
+				blacklistedUsers: blacklistedUsers,
+				fallbackVoice: fallbackVoice,
+			},
+		});
+
+		if (!configMutation.isLoading) {
+			if (configMutation.isError) {
+				setMessage('Error saving config');
+			} else {
+				setMessage('Config saved');
+			}
+		}
+	};
 
 	if (isSessionLoading) return <LoadingPage />;
 
@@ -144,7 +189,16 @@ export default function Dashboard() {
 											/>
 										</Group>
 										<Space h="md" />
-										<Button>Save</Button>
+										<Button
+											onClick={(e: any) => {
+												saveConfig(e);
+											}}
+											disabled={configMutation.isLoading}
+										>
+											Save
+										</Button>
+										{configMutation.isLoading && <LoadingSpinner />}
+										<p>{configMutation.isLoading ? '' : message}</p>
 									</>
 								)}
 

@@ -37,5 +37,19 @@ export const streamerRouter = createRouter()
 				fallbackVoice: z.string(),
 			}),
 		}),
-		resolve: async ({ ctx, input }) => {},
+		resolve: async ({ ctx, input }) => {
+			const { streamerId, config } = input;
+			return await ctx.prisma.streamerConfig.upsert({
+				where: {
+					id: streamerId,
+				},
+				update: {
+					...config,
+				},
+				create: {
+					id: streamerId,
+					...config,
+				},
+			});
+		},
 	});
