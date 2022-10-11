@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import asyncio
 import contextlib
@@ -157,7 +156,7 @@ playsounds.sort(
 
 log.debug(playsounds)
 
-with open("config.json", "r") as f:
+with open("config.json") as f:
     config = json.load(f)
 load_dotenv()
 
