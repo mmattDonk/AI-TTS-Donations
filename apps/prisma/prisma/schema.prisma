@@ -60,6 +60,7 @@ model StreamerConfig {
 
   maxMsgLength Int? @default(1000)
   minBitAmount Int? @default(0)
+  minMonthsAmount Int? @default(0)
   minTipAmount Int? @default(0)
 
   blacklistedWords String[]

@@ -29,6 +29,7 @@ export const streamerRouter = createRouter()
 				maxMsgLength: z.number(),
 				minBitAmount: z.number(),
 				minTipAmount: z.number(),
+				minMonthsAmount: z.number(),
 
 				blacklistedWords: z.array(z.string()),
 				blacklistedVoices: z.array(z.string()),

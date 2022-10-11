@@ -58,6 +58,7 @@ async function processEvent(broadcasterId: string, message: string, streamerJson
 }
 
 async function subscriptionCallback(event: subscriptionEvent, streamerJson: streamer) {
+	if (streamerJson.streamer.config[0].minMonthsAmount > event.duration_months) return;
 	await processEvent(event.broadcaster_user_id, event.message.text, streamerJson);
 	console.log('subscriptionCallback', event);
 }

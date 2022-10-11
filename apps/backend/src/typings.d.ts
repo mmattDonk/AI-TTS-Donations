@@ -66,6 +66,7 @@ export interface streamer {
 			maxMsgLength: number;
 			minBitAmount: number;
 			minTipAmount: number;
+			minMonthsAmount: number;
 			blacklistedWords: string[];
 			blacklistedVoices: string[];
 			blacklistedUsers: string[];

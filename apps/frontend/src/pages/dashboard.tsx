@@ -26,6 +26,7 @@ export default function Dashboard() {
 					maxMsgLength: 1000,
 					minBitAmount: 0,
 					minTipAmount: 0,
+					minMonthsAmount: 0,
 					blacklistedWords: [],
 					blacklistedVoices: [],
 					blacklistedUsers: [],
@@ -45,6 +46,7 @@ export default function Dashboard() {
 			maxMsgLength: 1000,
 			minBitAmount: 0,
 			minTipAmount: 0,
+			minMonthsAmount: 0,
 			blacklistedWords: [],
 			blacklistedVoices: [],
 			blacklistedUsers: [],
@@ -65,6 +67,7 @@ export default function Dashboard() {
 				maxMsgLength: config.maxMsgLength ?? 1000,
 				minBitAmount: config.minBitAmount ?? 0,
 				minTipAmount: config.minTipAmount ?? 0,
+				minMonthsAmount: config.minMonthsAmount ?? 0,
 				blacklistedWords: config.blacklistedWords ?? [],
 				blacklistedVoices: config.blacklistedVoices ?? [],
 				blacklistedUsers: config.blacklistedUsers ?? [],
@@ -220,6 +223,14 @@ export default function Dashboard() {
 												value={config.minBitAmount ?? 0}
 												onChange={(val) => {
 													setConfig({ ...config, minBitAmount: val ?? 0 });
+												}}
+											/>
+											<NumberInput
+												label="Minimum Resub Months Amount"
+												defaultValue={config.minMonthsAmount ?? 0}
+												value={config.minMonthsAmount ?? 0}
+												onChange={(val) => {
+													setConfig({ ...config, minMonthsAmount: val ?? 0 });
 												}}
 											/>
 										</Stack>
