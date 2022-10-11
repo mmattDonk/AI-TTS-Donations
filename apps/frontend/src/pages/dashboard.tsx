@@ -1,4 +1,4 @@
-import { Avatar, Button, Code, Collapse, Container, Group, Space, Stack, Tooltip } from '@mantine/core';
+import { Avatar, Button, Code, Collapse, Container, Group, Kbd, NumberInput, Space, Stack, Switch, Textarea, TextInput, Tooltip } from '@mantine/core';
 import { GetStaticPropsContext } from 'next';
 import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
@@ -15,7 +15,76 @@ export default function Dashboard() {
 	const t = useTranslations();
 
 	const { data: session, isLoading: isSessionLoading } = trpc.useQuery(['auth.getSession']);
-	const { data: userData, isLoading } = trpc.useQuery(['user.get-user', session?.user?.name ?? '']);
+
+	const { data: streamerData, isLoading: isStreamerLoading } = trpc.useQuery(['streamer.get-streamer', session?.user?.name ?? ''], {
+		onSuccess(data) {
+			setConfig(
+				data?.config[0] ?? {
+					id: streamerData?.id,
+					channelPointsName: '',
+					channelPointsEnabled: false,
+					maxMsgLength: 1000,
+					minBitAmount: 0,
+					minTipAmount: 0,
+					minMonthsAmount: 0,
+					blacklistedWords: [],
+					blacklistedVoices: [],
+					blacklistedUsers: [],
+					fallbackVoice: 'kanye-west-rap',
+				}
+			);
+		},
+	});
+
+	const configMutation = trpc.useMutation('streamer.update-streamer-config');
+
+	const [config, setConfig] = useState(
+		streamerData?.config[0] ?? {
+			id: streamerData?.id,
+			channelPointsName: '',
+			channelPointsEnabled: false,
+			maxMsgLength: 1000,
+			minBitAmount: 0,
+			minTipAmount: 0,
+			minMonthsAmount: 0,
+			blacklistedWords: [],
+			blacklistedVoices: [],
+			blacklistedUsers: [],
+			fallbackVoice: 'kanye-west-rap',
+		}
+	);
+
+	const [message, setMessage] = useState('');
+
+	const saveConfig = async (e: any) => {
+		e.preventDefault();
+
+		configMutation.mutate({
+			streamerId: streamerData?.id ?? '',
+			config: {
+				channelPointsName: config.channelPointsName ?? '',
+				channelPointsEnabled: config.channelPointsEnabled ?? false,
+				maxMsgLength: config.maxMsgLength ?? 1000,
+				minBitAmount: config.minBitAmount ?? 0,
+				minTipAmount: config.minTipAmount ?? 0,
+				minMonthsAmount: config.minMonthsAmount ?? 0,
+				blacklistedWords: config.blacklistedWords ?? [],
+				blacklistedVoices: config.blacklistedVoices ?? [],
+				blacklistedUsers: config.blacklistedUsers ?? [],
+				fallbackVoice: config.fallbackVoice ?? 'kanye-west-rap',
+			},
+		});
+
+		if (configMutation.isLoading) {
+			setMessage('');
+		} else if (!configMutation.isLoading) {
+			if (configMutation.isError) {
+				setMessage('Error saving config');
+			} else {
+				setMessage('Config saved');
+			}
+		}
+	};
 
 	if (isSessionLoading) return <LoadingPage />;
 
@@ -112,21 +181,121 @@ export default function Dashboard() {
 							/>
 							<MediaControls />
 						</div>
-						<hr />
-						<Space h="xl" />
-						{isLoading ? (
+						{isStreamerLoading ? (
 							<LoadingSpinner />
 						) : (
 							<>
-								<Space h="md" />
+								{isStreamerLoading ? (
+									<LoadingSpinner />
+								) : (
+									<>
+										<h2>Configuration</h2>
+										<h3>Channel Points</h3>
+										<Group>
+											<TextInput
+												value={config.channelPointsName ?? ''}
+												onChange={(event) => {
+													setConfig({ ...config, channelPointsName: event.target.value });
+												}}
+												label="Channel Point Reward Name (Case Sensitive)"
+											/>
+											<Switch
+												checked={config.channelPointsEnabled ?? false}
+												onChange={(event) => {
+													setConfig({ ...config, channelPointsEnabled: event.target.checked });
+												}}
+												label="Enabled"
+											/>
+										</Group>
+										<h3>Max/Min Limits</h3>
+										<Stack>
+											<NumberInput
+												label="Max Message Length"
+												defaultValue={config.maxMsgLength ?? 1000}
+												value={config.maxMsgLength ?? 1000}
+												onChange={(val) => {
+													setConfig({ ...config, maxMsgLength: val ?? 1000 });
+												}}
+											/>
+											<NumberInput
+												label="Minimum Bits Amount"
+												defaultValue={config.minBitAmount ?? 0}
+												value={config.minBitAmount ?? 0}
+												onChange={(val) => {
+													setConfig({ ...config, minBitAmount: val ?? 0 });
+												}}
+											/>
+											<NumberInput
+												label="Minimum Resub Months Amount"
+												defaultValue={config.minMonthsAmount ?? 0}
+												value={config.minMonthsAmount ?? 0}
+												onChange={(val) => {
+													setConfig({ ...config, minMonthsAmount: val ?? 0 });
+												}}
+											/>
+										</Stack>
+										<h3>Blacklisted</h3>
+										<p>
+											Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)
+										</p>
+										<Textarea
+											value={config.blacklistedWords.join('\n')}
+											label="Words"
+											autosize
+											onChange={(event) => {
+												// @ts-ignore
+												setConfig({ ...config, blacklistedWords: event.target.value.split('\n') });
+											}}
+										/>
+										<Textarea
+											value={config.blacklistedVoices.join('\n')}
+											label="Voices"
+											autosize
+											onChange={(event) => {
+												// @ts-ignore
+												setConfig({ ...config, blacklistedVoices: event.target.value.split('\n') });
+											}}
+										/>
+										<Textarea
+											value={config.blacklistedUsers.join('\n')}
+											label="Users"
+											autosize
+											onChange={(event) => {
+												// @ts-ignore
+												setConfig({ ...config, blacklistedUsers: event.target.value.split('\n') });
+											}}
+										/>
+										<h3>Fallbacks</h3>
+										<TextInput
+											value={config.fallbackVoice ?? ''}
+											onChange={(event) => {
+												setConfig({ ...config, fallbackVoice: event.target.value ?? '' });
+											}}
+											label="Fallback Voice"
+										/>
+										<Space h="md" />
+										<Button
+											onClick={(e: any) => {
+												saveConfig(e);
+											}}
+											disabled={configMutation.isLoading}
+										>
+											Save
+										</Button>
+										{configMutation.isLoading && <LoadingSpinner />}
+										<p>{configMutation.isLoading ? '' : message}</p>
+									</>
+								)}
 
-								<Button color="red" onClick={() => setSensitiveOpen((o) => !o)}>
+								<Space h="xl" />
+
+								<Button mb={'xl'} color="red" onClick={() => setSensitiveOpen((o) => !o)}>
 									{sensitiveOpen ? t('close') : t('open')} {t('Dashboard.sensitiveInfo')}
 								</Button>
 								<Collapse in={sensitiveOpen}>
 									<p>
 										<Tooltip label={t('Dashboard.sensitiveInfoWarning')}>
-											<a href={`/overlay/${userData?.streamers[0]?.overlayId}`} target="_blank" rel="noreferrer">
+											<a href={`/overlay/${streamerData?.overlayId}`} target="_blank" rel="noreferrer">
 												{t('Dashboard.ttsOverlay')}
 											</a>
 										</Tooltip>{' '}

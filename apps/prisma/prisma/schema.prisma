@@ -48,8 +48,28 @@ model Streamer {
   id          String        @id @default(cuid())
   overlayId   String        @unique @default(cuid())
   ttsmessages ttsMessages[]
-
+  config StreamerConfig[]
   user User @relation(fields: [id], references: [id], onDelete: Cascade)
+}
+
+model StreamerConfig {
+  id String @id @default(cuid())
+
+  channelPointsName String?
+  channelPointsEnabled Boolean? @default(false)
+
+  maxMsgLength Int? @default(1000)
+  minBitAmount Int? @default(0)
+  minMonthsAmount Int? @default(0)
+  minTipAmount Int? @default(0)
+
+  blacklistedWords String[]
+  blacklistedVoices String[]
+  blacklistedUsers String[]
+
+  fallbackVoice String? @default("kanye-west-rap")
+
+  streamer Streamer @relation(fields: [id], references: [id], onDelete: Cascade)
 }
 
 model ttsMessages {

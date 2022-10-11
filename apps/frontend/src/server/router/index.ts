@@ -5,6 +5,7 @@ import { createRouter } from './context';
 import { authRouter } from './auth';
 import { exampleRouter } from './example';
 import { mailingListRouter } from './mailing-list';
+import { streamerRouter } from './streamer';
 import { ttsRouter } from './tts';
 import { userRouter } from './user';
 
@@ -14,7 +15,8 @@ export const appRouter = createRouter()
 	.merge('auth.', authRouter)
 	.merge('mailing-list.', mailingListRouter)
 	.merge('user.', userRouter)
-	.merge('tts.', ttsRouter);
+	.merge('tts.', ttsRouter)
+	.merge('streamer.', streamerRouter);
 
 // export type definition of API
 export type AppRouter = typeof appRouter;

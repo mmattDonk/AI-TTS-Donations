@@ -2,7 +2,7 @@ import axios from 'axios';
 import crypto from 'crypto';
 import dotenv from 'dotenv';
 import express from 'express';
-import { cheerEvent, subscriptionEvent } from './typings';
+import { cheerEvent, redemptionEvent, streamer, subscriptionEvent } from './typings';
 const app = express();
 dotenv.config();
 const port = process.env.PORT || 4200;
@@ -32,26 +32,8 @@ app.use(
 	})
 );
 
-async function processEvent(broadcasterId: string, message: string) {
-	const streamer = await axios.get(API_URL + '/api/streamers/streamerId/' + broadcasterId, {
-		headers: { secret: process.env.API_SECRET ?? '' },
-	});
-
-	const streamerJson = streamer.data as {
-		message: string;
-		streamer: {
-			id: string;
-			overlayId: string;
-			ttsmessages: [];
-			user: {
-				id: string;
-				name: string;
-				email: string;
-				emailVerified?: boolean;
-				image: string;
-			};
-		};
-	};
+async function processEvent(broadcasterId: string, message: string, streamerJson: streamer) {
+	if (message.length > streamerJson.streamer.config[0].maxMsgLength) return;
 	console.log('STREAMER JSON', streamerJson);
 
 	if (streamerJson) {
@@ -75,14 +57,23 @@ async function processEvent(broadcasterId: string, message: string) {
 	}
 }
 
-async function subscriptionCallback(event: subscriptionEvent) {
-	await processEvent(event.broadcaster_user_id, event.message.text);
+async function subscriptionCallback(event: subscriptionEvent, streamerJson: streamer) {
+	if (streamerJson.streamer.config[0].minMonthsAmount > event.duration_months) return;
+	await processEvent(event.broadcaster_user_id, event.message.text, streamerJson);
 	console.log('subscriptionCallback', event);
 }
 
-async function cheerCallback(event: cheerEvent) {
-	await processEvent(event.broadcaster_user_id, event.message);
+async function cheerCallback(event: cheerEvent, streamerJson: streamer) {
+	if (streamerJson.streamer.config[0].minBitAmount > event.bits) return;
+
+	await processEvent(event.broadcaster_user_id, event.message, streamerJson);
 	console.log('cheerCallback', event);
+}
+
+async function redemptionCallback(event: redemptionEvent, streamerJson: streamer) {
+	if (streamerJson.streamer.config[0].channelPointsName !== event.reward.title) return;
+
+	await processEvent(event.broadcaster_user_id, event.user_input, streamerJson);
 }
 
 app.post('/eventsub', async (req, res) => {
@@ -98,12 +89,19 @@ app.post('/eventsub', async (req, res) => {
 
 		if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
 			console.log(`Event type: ${notification.subscription.type}`);
+			const streamer = await axios.get(API_URL + '/api/streamers/streamerId/' + notification.event.broadcaster_user_id, {
+				headers: { secret: process.env.API_SECRET ?? '' },
+			});
+			const streamerJson = streamer.data as streamer;
 			if (notification.subscription.type === 'channel.subscription.message') {
 				res.status(204).send('success!');
-				await subscriptionCallback(notification.event);
+				await subscriptionCallback(notification.event, streamerJson);
 			} else if (notification.subscription.type === 'channel.cheer') {
 				res.status(204).send('success!');
-				await cheerCallback(notification.event);
+				await cheerCallback(notification.event, streamerJson);
+			} else if (notification.subscription.type === 'channel.channel_points_custom_reward_redemption.add') {
+				res.status(204).send('success!');
+				await redemptionCallback(notification.event, streamerJson);
 			} else console.log(JSON.stringify(notification.event, null, 4));
 		} else if (MESSAGE_TYPE_VERIFICATION === req.headers[MESSAGE_TYPE]) {
 			res.status(200).send(notification.challenge);
@@ -127,13 +125,13 @@ app.post('/newuser', async (req, res) => {
 	console.log('new user!');
 	// if bearer token not equal to process.env.secret
 	const secret = req.headers.authorization?.split(' ')[1];
-	const data = JSON.parse(req.body);
 	if (secret !== process.env.API_SECRET) {
 		console.log('rejected :p');
 		return res.status(403).send('Forbidden');
 	}
+	const data = JSON.parse(req.body);
 
-	const [subscribeResub, subscribeCheers] = await Promise.all([
+	const [subscribeResub, subscribeCheers, subscribeReward] = await Promise.all([
 		axios.post(
 			'https://api.twitch.tv/helix/eventsub/subscriptions',
 			{
@@ -172,6 +170,25 @@ app.post('/newuser', async (req, res) => {
 				},
 			}
 		),
+		axios.post(
+			'https://api.twitch.tv/helix/eventsub/subscriptions',
+			{
+				type: 'channel.channel_points_custom_reward.add',
+				version: '1',
+				condition: { broadcaster_user_id: data.streamerId },
+				transport: {
+					method: 'webhook',
+					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
+					secret: process.env.API_SECRET,
+				},
+			},
+			{
+				headers: {
+					'Client-Id': process.env.CLIENT_ID ?? '',
+					Authorization: 'Bearer ' + process.env.TWITCH_ACCESS_TOKEN,
+				},
+			}
+		),
 	]);
 
 	if (
@@ -182,7 +199,11 @@ app.post('/newuser', async (req, res) => {
 		subscribeCheers.status === 429 ||
 		subscribeResub.status === 429 ||
 		subscribeCheers.status === 400 ||
-		subscribeResub.status === 400
+		subscribeResub.status === 400 ||
+		subscribeReward.status === 401 ||
+		subscribeReward.status === 403 ||
+		subscribeReward.status === 429 ||
+		subscribeReward.status === 400
 	)
 		return res.status(500).send('Error subscribing to eventsub');
 	else {
