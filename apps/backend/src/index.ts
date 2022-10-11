@@ -173,7 +173,7 @@ app.post('/newuser', async (req, res) => {
 		axios.post(
 			'https://api.twitch.tv/helix/eventsub/subscriptions',
 			{
-				type: 'channel.channel_points_custom_reward.add',
+				type: 'channel.channel_points_custom_reward_redemption.add',
 				version: '1',
 				condition: { broadcaster_user_id: data.streamerId },
 				transport: {
