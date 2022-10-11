@@ -45,3 +45,31 @@ export interface redemptionEvent {
 	};
 	redeemed_at: string;
 }
+
+export interface streamer {
+	message: string;
+	streamer: {
+		id: string;
+		overlayId: string;
+		ttsmessages: [];
+		user: {
+			id: string;
+			name: string;
+			email: string;
+			emailVerified?: boolean;
+			image: string;
+		};
+		config: {
+			id: string;
+			channelPointsName: string;
+			channelPointsEnabled: boolean;
+			maxMsgLength: number;
+			minBitAmount: number;
+			minTipAmount: number;
+			blacklistedWords: string[];
+			blacklistedVoices: string[];
+			blacklistedUsers: string[];
+			fallbackVoice: string;
+		}[];
+	};
+}
