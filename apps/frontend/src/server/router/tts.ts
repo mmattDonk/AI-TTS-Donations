@@ -11,6 +11,7 @@ export const ttsRouter = createRouter()
 			const { audioUrl, overlayId } = input;
 			const { pusher } = ctx;
 			try {
+				pusher.trigger(overlayId, 'skip-tts', {});
 				pusher.trigger(overlayId, 'new-file', { file: audioUrl });
 			} catch (e) {
 				return {
