@@ -2,7 +2,8 @@
 name: Feature request
 about: Suggest an idea for this project
 title: ''
-labels: feature_request
+labels: "\U0001F4AB feature_request"
+assignees: ''
 
 ---
 
