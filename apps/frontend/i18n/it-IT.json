@@ -6,6 +6,9 @@
 	"signIn": "Connettiti",
 	"learnMore": "Scopri di più",
 	"submit": "Invia",
+	"enabled": "Enabled",
+	"disabled": "Disabled",
+	"save": "Save",
 	"404": {
 		"title": "Hai trovato un posto segreto.",
 		"description": "Sfortunatamente questa è solo una pagina 404. Potresti aver digitato in modo errato l'indirizzo o la pagina è stata spostata su un altro URL.",
@@ -15,12 +18,36 @@
 		"avatar": "Immagine profilo di {name}"
 	},
 	"Landing": {
+		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
 		"description": "AI TTS Donations è un servizio AI TTS gratuito e Open Source per Twitch (ed altre piattaforme). È il primo della sua categoria, nessun servizio a pagamento, nessun add-on addizionale e nessuna pubblicità.",
 		"getStartedTooltip": "Non siamo ancora pronti! Iscriviti alla lista mail qua sotto.",
 		"getStarted": "Iniziare",
 		"dashboard": "Dashboard",
 		"getStartedToday": "Suona bene? Inizia oggi con le donazioni AI TTS gratuitamente!",
 		"howItWorks": "Come funziona",
+		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
+		"features": {
+			"freeTitle": "Free to use",
+			"freeDesc": "All features in AI TTS Donations are completely free. No fees, and no subscriptions. Simply download, setup, and use. No payments required at all.",
+			"openSourceTitle": "Open Source",
+			"openSourceDesc": "AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.",
+			"voicesTitle": "1000+ Voices",
+			"voicesDesc": "AI TTS Donations is built using the APIs of Uberduck.ai and Fakeyou.com. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
+			"voiceEffectsTitle": "Voice Effects",
+			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
+			"soundEffectsTitle": "Sound Effects",
+			"soundEffectsDesc": "Sound effects can add a variety of noises to your viewer's TTS messages. Your viewers can create amazing TTS messages using these features."
+		},
+		"FAQ": {
+			"heading": "Frequently Asked Questions",
+			"q1": "Where can my viewers learn how to use the new TTS?",
+			"a1": "We have a wiki entry to help your viewers get started with using the new AI TTS syntax. It's available on <githubLink>GitHub</githubLink> and you can use the shortlink (<shortLink>https://mmatt.link/UseTTS</shortLink>) to put in Twitch panels or chat commands.",
+			"q2": "Where can I get help with setting up AI TTS Donations?",
+			"a2": "You can join the <discordLink>Discord server</discordLink> and you can ask your question and we'll get back to you as soon as possible. If you need 1 on 1 support, message \"mmatt\". Email: <emailLink>matt@mmatt.net</emailLink> or Discord: <discordUserLink>mmatt#0001</discordUserLink>"
+		},
+		"dontBelieve": "Don't believe us?",
+		"dontBelieveDesc": "Just look at what streamers say about it.",
+		"testimonyCTA": "Are you a streamer that uses AI TTS Donations? Give us a review <link>here!</link>",
 		"emailSignUp": "Iscriviti alla lista mail!",
 		"emailNotReadyDescription": "Non siamo ancora pronti per il lancio, ma puoi iscriverti alla lista mail per ricevere una notifica quando lo saremo.",
 		"emailSubscribeSuccess": "Sei stato iscritto!",
@@ -31,6 +58,22 @@
 		"sensitiveInfo": "Informazioni sensibili (NON APRIRE IN STREAM.)",
 		"sensitiveInfoWarning": "ATTENZIONE: NON MOSTRARE IL LINK IN SOVRAPPOSIZIONE IN STREAM. CONTIENE INFORMAZIONI SENSIBILI.",
 		"ttsOverlay": "TTS Overlay",
-		"ttsOverlayDescription": "Qui è dove verrà riprodotto il tuo audio TTS, copia semplicemente il collegamento e incollalo in un <Code>Sorgente browser</Code> nel tuo software di streaming preferito (come OBS)."
+		"ttsOverlayDescription": "Qui è dove verrà riprodotto il tuo audio TTS, copia semplicemente il collegamento e incollalo in un <Code>Sorgente browser</Code> nel tuo software di streaming preferito (come OBS).",
+		"configuration": {
+			"configurationHeading": "Configuration",
+			"channelPointsHeading": "Channel Points",
+			"channelPointRewardNameLabel": "Channel Point Reward Name (Case Sensitive)",
+			"maxMinLimitsHeading": "Max/Min Limits",
+			"maxMessageLengthLabel": "Max Message Length",
+			"minBitsAmountLabel": "Minimum Bits Amount",
+			"minResubMonthsLabel": "Minimum Resub Months Amount",
+			"blacklistHeading": "Blacklisted",
+			"blacklistDescription": "Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)",
+			"blacklistWordsLabel": "Words",
+			"blacklistVoicesLabel": "Voices",
+			"blacklistUsersLabel": "Users",
+			"fallbacksHeading": "Fallbacks",
+			"fallbacksVoiceLabel": "Fallback Voice"
+		}
 	}
 }
