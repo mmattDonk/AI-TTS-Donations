@@ -57,6 +57,15 @@ const testimonies: CommentSimpleProps[] = [
 		body: 'I love this app! It breaks sometimes but its very good!',
 		stars: 5,
 	},
+	{
+		author: {
+			name: 'TheNoob950',
+			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/093be1fa-aa9b-4469-bcf2-96278e37c8e1-profile_image-70x70.png',
+			followers: '112',
+		},
+		body: "Some of the funniest moments in my streams came from viewers blind-siding me with TTS. It's especially great for games where I need to focus and can't look at chat. 11/10, would use again.",
+		stars: 4,
+	},
 ];
 
 interface CommentSimpleProps {
