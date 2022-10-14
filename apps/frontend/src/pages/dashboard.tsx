@@ -23,6 +23,8 @@ export default function Dashboard() {
 					id: streamerData?.id,
 					channelPointsName: '',
 					channelPointsEnabled: false,
+					bitsEnabled: true,
+					resubsEnabled: true,
 					maxMsgLength: 1000,
 					minBitAmount: 0,
 					minTipAmount: 0,
@@ -43,6 +45,8 @@ export default function Dashboard() {
 			id: streamerData?.id,
 			channelPointsName: '',
 			channelPointsEnabled: false,
+			bitsEnabled: true,
+			resubsEnabled: true,
 			maxMsgLength: 1000,
 			minBitAmount: 0,
 			minTipAmount: 0,
@@ -64,6 +68,8 @@ export default function Dashboard() {
 			config: {
 				channelPointsName: config.channelPointsName ?? '',
 				channelPointsEnabled: config.channelPointsEnabled ?? false,
+				bitsEnabled: config.bitsEnabled ?? true,
+				resubsEnabled: config.resubsEnabled ?? true,
 				maxMsgLength: config.maxMsgLength ?? 1000,
 				minBitAmount: config.minBitAmount ?? 0,
 				minTipAmount: config.minTipAmount ?? 0,
@@ -120,9 +126,9 @@ export default function Dashboard() {
 					}}
 				>
 					<Stack align="center">
-						<h1>You are not logged in.</h1>
+						<h1>{t('notLoggedIn')}</h1>
 						<Button onClick={() => signIn()} size="xl">
-							Sign In
+							{t('signIn')}
 						</Button>
 					</Stack>
 				</Container>
@@ -199,14 +205,35 @@ export default function Dashboard() {
 												}}
 												label={t('Dashboard.configuration.channelPointRewardNameLabel')}
 											/>
+										</Group>
+										<h3>Enable / Disable events</h3>
+										<Stack>
 											<Switch
 												checked={config.channelPointsEnabled ?? false}
 												onChange={(event) => {
 													setConfig({ ...config, channelPointsEnabled: event.target.checked });
 												}}
-												label={config.channelPointsEnabled ? t('enabled') : t('disabled')}
+												label={
+													config.channelPointsEnabled
+														? `${t('Dashboard.configuration.channelPointsHeading')} ${t('enabled')}`
+														: `${t('Dashboard.configuration.channelPointsHeading')} ${t('disabled')}`
+												}
 											/>
-										</Group>
+											<Switch
+												checked={config.resubsEnabled ?? true}
+												onChange={(event) => {
+													setConfig({ ...config, resubsEnabled: event.target.checked });
+												}}
+												label={config.resubsEnabled ? `Resubs ${t('enabled')}` : `Resubs ${t('disabled')}`}
+											/>
+											<Switch
+												checked={config.bitsEnabled ?? true}
+												onChange={(event) => {
+													setConfig({ ...config, bitsEnabled: event.target.checked });
+												}}
+												label={config.bitsEnabled ? `Bits ${t('enabled')}` : `Bits ${t('disabled')}`}
+											/>
+										</Stack>
 										<h3>{t('Dashboard.configuration.maxMinLimitsHeading')}</h3>
 										<Stack>
 											<NumberInput

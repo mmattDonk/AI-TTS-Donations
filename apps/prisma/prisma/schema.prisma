@@ -58,6 +58,9 @@ model StreamerConfig {
   channelPointsName String?
   channelPointsEnabled Boolean? @default(false)
 
+  bitsEnabled Boolean? @default(true)
+  resubsEnabled Boolean? @default(true)
+
   maxMsgLength Int? @default(1000)
   minBitAmount Int? @default(0)
   minMonthsAmount Int? @default(0)

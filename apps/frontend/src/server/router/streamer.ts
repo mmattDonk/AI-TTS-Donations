@@ -26,6 +26,9 @@ export const streamerRouter = createRouter()
 				channelPointsName: z.string(),
 				channelPointsEnabled: z.boolean(),
 
+				bitsEnabled: z.boolean(),
+				resubsEnabled: z.boolean(),
+
 				maxMsgLength: z.number(),
 				minBitAmount: z.number(),
 				minTipAmount: z.number(),

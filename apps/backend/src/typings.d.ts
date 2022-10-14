@@ -63,6 +63,8 @@ export interface streamer {
 			id: string;
 			channelPointsName: string;
 			channelPointsEnabled: boolean;
+			bitsEnabled: boolean;
+			resubsEnabled: boolean;
 			maxMsgLength: number;
 			minBitAmount: number;
 			minTipAmount: number;
