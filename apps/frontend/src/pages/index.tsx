@@ -146,6 +146,7 @@ const Home: NextPage = () => {
 										</UnstyledButton>
 									</Menu.Target>
 									<Menu.Dropdown>
+										<Menu.Label>{t('loggedIn', { name: session.user?.name })}</Menu.Label>
 										<Menu.Item icon={<Dashboard size={18} />} component={NextLink} href="/dashboard">
 											{t('Landing.dashboard')}
 										</Menu.Item>
