@@ -6,6 +6,9 @@
 	"signIn": "SIGN IN",
 	"learnMore": "LERN MOAR",
 	"submit": "SUBMIT",
+	"enabled": "Enabled",
+	"disabled": "Disabled",
+	"save": "Save",
 	"404": {
 		"title": "U HAS FINDZ SEEKRET PLACE.",
 		"description": "UNFORTUNATELY, DIS AR TEH ONLY 404 PAEG. U CUD HAS MISTYPD TEH ADDRES, OR TEH PAEG HAS BEEN MOVD 2 ANOTHR URL.",
@@ -31,6 +34,22 @@
 		"sensitiveInfo": "SENSITIV INFORMASHUN (DO NOT OPEN ON STREAM.)",
 		"sensitiveInfoWarning": "WARNIN: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIV INFORMASHUN.",
 		"ttsOverlay": "TTS OVERLAY",
-		"ttsOverlayDescription": "DIS AR TEH WER UR TTS AUDIO WILL BE PLAYIN, SIMPLY COPY TEH LINK, AN PASTE IT INTO <Code>BROWSR SOURCE</Code> IN UR PREFERRD STREAMIN SOFTWARE (LIEK OBS)."
+		"ttsOverlayDescription": "DIS AR TEH WER UR TTS AUDIO WILL BE PLAYIN, SIMPLY COPY TEH LINK, AN PASTE IT INTO <Code>BROWSR SOURCE</Code> IN UR PREFERRD STREAMIN SOFTWARE (LIEK OBS).",
+		"configuration": {
+			"configurationHeading": "Configuration",
+			"channelPointsHeading": "Channel Points",
+			"channelPointRewardNameLabel": "Channel Point Reward Name (Case Sensitive)",
+			"maxMinLimitsHeading": "Max/Min Limits",
+			"maxMessageLengthLabel": "Max Message Length",
+			"minBitsAmountLabel": "Minimum Bits Amount",
+			"minResubMonthsLabel": "Minimum Resub Months Amount",
+			"blacklistHeading": "Blacklisted",
+			"blacklistDescription": "Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)",
+			"blacklistWordsLabel": "Words",
+			"blacklistVoicesLabel": "Voices",
+			"blacklistUsersLabel": "Users",
+			"fallbacksHeading": "Fallbacks",
+			"fallbacksVoiceLabel": "Fallback Voice"
+		}
 	}
 }
