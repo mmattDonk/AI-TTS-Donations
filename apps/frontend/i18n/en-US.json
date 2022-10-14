@@ -6,6 +6,9 @@
 	"signIn": "Sign In",
 	"learnMore": "Learn more",
 	"submit": "Submit",
+	"enabled": "Enabled",
+	"disabled": "Disabled",
+	"save": "Save",
 	"404": {
 		"title": "You have found a secret place.",
 		"description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
@@ -31,6 +34,26 @@
 		"sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
 		"sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
 		"ttsOverlay": "TTS Overlay",
-		"ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS)."
+		"ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS).",
+		"configuration": {
+			"configurationHeading": "Configuration",
+
+			"channelPointsHeading": "Channel Points",
+			"channelPointRewardNameLabel": "Channel Point Reward Name (Case Sensitive)",
+
+			"maxMinLimitsHeading": "Max/Min Limits",
+			"maxMessageLengthLabel": "Max Message Length",
+			"minBitsAmountLabel": "Minimum Bits Amount",
+			"minResubMonthsLabel": "Minimum Resub Months Amount",
+
+			"blacklistHeading": "Blacklisted",
+			"blacklistDescription": "Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)",
+			"blacklistWordsLabel": "Words",
+			"blacklistVoicesLabel": "Voices",
+			"blacklistUsersLabel": "Users",
+
+			"fallbacksHeading": "Fallbacks",
+			"fallbacksVoiceLabel": "Fallback Voice"
+		}
 	}
 }

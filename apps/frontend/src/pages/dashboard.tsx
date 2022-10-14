@@ -189,28 +189,28 @@ export default function Dashboard() {
 									<LoadingSpinner />
 								) : (
 									<>
-										<h2>Configuration</h2>
-										<h3>Channel Points</h3>
+										<h2>{t('Dashboard.configuration.configurationHeading')}</h2>
+										<h3>{t('Dashboard.configuration.channelPointsHeading')}</h3>
 										<Group>
 											<TextInput
 												value={config.channelPointsName ?? ''}
 												onChange={(event) => {
 													setConfig({ ...config, channelPointsName: event.target.value });
 												}}
-												label="Channel Point Reward Name (Case Sensitive)"
+												label={t('Dashboard.configuration.channelPointRewardNameLabel')}
 											/>
 											<Switch
 												checked={config.channelPointsEnabled ?? false}
 												onChange={(event) => {
 													setConfig({ ...config, channelPointsEnabled: event.target.checked });
 												}}
-												label="Enabled"
+												label={config.channelPointsEnabled ? t('enabled') : t('disabled')}
 											/>
 										</Group>
-										<h3>Max/Min Limits</h3>
+										<h3>{t('Dashboard.configuration.maxMinLimitsHeading')}</h3>
 										<Stack>
 											<NumberInput
-												label="Max Message Length"
+												label={t('Dashboard.configuration.maxMessageLengthLabel')}
 												defaultValue={config.maxMsgLength ?? 1000}
 												value={config.maxMsgLength ?? 1000}
 												onChange={(val) => {
@@ -218,7 +218,7 @@ export default function Dashboard() {
 												}}
 											/>
 											<NumberInput
-												label="Minimum Bits Amount"
+												label={t('Dashboard.configuration.maxMessageLengthLabel')}
 												defaultValue={config.minBitAmount ?? 0}
 												value={config.minBitAmount ?? 0}
 												onChange={(val) => {
@@ -226,7 +226,7 @@ export default function Dashboard() {
 												}}
 											/>
 											<NumberInput
-												label="Minimum Resub Months Amount"
+												label={t('Dashboard.configuration.minResubMonthsLabel')}
 												defaultValue={config.minMonthsAmount ?? 0}
 												value={config.minMonthsAmount ?? 0}
 												onChange={(val) => {
@@ -234,13 +234,15 @@ export default function Dashboard() {
 												}}
 											/>
 										</Stack>
-										<h3>Blacklisted</h3>
+										<h3>{t('Dashboard.configuration.blacklistHeading')}</h3>
 										<p>
-											Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)
+											{t.rich('Dashboard.configuration.blacklistDescription', {
+												Kbd: (children) => <Kbd>{children}</Kbd>,
+											})}
 										</p>
 										<Textarea
 											value={config.blacklistedWords.join('\n')}
-											label="Words"
+											label={t('Dashboard.configuration.blacklistWordsLabel')}
 											autosize
 											onChange={(event) => {
 												// @ts-ignore
@@ -249,7 +251,7 @@ export default function Dashboard() {
 										/>
 										<Textarea
 											value={config.blacklistedVoices.join('\n')}
-											label="Voices"
+											label={t('Dashboard.configuration.blacklistVoicesLabel')}
 											autosize
 											onChange={(event) => {
 												// @ts-ignore
@@ -258,20 +260,20 @@ export default function Dashboard() {
 										/>
 										<Textarea
 											value={config.blacklistedUsers.join('\n')}
-											label="Users"
+											label={t('Dashboard.configuration.blacklistUsersLabel')}
 											autosize
 											onChange={(event) => {
 												// @ts-ignore
 												setConfig({ ...config, blacklistedUsers: event.target.value.split('\n') });
 											}}
 										/>
-										<h3>Fallbacks</h3>
+										<h3>{t('Dashboard.configuration.fallbacksHeading')}</h3>
 										<TextInput
 											value={config.fallbackVoice ?? ''}
 											onChange={(event) => {
 												setConfig({ ...config, fallbackVoice: event.target.value ?? '' });
 											}}
-											label="Fallback Voice"
+											label={t('Dashboard.configuration.fallbacksVoiceLabel')}
 										/>
 										<Space h="md" />
 										<Button
@@ -280,7 +282,7 @@ export default function Dashboard() {
 											}}
 											disabled={configMutation.isLoading}
 										>
-											Save
+											{t('save')}
 										</Button>
 										{configMutation.isLoading && <LoadingSpinner />}
 										<p>{configMutation.isLoading ? '' : message}</p>
