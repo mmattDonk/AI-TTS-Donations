@@ -18,12 +18,36 @@
 		"avatar": "{name}'s profile picture."
 	},
 	"Landing": {
+		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
 		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads.",
 		"getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
 		"getStarted": "Get started",
 		"dashboard": "Dashboard",
 		"getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
 		"howItWorks": "How It Works",
+		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
+		"features": {
+			"freeTitle": "Free to use",
+			"freeDesc": "All features in AI TTS Donations are completely free. No fees, and no subscriptions. Simply download, setup, and use. No payments required at all.",
+			"openSourceTitle": "Open Source",
+			"openSourceDesc": "AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.",
+			"voicesTitle": "1000+ Voices",
+			"voicesDesc": "AI TTS Donations is built using the APIs of Uberduck.ai and Fakeyou.com. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
+			"voiceEffectsTitle": "Voice Effects",
+			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
+			"soundEffectsTitle": "Sound Effects",
+			"soundEffectsDesc": "Sound effects can add a variety of noises to your viewer's TTS messages. Your viewers can create amazing TTS messages using these features."
+		},
+		"FAQ": {
+			"heading": "Frequently Asked Questions",
+			"q1": "Where can my viewers learn how to use the new TTS?",
+			"a1": "We have a wiki entry to help your viewers get started with using the new AI TTS syntax. It's available on <githubLink>GitHub</githubLink> and you can use the shortlink (<shortLink>https://mmatt.link/UseTTS</shortLink>) to put in Twitch panels or chat commands.",
+			"q2": "Where can I get help with setting up AI TTS Donations?",
+			"a2": "You can join the <discordLink>Discord server</discordLink> and you can ask your question and we'll get back to you as soon as possible. If you need 1 on 1 support, message \"mmatt\". Email: <emailLink>matt@mmatt.net</emailLink> or Discord: <discordUserLink>mmatt#0001</discordUserLink>"
+		},
+		"dontBelieve": "Don't believe us?",
+		"dontBelieveDesc": "Just look at what streamers say about it.",
+		"testimonyCTA": "Are you a streamer that uses AI TTS Donations? Give us a review <link>here!</link>",
 		"emailSignUp": "Sign up to the mailing list!",
 		"emailNotReadyDescription": "We aren't ready to launch yet, but you can sign up to the mailing list to get notified when we are.",
 		"emailSubscribeSuccess": "You have been subscribed!",
