@@ -1,36 +1,55 @@
 {
-  "close": "Закрыть",
-  "open": "Открыть",
-  "loggedIn": "Зашёл как {name}",
-  "signOut": "Выйти",
-  "signIn": "Вход",
-  "learnMore": "Узнать больше",
-  "submit": "Отправить",
-  "404": {
-    "title": "Ты нашёл тайное место.",
-    "description": "К сожалению, это только страница 404. Возможно, вы неправильно указали веб адрес или это страница перенесло в другой веб URL.",
-    "link": "Верните меня на целевую страницу."
-  },
-  "alt": {
-    "avatar": "{name} Аватар."
-  },
-  "Landing": {
-    "description": "AI TTS Донаты это бесплатно и даже Open Source AI TTS сервис для Twitch (и другие платформы). Это первый своим классом, без платного подписки, без дополнительных зарплат, и нет рекламы.",
-    "getStartedTooltip": "Мы ещё не готовы! Подпишись в рассылку ниже.",
-    "getStarted": "Начать здесь",
-    "dashboard": "Dashboard",
-    "getStartedToday": "Звучит хорошо? Тогда воспользуйтесь с AI TTS Донаты бесплатно!",
-    "howItWorks": "Как оно работает",
-    "emailSignUp": "Подписаться к рассылкам!",
-    "emailNotReadyDescription": "Мы ещё не готовы к запуску, но вы можете подписаться к рассылке, чтобы, получить уведомления когда будет готово.",
-    "emailSubscribeSuccess": "Вы подписались!",
-    "emailPapertrail": "Хотите просмотреть прошлые письма? Тогда посмотрите бумажный след на личном сайте mmatt!"
-  },
-  "Dashboard": {
-    "yourDash": "Панель Управления",
-    "sensitiveInfo": "Чувствительная информация (НЕ ОТКРЫВАЙТЕ В ВАШЕМ СТРИМЕ)",
-    "sensitiveInfoWarning": "ВНИМАНИЕ: НЕ ПОКАЗЫВАЙТЕ ОВЕРЛЕЙ ССЫЛКУ В СТРИМ. ТАМ МОЖЕТ БЫТЬ ЧТО-ТО ЧУВСТВИТЕЛЬНАЯ ИНФОРМАЦИЯ.",
-    "ttsOverlay": "TTS Оверлей",
-    "ttsOverlayDescription": "Здесь будет проигрывать ваши TTS аудио, просто копируйте ссылку и вставляйте в <Code>Браузер</Code> на вашем стриминг программы (как OBS)."
-  }
+	"close": "Close",
+	"open": "Open",
+	"loggedIn": "Logged in as {name}",
+	"signOut": "Sign Out",
+	"signIn": "Sign In",
+	"learnMore": "Learn more",
+	"submit": "Submit",
+	"enabled": "Enabled",
+	"disabled": "Disabled",
+	"save": "Save",
+	"404": {
+		"title": "You have found a secret place.",
+		"description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
+		"link": "Take me back to the landing page."
+	},
+	"alt": {
+		"avatar": "{name}'s profile picture."
+	},
+	"Landing": {
+		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads.",
+		"getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
+		"getStarted": "Get started",
+		"dashboard": "Dashboard",
+		"getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
+		"howItWorks": "How It Works",
+		"emailSignUp": "Sign up to the mailing list!",
+		"emailNotReadyDescription": "We aren't ready to launch yet, but you can sign up to the mailing list to get notified when we are.",
+		"emailSubscribeSuccess": "You have been subscribed!",
+		"emailPapertrail": "Want to see past emails? Check out the paper trail on mmatt's personal website!"
+	},
+	"Dashboard": {
+		"yourDash": "Your Dashboard",
+		"sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
+		"sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
+		"ttsOverlay": "TTS Overlay",
+		"ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS).",
+		"configuration": {
+			"configurationHeading": "Configuration",
+			"channelPointsHeading": "Channel Points",
+			"channelPointRewardNameLabel": "Channel Point Reward Name (Case Sensitive)",
+			"maxMinLimitsHeading": "Max/Min Limits",
+			"maxMessageLengthLabel": "Max Message Length",
+			"minBitsAmountLabel": "Minimum Bits Amount",
+			"minResubMonthsLabel": "Minimum Resub Months Amount",
+			"blacklistHeading": "Blacklisted",
+			"blacklistDescription": "Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)",
+			"blacklistWordsLabel": "Words",
+			"blacklistVoicesLabel": "Voices",
+			"blacklistUsersLabel": "Users",
+			"fallbacksHeading": "Fallbacks",
+			"fallbacksVoiceLabel": "Fallback Voice"
+		}
+	}
 }
