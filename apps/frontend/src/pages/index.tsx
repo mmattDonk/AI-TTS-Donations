@@ -146,6 +146,7 @@ const Home: NextPage = () => {
 										</UnstyledButton>
 									</Menu.Target>
 									<Menu.Dropdown>
+										<Menu.Label>{t('loggedIn', { name: session.user?.name })}</Menu.Label>
 										<Menu.Item icon={<Dashboard size={18} />} component={NextLink} href="/dashboard">
 											{t('Landing.dashboard')}
 										</Menu.Item>
@@ -170,22 +171,18 @@ const Home: NextPage = () => {
 
 						<div className={classes.inner}>
 							<Title className={classes.title}>
-								The first{' '}
-								<Text
-									component="span"
-									variant="gradient"
-									gradient={{
-										from: 'blue',
-										to: '#fa99ff',
-									}}
-									inherit
-								>
-									100% free
-								</Text>{' '}
-								AI TTS service for{' '}
-								<Text component="span" color={'#9146FF'} inherit>
-									Twitch
-								</Text>
+								{t.rich('Landing.heading', {
+									gradientText: (children) => (
+										<Text component="span" variant="gradient" gradient={{ from: 'blue', to: '#fa99ff' }} inherit>
+											{children}
+										</Text>
+									),
+									twitchText: (children) => (
+										<Text component="span" color="#9146FF" inherit>
+											{children}
+										</Text>
+									),
+								})}
 							</Title>
 
 							<Container p={0} size={600}>
@@ -292,29 +289,33 @@ const Home: NextPage = () => {
 					<br ref={BRRef} />
 
 					<h1>
-						Features that are{' '}
-						<Text
-							component="span"
-							variant="gradient"
-							gradient={{
-								from: 'red',
-								to: '#b50000',
-							}}
-							inherit
-						>
-							unrivaled
-						</Text>{' '}
-						compared to anything else available.
+						{t.rich('Landing.featuresHeading', {
+							gradientText: (children) => (
+								<Text
+									component="span"
+									variant="gradient"
+									gradient={{
+										from: 'red',
+										to: '#b50000',
+									}}
+									inherit
+								>
+									{children}
+								</Text>
+							),
+						})}
 					</h1>
 
 					<Features />
 					<br />
 
-					<h1 style={{ textAlign: 'center' }}>Don't believe us?</h1>
-					<h2 style={{ textAlign: 'center', marginBottom: '-30px' }}>Just look at what streamers say about it.</h2>
+					<h1 style={{ textAlign: 'center' }}>{t('Landing.dontBelieve')}</h1>
+					<h2 style={{ textAlign: 'center', marginBottom: '-30px' }}>{t('Landing.dontBelieveDesc')}</h2>
 					<TestimoniesComponent />
 					<p style={{ textAlign: 'center' }}>
-						Are you a streamer that uses AI TTS Donations? Give us a review <a href="https://mmatt.link/TTSTestimonies">here!</a>
+						{t.rich('Landing.testimonyCTA', {
+							link: (children) => <a href="https://mmatt.link/TTSTestimonies">{children}</a>,
+						})}
 					</p>
 
 					<FaqSimple />
