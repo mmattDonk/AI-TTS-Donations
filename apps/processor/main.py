@@ -267,9 +267,10 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
 
         blob.upload_from_filename(final_file_name)
 
-        pusher_client.trigger(overlayId, "new-file", {"file": blob.public_url})
         global public_url
         public_url = blob.public_url
+        print(f"Public URL: {public_url}")
+        print(f"Message: {message}")
         return {"success": True, "message": message, "audioUrl": blob.public_url}
 
     t = threading.Thread(target=thread_function)
@@ -329,6 +330,11 @@ def hello_http(request):
     headers = {
         "secret": API_SECRET,
     }
+
+    print("Pushing " + response["audioUrl"] + " to " + " overlay " + overlay_id)
+    print("This was the request json", request_json)
+    pusher_client.trigger(overlay_id, "new-file", {"file": response["audioUrl"]})
+    print("Push complete.")
 
     httpx.post(
         f"{API_URL}/api/streamers/overlayId/{overlay_id}",
