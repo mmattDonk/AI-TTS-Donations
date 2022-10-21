@@ -494,8 +494,8 @@ def callback_channel_points(
     log.debug(data)
 
     if (
-        data["data"]["redemption"]["reward"]["title"].lower()
-        == config["CHANNEL_POINTS_REWARD"].lower()
+        str(data["data"]["redemption"]["reward"]["cost"])
+        == config["CHANNEL_POINTS_REWARD"]
     ):
         message: str = data["data"]["redemption"]["user_input"]
 
