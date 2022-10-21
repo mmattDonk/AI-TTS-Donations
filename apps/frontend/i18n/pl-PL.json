@@ -6,8 +6,8 @@
 	"signIn": "Zaloguj Się",
 	"learnMore": "Dowiedz się więcej",
 	"submit": "Prześlij",
-	"enabled": "Enabled",
-	"disabled": "Disabled",
+	"enabled": "Włączone",
+	"disabled": "Wyłączone",
 	"save": "Zapisz",
 	"notLoggedIn": "Jesteś niezalogowany.",
 	"404": {
@@ -61,8 +61,8 @@
 		"ttsOverlay": "Nakładka TTS",
 		"ttsOverlayDescription": "Tutaj twoje audio TTS będzie grało, po prostu skopiuj link i wklej go do <Code>Źródło Przeglądarki</Code> w twoim preferowanym programie do streamingu (jak OBS).",
 		"configuration": {
-			"configurationHeading": "Configuration",
-			"channelPointsHeading": "Channel Points",
+			"configurationHeading": "Konfiguracja",
+			"channelPointsHeading": "Punkty Kanału",
 			"channelPointRewardNameLabel": "Channel Point Reward Name (Case Sensitive)",
 			"maxMinLimitsHeading": "Max/Min Limits",
 			"maxMessageLengthLabel": "Max Message Length",
