@@ -1,5 +1,4 @@
 import { edgePrisma as prisma } from '@solrock/prisma';
-// eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextRequest, NextResponse } from 'next/server';
 
 export const config = {
