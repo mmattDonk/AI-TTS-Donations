@@ -1,13 +1,17 @@
 import { Badge, Stack } from '@mantine/core';
+import { useTranslations } from 'next-intl';
 
 export default function BetaBanner() {
+	const t = useTranslations('beta');
 	return (
 		<Stack>
 			<Badge style={{ marginTop: '1rem' }} color="yellow" variant="outline">
-				This is a BETA website. Please report bugs to the <a href="https://discord.gg/VUAjRrkZVJ">mmattDonk Discord server</a>.
+				{t.rich('header', {
+					discordLink: (children) => <a href="https://discord.gg/VUAjRrkZVJ">{children}</a>,
+				})}
 			</Badge>
 			<Badge color="red" variant="outline">
-				Blacklisted (users, voices, and words) don't work, and fallback voices don't work.
+				{t('description')}
 			</Badge>
 		</Stack>
 	);

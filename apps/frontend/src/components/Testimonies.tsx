@@ -14,6 +14,15 @@ const useStyles = createStyles((theme) => ({
 const testimonies: CommentSimpleProps[] = [
 	{
 		author: {
+			name: 'Ravtek',
+			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/bac61a8e-5929-4c3e-9d79-8f9449318d61-profile_image-70x70.png',
+			followers: '6.6K',
+		},
+		body: 'AI TTS is a blessing and is the future for any and all livestream memes LOL',
+		stars: 5,
+	},
+	{
+		author: {
 			name: 'K_A_L_Y',
 			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/83c01131-e303-4a04-b2ec-7445facad5b1-profile_image-70x70.png',
 			followers: '2.9K',
@@ -41,6 +50,15 @@ const testimonies: CommentSimpleProps[] = [
 	},
 	{
 		author: {
+			name: 'Chrustosking',
+			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/746031b3-bc32-4b67-b0a2-1e13b85cd324-profile_image-70x70.png',
+			followers: '399',
+		},
+		body: 'Ive been using the AI TTS for over a week now with my stream, the potential it has is amazing. The amount of creativity (depending on twitch chat) is endless, although a few issues and having to restart a lot, its honestly worth it for the content it can provided. I will continue to use AI TTS and support this program as i believe its the future of TTS',
+		stars: 4,
+	},
+	{
+		author: {
 			name: 'WhatTheWoda',
 			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/662e281d-3883-4d27-86c3-2b24d48f6195-profile_image-70x70.png',
 			followers: '234',
@@ -65,6 +83,15 @@ const testimonies: CommentSimpleProps[] = [
 		},
 		body: "Some of the funniest moments in my streams came from viewers blind-siding me with TTS. It's especially great for games where I need to focus and can't look at chat. 11/10, would use again.",
 		stars: 4,
+	},
+	{
+		author: {
+			name: 'johnpaul4444',
+			followers: '2',
+			image: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/cdd517fe-def4-11e9-948e-784f43822e80-profile_image-70x70.png',
+		},
+		body: "One of the best integrations of Uberduck.ai I've ever seen... Making it accessible and simple for all to enjoy!",
+		stars: 5,
 	},
 ];
 
