@@ -1,17 +1,20 @@
-import { prisma } from '@solrock/prisma';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { edgePrisma as prisma } from '@solrock/prisma';
+// eslint-disable-next-line @next/next/no-server-import-in-page
+import { NextRequest, NextResponse } from 'next/server';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export const config = {
+	runtime: 'experimental-edge',
+};
+
+export default async function handler(req: NextRequest, res: NextResponse) {
 	// if secret not in request headers, return unauthorized
-	if (!req.headers.secret) {
-		res.status(401).json({ message: 'Unauthorized' });
-		return;
-	} else if (req.headers.secret !== process.env.API_SECRET) {
-		res.status(403).json({ message: 'Unauthorized' });
-		return;
+	if (!req.headers.get('secret')) {
+		return NextResponse.json({ error: 'Unauthorized', status: 403 }, { status: 403 });
+	} else if (req.headers.get('secret') !== process.env.API_SECRET) {
+		return NextResponse.json({ error: 'Unauthorized', status: 403 }, { status: 403 });
 	}
 
-	const { streamerId } = req.query;
+	const streamerId = req.nextUrl.searchParams.get('streamerId');
 	console.debug(streamerId);
 	const streamer = await prisma.streamer.findFirst({
 		where: {
@@ -31,8 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	});
 
 	if (!streamer) {
-		res.status(404).json({ message: 'Streamer not found' });
-		return;
+		return NextResponse.json({ error: 'Streamer not found', status: 404 }, { status: 404 });
 	}
 
 	switch (req.method) {
@@ -40,10 +42,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		case 'GET':
 			console.debug(streamerId);
 			console.debug(streamer);
-			res.status(200).json({
-				message: 'streamer found!',
-				streamer: streamer,
-			});
-			return;
+			return NextResponse.json({ message: 'streamer found!', streamer: streamer, status: 200 }, { status: 200 });
 	}
 }
