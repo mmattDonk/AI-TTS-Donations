@@ -2,6 +2,7 @@
 import { Center, ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { withTRPC } from '@trpc/next';
+import { Analytics } from '@vercel/analytics/react';
 import { SessionProvider } from 'next-auth/react';
 import { NextIntlProvider } from 'next-intl';
 import type { AppType } from 'next/dist/shared/lib/utils';
@@ -70,6 +71,7 @@ const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => 
 						</Center>
 						<Component {...pageProps} />
 					</NextIntlProvider>
+					<Analytics />
 				</SessionProvider>
 			</MantineTheme>
 		);
@@ -77,6 +79,7 @@ const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => 
 		return (
 			<SessionProvider session={session}>
 				<Component {...pageProps} />
+				<Analytics />
 			</SessionProvider>
 		);
 	}
