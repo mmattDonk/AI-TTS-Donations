@@ -14,6 +14,9 @@
 	"disabled": "Выключено",
 	"save": "Сохранить",
 	"notLoggedIn": "You are not logged in.",
+	"bits": "Bits",
+	"resubs": "Resubs",
+	"channelPoints": "Channel Points",
 	"404": {
 		"title": "Ты нашёл тайное место.",
 		"description": "К сожалению, это только страница 404. Возможно, вы неправильно указали веб адрес или это страница перенесло в другой веб URL.",
