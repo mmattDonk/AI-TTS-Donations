@@ -14,6 +14,9 @@
 	"disabled": "Disabled",
 	"save": "Save",
 	"notLoggedIn": "You are not logged in.",
+	"bits": "Bits",
+	"resubs": "Resubs",
+	"channelPoints": "Channel Points",
 	"404": {
 		"title": "Has encontrado un espacio secreto.",
 		"description": "Desafortunadamente, esto es tan solo una página de 404. Puede que hayas mal escrito la dirección, o que la página se haya movido a otro URL.",
