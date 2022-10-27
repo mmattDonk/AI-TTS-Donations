@@ -14,6 +14,9 @@
 	"disabled": "Disabled",
 	"save": "Save",
 	"notLoggedIn": "You are not logged in.",
+	"bits": "Bits",
+	"resubs": "Resubs",
+	"channelPoints": "Channel Points",
 	"404": {
 		"title": "Hai trovato un posto segreto.",
 		"description": "Sfortunatamente questa è solo una pagina 404. Potresti aver digitato in modo errato l'indirizzo o la pagina è stata spostata su un altro URL.",
