@@ -206,32 +206,28 @@ export default function Dashboard() {
 												label={t('Dashboard.configuration.channelPointRewardNameLabel')}
 											/>
 										</Group>
-										<h3>Enable / Disable events</h3>
+										<h3>Events</h3>
 										<Stack>
 											<Switch
 												checked={config.channelPointsEnabled ?? false}
 												onChange={(event) => {
 													setConfig({ ...config, channelPointsEnabled: event.target.checked });
 												}}
-												label={
-													config.channelPointsEnabled
-														? `${t('Dashboard.configuration.channelPointsHeading')} ${t('enabled')}`
-														: `${t('Dashboard.configuration.channelPointsHeading')} ${t('disabled')}`
-												}
+												label={t('channelPoints')}
 											/>
 											<Switch
 												checked={config.resubsEnabled ?? true}
 												onChange={(event) => {
 													setConfig({ ...config, resubsEnabled: event.target.checked });
 												}}
-												label={config.resubsEnabled ? `Resubs ${t('enabled')}` : `Resubs ${t('disabled')}`}
+												label={t('resubs')}
 											/>
 											<Switch
 												checked={config.bitsEnabled ?? true}
 												onChange={(event) => {
 													setConfig({ ...config, bitsEnabled: event.target.checked });
 												}}
-												label={config.bitsEnabled ? `Bits ${t('enabled')}` : `Bits ${t('disabled')}`}
+												label={t('bits')}
 											/>
 										</Stack>
 										<h3>{t('Dashboard.configuration.maxMinLimitsHeading')}</h3>
