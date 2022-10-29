@@ -5,7 +5,7 @@ updates:
       directory: '/apps/backend'
       schedule:
           interval: 'daily'
-      target-branch: 'v5'
+      target-branch: 'main'
       labels:
           - 'dependencies'
           - '@solrock/backend'
@@ -16,7 +16,7 @@ updates:
       directory: '/apps/frontend'
       schedule:
           interval: 'daily'
-      target-branch: 'v5'
+      target-branch: 'main'
       labels:
           - 'dependencies'
           - '@solrock/frontend'
@@ -27,7 +27,7 @@ updates:
       directory: '/apps/processor'
       schedule:
           interval: 'daily'
-      target-branch: 'v5'
+      target-branch: 'main'
       labels:
           - 'dependencies'
           - '@solrock/processor'
