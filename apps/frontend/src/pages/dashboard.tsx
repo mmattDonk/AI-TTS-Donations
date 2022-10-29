@@ -236,6 +236,7 @@ export default function Dashboard() {
 												label={t('Dashboard.configuration.maxMessageLengthLabel')}
 												defaultValue={config.maxMsgLength ?? 1000}
 												value={config.maxMsgLength ?? 1000}
+												min={1}
 												onChange={(val) => {
 													setConfig({ ...config, maxMsgLength: val ?? 1000 });
 												}}
@@ -244,6 +245,7 @@ export default function Dashboard() {
 												label={t('Dashboard.configuration.maxMessageLengthLabel')}
 												defaultValue={config.minBitAmount ?? 0}
 												value={config.minBitAmount ?? 0}
+												min={0}
 												onChange={(val) => {
 													setConfig({ ...config, minBitAmount: val ?? 0 });
 												}}
@@ -252,6 +254,7 @@ export default function Dashboard() {
 												label={t('Dashboard.configuration.minResubMonthsLabel')}
 												defaultValue={config.minMonthsAmount ?? 0}
 												value={config.minMonthsAmount ?? 0}
+												min={0}
 												onChange={(val) => {
 													setConfig({ ...config, minMonthsAmount: val ?? 0 });
 												}}
