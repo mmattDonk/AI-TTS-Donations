@@ -1,7 +1,6 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs to the <discordLink>mmattDonk Discord server</discordLink>.",
-		"description": "Blacklisted (users, voices, and words) don't work, and fallback voices don't work."
+		"header": "This is a BETA website. Please report bugs to the <discordLink>mmattDonk Discord server</discordLink>."
 	},
 	"close": "ǝsolƆ",
 	"open": "uǝdO",
