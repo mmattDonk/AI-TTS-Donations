@@ -1,0 +1,96 @@
+generator ts {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String     @id @default(cuid())
+  name          String?
+  email         String?    @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  streamers     Streamer[]
+}
+
+model Streamer {
+  id          String        @id @default(cuid())
+  overlayId   String        @unique @default(cuid())
+  ttsmessages ttsMessages[]
+  config StreamerConfig[]
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+}
+
+model StreamerConfig {
+  id String @id @default(cuid())
+
+  channelPointsName String?
+  channelPointsEnabled Boolean? @default(false)
+
+  bitsEnabled Boolean? @default(true)
+  resubsEnabled Boolean? @default(true)
+
+  maxMsgLength Int? @default(1000)
+  minBitAmount Int? @default(0)
+  minMonthsAmount Int? @default(0)
+  minTipAmount Int? @default(0)
+
+  blacklistedWords String[]
+  blacklistedVoices String[]
+  blacklistedUsers String[]
+
+  fallbackVoice String? @default("kanye-west-rap")
+
+  streamer Streamer @relation(fields: [id], references: [id], onDelete: Cascade)
+}
+
+model ttsMessages {
+  id         String @id @default(cuid())
+  streamerId String
+
+  message  String
+  audioUrl String
+
+  createdAt DateTime? @default(now())
+
+  streamer Streamer @relation(fields: [streamerId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}

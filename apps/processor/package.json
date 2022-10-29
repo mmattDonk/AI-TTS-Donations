@@ -1,0 +1,13 @@
+{
+	"name": "@solrock/processor",
+	"version": "0.0.1",
+	"description": "python audio processor.",
+	"main": "index.js",
+	"scripts": {
+		"start": "functions-framework --target=hello_http"
+	},
+	"keywords": [],
+	"author": "mmattbtw <matt@mmatt.net>",
+	"license": "AGPL-3",
+	"private": true
+}

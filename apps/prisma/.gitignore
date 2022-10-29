@@ -1,0 +1,5 @@
+.env
+node_modules
+generated/*
+dist/*
+.venv/

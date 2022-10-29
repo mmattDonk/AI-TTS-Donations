@@ -1,0 +1,27 @@
+{
+	"name": "solrock",
+	"version": "1.0.0",
+	"description": "https://aittsdonations.mmattdonk.com/",
+	"private": true,
+	"main": "index.js",
+	"scripts": {
+		"frontend": "yarn workspace @solrock/frontend",
+		"backend": "yarn workspace @solrock/backend",
+		"processor": "yarn workspace @solrock/processor",
+		"prisma": "yarn workspace @solrock/prisma",
+		"dev": "concurrently --names \"frontend,processor,backend\" --prefix \"[{name}]\" -c \"bgBlue.bold,bgMagenta.bold,bgYellow.bold\" \"yarn workspace @solrock/frontend dev\" \"yarn workspace @solrock/processor start\" \"yarn workspace @solrock/backend dev\""
+	},
+	"keywords": [],
+	"workspaces": [
+		"apps/*"
+	],
+	"author": "mmattbtw <matt@mmatt.net>",
+	"license": "AGPL-3",
+	"devDependencies": {
+		"prettier": "^2.7.1",
+		"vercel": "^28.2.2"
+	},
+	"dependencies": {
+		"concurrently": "^7.3.0"
+	}
+}
