@@ -118,8 +118,9 @@ function Testimonial({ body, author, stars }: CommentSimpleProps) {
 					</Text>
 					<Text size="sm">{author.followers} followers</Text>
 				</div>
-				{[...Array(stars)].map((i) => (
-					<Star key={i} color="gold" fill="gold" />
+				{[...Array(stars)].map((index) => (
+					// this still gives a warning and idk why
+					<Star key={index} color="gold" fill="gold" />
 				))}
 			</Group>
 			<Text className={classes.body} size="lg">
@@ -155,7 +156,7 @@ export default function TestimoniesComponent() {
 						justifyContent: 'center',
 					}}
 				>
-					<Testimonial {...t} />
+					<Testimonial key={t.author.name} {...t} />
 				</Carousel.Slide>
 			))}
 		</Carousel>

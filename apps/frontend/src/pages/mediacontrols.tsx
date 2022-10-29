@@ -1,3 +1,5 @@
+import { GetStaticPropsContext } from 'next/types';
+import BetaBanner from '../components/BetaBanner';
 import MediaControls from '../components/MediaControls';
 
 export default function MediaControlsPage() {
@@ -11,7 +13,16 @@ export default function MediaControlsPage() {
 				justifyContent: 'center',
 			}}
 		>
+			<BetaBanner />
 			<MediaControls />
 		</div>
 	);
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+	return {
+		props: {
+			messages: (await import(`../../i18n/${locale}.json`)).default,
+		},
+	};
 }

@@ -1,10 +1,11 @@
-import { Avatar, Button, Code, Collapse, Container, Group, Kbd, NumberInput, Space, Stack, Switch, Textarea, TextInput, Tooltip } from '@mantine/core';
+import { Avatar, Button, Center, Code, Collapse, Container, Group, Kbd, NumberInput, Space, Stack, Switch, Textarea, TextInput, Tooltip } from '@mantine/core';
 import { GetStaticPropsContext } from 'next';
 import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import { useState } from 'react';
 import { WindowMaximize } from 'tabler-icons-react';
+import BetaBanner from '../components/BetaBanner';
 import LoadingPage, { LoadingSpinner } from '../components/Loading';
 import MediaControls from '../components/MediaControls';
 import Spring from '../components/Spring';
@@ -155,6 +156,9 @@ export default function Dashboard() {
 						content="AI TTS Donations is a free and Open Source AI TTS service for Twitch (and other platforms). It's the first of its class, no subscription services, no additional add-ons, and no ads."
 					/>
 				</Head>
+				<Center>
+					<BetaBanner />
+				</Center>
 				<Container size="xl">
 					<Spring>
 						<Stack mt="xl" mb="xl" spacing="xs">

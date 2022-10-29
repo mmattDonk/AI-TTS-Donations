@@ -1,8 +1,9 @@
-import { Container, createStyles, Group, Text, Title } from '@mantine/core';
+import { Center, Container, createStyles, Group, Text, Title } from '@mantine/core';
 import { GetStaticPropsContext } from 'next';
 import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import Link from 'next/link';
+import BetaBanner from '../components/BetaBanner';
 
 const useStyles = createStyles((theme) => ({
 	root: {
@@ -63,6 +64,9 @@ export default function NotFoundPage() {
 				<meta name="twitter:creator" content="@mmattbtw" />
 				<meta name="twitter:title" content="404 - AI TTS Donations" />
 			</Head>
+			<Center>
+				<BetaBanner />
+			</Center>
 			<Container className={classes.root}>
 				<div className={classes.label}>404</div>
 				<Title className={classes.title}>{t('title')}</Title>

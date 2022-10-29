@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { Dashboard, DoorExit } from 'tabler-icons-react';
+import BetaBanner from '../components/BetaBanner';
 import Bubbles from '../components/Bubbles';
 import Dots from '../components/Dots';
 import FaqSimple from '../components/FAQ';
@@ -132,6 +133,9 @@ const Home: NextPage = () => {
 
 	return (
 		<>
+			<Center>
+				<BetaBanner />
+			</Center>
 			<Container>
 				<Spring>
 					<Group mb={'1rem'} mt={'1rem'} position="right">

@@ -1,5 +1,5 @@
 // src/pages/_app.tsx
-import { Center, ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mantine/core';
+import { ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { withTRPC } from '@trpc/next';
 import { Analytics } from '@vercel/analytics/react';
@@ -9,7 +9,6 @@ import type { AppType } from 'next/dist/shared/lib/utils';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import superjson from 'superjson';
-import BetaBanner from '../components/BetaBanner';
 import type { AppRouter } from '../server/router';
 
 const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
@@ -66,9 +65,6 @@ const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => 
 			<MantineTheme>
 				<SessionProvider session={session}>
 					<NextIntlProvider messages={pageProps.messages}>
-						<Center>
-							<BetaBanner />
-						</Center>
 						<Component {...pageProps} />
 					</NextIntlProvider>
 					<Analytics />
