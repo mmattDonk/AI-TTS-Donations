@@ -102,12 +102,19 @@ pusher_client = pusher.Pusher(
 )
 
 
-def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = ""):  # type: ignore
+def request_tts(
+    message: str, config: dict, failed: Optional[bool] = False, overlayId: str = ""
+):
     messages: list = message.split("||")
     log.debug(messages)
     q = queue.Queue()
     voice_files: list = []
     for message in messages:
+        for i in config["blacklistedWords"]:
+            if i.lower() in message.lower():
+                log.info("Blacklisted word found")
+                return
+
         log.debug(f"`{message}`")
         if message[0] == " ":
             message: str = message[1:]
@@ -129,15 +136,15 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
         try:
             log.debug(message.split(": "))
             voice: str = message.split(": ")[0]  # type: ignore
-            # try:
-            #     if voice in config["BLACKLISTED_VOICES"]:
-            #         log.info(f"{voice} is blacklisted, applying fallback voice.")
-            #         try:
-            #             voice = config["FALLBACK_VOICE"]
-            #         except Exception:
-            #             voice = "kanye-west-rap"
-            # except Exception:
-            #     pass
+            try:
+                if voice.lower() in config["blacklistedVoices"]:
+                    log.info(f"{voice} is blacklisted, applying fallback voice.")
+                    try:
+                        voice = config["fallbackVoice"]
+                    except Exception:
+                        voice = "kanye-west-rap"
+            except Exception:
+                pass
             log.debug(voice)
             text: str = message.split(": ")[1]
             log.debug(text)
@@ -168,10 +175,9 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
             job_response["detail"] != None
             and job_response["detail"] == "That voice does not exist"
         ):
-            # try:
-            #     fallback_voice: str = config["FALLBACK_VOICE"]
-            # except Exception:
-            fallback_voice: str = "kanye-west-rap"
+            fallback_voice: str = config["fallbackVoice"]
+            if fallback_voice is None:
+                fallback_voice = "kanye-west-rap"
             log.info(
                 "Couldn't find voice specified, using fallback voice: " + fallback_voice
             )
@@ -227,7 +233,7 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
                 elif check_tts_response["failed_at"] != None:
                     log.info("TTS request failed, trying again.")
                     waitingToProcess = False
-                    request_tts(message=message, failed=True)
+                    request_tts(message=message, config=config, failed=True)
                     time.sleep(2)
                 elif checkCount > 100:
                     log.info(
@@ -282,11 +288,6 @@ def request_tts(message: str, failed: Optional[bool] = False, overlayId: str = "
 
     return {"success": True, "message": message, "audioUrl": public_url}
 
-    # for i in config["BLACKLISTED_WORDS"]:
-    #     if i in message.lower():
-    #         log.info("Blacklisted word found")
-    #         return
-
 
 @functions_framework.http
 def hello_http(request):
@@ -312,11 +313,6 @@ def hello_http(request):
         "",
         request_message,
     )
-
-    overlay_id = request_json["overlayId"]
-    response = request_tts(message=request_message, failed=False, overlayId=overlay_id)
-    API_URL = ""
-    API_SECRET = ""
     if os.environ.get("API_URL") is None:
         API_URL = "http://localhost:3000"
     else:
@@ -330,6 +326,19 @@ def hello_http(request):
     headers = {
         "secret": API_SECRET,
     }
+
+    overlay_id = request_json["overlayId"]
+    configRequest = httpx.get(
+        f"{API_URL}/api/streamers/overlayId/{overlay_id}", headers=headers
+    ).json()
+
+    config = configRequest["streamer"]["config"][0]
+
+    response = request_tts(
+        message=request_message, failed=False, overlayId=overlay_id, config=config
+    )
+    API_URL = ""
+    API_SECRET = ""
 
     print("Pushing " + response["audioUrl"] + " to " + " overlay " + overlay_id)
     print("This was the request json", request_json)

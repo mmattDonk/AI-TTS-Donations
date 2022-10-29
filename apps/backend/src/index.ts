@@ -60,6 +60,8 @@ async function processEvent(broadcasterId: string, message: string, streamerJson
 async function subscriptionCallback(event: subscriptionEvent, streamerJson: streamer) {
 	if (streamerJson.streamer.config[0].minMonthsAmount > event.duration_months) return;
 	if (streamerJson.streamer.config[0].resubsEnabled === false) return;
+	if (event.user_name.toLowerCase() in streamerJson.streamer.config[0].blacklistedUsers) return;
+
 	console.log('USER SUB', event.user_login);
 
 	await processEvent(event.broadcaster_user_id, event.message.text, streamerJson);
@@ -69,6 +71,8 @@ async function subscriptionCallback(event: subscriptionEvent, streamerJson: stre
 async function cheerCallback(event: cheerEvent, streamerJson: streamer) {
 	if (streamerJson.streamer.config[0].minBitAmount > event.bits) return;
 	if (streamerJson.streamer.config[0].bitsEnabled === false) return;
+	if (event.user_name.toLowerCase() in streamerJson.streamer.config[0].blacklistedUsers) return;
+
 	console.log('USER CHEER', event.user_login);
 
 	await processEvent(event.broadcaster_user_id, event.message, streamerJson);
@@ -78,6 +82,8 @@ async function cheerCallback(event: cheerEvent, streamerJson: streamer) {
 async function redemptionCallback(event: redemptionEvent, streamerJson: streamer) {
 	if (streamerJson.streamer.config[0].channelPointsName !== event.reward.title) return;
 	if (streamerJson.streamer.config[0].channelPointsEnabled === false) return;
+	if (event.user_name.toLowerCase() in streamerJson.streamer.config[0].blacklistedUsers) return;
+
 	console.log('USER REDEEM', event.user_login);
 
 	await processEvent(event.broadcaster_user_id, event.user_input, streamerJson);

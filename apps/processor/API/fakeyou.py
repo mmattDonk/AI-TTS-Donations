@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from uuid import uuid4
 
 import httpx
@@ -30,6 +31,7 @@ class Fakeyou:
                 "uuid_idempotency_token": uuid_str,
             },
             timeout=60,
+            headers={"Authorization": os.environ.get("FAKEYOU_API_KEY")},
         )
 
         uuid = None

@@ -276,7 +276,7 @@ export default function Dashboard() {
 											}}
 										/>
 										<Textarea
-											value={config.blacklistedVoices.join('\n')}
+											value={config.blacklistedVoices.join('\n').toLowerCase()}
 											label={t('Dashboard.configuration.blacklistVoicesLabel')}
 											autosize
 											onChange={(event) => {
@@ -285,7 +285,7 @@ export default function Dashboard() {
 											}}
 										/>
 										<Textarea
-											value={config.blacklistedUsers.join('\n')}
+											value={config.blacklistedUsers.join('\n').toLowerCase()}
 											label={t('Dashboard.configuration.blacklistUsersLabel')}
 											autosize
 											onChange={(event) => {

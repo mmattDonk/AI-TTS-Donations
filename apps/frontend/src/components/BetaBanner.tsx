@@ -10,9 +10,6 @@ export default function BetaBanner() {
 					discordLink: (children) => <a href="https://discord.gg/VUAjRrkZVJ">{children}</a>,
 				})}
 			</Badge>
-			<Badge color="red" variant="outline">
-				{t('description')}
-			</Badge>
 		</Stack>
 	);
 }
