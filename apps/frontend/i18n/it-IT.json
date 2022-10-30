@@ -1,6 +1,6 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs to the <discordLink>mmattDonk Discord server</discordLink>."
+		"header": "Questo è un sito in BETA. Per favore segnala eventuali bug nel <discordLink>mmattDonk server Discord </discordLink>."
 	},
 	"close": "Chiudi",
 	"open": "Apri",
@@ -9,13 +9,13 @@
 	"signIn": "Connettiti",
 	"learnMore": "Scopri di più",
 	"submit": "Invia",
-	"enabled": "Enabled",
-	"disabled": "Disabled",
-	"save": "Save",
-	"notLoggedIn": "You are not logged in.",
+	"enabled": "Abilitato",
+	"disabled": "Disabilitato",
+	"save": "Salva",
+	"notLoggedIn": "Non sei loggato.",
 	"bits": "Bits",
-	"resubs": "Resubs",
-	"channelPoints": "Channel Points",
+	"resubs": "Resub",
+	"channelPoints": "Punti Canale",
 	"404": {
 		"title": "Hai trovato un posto segreto.",
 		"description": "Sfortunatamente questa è solo una pagina 404. Potresti aver digitato in modo errato l'indirizzo o la pagina è stata spostata su un altro URL.",
@@ -25,24 +25,24 @@
 		"avatar": "Immagine profilo di {name}"
 	},
 	"Landing": {
-		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
+		"heading": "Il primo servizio AI TTS al <gradientText>100%</gradientText> gratuito per <twitchText>Twitch</twitchText>",
 		"description": "AI TTS Donations è un servizio AI TTS gratuito e Open Source per Twitch (ed altre piattaforme). È il primo della sua categoria, nessun servizio a pagamento, nessun add-on addizionale e nessuna pubblicità.",
 		"getStartedTooltip": "Non siamo ancora pronti! Iscriviti alla lista mail qua sotto.",
 		"getStarted": "Iniziare",
 		"dashboard": "Dashboard",
 		"getStartedToday": "Suona bene? Inizia oggi con le donazioni AI TTS gratuitamente!",
 		"howItWorks": "Come funziona",
-		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
+		"featuresHeading": "Funzionalità <gradientText>senza rivali</gradientText> rispetto a qualsiasi altra cosa disponibile.",
 		"features": {
-			"freeTitle": "Free to use",
+			"freeTitle": "Uso gratuito",
 			"freeDesc": "All features in AI TTS Donations are completely free. No fees, and no subscriptions. Simply download, setup, and use. No payments required at all.",
 			"openSourceTitle": "Open Source",
 			"openSourceDesc": "AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.",
-			"voicesTitle": "1000+ Voices",
+			"voicesTitle": "1000+ Voci",
 			"voicesDesc": "AI TTS Donations is built using the APIs of Uberduck.ai and Fakeyou.com. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
-			"voiceEffectsTitle": "Voice Effects",
+			"voiceEffectsTitle": "Effetti Voce",
 			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
-			"soundEffectsTitle": "Sound Effects",
+			"soundEffectsTitle": "Effetti Suono",
 			"soundEffectsDesc": "Sound effects can add a variety of noises to your viewer's TTS messages. Your viewers can create amazing TTS messages using these features."
 		},
 		"FAQ": {
