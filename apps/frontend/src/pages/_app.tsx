@@ -3,15 +3,26 @@ import { ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mant
 import { NotificationsProvider } from '@mantine/notifications';
 import { withTRPC } from '@trpc/next';
 import { Analytics } from '@vercel/analytics/react';
+import type { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { NextIntlProvider } from 'next-intl';
-import type { AppType } from 'next/dist/shared/lib/utils';
+import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import superjson from 'superjson';
 import type { AppRouter } from '../server/router';
 
-const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
+type PageProps = {
+	messages: IntlMessages;
+	session: Session | null;
+	now: number;
+};
+
+type Props = Omit<AppProps<PageProps>, 'pageProps'> & {
+	pageProps: PageProps;
+};
+
+export function App({ Component, pageProps: { session, ...pageProps } }: Props) {
 	useEffect(() => {
 		console.log(
 			'@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/*/(* ,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n' +
@@ -64,6 +75,7 @@ const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => 
 		return (
 			<MantineTheme>
 				<SessionProvider session={session}>
+					{/* @ts-ignore */}
 					<NextIntlProvider messages={pageProps.messages}>
 						<Component {...pageProps} />
 					</NextIntlProvider>
@@ -79,7 +91,7 @@ const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => 
 			</SessionProvider>
 		);
 	}
-};
+}
 
 export const getBaseUrl = () => {
 	if (typeof window !== 'undefined') {
@@ -112,7 +124,7 @@ export default withTRPC<AppRouter>({
 	 * @link https://trpc.io/docs/ssr
 	 */
 	ssr: false,
-})(MyApp);
+})(App);
 
 function MantineTheme({ children }: { children: React.ReactNode }) {
 	const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');

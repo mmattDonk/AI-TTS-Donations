@@ -16,6 +16,6 @@
 		"incremental": true,
 		"noUncheckedIndexedAccess": true
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/middleware.ts", "next.config.js"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/middleware.ts", "next.config.js", "global.d.ts"],
 	"exclude": ["node_modules"]
 }
