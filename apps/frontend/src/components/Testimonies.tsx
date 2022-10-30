@@ -1,8 +1,7 @@
 import { Carousel } from '@mantine/carousel';
-import { Avatar, createStyles, Group, Text } from '@mantine/core';
+import { Avatar, createStyles, Group, Rating, Text } from '@mantine/core';
 import Autoplay from 'embla-carousel-autoplay';
 import { useRef } from 'react';
-import { Star } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
 	body: {
@@ -118,10 +117,7 @@ function Testimonial({ body, author, stars }: CommentSimpleProps) {
 					</Text>
 					<Text size="sm">{author.followers} followers</Text>
 				</div>
-				{[...Array(stars)].map((index) => (
-					// this still gives a warning and idk why
-					<Star key={index} color="gold" fill="gold" />
-				))}
+				<Rating value={stars} readOnly />
 			</Group>
 			<Text className={classes.body} size="lg">
 				{body}
