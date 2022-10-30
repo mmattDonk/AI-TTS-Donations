@@ -116,7 +116,6 @@ export default function MediaControls() {
 								<th>Created At</th>
 							</thead>
 							<tbody>
-								{/* @ts-ignore */}
 								{ttsMessages?.messages?.map((message: any, i) => (
 									<tr key={i}>
 										<td>
@@ -139,11 +138,7 @@ export default function MediaControls() {
 										</td>
 										<td>
 											<p>
-												{new Date(
-													// @ts-ignore
-													message.createdAt
-												).toLocaleDateString()}{' '}
-												at {/* @ts-ignore */}
+												{new Date(message.createdAt).toLocaleDateString()} at
 												{new Date(message.createdAt).toLocaleTimeString()}
 											</p>
 										</td>

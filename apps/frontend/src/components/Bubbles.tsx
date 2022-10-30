@@ -9,7 +9,6 @@ export default function Bubbles() {
 	};
 
 	return (
-		//@ts-ignore
 		<Particles
 			id="tsparticles"
 			className="absolute z-0"

@@ -333,7 +333,6 @@ export default function Dashboard() {
 										</Tooltip>{' '}
 										-{' '}
 										{t.rich('Dashboard.ttsOverlayDescription', {
-											// @ts-ignore
 											Code: (children) => <Code>{children}</Code>,
 										})}
 									</p>

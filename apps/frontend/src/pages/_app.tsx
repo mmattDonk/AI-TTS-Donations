@@ -77,7 +77,6 @@ export function App({ Component, pageProps: { session, ...pageProps } }: Props) 
 			<MantineTheme>
 				<RouterTransition />
 				<SessionProvider session={session}>
-					{/* @ts-ignore */}
 					<NextIntlProvider messages={pageProps.messages}>
 						<Component {...pageProps} />
 					</NextIntlProvider>
@@ -143,12 +142,6 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
 								textDecoration: 'underline',
 
 								'&:hover': {
-									backgroundColor:
-										theme.colorScheme === 'dark'
-											? //@ts-ignore
-											  theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-											: //@ts-ignore
-											  theme.colors[theme.primaryColor][0],
 									color: theme.colors[theme.primaryColor]![theme.colorScheme === 'dark' ? 3 : 7],
 									textDecoration: 'none',
 								},
