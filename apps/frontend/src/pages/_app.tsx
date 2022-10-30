@@ -10,6 +10,7 @@ import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import superjson from 'superjson';
+import { RouterTransition } from '../components/RouterTransition';
 import type { AppRouter } from '../server/router';
 
 type PageProps = {
@@ -74,6 +75,7 @@ export function App({ Component, pageProps: { session, ...pageProps } }: Props) 
 	if (router.pathname.split('/')[1] !== 'overlay') {
 		return (
 			<MantineTheme>
+				<RouterTransition />
 				<SessionProvider session={session}>
 					{/* @ts-ignore */}
 					<NextIntlProvider messages={pageProps.messages}>

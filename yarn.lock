@@ -376,6 +376,13 @@
     "@mantine/utils" "5.6.3"
     react-transition-group "4.4.2"
 
+"@mantine/nprogress@^5.6.3":
+  version "5.6.3"
+  resolved "https://registry.yarnpkg.com/@mantine/nprogress/-/nprogress-5.6.3.tgz#7fb315a349c6be15aa18cca544cc1fadfe33d606"
+  integrity sha512-tssZLumRmu6ybj68K0QOjg35BcHnlkJy2Le/M1F/yI9uXsh+TGj6G2Tt3w4bU3Ge4k0b6Wv1UomutL47HHsO4Q==
+  dependencies:
+    "@mantine/utils" "5.6.3"
+
 "@mantine/ssr@5.6.3":
   version "5.6.3"
   resolved "https://registry.yarnpkg.com/@mantine/ssr/-/ssr-5.6.3.tgz#bb3a9ba4f2213cb401c23843e46e1bd440247c5c"
