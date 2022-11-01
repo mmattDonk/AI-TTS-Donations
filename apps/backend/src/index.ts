@@ -5,6 +5,7 @@ import express from 'express';
 import { cheerEvent, redemptionEvent, streamer, subscriptionEvent } from './typings';
 const app = express();
 dotenv.config();
+// port
 const port = process.env.PORT || 4200;
 
 // Notification request headers
