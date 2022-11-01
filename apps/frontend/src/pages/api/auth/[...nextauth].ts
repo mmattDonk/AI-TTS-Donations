@@ -5,6 +5,7 @@ import TwitchProvider from 'next-auth/providers/twitch';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { withSentry } from '@sentry/nextjs';
 import { prisma } from '@solrock/prisma';
+import { env } from '../../../utils/env';
 
 async function createStreamerIfNotExists(user: User) {
 	if (
@@ -25,11 +26,11 @@ async function createStreamerIfNotExists(user: User) {
 export const authOptions: NextAuthOptions = {
 	// Configure one or more authentication providers
 	adapter: PrismaAdapter(prisma),
-	secret: process.env.NEXTAUTH_SECRET,
+	secret: env.NEXTAUTH_SECRET,
 	providers: [
 		TwitchProvider({
-			clientId: process.env.TWITCH_ID ?? '',
-			clientSecret: process.env.TWITCH_SECRET ?? '',
+			clientId: env.TWITCH_ID ?? '',
+			clientSecret: env.TWITCH_SECRET ?? '',
 			authorization: {
 				params: {
 					scope: 'openid user:read:email channel:read:redemptions channel:read:subscriptions bits:read',
@@ -52,11 +53,11 @@ export const authOptions: NextAuthOptions = {
 		signIn: async (user) => {
 			await createStreamerIfNotExists(user.user);
 			if (!user.isNewUser) return;
-			await fetch(process.env.EVENTSUB_API_URL + '/newuser', {
+			await fetch(env.EVENTSUB_API_URL + '/newuser', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + process.env.API_SECRET,
+					Authorization: 'Bearer ' + env.API_SECRET,
 				},
 				body: JSON.stringify({
 					streamerAuth: user.account?.access_token,
