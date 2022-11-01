@@ -1,12 +1,13 @@
 import { prisma } from '@solrock/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { env } from '../../../../utils/env';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if secret not in request headers, return unauthorized
 	if (!req.headers.secret) {
 		res.status(401).json({ message: 'Unauthorized' });
 		return;
-	} else if (req.headers.secret !== process.env.API_SECRET) {
+	} else if (req.headers.secret !== env.API_SECRET) {
 		res.status(403).json({ message: 'Unauthorized' });
 		return;
 	}

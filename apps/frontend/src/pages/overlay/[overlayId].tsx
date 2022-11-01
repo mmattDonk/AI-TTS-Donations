@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
 import Pusher from 'pusher-js';
 import { useEffect, useRef, useState } from 'react';
+import { env } from '../../utils/env';
 
 export async function getServerSideProps() {
-	const PUSHER_APP_KEY = process.env.PUSHER_APP_KEY;
-	const PUSHER_APP_CLUSTER = process.env.PUSHER_APP_CLUSTER;
+	const PUSHER_APP_KEY = env.PUSHER_APP_KEY;
+	const PUSHER_APP_CLUSTER = env.PUSHER_APP_CLUSTER;
 
 	return {
 		props: {
