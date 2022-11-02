@@ -246,7 +246,7 @@ export default function Dashboard() {
 												}}
 											/>
 											<NumberInput
-												label={t('Dashboard.configuration.maxMessageLengthLabel')}
+												label={t('Dashboard.configuration.minBitsAmountLabel')}
 												defaultValue={config.minBitAmount ?? 0}
 												value={config.minBitAmount ?? 0}
 												min={0}
