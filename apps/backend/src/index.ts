@@ -1,12 +1,46 @@
 import axios from 'axios';
 import crypto from 'crypto';
 import dotenv from 'dotenv';
+import { envsafe, num, str, url } from 'envsafe';
 import express from 'express';
 import { cheerEvent, redemptionEvent, streamer, subscriptionEvent } from './typings';
 const app = express();
 dotenv.config();
+
+const env = envsafe({
+	PORT: num({
+		desc: 'port to run the backend server on',
+		allowEmpty: true,
+		devDefault: 4200,
+		default: 4200,
+	}),
+	API_URL: url({
+		desc: 'Next.js URL',
+		devDefault: 'http://localhost:3000',
+	}),
+	API_SECRET: str({
+		// TODO: make this global
+		desc: 'API secret (shared across backend, frontend, and processor)',
+	}),
+	SERVERLESS_PROCESSOR_URL: url({
+		desc: 'Processor URL',
+		devDefault: 'http://localhost:8080',
+	}),
+	CLIENT_ID: str({
+		desc: '(client id) get this from dev.twitch.tv',
+	}),
+	TWITCH_ACCESS_TOKEN: str({
+		desc: '(twitch access token) you get this from an api request',
+		// TODO: put link to the api request
+	}),
+	EVENTSUB_SECRET: str({
+		desc: 'randomly generated, meant for twitch eventsub verification',
+		devDefault: 'superdanksecretdotcom',
+	}),
+});
+
 // port
-const port = process.env.PORT || 4200;
+const port = env.PORT || 4200;
 
 // Notification request headers
 const TWITCH_MESSAGE_ID = 'Twitch-Eventsub-Message-Id'.toLowerCase();
@@ -23,8 +57,8 @@ const MESSAGE_TYPE_REVOCATION = 'revocation';
 const HMAC_PREFIX = 'sha256=';
 
 // next.js api base url
-const API_URL = process.env.API_URL ?? 'http://localhost:3000';
-const SERVERLESS_PROCESSOR_URL = process.env.SERVERLESS_PROCESSOR_URL ?? 'http://localhost:8080';
+const API_URL = env.API_URL ?? 'http://localhost:3000';
+const SERVERLESS_PROCESSOR_URL = env.SERVERLESS_PROCESSOR_URL ?? 'http://localhost:8080';
 
 app.use(
 	express.raw({
@@ -47,7 +81,7 @@ async function processEvent(broadcasterId: string, message: string, streamerJson
 				overlayId: streamerJson.streamer.overlayId,
 			},
 			{
-				headers: { Authorization: 'Bearer ' + process.env.API_SECRET },
+				headers: { Authorization: 'Bearer ' + env.API_SECRET },
 			}
 		);
 		console.log('SERVERLESS REQUEST', serverlessRequest.data);
@@ -104,7 +138,7 @@ app.post('/eventsub', async (req, res) => {
 		if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
 			console.log(`Event type: ${notification.subscription.type}`);
 			const streamer = await axios.get(API_URL + '/api/streamers/streamerId/' + notification.event.broadcaster_user_id, {
-				headers: { secret: process.env.API_SECRET ?? '' },
+				headers: { secret: env.API_SECRET ?? '' },
 			});
 			const streamerJson = streamer.data as streamer;
 			if (notification.subscription.type === 'channel.subscription.message') {
@@ -137,9 +171,9 @@ app.post('/eventsub', async (req, res) => {
 
 app.post('/newuser', async (req, res) => {
 	console.log('new user!');
-	// if bearer token not equal to process.env.secret
+	// if bearer token not equal to env.secret
 	const secret = req.headers.authorization?.split(' ')[1];
-	if (secret !== process.env.API_SECRET) {
+	if (secret !== env.API_SECRET) {
 		console.log('rejected :p');
 		return res.status(403).send('Forbidden');
 	}
@@ -155,13 +189,13 @@ app.post('/newuser', async (req, res) => {
 				transport: {
 					method: 'webhook',
 					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
-					secret: process.env.API_SECRET,
+					secret: env.API_SECRET,
 				},
 			},
 			{
 				headers: {
-					'Client-Id': process.env.CLIENT_ID ?? '',
-					Authorization: 'Bearer ' + process.env.TWITCH_ACCESS_TOKEN,
+					'Client-Id': env.CLIENT_ID ?? '',
+					Authorization: 'Bearer ' + env.TWITCH_ACCESS_TOKEN,
 				},
 			}
 		),
@@ -174,13 +208,13 @@ app.post('/newuser', async (req, res) => {
 				transport: {
 					method: 'webhook',
 					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
-					secret: process.env.API_SECRET,
+					secret: env.API_SECRET,
 				},
 			},
 			{
 				headers: {
-					'Client-Id': process.env.CLIENT_ID ?? '',
-					Authorization: 'Bearer ' + process.env.TWITCH_ACCESS_TOKEN,
+					'Client-Id': env.CLIENT_ID ?? '',
+					Authorization: 'Bearer ' + env.TWITCH_ACCESS_TOKEN,
 				},
 			}
 		),
@@ -193,13 +227,13 @@ app.post('/newuser', async (req, res) => {
 				transport: {
 					method: 'webhook',
 					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
-					secret: process.env.API_SECRET,
+					secret: env.API_SECRET,
 				},
 			},
 			{
 				headers: {
-					'Client-Id': process.env.CLIENT_ID ?? '',
-					Authorization: 'Bearer ' + process.env.TWITCH_ACCESS_TOKEN,
+					'Client-Id': env.CLIENT_ID ?? '',
+					Authorization: 'Bearer ' + env.TWITCH_ACCESS_TOKEN,
 				},
 			}
 		),
@@ -234,7 +268,7 @@ function getSecret() {
 	// when you subscribed to the event.
 
 	// ahh!! leaked!! 😱
-	return process.env.EVENTSUB_SECRET ?? 'superdanksecretdotcom';
+	return env.EVENTSUB_SECRET ?? 'superdanksecretdotcom';
 }
 
 // Build the message used to get the HMAC.

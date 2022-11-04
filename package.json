@@ -22,6 +22,7 @@
 		"vercel": "^28.2.2"
 	},
 	"dependencies": {
-		"concurrently": "^7.3.0"
+		"concurrently": "^7.3.0",
+		"envsafe": "^2.0.3"
 	}
 }

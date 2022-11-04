@@ -26,7 +26,7 @@
 	},
 	"Landing": {
 		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
-		"description": "AI TTS Донаты это бесплатно и даже Open Source AI TTS сервис для Twitch (и другие платформы). Это первый своим классом, без платного подписки, без дополнительных зарплат, и нет рекламы.",
+		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
 		"getStartedTooltip": "Мы ещё не готовы! Подпишись в рассылку ниже.",
 		"getStarted": "Начать здесь",
 		"dashboard": "Панель Управления",
