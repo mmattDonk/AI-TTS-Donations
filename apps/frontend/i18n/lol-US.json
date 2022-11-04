@@ -26,7 +26,7 @@
 	},
 	"Landing": {
 		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
-		"description": "AI TTS DONASHUNS IZ FREE AN OPEN SOURCE AI TTS SERVICE 4 TWITCH (AN OTHR PLATFORMS). IZ TEH FURST OV ITZ CLAS, NO SUBSCRIPSHUN SERVICEZ, NO ADDISHUNAL ADD-ONS, AN NO ADZ.",
+		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
 		"getStartedTooltip": "WE ARENT READY YET! SIGN UP 2 TEH MAILIN LIST BELOW.",
 		"getStarted": "GIT STARTD",
 		"dashboard": "Dashboard",
