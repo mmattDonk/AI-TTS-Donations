@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			overlayId: overlayId as string,
 		},
 		include: {
-			ttsmessages: true,
+			ttsmessages: false,
 			user: true,
 			config: true,
 		},

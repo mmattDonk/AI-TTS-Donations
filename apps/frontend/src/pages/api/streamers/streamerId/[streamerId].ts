@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			},
 		},
 		include: {
-			ttsmessages: true,
+			ttsmessages: false,
 			user: true,
 			config: true,
 		},
