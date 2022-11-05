@@ -4,12 +4,14 @@
 	"description": "https://aittsdonations.mmattdonk.com/",
 	"private": true,
 	"main": "index.js",
+	"packageManager": "yarn@3.2.4",
 	"scripts": {
 		"frontend": "yarn workspace @solrock/frontend",
 		"backend": "yarn workspace @solrock/backend",
 		"processor": "yarn workspace @solrock/processor",
 		"prisma": "yarn workspace @solrock/prisma",
-		"dev": "concurrently --names \"frontend,processor,backend\" --prefix \"[{name}]\" -c \"bgBlue.bold,bgMagenta.bold,bgYellow.bold\" \"yarn workspace @solrock/frontend dev\" \"yarn workspace @solrock/processor start\" \"yarn workspace @solrock/backend dev\""
+		"dev": "turbo run dev",
+		"build": "turbo run build"
 	},
 	"keywords": [],
 	"workspaces": [
@@ -22,7 +24,7 @@
 		"vercel": "^28.2.2"
 	},
 	"dependencies": {
-		"concurrently": "^7.3.0",
-		"envsafe": "^2.0.3"
+		"envsafe": "^2.0.3",
+		"turbo": "^1.6.3"
 	}
 }
