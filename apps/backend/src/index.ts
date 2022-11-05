@@ -1,8 +1,8 @@
-import axios from 'axios';
 import crypto from 'crypto';
 import dotenv from 'dotenv';
 import { envsafe, num, str, url } from 'envsafe';
 import express from 'express';
+import fetch from 'node-fetch';
 import { cheerEvent, redemptionEvent, streamer, subscriptionEvent } from './typings';
 const app = express();
 dotenv.config();
@@ -74,21 +74,18 @@ async function processEvent(broadcasterId: string, message: string, streamerJson
 	if (streamerJson) {
 		console.log('EVENT MESSAGE???', message);
 		console.log('STRAEMER OVERLAY?', streamerJson.streamer.overlayId);
-		const serverlessRequest = await axios.post(
-			SERVERLESS_PROCESSOR_URL,
-			{
+		await fetch(SERVERLESS_PROCESSOR_URL, {
+			body: JSON.stringify({
 				message: message,
 				overlayId: streamerJson.streamer.overlayId,
-			},
-			{
-				headers: { Authorization: 'Bearer ' + env.API_SECRET },
-			}
-		);
-		console.log('SERVERLESS REQUEST', serverlessRequest.data);
+			}),
+			headers: { Authorization: 'Bearer ' + env.API_SECRET, 'Content-Type': 'application/json' },
+			method: 'POST',
+		});
+		return;
 	} else {
-		throw new Error('Streamer not found');
-		// console.error("Streamer not found");
-		// return;
+		console.error('Streamer not found');
+		return;
 	}
 }
 
@@ -115,8 +112,9 @@ async function cheerCallback(event: cheerEvent, streamerJson: streamer) {
 }
 
 async function redemptionCallback(event: redemptionEvent, streamerJson: streamer) {
-	if (streamerJson.streamer.config[0].channelPointsName !== event.reward.title) return;
+	if (streamerJson.streamer.config[0].channelPointsName === null) return;
 	if (streamerJson.streamer.config[0].channelPointsEnabled === false) return;
+	if (streamerJson.streamer.config[0].channelPointsName !== event.reward.title) return;
 	if (event.user_name.toLowerCase() in streamerJson.streamer.config[0].blacklistedUsers) return;
 
 	console.log('USER REDEEM', event.user_login);
@@ -137,10 +135,16 @@ app.post('/eventsub', async (req, res) => {
 
 		if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
 			console.log(`Event type: ${notification.subscription.type}`);
-			const streamer = await axios.get(API_URL + '/api/streamers/streamerId/' + notification.event.broadcaster_user_id, {
-				headers: { secret: env.API_SECRET ?? '' },
+			const streamer = await fetch(API_URL + '/api/streamers/streamerId/' + notification.event.broadcaster_user_id, {
+				headers: { secret: env.API_SECRET ?? '', 'Content-Type': 'application/json' },
+				method: 'GET',
 			});
-			const streamerJson = streamer.data as streamer;
+			const streamerJson = (await streamer.json()) as streamer;
+			if (streamer.status !== 200) {
+				console.error('Streamer not found');
+				res.status(404).send('Streamer not found');
+				return;
+			}
 			if (notification.subscription.type === 'channel.subscription.message') {
 				res.status(204).send('success!');
 				await subscriptionCallback(notification.event, streamerJson);
@@ -180,9 +184,8 @@ app.post('/newuser', async (req, res) => {
 	const data = JSON.parse(req.body);
 
 	const [subscribeResub, subscribeCheers, subscribeReward] = await Promise.all([
-		axios.post(
-			'https://api.twitch.tv/helix/eventsub/subscriptions',
-			{
+		fetch('https://api.twitch.tv/helix/eventsub/subscriptions', {
+			body: JSON.stringify({
 				type: 'channel.subscription.message',
 				version: '1',
 				condition: { broadcaster_user_id: data.streamerId },
@@ -191,17 +194,16 @@ app.post('/newuser', async (req, res) => {
 					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
 					secret: env.API_SECRET,
 				},
+			}),
+			headers: {
+				'Client-Id': env.CLIENT_ID ?? '',
+				Authorization: 'Bearer ' + env.TWITCH_ACCESS_TOKEN,
+				'Content-Type': 'application/json',
 			},
-			{
-				headers: {
-					'Client-Id': env.CLIENT_ID ?? '',
-					Authorization: 'Bearer ' + env.TWITCH_ACCESS_TOKEN,
-				},
-			}
-		),
-		axios.post(
-			'https://api.twitch.tv/helix/eventsub/subscriptions',
-			{
+			method: 'POST',
+		}),
+		fetch('https://api.twitch.tv/helix/eventsub/subscriptions', {
+			body: JSON.stringify({
 				type: 'channel.cheer',
 				version: '1',
 				condition: { broadcaster_user_id: data.streamerId },
@@ -210,17 +212,16 @@ app.post('/newuser', async (req, res) => {
 					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
 					secret: env.API_SECRET,
 				},
+			}),
+			headers: {
+				'Client-Id': env.CLIENT_ID ?? '',
+				Authorization: 'Bearer ' + env.TWITCH_ACCESS_TOKEN,
+				'Content-Type': 'application/json',
 			},
-			{
-				headers: {
-					'Client-Id': env.CLIENT_ID ?? '',
-					Authorization: 'Bearer ' + env.TWITCH_ACCESS_TOKEN,
-				},
-			}
-		),
-		axios.post(
-			'https://api.twitch.tv/helix/eventsub/subscriptions',
-			{
+			method: 'POST',
+		}),
+		fetch('https://api.twitch.tv/helix/eventsub/subscriptions', {
+			body: JSON.stringify({
 				type: 'channel.channel_points_custom_reward_redemption.add',
 				version: '1',
 				condition: { broadcaster_user_id: data.streamerId },
@@ -229,14 +230,14 @@ app.post('/newuser', async (req, res) => {
 					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
 					secret: env.API_SECRET,
 				},
+			}),
+			headers: {
+				'Client-Id': env.CLIENT_ID ?? '',
+				Authorization: 'Bearer ' + env.TWITCH_ACCESS_TOKEN,
+				'Content-Type': 'application/json',
 			},
-			{
-				headers: {
-					'Client-Id': env.CLIENT_ID ?? '',
-					Authorization: 'Bearer ' + env.TWITCH_ACCESS_TOKEN,
-				},
-			}
-		),
+			method: 'POST',
+		}),
 	]);
 
 	if (
