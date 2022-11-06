@@ -14,6 +14,8 @@ from typing import Optional
 import functions_framework
 import httpx
 import pusher
+from API.fakeyou import Fakeyou
+from API.uberduck import Uberduck
 from dotenv import load_dotenv
 from google.cloud import storage
 from pedalboard import Pedalboard  # type: ignore
@@ -31,9 +33,6 @@ from pedalboard import (
 from pedalboard.io import AudioFile
 from pydub import AudioSegment
 from rich.logging import RichHandler
-
-from API.fakeyou import Fakeyou
-from API.uberduck import Uberduck
 
 CHEER_REGEX: str = r"(?i)(cheer(?:whal)?|doodlecheer|biblethump|corgo|uni|showlove|party|seemsgood|pride|kappa|frankerz|heyguys|dansgame|elegiggle|trihard|kreygasm|4head|swiftrage|notlikethis|vohiyo|pjsalt|mrdestructoid|bday|ripcheer|shamrock|streamlabs|bitboss|muxy|anon)\d*"
 
@@ -89,7 +88,7 @@ playsounds.sort(
     key=lambda test_string: list(map(int, re.findall(r"\d+", test_string)))[0]
 )
 
-log.debug(playsounds)
+# log.debug(playsounds)
 
 # with open("config.json", "r") as f:
 #     config = json.load(f)
@@ -103,7 +102,7 @@ pusher_client = pusher.Pusher(
 
 
 def request_tts(
-    message: str, config: dict, failed: Optional[bool] = False, overlayId: str = ""
+    message: str, config: dict, failed: Optional[bool] = False, overlayId: str = ""  # type: ignore
 ):
     messages: list = message.split("||")
     log.debug(messages)
@@ -137,12 +136,12 @@ def request_tts(
             log.debug(message.split(": "))
             voice: str = message.split(": ")[0]  # type: ignore
             try:
-                if voice.lower() in config["blacklistedVoices"]:
+                if voice.lower() in config["blacklistedVoices"]:  # type: ignore
                     log.info(f"{voice} is blacklisted, applying fallback voice.")
                     try:
                         voice = config["fallbackVoice"]
                     except Exception:
-                        voice = "kanye-west-rap"
+                        voice = "kanye-west-rap"  # type: ignore
             except Exception:
                 pass
             log.debug(voice)
@@ -287,6 +286,9 @@ def request_tts(
     t.join()
 
     return {"success": True, "message": message, "audioUrl": public_url}
+
+
+log.info("ready.")
 
 
 @functions_framework.http

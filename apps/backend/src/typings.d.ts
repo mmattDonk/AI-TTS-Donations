@@ -61,7 +61,7 @@ export interface streamer {
 		};
 		config: {
 			id: string;
-			channelPointsName: string;
+			channelPointsName: string?;
 			channelPointsEnabled: boolean;
 			bitsEnabled: boolean;
 			resubsEnabled: boolean;

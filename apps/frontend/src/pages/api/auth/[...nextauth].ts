@@ -61,7 +61,7 @@ export const authOptions: NextAuthOptions = {
 				},
 				body: JSON.stringify({
 					streamerAuth: user.account?.access_token,
-					streamerId: user.account.providerAccountId,
+					streamerId: user.account?.providerAccountId,
 				}),
 			});
 		},
