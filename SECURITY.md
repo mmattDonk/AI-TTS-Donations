@@ -2,10 +2,10 @@
 
 ## Supported Versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| `solrock`   | :white_check_mark: |
-| Legacy Python App   | :x:                |
+| Version           | Supported          |
+| ----------------- | ------------------ |
+| `solrock`         | :white_check_mark: |
+| Legacy Python App | :x:                |
 
 ## Reporting a Vulnerability
 
