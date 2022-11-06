@@ -370,7 +370,7 @@ const Home: NextPage = () => {
 						</Group>
 					</form>
 					<p>
-						{t('Landing.emailPapertrail')} - <a href="https://www.mmatt.net/blog">{t('learnMore')}</a>
+						{t('Landing.emailPapertrail')} - <a href="https://www.mmatt.net/papertrail">{t('learnMore')}</a>
 					</p>
 				</div>
 			</div>
