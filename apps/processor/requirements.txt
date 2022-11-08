@@ -7,4 +7,4 @@ pydub==0.25.1
 python_dotenv == 0.21.0
 rich == 12.6.0
 sentry-sdk==1.10.1
-wheel==0.37.1
+wheel==0.38.2
