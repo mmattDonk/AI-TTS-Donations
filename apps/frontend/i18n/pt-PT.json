@@ -1,20 +1,20 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs to the <discordLink>mmattDonk Discord server</discordLink>."
+		"header": "Este site está em estado BETA. Por favor reporta bugs no <discordLink> Servidor de Discord mmattDonk </discordLink>."
 	},
-	"close": "Close",
-	"open": "Open",
-	"loggedIn": "Logged in as {name}",
-	"signOut": "Sign Out",
-	"signIn": "Sign In",
-	"learnMore": "Learn more",
-	"submit": "Submit",
-	"enabled": "Enabled",
-	"disabled": "Disabled",
-	"save": "Save",
-	"notLoggedIn": "You are not logged in.",
+	"close": "Fecha",
+	"open": "Abre",
+	"loggedIn": "Conectado como {name}",
+	"signOut": "Terminar Sessão",
+	"signIn": "Iniciar Sessão",
+	"learnMore": "Saber mais",
+	"submit": "Enviar",
+	"enabled": "Adicionado",
+	"disabled": "Desativado",
+	"save": "Salvar",
+	"notLoggedIn": "Tu não tens sessão iniciada.",
 	"bits": "Bits",
-	"resubs": "Resubs",
+	"resubs": "Resubescrições",
 	"channelPoints": "Channel Points",
 	"404": {
 		"title": "You have found a secret place.",
