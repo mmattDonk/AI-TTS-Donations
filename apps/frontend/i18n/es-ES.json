@@ -1,6 +1,6 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs to the <discordLink>mmattDonk Discord server</discordLink>."
+		"header": "Este es un sitio en BETA. Por favor informa acerca de bugs al <discordLink>Server de Discord de mmattDonk</discordLink>."
 	},
 	"close": "Cerrar",
 	"open": "Abrir",
@@ -9,13 +9,13 @@
 	"signIn": "Iniciar sesión",
 	"learnMore": "Aprende más",
 	"submit": "Subir",
-	"enabled": "Enabled",
-	"disabled": "Disabled",
-	"save": "Save",
-	"notLoggedIn": "You are not logged in.",
+	"enabled": "Habilitado",
+	"disabled": "Deshabilitado",
+	"save": "Guardar",
+	"notLoggedIn": "No has iniciado sesión.",
 	"bits": "Bits",
 	"resubs": "Resubs",
-	"channelPoints": "Channel Points",
+	"channelPoints": "Puntos del Canal",
 	"404": {
 		"title": "Has encontrado un espacio secreto.",
 		"description": "Desafortunadamente, esto es tan solo una página de 404. Puede que hayas mal escrito la dirección, o que la página se haya movido a otro URL.",
@@ -25,7 +25,7 @@
 		"avatar": "Foto de perfil de {name}."
 	},
 	"Landing": {
-		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
+		"heading": "El primer TTS de IA <gradientText>100%</gradientText> gratuito para <twitchText>Twitch</twitchText>",
 		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
 		"getStartedTooltip": "¡Aún no estamos listos! Apúntate a la lista de correo de abajo.",
 		"getStarted": "Comenzar",
