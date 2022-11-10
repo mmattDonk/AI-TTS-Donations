@@ -1,6 +1,6 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs to the <discordLink>mmattDonk Discord server</discordLink>."
+		"header": "Este es un sitio en BETA. Por favor informa acerca de bugs al <discordLink>Servidor de Discord de mmattDonk</discordLink>."
 	},
 	"close": "Cerrar",
 	"open": "Abrir",
@@ -9,13 +9,13 @@
 	"signIn": "Iniciar sesión",
 	"learnMore": "Aprende más",
 	"submit": "Subir",
-	"enabled": "Enabled",
-	"disabled": "Disabled",
-	"save": "Save",
-	"notLoggedIn": "You are not logged in.",
+	"enabled": "Habilitado",
+	"disabled": "Deshabilitado",
+	"save": "Guardar",
+	"notLoggedIn": "No has iniciado sesión.",
 	"bits": "Bits",
 	"resubs": "Resubs",
-	"channelPoints": "Channel Points",
+	"channelPoints": "Puntos del Canal",
 	"404": {
 		"title": "Has encontrado un espacio secreto.",
 		"description": "Desafortunadamente, esto es tan solo una página de 404. Puede que hayas mal escrito la dirección, o que la página se haya movido a otro URL.",
@@ -25,38 +25,38 @@
 		"avatar": "Foto de perfil de {name}."
 	},
 	"Landing": {
-		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
-		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
+		"heading": "El primer TTS de IA <gradientText>100%</gradientText> gratuito para <twitchText>Twitch</twitchText>",
+		"description": "AI TTS Donations es un servicio de IA TTS de Código Abierto para Twitch. Es el primero de su clase, no hay servicios de suscripción, no add-ons adicionales y sin publicidad.",
 		"getStartedTooltip": "¡Aún no estamos listos! Apúntate a la lista de correo de abajo.",
 		"getStarted": "Comenzar",
 		"dashboard": "Panel",
 		"getStartedToday": "¿Suena bien? ¡Empieza hoy mismo a utilizar AI TTS Donations de forma gratuita!",
 		"howItWorks": "Cómo funciona",
-		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
+		"featuresHeading": "Características que <gradientText>no tienen rivalidad</gradientText> en comparación con cualquier otra cosa disponible.",
 		"features": {
-			"freeTitle": "Free to use",
-			"freeDesc": "All features in AI TTS Donations are completely free. No fees, and no subscriptions. Simply download, setup, and use. No payments required at all.",
-			"openSourceTitle": "Open Source",
-			"openSourceDesc": "AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.",
-			"voicesTitle": "1000+ Voices",
-			"voicesDesc": "AI TTS Donations is built using the APIs of Uberduck.ai and Fakeyou.com. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
-			"voiceEffectsTitle": "Voice Effects",
-			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
-			"soundEffectsTitle": "Sound Effects",
-			"soundEffectsDesc": "Sound effects can add a variety of noises to your viewer's TTS messages. Your viewers can create amazing TTS messages using these features."
+			"freeTitle": "Gratis para utilizar",
+			"freeDesc": "Todas las características en AI TTS Donations son completamente gratuitas. No hay tarifas, ni suscripciones. Simplemente descarga, instala y utiliza. No hay pagos requeridos.",
+			"openSourceTitle": "Código Abierto",
+			"openSourceDesc": "AI TTS Donations es completamente código abierto bajo la licencia 'AGPL-3'. Puedes mirar el Código Abierto en la página de GitHub y contribuir allí.",
+			"voicesTitle": "1000+ Voces",
+			"voicesDesc": "AI TTS Donations está construida usando las APIs de Uberduck.ai y Fakeyou.com. Esto significa que tienes acceso a MILES de voces públicas en ambos sitios web, y tu audiencia puede usarlos para crear sorprendentes mensajes de TTS.",
+			"voiceEffectsTitle": "Efectos de Voz",
+			"voiceEffectsDesc": "AI TTS Donations tiene la habilidad de añadir efectos de voz y efectos de sonidos a tus mensajes de TTS. Los efectos de voz permiten a tus espectadores cambiar el tono, añadir reverb, reducir la calidad, etc.",
+			"soundEffectsTitle": "Efectos de Sonido",
+			"soundEffectsDesc": "Los Efectos de Sonido pueden añadir una variedad de sonidos a los mensajes de TTS de tus viewers. Tus viewers pueden crear sorprendentes mensajes de TTS con estas características."
 		},
 		"FAQ": {
-			"heading": "Frequently Asked Questions",
-			"q1": "Where can my viewers learn how to use the new TTS?",
-			"a1": "We have a wiki entry to help your viewers get started with using the new AI TTS syntax. It's available on <githubLink>GitHub</githubLink> and you can use the shortlink (<shortLink>https://mmatt.link/UseTTS</shortLink>) to put in Twitch panels or chat commands.",
-			"q2": "Where can I get help with setting up AI TTS Donations?",
-			"a2": "You can join the <discordLink>Discord server</discordLink> and you can ask your question and we'll get back to you as soon as possible. If you need 1 on 1 support, message \"mmatt\". Email: <emailLink>matt@mmatt.net</emailLink> or Discord: <discordUserLink>mmatt#0001</discordUserLink>"
+			"heading": "Preguntas Frecuentes",
+			"q1": "¿Dónde pueden mis viewers aprender a usar el nuevo TTS?",
+			"a1": "Tenemos una entrada wiki para ayudar a tus viewers a empezarse con el nuevo syntax de AI TTS. Está disponible en <githubLink>GitHub</githubLink> y puedes usar la url acortada (<shortLink>https://mmatt.link/UseTTS</shortLink>) para ponerla en los paneles de Twitch o comandos de chat.",
+			"q2": "¿Dónde puedo obtener ayuda para configurar AI TTS Donations?",
+			"a2": "Puedes unirte al <discordLink>Discord server</discordLink> y dejar allí tus preguntas, te responderemos lo más pronto posible. Si necesitas soporte 1 a 1, envía un mensaje a \"mmatt\". Correo: <emailLink>matt@mmatt.net</emailLink> o Discord: <discordUserLink>mmatt#0001</discordUserLink>"
 		},
-		"dontBelieve": "Don't believe us?",
-		"dontBelieveDesc": "Just look at what streamers say about it.",
-		"testimonyCTA": "Are you a streamer that uses AI TTS Donations? Give us a review <link>here!</link>",
+		"dontBelieve": "¿No nos crees?",
+		"dontBelieveDesc": "Simplemente mira lo que otros streamers dicen acerca de él.",
+		"testimonyCTA": "¿Eres un streamer que usa AI TTS Donations? Déjanos una review <link>aquí!</link>",
 		"emailSignUp": "¡Inscríbase a la lista de correo!",
-		"emailNotReadyDescription": "Subscribe to our mailing list to get updates in your email about AI TTS Donations!",
+		"emailNotReadyDescription": "¡Suscríbete a nuestra lista de correos para obtener actualizaciones acerca de AI TTS Donations!",
 		"emailSubscribeSuccess": "¡Te has suscrito con éxito!",
 		"emailPapertrail": "¿Quieres ver correos antigüos? ¡Chequea el historial de correos en el sitio web personal de mmatt!"
 	},
@@ -67,20 +67,20 @@
 		"ttsOverlay": "Overlay de TTS",
 		"ttsOverlayDescription": "Aquí es donde se reproducirá su audio de TTS, simplemente copie el enlace, y péguelo en una <Code>Fuente del navegador</Code> en su software de streaming preferido (como OBS).",
 		"configuration": {
-			"configurationHeading": "Configuration",
-			"channelPointsHeading": "Channel Points",
-			"channelPointRewardNameLabel": "Channel Point Reward Name (Case Sensitive)",
-			"maxMinLimitsHeading": "Max/Min Limits",
-			"maxMessageLengthLabel": "Max Message Length",
-			"minBitsAmountLabel": "Minimum Bits Amount",
-			"minResubMonthsLabel": "Minimum Resub Months Amount",
-			"blacklistHeading": "Blacklisted",
-			"blacklistDescription": "Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)",
-			"blacklistWordsLabel": "Words",
-			"blacklistVoicesLabel": "Voices",
-			"blacklistUsersLabel": "Users",
-			"fallbacksHeading": "Fallbacks",
-			"fallbacksVoiceLabel": "Fallback Voice"
+			"configurationHeading": "Configuración",
+			"channelPointsHeading": "Puntos del Canal",
+			"channelPointRewardNameLabel": "Nombre del Canje de los Puntos del Canal (Sensitivo a Mayúsculas)",
+			"maxMinLimitsHeading": "Límites Max/Min",
+			"maxMessageLengthLabel": "Largo Max. del Mensaje",
+			"minBitsAmountLabel": "Cantidad Mínima de Bits",
+			"minResubMonthsLabel": "Cantidad Mínima de Meses de Resub",
+			"blacklistHeading": "Bloqueados",
+			"blacklistDescription": "Utiliza una nueva linea para cada entrada. (Ejemplo: Forsen <Kbd>Enter</Kbd> Batman)",
+			"blacklistWordsLabel": "Palabras",
+			"blacklistVoicesLabel": "Voces",
+			"blacklistUsersLabel": "Usuarios",
+			"fallbacksHeading": "Respaldos",
+			"fallbacksVoiceLabel": "Voz de Respaldo"
 		}
 	}
 }
