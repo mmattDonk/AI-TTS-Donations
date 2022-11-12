@@ -15,10 +15,10 @@
 	"author": "mmattbtw <matt@mmatt.net>",
 	"license": "AGPL-3",
 	"devDependencies": {
-		"prisma": "^4.5.0",
-		"typescript": "4.7.4"
+		"prisma": "^4.6.1",
+		"typescript": "4.8.4"
 	},
 	"dependencies": {
-		"@prisma/client": "^4.5.0"
+		"@prisma/client": "^4.6.1"
 	}
 }

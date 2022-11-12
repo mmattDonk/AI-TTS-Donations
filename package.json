@@ -21,7 +21,7 @@
 	"license": "AGPL-3",
 	"devDependencies": {
 		"prettier": "^2.7.1",
-		"vercel": "^28.2.2"
+		"vercel": "^28.4.17"
 	},
 	"dependencies": {
 		"envsafe": "^2.0.3",
