@@ -1,6 +1,6 @@
 # backend
 
-The backend Express server handling Twitch Eventsub
+The backend Express server handling Twitch Eventsub that is hosted on [Railway](https://railway.app?referralCode=mmatt) (referral link)
 
 ## Setup
 
