@@ -138,23 +138,23 @@ app.post('/eventsub', async (req, res) => {
 			const streamerJson = (await streamer.json()) as streamer;
 			if (streamer.status !== 200) {
 				console.error('Streamer not found');
-				res.status(404).send('Streamer not found');
+				res.send(404).status(404);
 				return;
 			}
 			if (notification.subscription.type === 'channel.subscription.message') {
-				res.status(204).send('success!');
+				res.send('success!').status(204);
 				await subscriptionCallback(notification.event, streamerJson);
 			} else if (notification.subscription.type === 'channel.cheer') {
-				res.status(204).send('success!');
+				res.send('success!').status(204);
 				await cheerCallback(notification.event, streamerJson);
 			} else if (notification.subscription.type === 'channel.channel_points_custom_reward_redemption.add') {
-				res.status(204).send('success!');
+				res.send('success!').status(204);
 				await redemptionCallback(notification.event, streamerJson);
 			} else console.log(JSON.stringify(notification.event, null, 4));
 		} else if (MESSAGE_TYPE_VERIFICATION === req.headers[MESSAGE_TYPE]) {
-			res.status(200).send(notification.challenge);
+			res.send(notification.challenge).status(200);
 		} else if (MESSAGE_TYPE_REVOCATION === req.headers[MESSAGE_TYPE]) {
-			res.status(204).send('success!');
+			res.send(204).status(200);
 
 			console.log(`${notification.subscription.type} notifications revoked!`);
 			console.log(`reason: ${notification.subscription.status}`);
