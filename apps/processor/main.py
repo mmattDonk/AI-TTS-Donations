@@ -302,6 +302,8 @@ def hello_http(request):
         Response object using `make_response`
         <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
     """
+    API_URL = ""
+    API_SECRET = ""
     request_json = request.get_json(silent=True)
     token = request.headers.get("Authorization")
 
@@ -339,8 +341,6 @@ def hello_http(request):
     response = request_tts(
         message=request_message, failed=False, overlayId=overlay_id, config=config
     )
-    API_URL = ""
-    API_SECRET = ""
 
     print("Pushing " + response["audioUrl"] + " to " + " overlay " + overlay_id)
     print("This was the request json", request_json)
