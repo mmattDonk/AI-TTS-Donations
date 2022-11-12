@@ -112,11 +112,7 @@ async function cheerCallback(event: cheerEvent, streamerJson: streamer) {
 }
 
 async function redemptionCallback(event: redemptionEvent, streamerJson: streamer) {
-	// i don't like this
-	// vvvvvvvvvvvvv
-	if (streamerJson.streamer.config[0].channelPointsName === (null || undefined)) return;
-	// ^^^^^^^^^^^^^
-
+	if (!streamerJson?.streamer?.config[0]?.channelPointsName) return;
 	if (streamerJson.streamer.config[0].channelPointsEnabled === false) return;
 	if (streamerJson.streamer.config[0].channelPointsName !== event.reward.title) return;
 	if (event.user_name.toLowerCase() in streamerJson.streamer.config[0].blacklistedUsers) return;
