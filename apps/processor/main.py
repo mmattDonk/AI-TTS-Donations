@@ -105,6 +105,7 @@ def request_tts(
     message: str, config: dict, failed: Optional[bool] = False, overlayId: str = ""  # type: ignore
 ):
     messages: list = message.split("||")
+    date_string: str = datetime.now().strftime("%d%m%Y%H%M%S")
     log.debug(messages)
     q = queue.Queue()
     voice_files: list = []
@@ -192,7 +193,7 @@ def request_tts(
                 log.debug(check_tts_response)
                 if check_tts_response["path"] != None:
                     log.info(f"TTS processed after {checkCount} checks")
-                    date_string: str = datetime.now().strftime("%d%m%Y%H%M%S")
+
                     urllib.request.urlretrieve(
                         check_tts_response["path"],
                         f"./voice_files/AI_voice_{date_string}.wav",
