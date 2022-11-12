@@ -1,10 +1,10 @@
 import crypto from 'crypto';
 import dotenv from 'dotenv';
 import { envsafe, num, str, url } from 'envsafe';
-import express from 'express';
+import fastify, { FastifyRequest } from 'fastify';
 import fetch from 'node-fetch';
 import { cheerEvent, redemptionEvent, streamer, subscriptionEvent } from './typings';
-const app = express();
+const app = fastify();
 dotenv.config();
 
 const env = envsafe({
@@ -40,7 +40,7 @@ const env = envsafe({
 });
 
 // port
-const port = env.PORT || 4200;
+const PORT = env.PORT || 4200;
 
 // Notification request headers
 const TWITCH_MESSAGE_ID = 'Twitch-Eventsub-Message-Id'.toLowerCase();
@@ -59,13 +59,6 @@ const HMAC_PREFIX = 'sha256=';
 // next.js api base url
 const API_URL = env.API_URL ?? 'http://localhost:3000';
 const SERVERLESS_PROCESSOR_URL = env.SERVERLESS_PROCESSOR_URL ?? 'http://localhost:8080';
-
-app.use(
-	express.raw({
-		// Need raw message body for signature verification
-		type: 'application/json',
-	})
-);
 
 async function processEvent(broadcasterId: string, message: string, streamerJson: streamer) {
 	if (message.length > streamerJson.streamer.config[0].maxMsgLength) return;
@@ -126,12 +119,13 @@ app.post('/eventsub', async (req, res) => {
 	let secret = getSecret();
 	let message = getHmacMessage(req);
 	let hmac = HMAC_PREFIX + getHmac(secret, message); // Signature to compare
-
+	console.log(message);
+	console.log(req.headers[TWITCH_MESSAGE_SIGNATURE]);
 	if (true === verifyMessage(hmac, req.headers[TWITCH_MESSAGE_SIGNATURE])) {
 		console.log('signatures match');
 
 		// Get JSON object from body, so you can process the message.
-		let notification = JSON.parse(req.body);
+		let notification = JSON.parse(req.body as string);
 
 		if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
 			console.log(`Event type: ${notification.subscription.type}`);
@@ -164,12 +158,12 @@ app.post('/eventsub', async (req, res) => {
 			console.log(`reason: ${notification.subscription.status}`);
 			console.log(`condition: ${JSON.stringify(notification.subscription.condition, null, 4)}`);
 		} else {
-			res.sendStatus(204);
+			res.send(204);
 			console.log(`Unknown message type: ${req.headers[MESSAGE_TYPE]}`);
 		}
 	} else {
 		console.log('403'); // Signatures didn't match.
-		res.sendStatus(403);
+		res.send(403);
 	}
 });
 
@@ -181,7 +175,7 @@ app.post('/newuser', async (req, res) => {
 		console.log('rejected :p');
 		return res.status(403).send('Forbidden');
 	}
-	const data = JSON.parse(req.body);
+	const data = JSON.parse(req.body as string);
 
 	const [subscribeResub, subscribeCheers, subscribeReward] = await Promise.all([
 		fetch('https://api.twitch.tv/helix/eventsub/subscriptions', {
@@ -260,9 +254,16 @@ app.post('/newuser', async (req, res) => {
 	}
 });
 
-app.listen(port, () => {
-	console.log(`@solrock/backend started at port ${port} 🎉`);
-});
+const start = async () => {
+	try {
+		await app.listen({ port: PORT });
+		console.log(`@solrock/backend listening on port ${PORT}`);
+	} catch (err) {
+		app.log.error(err);
+		process.exit(1);
+	}
+};
+start();
 
 function getSecret() {
 	// TODO: Get secret from secure storage. This is the secret you pass
@@ -273,7 +274,8 @@ function getSecret() {
 }
 
 // Build the message used to get the HMAC.
-function getHmacMessage(request: any) {
+function getHmacMessage(request: FastifyRequest) {
+	// @ts-ignore
 	return request.headers[TWITCH_MESSAGE_ID] + request.headers[TWITCH_MESSAGE_TIMESTAMP] + request.body;
 }
 
