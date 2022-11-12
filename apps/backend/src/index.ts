@@ -83,8 +83,9 @@ async function processEvent(broadcasterId: string, message: string, streamerJson
 }
 
 async function subscriptionCallback(event: subscriptionEvent, streamerJson: streamer) {
-	if (streamerJson.streamer.config[0].minMonthsAmount > event.duration_months) return;
+	if (!streamerJson?.streamer?.config[0]?.minMonthsAmount) return;
 	if (streamerJson.streamer.config[0].resubsEnabled === false) return;
+	if (streamerJson.streamer.config[0].minMonthsAmount > event.duration_months) return;
 	if (event.user_name.toLowerCase() in streamerJson.streamer.config[0].blacklistedUsers) return;
 
 	console.log('USER SUB', event.user_login);
@@ -94,8 +95,9 @@ async function subscriptionCallback(event: subscriptionEvent, streamerJson: stre
 }
 
 async function cheerCallback(event: cheerEvent, streamerJson: streamer) {
-	if (streamerJson.streamer.config[0].minBitAmount > event.bits) return;
+	if (!streamerJson?.streamer?.config[0]?.minBitAmount) return;
 	if (streamerJson.streamer.config[0].bitsEnabled === false) return;
+	if (streamerJson.streamer.config[0].minBitAmount > event.bits) return;
 	if (event.user_name.toLowerCase() in streamerJson.streamer.config[0].blacklistedUsers) return;
 
 	console.log('USER CHEER', event.user_login);
@@ -119,13 +121,13 @@ app.post('/eventsub', async (req, res) => {
 	let secret = getSecret();
 	let message = getHmacMessage(req);
 	let hmac = HMAC_PREFIX + getHmac(secret, message); // Signature to compare
-	console.log(message);
-	console.log(req.headers[TWITCH_MESSAGE_SIGNATURE]);
+
 	if (true === verifyMessage(hmac, req.headers[TWITCH_MESSAGE_SIGNATURE])) {
 		console.log('signatures match');
 
 		// Get JSON object from body, so you can process the message.
-		let notification = JSON.parse(req.body as string);
+		// TODO: fix this
+		let notification = req.body as any;
 
 		if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
 			console.log(`Event type: ${notification.subscription.type}`);
@@ -168,14 +170,15 @@ app.post('/eventsub', async (req, res) => {
 });
 
 app.post('/newuser', async (req, res) => {
-	console.log('new user!');
+	// TODO: fix this
+	const data = req.body as any;
+	console.log('new user!', data.streamerId);
 	// if bearer token not equal to env.secret
 	const secret = req.headers.authorization?.split(' ')[1];
 	if (secret !== env.API_SECRET) {
 		console.log('rejected :p');
 		return res.status(403).send('Forbidden');
 	}
-	const data = JSON.parse(req.body as string);
 
 	const [subscribeResub, subscribeCheers, subscribeReward] = await Promise.all([
 		fetch('https://api.twitch.tv/helix/eventsub/subscriptions', {
@@ -276,7 +279,7 @@ function getSecret() {
 // Build the message used to get the HMAC.
 function getHmacMessage(request: FastifyRequest) {
 	// @ts-ignore
-	return request.headers[TWITCH_MESSAGE_ID] + request.headers[TWITCH_MESSAGE_TIMESTAMP] + request.body;
+	return request.headers[TWITCH_MESSAGE_ID] + request.headers[TWITCH_MESSAGE_TIMESTAMP] + JSON.stringify(request.body);
 }
 
 // Get the HMAC.
