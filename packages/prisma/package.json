@@ -1,6 +1,5 @@
 {
 	"name": "@solrock/prisma",
-	"type": "module",
 	"version": "1.0.0",
 	"description": "the database schema for solrock",
 	"private": true,
@@ -9,7 +8,9 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"postinstall": "prisma generate",
-		"prisma": "prisma"
+		"prisma": "prisma",
+		"db:generate": "prisma generate",
+		"db:push": "prisma db push --skip-generate"
 	},
 	"keywords": [],
 	"author": "mmattbtw <matt@mmatt.net>",

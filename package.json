@@ -1,21 +1,21 @@
 {
 	"name": "solrock",
 	"version": "1.0.0",
-	"description": "https://aittsdonations.mmattdonk.com/",
+	"description": "https://staging.solrock.mmattdonk.com/",
 	"private": true,
-	"main": "index.js",
-	"packageManager": "yarn@3.2.4",
+	"packageManager": "pnpm@7.14.2",
 	"scripts": {
-		"frontend": "yarn workspace @solrock/frontend",
-		"backend": "yarn workspace @solrock/backend",
-		"processor": "yarn workspace @solrock/processor",
-		"prisma": "yarn workspace @solrock/prisma",
+		"frontend": "pnpm --filter @solrock/frontend run",
+		"backend": "pnpm --filter @solrock/backend run",
+		"processor": "pnpm --filter @solrock/processor run",
+		"prisma": "pnpm --filter @solrock/prisma run",
 		"dev": "turbo run dev",
 		"build": "turbo run build"
 	},
 	"keywords": [],
 	"workspaces": [
-		"apps/*"
+		"apps/*",
+		"packages/*"
 	],
 	"author": "mmattbtw <matt@mmatt.net>",
 	"license": "AGPL-3",
