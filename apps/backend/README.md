@@ -4,5 +4,5 @@ The backend Express server handling Twitch Eventsub that is hosted on [Railway](
 
 ## Setup
 
-1. Install dependencies with `yarn install`
-2. Start the Express server in development mode with `yarn dev`
+1. Install dependencies with `pnpm install`
+2. Start the Express server in development mode with `pnpm dev`

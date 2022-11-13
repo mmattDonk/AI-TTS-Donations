@@ -12,4 +12,6 @@ console.log(env.DATABASE_URL);
 const prismaClient = new PrismaClient({
 	log: process.env.NODE_ENV === 'development' ? ['query', 'info', 'warn', 'error'] : ['error'],
 });
-export const prisma = prismaClient;
+
+export * from '@prisma/client';
+export const prisma: PrismaClient = prismaClient;

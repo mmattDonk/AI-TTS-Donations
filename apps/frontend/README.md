@@ -4,5 +4,5 @@ The Frontend Next.js app handling the dashboard and overlay, bootstrapped with [
 
 ## Setup
 
-1. Install dependencies with `yarn install`
-2. Start the Next.js server in development mode with `yarn dev`
+1. Install dependencies with `pnpm install`
+2. Start the Next.js server in development mode with `pnpm dev`
