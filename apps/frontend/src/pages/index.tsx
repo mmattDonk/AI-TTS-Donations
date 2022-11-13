@@ -157,9 +157,7 @@ const Home: NextPage = () => {
 								</Menu>
 							</>
 						) : (
-							<Button onClick={() => signIn()} size="xs">
-								{t('signIn')}
-							</Button>
+							<Button onClick={() => signIn('twitch')}>{t('signIn')}</Button>
 						)}
 					</Group>
 
@@ -203,7 +201,7 @@ const Home: NextPage = () => {
 										</>
 									) : (
 										<>
-											<Button className={classes.control} size="lg" disabled={isLoading} onClick={() => signIn()}>
+											<Button className={classes.control} size="lg" disabled={isLoading} onClick={() => signIn('twitch')}>
 												{t('Landing.getStarted')}
 											</Button>
 										</>
