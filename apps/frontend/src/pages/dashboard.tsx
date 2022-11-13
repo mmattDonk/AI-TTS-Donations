@@ -128,7 +128,7 @@ export default function Dashboard() {
 				>
 					<Stack align="center">
 						<h1>{t('notLoggedIn')}</h1>
-						<Button onClick={() => signIn()} size="xl">
+						<Button onClick={() => signIn('twitch')} size="xl">
 							{t('signIn')}
 						</Button>
 					</Stack>

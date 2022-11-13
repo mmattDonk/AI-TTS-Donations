@@ -79,7 +79,7 @@ export default function MediaControls() {
 			>
 				<Stack align="center">
 					<h1>You are not logged in.</h1>
-					<Button onClick={() => signIn()} size="xl">
+					<Button onClick={() => signIn('twitch')} size="xl">
 						Sign In
 					</Button>
 				</Stack>

@@ -1,5 +1,4 @@
 import { Avatar, Button, Center, Container, createStyles, Group, Menu, Text, TextInput, Title, Tooltip, UnstyledButton } from '@mantine/core';
-import { NextLink } from '@mantine/next';
 import type { GetStaticPropsContext, NextPage } from 'next';
 import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
@@ -148,7 +147,7 @@ const Home: NextPage = () => {
 									</Menu.Target>
 									<Menu.Dropdown>
 										<Menu.Label>{t('loggedIn', { name: session.user?.name })}</Menu.Label>
-										<Menu.Item icon={<Dashboard size={18} />} component={NextLink} href="/dashboard">
+										<Menu.Item icon={<Dashboard size={18} />} component={Link} href="/dashboard">
 											{t('Landing.dashboard')}
 										</Menu.Item>
 										<Menu.Item icon={<DoorExit size={18} />} color="red" onClick={() => signOut()}>
@@ -158,9 +157,7 @@ const Home: NextPage = () => {
 								</Menu>
 							</>
 						) : (
-							<Button onClick={() => signIn()} size="xs">
-								{t('signIn')}
-							</Button>
+							<Button onClick={() => signIn('twitch')}>{t('signIn')}</Button>
 						)}
 					</Group>
 
@@ -204,7 +201,7 @@ const Home: NextPage = () => {
 										</>
 									) : (
 										<>
-											<Button className={classes.control} size="lg" disabled={isLoading} onClick={() => signIn()}>
+											<Button className={classes.control} size="lg" disabled={isLoading} onClick={() => signIn('twitch')}>
 												{t('Landing.getStarted')}
 											</Button>
 										</>
