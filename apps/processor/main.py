@@ -105,11 +105,11 @@ def request_tts(
     message: str, config: dict, failed: Optional[bool] = False, overlayId: str = ""  # type: ignore
 ):
     messages: list = message.split("||")
-    date_string: str = datetime.now().strftime("%d%m%Y%H%M%S")
     log.debug(messages)
     q = queue.Queue()
     voice_files: list = []
     for message in messages:
+        date_string: str = datetime.now().strftime("%d%m%Y%H%M%S")
         for i in config["blacklistedWords"]:
             if i.lower() in message.lower():
                 log.info("Blacklisted word found")

@@ -6,7 +6,7 @@
 	"main": "./index.ts",
 	"types": "./index.ts",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "prisma studio",
 		"postinstall": "prisma generate",
 		"prisma": "prisma",
 		"db:generate": "prisma generate",
