@@ -14,4 +14,4 @@ const prismaClient = new PrismaClient({
 });
 
 export * from '@prisma/client';
-export const prisma: PrismaClient = prismaClient;
+export const prisma = prismaClient;
