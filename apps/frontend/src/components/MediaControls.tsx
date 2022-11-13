@@ -116,7 +116,7 @@ export default function MediaControls() {
 								<th>Created At</th>
 							</thead>
 							<tbody>
-								{ttsMessages?.messages?.map((message: any, i) => (
+								{ttsMessages?.messages?.map((message: any, i: number) => (
 									<tr key={i}>
 										<td>
 											<div>
