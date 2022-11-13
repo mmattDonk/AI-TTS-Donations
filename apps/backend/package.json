@@ -3,13 +3,12 @@
 	"type": "module",
 	"version": "0.0.1",
 	"description": "twitch eventsub websocket server.",
-	"main": "index.js",
+	"main": "./dist/index.js",
 	"scripts": {
 		"build": "tsc",
 		"start": "pnpm build && node ./dist/index.js",
 		"dev": "nodemon"
 	},
-	"keywords": [],
 	"author": "mmattbtw <matt@mmatt.net>",
 	"license": "AGPL-3",
 	"private": true,
