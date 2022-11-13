@@ -27,6 +27,9 @@ export const authOptions: NextAuthOptions = {
 	// Configure one or more authentication providers
 	adapter: PrismaAdapter(prisma),
 	secret: env.NEXTAUTH_SECRET,
+	pages: {
+		signIn: '/auth/signin',
+	},
 	providers: [
 		TwitchProvider({
 			clientId: env.TWITCH_ID ?? '',
