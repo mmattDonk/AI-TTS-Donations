@@ -1,12 +1,11 @@
-import { Container, Group } from '@mantine/core';
 import Image from 'next/image';
 
 export function LoadingComponent() {
 	return (
-		<Group>
+		<div>
 			<p>Loading...</p>
 			<Image src="/images/dankCircle.webp" alt={'pajaDank emote spinning in a circle, acting as a loading spinner.'} height="50" width="50" />
-		</Group>
+		</div>
 	);
 }
 export function LoadingSpinner() {
@@ -15,7 +14,7 @@ export function LoadingSpinner() {
 
 export default function LoadingPage() {
 	return (
-		<Container
+		<div
 			style={{
 				// center vertically
 				display: 'flex',
@@ -25,10 +24,10 @@ export default function LoadingPage() {
 				height: '100vh',
 			}}
 		>
-			<Group>
+			<div>
 				<h1>Loading...</h1>
 				<Image src="/images/dankCircle.webp" alt={'pajaDank emote spinning in a circle, acting as a loading spinner.'} height="100" width="100" />
-			</Group>
-		</Container>
+			</div>
+		</div>
 	);
 }

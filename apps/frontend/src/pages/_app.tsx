@@ -1,6 +1,4 @@
 // src/pages/_app.tsx
-import { ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mantine/core';
-import { NotificationsProvider } from '@mantine/notifications';
 import { withTRPC } from '@trpc/next';
 import { Analytics } from '@vercel/analytics/react';
 import type { Session } from 'next-auth';
@@ -8,10 +6,11 @@ import { SessionProvider } from 'next-auth/react';
 import { NextIntlProvider } from 'next-intl';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import superjson from 'superjson';
-import { RouterTransition } from '../components/RouterTransition';
 import type { AppRouter } from '../server/router';
+
+import '../styles/global.css';
 
 type PageProps = {
 	messages: IntlMessages;
@@ -74,15 +73,16 @@ export function App({ Component, pageProps: { session, ...pageProps } }: Props) 
 
 	if (router.pathname.split('/')[1] !== 'overlay') {
 		return (
-			<MantineTheme>
-				<RouterTransition />
+			// <MantineTheme>
+			<>
 				<SessionProvider session={session}>
 					<NextIntlProvider messages={pageProps.messages}>
 						<Component {...pageProps} />
 					</NextIntlProvider>
 					<Analytics />
 				</SessionProvider>
-			</MantineTheme>
+			</>
+			// </MantineTheme>
 		);
 	} else {
 		return (
@@ -126,31 +126,3 @@ export default withTRPC<AppRouter>({
 	 */
 	ssr: false,
 })(App);
-
-function MantineTheme({ children }: { children: React.ReactNode }) {
-	const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
-	const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
-
-	return (
-		<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-			<MantineProvider theme={{ colorScheme }} withNormalizeCSS withGlobalStyles>
-				<NotificationsProvider>
-					<Global
-						styles={(theme) => ({
-							a: {
-								color: theme.colorScheme === 'dark' ? theme.colors.dark![0] : theme.colors.gray![7],
-								textDecoration: 'underline',
-
-								'&:hover': {
-									color: theme.colors[theme.primaryColor]![theme.colorScheme === 'dark' ? 3 : 7],
-									textDecoration: 'none',
-								},
-							},
-						})}
-					/>
-					{children}
-				</NotificationsProvider>
-			</MantineProvider>
-		</ColorSchemeProvider>
-	);
-}

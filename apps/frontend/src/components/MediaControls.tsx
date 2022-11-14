@@ -1,5 +1,3 @@
-import { Button, Collapse, Container, Group, Space, Stack, Table } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { Rotate } from 'tabler-icons-react';

@@ -157,7 +157,9 @@ const Home: NextPage = () => {
 								</Menu>
 							</>
 						) : (
-							<Button onClick={() => signIn('twitch')}>{t('signIn')}</Button>
+							<button className="btn btn-primary" onClick={() => signIn('twitch')}>
+								{t('signIn')}
+							</button>
 						)}
 					</Group>
 
@@ -204,6 +206,9 @@ const Home: NextPage = () => {
 											<Button className={classes.control} size="lg" disabled={isLoading} onClick={() => signIn('twitch')}>
 												{t('Landing.getStarted')}
 											</Button>
+											<button className="btn btn-primary" onClick={() => signIn('twitch')}>
+												{t('Landing.getStarted')}
+											</button>
 										</>
 									)}
 									<Button variant="outline" className={classes.control} size="lg" onClick={scrollToPositions}>
