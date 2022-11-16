@@ -57,6 +57,6 @@
 		"@types/react-typist": "^2.0.3",
 		"eslint": "8.27.0",
 		"eslint-config-next": "latest",
-		"typescript": "4.8.4"
+		"typescript": "4.9.3"
 	}
 }
