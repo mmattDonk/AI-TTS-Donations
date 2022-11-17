@@ -15,9 +15,9 @@ export default function Dashboard() {
 	const [sensitiveOpen, setSensitiveOpen] = useState(false);
 	const t = useTranslations();
 
-	const { data: session, isLoading: isSessionLoading } = trpc.auth.getSession.useQuery();
+	const { data: session, isLoading: isSessionLoading } = trpc.useQuery(['auth.getSession']);
 
-	const { data: streamerData, isLoading: isStreamerLoading } = trpc.streamer.getStreamer.useQuery(session?.user?.name ?? '', {
+	const { data: streamerData, isLoading: isStreamerLoading } = trpc.useQuery(['streamer.get-streamer', session?.user?.name ?? ''], {
 		onSuccess(data) {
 			setConfig(
 				data?.config[0] ?? {
@@ -37,10 +37,9 @@ export default function Dashboard() {
 				}
 			);
 		},
-		trpc: {},
 	});
 
-	const configMutation = trpc.streamer.updateStreamerConfig.useMutation();
+	const configMutation = trpc.useMutation('streamer.update-streamer-config');
 
 	const [config, setConfig] = useState(
 		streamerData?.config[0] ?? {
