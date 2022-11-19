@@ -42,7 +42,13 @@ export const streamerRouter = createRouter()
 			}),
 		}),
 		resolve: async ({ ctx, input }) => {
-			const { streamerId, config } = input;
+			let { streamerId, config } = input;
+			config = {
+				...config,
+				blacklistedWords: config.blacklistedWords.filter((w) => w !== ''),
+				blacklistedVoices: config.blacklistedVoices.filter((w) => w !== ''),
+				blacklistedUsers: config.blacklistedUsers.filter((w) => w !== ''),
+			};
 			return await ctx.prisma.streamerConfig.upsert({
 				where: {
 					id: streamerId,
