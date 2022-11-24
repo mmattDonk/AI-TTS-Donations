@@ -344,14 +344,13 @@ const Home: NextPage = () => {
 						height: '100%',
 					}}
 				>
-					{/* <h1 style={{ textAlign: "center" }}>
-            {t("Landing.getStartedToday")}
-          </h1>
-          <Link href="/dashboard" prefetch>
-            <Center>
-              <Button>{t("Landing.getStarted")}</Button>
-            </Center>
-          </Link> */}
+					{/* idk if i want to use this or not, i still want to have the mailing list *maybe* */}
+					{/* <h1 style={{ textAlign: 'center' }}>{t('Landing.getStartedToday')}</h1>
+					<Link href="/dashboard" prefetch>
+						<Center>
+							<Button>{t('Landing.getStarted')}</Button>
+						</Center>
+					</Link> */}
 					<h1 style={{ textAlign: 'center' }}>{t('Landing.emailSignUp')}</h1>
 					<p style={{ textAlign: 'center' }}>{t('Landing.emailNotReadyDescription')}</p>
 
