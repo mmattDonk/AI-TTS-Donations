@@ -1,6 +1,6 @@
 {
 	"beta": {
-		"header": "Este es un sitio en BETA. Por favor informa acerca de bugs al <discordLink>Servidor de Discord de mmattDonk</discordLink>."
+		"header": "This is a BETA website. Please report bugs and get help in the <discordLink>mmattDonk Discord server</discordLink>."
 	},
 	"close": "Cerrar",
 	"open": "Abrir",
@@ -50,7 +50,7 @@
 			"q1": "¿Dónde pueden mis viewers aprender a usar el nuevo TTS?",
 			"a1": "Tenemos una entrada wiki para ayudar a tus viewers a empezarse con el nuevo syntax de AI TTS. Está disponible en <githubLink>GitHub</githubLink> y puedes usar la url acortada (<shortLink>https://mmatt.link/UseTTS</shortLink>) para ponerla en los paneles de Twitch o comandos de chat.",
 			"q2": "¿Dónde puedo obtener ayuda para configurar AI TTS Donations?",
-			"a2": "Puedes unirte al <discordLink>Discord server</discordLink> y dejar allí tus preguntas, te responderemos lo más pronto posible. Si necesitas soporte 1 a 1, envía un mensaje a \"mmatt\". Correo: <emailLink>matt@mmatt.net</emailLink> o Discord: <discordUserLink>mmatt#0001</discordUserLink>"
+			"a2": "You can join the <discordLink>Discord server</discordLink> and open a ticket and we'll get back to you as soon as possible."
 		},
 		"dontBelieve": "¿No nos crees?",
 		"dontBelieveDesc": "Simplemente mira lo que otros streamers dicen acerca de él.",
