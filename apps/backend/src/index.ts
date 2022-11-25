@@ -83,7 +83,8 @@ async function processEvent(broadcasterId: string, message: string, streamerJson
 }
 
 async function subscriptionCallback(event: subscriptionEvent, streamerJson: streamer) {
-	if (!streamerJson?.streamer?.config[0]?.minMonthsAmount) return;
+	// vvvv this was breaking for some reason /shrug TODO: fix
+	// if (!streamerJson?.streamer?.config[0]?.minMonthsAmount) return;
 	if (streamerJson.streamer.config[0].resubsEnabled === false) return;
 	if (streamerJson.streamer.config[0].minMonthsAmount > event.duration_months) return;
 	if (event.user_name.toLowerCase() in streamerJson.streamer.config[0].blacklistedUsers) return;
@@ -95,7 +96,8 @@ async function subscriptionCallback(event: subscriptionEvent, streamerJson: stre
 }
 
 async function cheerCallback(event: cheerEvent, streamerJson: streamer) {
-	if (!streamerJson?.streamer?.config[0]?.minBitAmount) return;
+	// vvvv this was breaking for some reason /shrug TODO: fix
+	// if (!streamerJson?.streamer?.config[0]?.minBitAmount) return;
 	if (streamerJson.streamer.config[0].bitsEnabled === false) return;
 	if (streamerJson.streamer.config[0].minBitAmount > event.bits) return;
 	if (event.user_name.toLowerCase() in streamerJson.streamer.config[0].blacklistedUsers) return;
