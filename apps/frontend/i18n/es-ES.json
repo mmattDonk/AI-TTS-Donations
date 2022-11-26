@@ -1,6 +1,6 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs and get help in the <discordLink>mmattDonk Discord server</discordLink>."
+		"header": "Esta página se encuentra en BETA. Por favor informa de bugs y consigue ayuda en el <discordLink>server de Discord de mmattDonk</discordLink>."
 	},
 	"close": "Cerrar",
 	"open": "Abrir",
@@ -35,7 +35,7 @@
 		"featuresHeading": "Características que <gradientText>no tienen rivalidad</gradientText> en comparación con cualquier otra cosa disponible.",
 		"features": {
 			"freeTitle": "Gratis para utilizar",
-			"freeDesc": "All features in AI TTS Donations are completely free. No fees, and no subscriptions. Simply sign in, setup, and use. No payments required at all.",
+			"freeDesc": "Todas las características en AI TTS Donations son completamente gratuitas. No hay tarifas, ni suscripciones. Simplemente descarga, instala y utiliza. No hay pagos requeridos.",
 			"openSourceTitle": "Código Abierto",
 			"openSourceDesc": "AI TTS Donations es completamente código abierto bajo la licencia 'AGPL-3'. Puedes mirar el Código Abierto en la página de GitHub y contribuir allí.",
 			"voicesTitle": "1000+ Voces",
@@ -50,7 +50,7 @@
 			"q1": "¿Dónde pueden mis viewers aprender a usar el nuevo TTS?",
 			"a1": "Tenemos una entrada wiki para ayudar a tus viewers a empezarse con el nuevo syntax de AI TTS. Está disponible en <githubLink>GitHub</githubLink> y puedes usar la url acortada (<shortLink>https://mmatt.link/UseTTS</shortLink>) para ponerla en los paneles de Twitch o comandos de chat.",
 			"q2": "¿Dónde puedo obtener ayuda para configurar AI TTS Donations?",
-			"a2": "You can join the <discordLink>Discord server</discordLink> and open a ticket and we'll get back to you as soon as possible."
+			"a2": "Puedes unirte al <discordLink>server de Discord</discordLink> y abrir un reclamo y te responderemos lo antes posible."
 		},
 		"dontBelieve": "¿No nos crees?",
 		"dontBelieveDesc": "Simplemente mira lo que otros streamers dicen acerca de él.",
