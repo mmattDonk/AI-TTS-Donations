@@ -30,7 +30,7 @@
 		"@trpc/client": "^9.25.3",
 		"@trpc/next": "^9.25.3",
 		"@trpc/react": "^9.25.3",
-		"@trpc/server": "^9.25.3",
+		"@trpc/server": "^10.4.0",
 		"@vercel/analytics": "^0.1.2",
 		"embla-carousel-autoplay": "^7.0.3",
 		"embla-carousel-react": "^7.0.3",
