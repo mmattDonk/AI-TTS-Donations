@@ -1,7 +1,7 @@
 import { Carousel } from '@mantine/carousel';
 import { Avatar, createStyles, Group, Rating, Text } from '@mantine/core';
 import Autoplay from 'embla-carousel-autoplay';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
 	body: {
@@ -163,14 +163,20 @@ function Testimonial({ body, author, stars }: CommentSimpleProps) {
 }
 
 export default function TestimoniesComponent() {
-	const autoplay = useRef(Autoplay({ delay: 10000 }));
+	const autoplay = useRef(Autoplay({ delay: 2000 }));
+	const [grabbing, setGrabbing] = useState(false);
 
 	return (
 		<Carousel
-			style={{
+			sx={{
 				marginBottom: '1rem',
 				maxWidth: 620,
+				'&:hover': {
+					cursor: grabbing ? 'grabbing' : 'grab',
+				},
 			}}
+			onMouseDownCapture={() => setGrabbing(true)}
+			onMouseUpCapture={() => setGrabbing(false)}
 			withIndicators
 			loop
 			withControls={false}
