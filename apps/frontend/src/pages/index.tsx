@@ -324,10 +324,10 @@ const Home: NextPage = () => {
 				style={{
 					// background color gradient from comepletely transparent to black
 					background: `linear-gradient(
-              to bottom,
-              rgba(0, 0, 0, 0),
-              rgba(0, 0, 0, 1)
-            )`,
+									to bottom,
+									rgba(0, 0, 0, 0),
+									rgba(0, 0, 0, 1)
+								)`,
 					paddingTop: '1rem',
 					paddingBottom: '2rem',
 					width: '100%',
