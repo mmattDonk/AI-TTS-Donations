@@ -11,7 +11,7 @@ load_dotenv()
 
 
 class Uberduck:
-    def get_job(text: str, voice_name: str) -> dict:
+    def get_job(text: str, voice_name: str) -> dict:  # type: ignore
         """Get the Uberduck Voice job.
 
         :param text: The text to be spoken.
@@ -33,8 +33,8 @@ class Uberduck:
         response = httpx.post(
             "https://api.uberduck.ai/speak",
             auth=(
-                os.environ.get("UBERDUCK_USERNAME"),
-                os.environ.get("UBERDUCK_SECRET"),
+                f"{os.environ.get('UBERDUCK_USERNAME')}",
+                f"{os.environ.get('UBERDUCK_SECRET')}",
             ),
             json={
                 "speech": text,
@@ -61,7 +61,7 @@ class Uberduck:
             "uuid": uuid,
         }
 
-    def check_tts(uuid: str) -> dict:
+    def check_tts(uuid: str) -> dict:  # type: ignore
         """
         Check if the TTS job is finished, if it is finished, it returns the URL to the audio file.
 
@@ -79,8 +79,8 @@ class Uberduck:
         response = httpx.get(
             f"https://api.uberduck.ai/speak-status?uuid={uuid}",
             auth=(
-                os.environ.get("UBERDUCK_USERNAME"),
-                os.environ.get("UBERDUCK_SECRET"),
+                f"{os.environ.get('UBERDUCK_USERNAME')}",
+                f"{os.environ.get('UBERDUCK_SECRET')}",
             ),
             timeout=60,
         )
