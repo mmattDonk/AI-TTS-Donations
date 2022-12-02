@@ -28,7 +28,7 @@
 		"@solrock/prisma": "workspace:*",
 		"@tabler/icons": "^1.108.0",
 		"@trpc/client": "^9.25.3",
-		"@trpc/next": "^9.25.3",
+		"@trpc/next": "^10.4.3",
 		"@trpc/react": "^9.25.3",
 		"@trpc/server": "^9.25.3",
 		"@vercel/analytics": "^0.1.2",
