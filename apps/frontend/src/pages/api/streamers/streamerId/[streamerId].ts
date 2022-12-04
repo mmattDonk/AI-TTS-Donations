@@ -1,6 +1,6 @@
-import { prisma } from '@solrock/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { env } from '../../../../utils/env';
+import prismaClient from '../../../../utils/prisma';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if secret not in request headers, return unauthorized
@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 	const { streamerId } = req.query;
 	console.debug(streamerId);
-	const streamer = await prisma.streamer.findFirst({
+	const streamer = await prismaClient.streamer.findFirst({
 		where: {
 			user: {
 				accounts: {

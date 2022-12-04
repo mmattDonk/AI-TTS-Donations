@@ -44,4 +44,8 @@ export const env = envsafe({
 		desc: 'get this from mailchimp.com (used for email signups, not neaded most of the time)',
 		allowEmpty: true,
 	}),
+	SERVERLESS_PROCESSOR_URL: url({
+		desc: 'The serverless Python Processor URL',
+		devDefault: 'http://127.0.0.1:8080',
+	}),
 });

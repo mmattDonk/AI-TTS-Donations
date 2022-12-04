@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { env } from '../../utils/env';
 import { createRouter } from './context';
 
 export const ttsRouter = createRouter()
@@ -9,7 +10,26 @@ export const ttsRouter = createRouter()
 		}),
 		async resolve({ input, ctx }) {
 			const { audioUrl, overlayId } = input;
-			const { pusher } = ctx;
+			const { pusher, prisma } = ctx;
+			const audioUrlResponse = fetch(audioUrl);
+			if ((await audioUrlResponse).status !== 200) {
+				const message = await prisma.ttsMessages.findFirst({
+					where: {
+						audioUrl: audioUrl,
+					},
+				});
+				console.log(message.message);
+				await fetch(env.SERVERLESS_PROCESSOR_URL, {
+					body: JSON.stringify({
+						message: message.message,
+						overlayId: overlayId,
+					}),
+					headers: { Authorization: 'Bearer ' + env.API_SECRET, 'Content-Type': 'application/json' },
+					method: 'POST',
+				});
+				// TODO: update old message with new audioUrl
+				return;
+			}
 			try {
 				console.log('retriggering', audioUrl, 'for', overlayId);
 				pusher.trigger(overlayId, 'skip-tts', {});
