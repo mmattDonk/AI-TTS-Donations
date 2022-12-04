@@ -1,17 +1,12 @@
+// author: @t3-oss: https://github.com/t3-oss/create-t3-turbo/blob/main/packages/db/index.ts
 import { PrismaClient } from '@prisma/client';
-import { envsafe, str } from 'envsafe';
 
-const env = envsafe({
-	DATABASE_URL: str({
-		// idek if this works but oh well
-		desc: 'Prisma URL (unused, just meant to ensure that the prisma url is in .env)',
-	}),
-});
-console.log(env.DATABASE_URL);
-
-const prismaClient = new PrismaClient({
-	log: process.env.NODE_ENV === 'development' ? ['query', 'info', 'warn', 'error'] : ['error'],
+export const prisma = new PrismaClient({
+	log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
 });
 
 export * from '@prisma/client';
-export const prisma = prismaClient;
+
+if (process.env.NODE_ENV !== 'production') {
+	prisma;
+}

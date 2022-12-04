@@ -1,7 +1,6 @@
-import { prisma } from '@solrock/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { env } from '../../../../utils/env';
-
+import prismaClient from '../../../../utils/prisma';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if secret not in request headers, return unauthorized
 	if (!req.headers.secret) {
@@ -14,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 	const { overlayId } = req.query;
 	console.debug(overlayId);
-	const streamer = await prisma.streamer.findFirst({
+	const streamer = await prismaClient.streamer.findFirst({
 		where: {
 			overlayId: overlayId as string,
 		},
@@ -47,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 				audioUrl: string;
 			};
 			console.debug(streamer?.id);
-			const newMessage = await prisma.ttsMessages.create({
+			const newMessage = await prismaClient.ttsMessages.create({
 				data: {
 					message: message,
 					audioUrl: audioUrl,

@@ -4,18 +4,18 @@ import TwitchProvider from 'next-auth/providers/twitch';
 // Prisma adapter for NextAuth, optional and can be removed
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { withSentry } from '@sentry/nextjs';
-import { prisma } from '@solrock/prisma';
 import { env } from '../../../utils/env';
+import prismaClient from '../../../utils/prisma';
 
 async function createStreamerIfNotExists(user: User) {
 	if (
-		!(await prisma.streamer.findFirst({
+		!(await prismaClient.streamer.findFirst({
 			where: {
 				id: user.id,
 			},
 		}))
 	) {
-		await prisma.streamer.create({
+		await prismaClient.streamer.create({
 			data: {
 				id: user.id,
 			},
@@ -25,7 +25,7 @@ async function createStreamerIfNotExists(user: User) {
 
 export const authOptions: NextAuthOptions = {
 	// Configure one or more authentication providers
-	adapter: PrismaAdapter(prisma),
+	adapter: PrismaAdapter(prismaClient),
 	secret: env.NEXTAUTH_SECRET,
 	providers: [
 		TwitchProvider({
@@ -41,7 +41,7 @@ export const authOptions: NextAuthOptions = {
 	],
 	events: {
 		createUser: async (user) => {
-			await prisma.streamer.create({
+			await prismaClient.streamer.create({
 				data: {
 					id: user.user.id,
 				},
