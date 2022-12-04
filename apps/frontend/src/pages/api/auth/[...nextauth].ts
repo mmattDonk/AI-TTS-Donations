@@ -60,7 +60,6 @@ export const authOptions: NextAuthOptions = {
 					Authorization: 'Bearer ' + env.API_SECRET,
 				},
 				body: JSON.stringify({
-					streamerAuth: user.account?.access_token,
 					streamerId: user.account?.providerAccountId,
 				}),
 			});

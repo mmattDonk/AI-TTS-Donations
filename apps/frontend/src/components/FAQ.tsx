@@ -44,9 +44,6 @@ export default function FaqSimple() {
 					<Accordion.Panel>
 						{t.rich('a2', {
 							discordLink: (children) => <a href="https://discord.gg/VUAjRrkZVJ">{children}</a>,
-							// TODO: remove these when internalization gets updated
-							emailLink: (children) => <a href="mailto:matt@mmatt.net">{children}</a>,
-							discordUserLink: (children) => <a href="https://discord.com/users/308000668181069824">{children}</a>,
 						})}
 					</Accordion.Panel>
 				</Accordion.Item>

@@ -30,8 +30,7 @@ const env = envsafe({
 		desc: '(client id) get this from dev.twitch.tv',
 	}),
 	TWITCH_ACCESS_TOKEN: str({
-		desc: '(twitch access token) you get this from an api request',
-		// TODO: put link to the api request
+		desc: '(twitch access token) you get this from an api request - https://dev.twitch.tv/docs/cli/token-command#get-an-access-token',
 	}),
 	EVENTSUB_SECRET: str({
 		desc: 'randomly generated, meant for twitch eventsub verification',
@@ -128,7 +127,6 @@ app.post('/eventsub', async (req, res) => {
 		console.log('signatures match');
 
 		// Get JSON object from body, so you can process the message.
-		// TODO: fix this
 		let notification = req.body as any;
 
 		if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
@@ -172,8 +170,7 @@ app.post('/eventsub', async (req, res) => {
 });
 
 app.post('/newuser', async (req, res) => {
-	// TODO: fix this
-	const data = req.body as any;
+	const data = req.body as { streamerId: string };
 	console.log('new user!', data.streamerId);
 	// if bearer token not equal to env.secret
 	const secret = req.headers.authorization?.split(' ')[1];
@@ -271,9 +268,6 @@ const start = async () => {
 start();
 
 function getSecret() {
-	// TODO: Get secret from secure storage. This is the secret you pass
-	// when you subscribed to the event.
-
 	// ahh!! leaked!! 😱
 	return env.EVENTSUB_SECRET ?? 'superdanksecretdotcom';
 }
