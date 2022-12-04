@@ -138,8 +138,7 @@ export default function MediaControls() {
 										</td>
 										<td>
 											<p>
-												{new Date(message.createdAt).toLocaleDateString()} at
-												{new Date(message.createdAt).toLocaleTimeString()}
+												{new Date(message.createdAt).toLocaleDateString()} at {new Date(message.createdAt).toLocaleTimeString()}
 											</p>
 										</td>
 									</tr>
