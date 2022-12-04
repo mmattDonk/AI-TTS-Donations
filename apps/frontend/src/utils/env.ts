@@ -5,6 +5,9 @@ export const env = envsafe({
 		desc: 'a randomly generated secret meant from encryption (i think?)',
 		devDefault: 'secret',
 	}),
+	NODE_ENV: str({
+		desc: 'the environment the app is running in',
+	}),
 	API_SECRET: str({
 		// TODO: make this a global env thing
 		desc: 'secret meant for the backend api, the processor, and the next.js api. share this api secret with both.',

@@ -7,22 +7,19 @@ import { trpc } from '../utils/trpc';
 import LoadingPage, { LoadingSpinner } from './Loading';
 
 export default function MediaControls() {
-	const ttsMutation = trpc.useMutation(['tts.retrigger-tts']);
+	const ttsMutation = trpc.tts.retriggerTts.useMutation();
 
 	const [showTable, setShowTable] = useState(false);
 
-	const { data: session, isLoading: isSessionLoading } = trpc.useQuery(['auth.getSession']);
-	const { data: userData, isLoading } = trpc.useQuery(['user.get-user', session?.user?.name ?? '']);
-	const { data: ttsMessages, isLoading: isTtsMessagesLoading } = trpc.useQuery([
-		'tts.get-recent-messages',
-		{
-			streamerId: userData?.streamers[0]?.id,
-		},
-	]);
+	const { data: session, isLoading: isSessionLoading } = trpc.auth.getSession.useQuery();
+	const { data: userData, isLoading } = trpc.user.getUser.useQuery(session?.user?.name ?? '');
+	const { data: ttsMessages, isLoading: isTtsMessagesLoading } = trpc.tts.getRecentMessages.useQuery({
+		streamerId: userData?.streamers[0]?.id,
+	});
 
 	const [skipMessage, setSkipMessage] = useState('');
 
-	const skipMutation = trpc.useMutation(['tts.skip-tts']);
+	const skipMutation = trpc.tts.skipTts.useMutation();
 
 	const skipTts = async (e: any) => {
 		e.preventDefault();

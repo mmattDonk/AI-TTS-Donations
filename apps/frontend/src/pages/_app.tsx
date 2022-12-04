@@ -1,7 +1,7 @@
 // src/pages/_app.tsx
 import { ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
-import { withTRPC } from '@trpc/next';
+import { QueryClientProvider, useQueryClient } from '@tanstack/react-query';
 import { Analytics } from '@vercel/analytics/react';
 import type { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
@@ -9,9 +9,8 @@ import { NextIntlProvider } from 'next-intl';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import superjson from 'superjson';
 import { RouterTransition } from '../components/RouterTransition';
-import type { AppRouter } from '../server/router';
+import { trpc } from '../utils/trpc';
 
 type PageProps = {
 	messages: IntlMessages;
@@ -71,15 +70,18 @@ export function App({ Component, pageProps: { session, ...pageProps } }: Props) 
 	}, []);
 
 	const router = useRouter();
+	const queryClient = useQueryClient();
 
 	if (router.pathname.split('/')[1] !== 'overlay') {
 		return (
 			<MantineTheme>
 				<RouterTransition />
 				<SessionProvider session={session}>
-					<NextIntlProvider messages={pageProps.messages}>
-						<Component {...pageProps} />
-					</NextIntlProvider>
+					<QueryClientProvider client={queryClient}>
+						<NextIntlProvider messages={pageProps.messages}>
+							<Component {...pageProps} />
+						</NextIntlProvider>
+					</QueryClientProvider>
 					<Analytics />
 				</SessionProvider>
 			</MantineTheme>
@@ -93,39 +95,6 @@ export function App({ Component, pageProps: { session, ...pageProps } }: Props) 
 		);
 	}
 }
-
-export const getBaseUrl = () => {
-	if (typeof window !== 'undefined') {
-		return '';
-	}
-	if (process.browser) return ''; // Browser should use current path
-	if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // SSR should use vercel url
-
-	return `http://localhost:${process.env.PORT ?? 3000}`; // dev SSR should use localhost
-};
-
-export default withTRPC<AppRouter>({
-	config({ ctx }) {
-		/**
-		 * If you want to use SSR, you need to use the server's full URL
-		 * @link https://trpc.io/docs/ssr
-		 */
-		const url = `${getBaseUrl()}/api/trpc`;
-
-		return {
-			url,
-			transformer: superjson,
-			/**
-			 * @link https://react-query.tanstack.com/reference/QueryClient
-			 */
-			// queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
-		};
-	},
-	/**
-	 * @link https://trpc.io/docs/ssr
-	 */
-	ssr: false,
-})(App);
 
 function MantineTheme({ children }: { children: React.ReactNode }) {
 	const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
@@ -154,3 +123,5 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
 		</ColorSchemeProvider>
 	);
 }
+
+export default trpc.withTRPC(App);

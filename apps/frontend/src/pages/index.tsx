@@ -99,7 +99,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Home: NextPage = () => {
-	const { data: session, isLoading } = trpc.useQuery(['auth.getSession']);
+	const { data: session, isLoading } = trpc.auth.getSession.useQuery();
 	const { classes } = useStyles();
 	const t = useTranslations();
 
@@ -109,7 +109,7 @@ const Home: NextPage = () => {
 
 	const scrollToPositions = () => BRRef.current?.scrollIntoView({ behavior: 'smooth' });
 
-	const formMutation = trpc.useMutation(['mailing-list.subscribe']);
+	const formMutation = trpc.mailingList.subscribe.useMutation();
 
 	const subscribe = async (e: any) => {
 		e.preventDefault();

@@ -1,9 +1,8 @@
 import { z } from 'zod';
-import { createRouter } from './context';
+import { publicProcedure, router } from '../trpc';
 
-export const userRouter = createRouter().query('get-user', {
-	input: z.string(),
-	resolve: async ({ ctx, input }) => {
+export const userRouter = router({
+	getUser: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
 		return await ctx.prisma.user.findFirst({
 			where: {
 				name: input,
@@ -14,5 +13,5 @@ export const userRouter = createRouter().query('get-user', {
 				streamers: true,
 			},
 		});
-	},
+	}),
 });
