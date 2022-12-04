@@ -15,31 +15,31 @@ export default function Dashboard() {
 	const [sensitiveOpen, setSensitiveOpen] = useState(false);
 	const t = useTranslations();
 
-	const { data: session, isLoading: isSessionLoading } = trpc.useQuery(['auth.getSession']);
+	const { data: session, isLoading: isSessionLoading } = trpc.auth.getSession.useQuery();
 
-	const { data: streamerData, isLoading: isStreamerLoading } = trpc.useQuery(['streamer.get-streamer', session?.user?.name ?? ''], {
-		onSuccess(data) {
-			setConfig(
-				data?.config[0] ?? {
-					id: streamerData?.id,
-					channelPointsName: '',
-					channelPointsEnabled: false,
-					bitsEnabled: true,
-					resubsEnabled: true,
-					maxMsgLength: 1000,
-					minBitAmount: 0,
-					minTipAmount: 0,
-					minMonthsAmount: 0,
-					blacklistedWords: [],
-					blacklistedVoices: [],
-					blacklistedUsers: [],
-					fallbackVoice: 'kanye-west-rap',
-				}
-			);
-		},
-	});
+    const { data: streamerData, isLoading: isStreamerLoading } = trpc.streamer.getStreamer.useQuery(session?.user?.name ?? '', {
+        onSuccess(data) {
+            setConfig(
+                data?.config[0] ?? {
+                    id: streamerData?.id,
+                    channelPointsName: '',
+                    channelPointsEnabled: false,
+                    bitsEnabled: true,
+                    resubsEnabled: true,
+                    maxMsgLength: 1000,
+                    minBitAmount: 0,
+                    minTipAmount: 0,
+                    minMonthsAmount: 0,
+                    blacklistedWords: [],
+                    blacklistedVoices: [],
+                    blacklistedUsers: [],
+                    fallbackVoice: 'kanye-west-rap',
+                }
+            );
+        },
+    });
 
-	const configMutation = trpc.useMutation('streamer.update-streamer-config');
+	const configMutation = trpc.streamer.updateStreamerConfig.useMutation();
 
 	const [config, setConfig] = useState(
 		streamerData?.config[0] ?? {

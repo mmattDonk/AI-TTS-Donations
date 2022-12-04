@@ -1,14 +1,16 @@
 import { z } from 'zod';
-import { env } from '../../utils/env';
-import { createRouter } from './context';
+import { env } from '../../../utils/env';
+import { publicProcedure, router } from '../trpc';
 
-export const ttsRouter = createRouter()
-	.mutation('retrigger-tts', {
-		input: z.object({
-			audioUrl: z.string(),
-			overlayId: z.string(),
-		}),
-		async resolve({ input, ctx }) {
+export const ttsRouter = router({
+	retriggerTts: publicProcedure
+		.input(
+			z.object({
+				audioUrl: z.string(),
+				overlayId: z.string(),
+			})
+		)
+		.mutation(async ({ input, ctx }) => {
 			const { audioUrl, overlayId } = input;
 			const { pusher, prisma } = ctx;
 			const audioUrlResponse = fetch(audioUrl);
@@ -43,13 +45,14 @@ export const ttsRouter = createRouter()
 			return {
 				success: true,
 			};
-		},
-	})
-	.mutation('skip-tts', {
-		input: z.object({
-			overlayId: z.string(),
 		}),
-		async resolve({ input, ctx }) {
+	skipTts: publicProcedure
+		.input(
+			z.object({
+				overlayId: z.string(),
+			})
+		)
+		.mutation(({ input, ctx }) => {
 			const { overlayId } = input;
 			const { pusher } = ctx;
 			try {
@@ -62,13 +65,14 @@ export const ttsRouter = createRouter()
 			return {
 				success: true,
 			};
-		},
-	})
-	.query('get-recent-messages', {
-		input: z.object({
-			streamerId: z.string().nullish(),
 		}),
-		async resolve({ input, ctx }) {
+	getRecentMessages: publicProcedure
+		.input(
+			z.object({
+				streamerId: z.string(),
+			})
+		)
+		.query(async ({ input, ctx }) => {
 			const { streamerId } = input;
 			const { prisma } = ctx;
 			if (!streamerId)
@@ -86,5 +90,5 @@ export const ttsRouter = createRouter()
 			});
 			if (!messages) return { success: true, messages: null };
 			return { success: true, messages: messages };
-		},
-	});
+		}),
+});
