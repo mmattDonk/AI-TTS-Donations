@@ -273,7 +273,7 @@ start();
 
 function getSecret() {
 	// ahh!! leaked!! 😱
-	return env.EVENTSUB_SECRET ?? 'superdanksecretdotcom';
+	return env.EVENTSUB_SECRET;
 }
 
 // Build the message used to get the HMAC.
