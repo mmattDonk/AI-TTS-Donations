@@ -123,6 +123,9 @@ app.post('/eventsub', async (req, res) => {
 	let message = getHmacMessage(req);
 	let hmac = HMAC_PREFIX + getHmac(secret, message); // Signature to compare
 
+	const body = req.body as any;
+	console.log(body.notification);
+
 	if (true === verifyMessage(hmac, req.headers[TWITCH_MESSAGE_SIGNATURE])) {
 		console.log('signatures match');
 
@@ -141,7 +144,6 @@ app.post('/eventsub', async (req, res) => {
 				res.send(404).status(404);
 				return;
 			}
-			console.log(streamerJson.streamer.user.name, notification);
 			if (notification.subscription.type === 'channel.subscription.message') {
 				res.send('success!').status(204);
 				await subscriptionCallback(notification.event, streamerJson);
@@ -189,7 +191,7 @@ app.post('/newuser', async (req, res) => {
 				transport: {
 					method: 'webhook',
 					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
-					secret: env.API_SECRET,
+					secret: env.EVENTSUB_SECRET,
 				},
 			}),
 			headers: {
@@ -207,7 +209,7 @@ app.post('/newuser', async (req, res) => {
 				transport: {
 					method: 'webhook',
 					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
-					secret: env.API_SECRET,
+					secret: env.EVENTSUB_SECRET,
 				},
 			}),
 			headers: {
@@ -225,7 +227,7 @@ app.post('/newuser', async (req, res) => {
 				transport: {
 					method: 'webhook',
 					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
-					secret: env.API_SECRET,
+					secret: env.EVENTSUB_SECRET,
 				},
 			}),
 			headers: {
