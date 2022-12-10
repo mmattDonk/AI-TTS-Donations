@@ -124,6 +124,7 @@ app.post('/eventsub', async (req, res) => {
 	let hmac = HMAC_PREFIX + getHmac(secret, message); // Signature to compare
 
 	const body = req.body as any;
+	console.log(body);
 	console.log(body.notification);
 
 	if (true === verifyMessage(hmac, req.headers[TWITCH_MESSAGE_SIGNATURE])) {
