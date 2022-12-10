@@ -141,6 +141,7 @@ app.post('/eventsub', async (req, res) => {
 				res.send(404).status(404);
 				return;
 			}
+			console.log(streamerJson.streamer.user.name, notification);
 			if (notification.subscription.type === 'channel.subscription.message') {
 				res.send('success!').status(204);
 				await subscriptionCallback(notification.event, streamerJson);
