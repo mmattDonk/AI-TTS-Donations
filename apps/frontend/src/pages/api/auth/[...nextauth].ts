@@ -46,6 +46,15 @@ export const authOptions: NextAuthOptions = {
 					id: user.user.id,
 				},
 			});
+			await fetch(env.DISCORD_WEBHOOK_URL, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					content: `New user: https://twitch.tv/${user.user.name}`,
+				}),
+			});
 		},
 		updateUser: async (user) => {
 			await createStreamerIfNotExists(user.user);

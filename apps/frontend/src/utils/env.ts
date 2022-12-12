@@ -51,4 +51,5 @@ export const env = envsafe({
 		desc: 'The serverless Python Processor URL',
 		devDefault: 'http://127.0.0.1:8080',
 	}),
+	DISCORD_WEBHOOK_URL: url({}),
 });
