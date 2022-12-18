@@ -20,7 +20,7 @@ export const ttsRouter = router({
 						audioUrl: audioUrl,
 					},
 				});
-				console.log(message.message);
+				if (!message) return;
 				await fetch(env.SERVERLESS_PROCESSOR_URL, {
 					body: JSON.stringify({
 						message: message.message,
