@@ -41,18 +41,30 @@ export const authOptions: NextAuthOptions = {
 	],
 	events: {
 		createUser: async (user) => {
-			await prismaClient.streamer.create({
-				data: {
-					id: user.user.id,
-				},
-			});
+			const twitchUserData = await fetch('https://api.ivr.fi/v2/twitch/user?login=' + user.user.name);
+			const twitchUserDataJson = await twitchUserData.json();
+			const [streamerCreate, userUpdate] = await Promise.all([
+				prismaClient.streamer.create({
+					data: {
+						id: user.user.id,
+					},
+				}),
+				prismaClient.user.update({
+					where: {
+						id: user.user.id,
+					},
+					data: {
+						twitchPartner: twitchUserDataJson[0].roles.isPartner,
+					},
+				}),
+			]);
 			await fetch(env.DISCORD_WEBHOOK_URL, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
-					content: `New user: https://twitch.tv/${user.user.name}`,
+					content: `New user: https://twitch.tv/${user.user.name} ${twitchUserDataJson[0].roles.isPartner ? '<@308000668181069824> new twitch partner!' : ''}`,
 				}),
 			});
 		},
