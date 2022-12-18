@@ -2,6 +2,7 @@ import { Avatar, Button, Center, Container, createStyles, Group, Menu, Text, Tex
 import type { GetStaticPropsContext, NextPage } from 'next';
 import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { Dashboard, DoorExit } from 'tabler-icons-react';
@@ -128,6 +129,26 @@ const Home: NextPage = () => {
 
 	return (
 		<>
+			<Head>
+				<title>AI TTS Donations</title>
+				<meta name="description" content="The first 100% free AI TTS service for Twitch" />
+				<meta name="keywords" content="ai tts, twitch, free ai tts, twitch ai tts, ai tts donations" />
+				<meta name="author" content="mmattDonk // mmattbtw" />
+
+				{/* Open Grpah Tags */}
+				<meta property="og:title" content="AI TTS Donations" />
+				<meta property="og:description" content="The first 100% free AI TTS service for Twitch" />
+				{/* TODO: move this url to the real URL when that eventually happens :-) */}
+				<meta property="og:url" content="https://staging.solrock.mmattDonk.com/" />
+				<meta property="og:type" content="website" />
+
+				{/* Twitter Card Tags */}
+				<meta name="twitter:card" content="summary" />
+				<meta name="twitter:title" content="AI TTS Donations" />
+				<meta name="twitter:description" content="The first 100% free AI TTS service for Twitch" />
+				<meta name="twitter:site" content="@mmattDonk" />
+				<meta name="twitter:creator" content="@mmattDonk" />
+			</Head>
 			<Center>
 				<BetaBanner />
 			</Center>
