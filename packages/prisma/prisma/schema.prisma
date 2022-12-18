@@ -42,6 +42,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   streamers     Streamer[]
+  twitchPartner Boolean @default(false)
 }
 
 model Streamer {
@@ -70,7 +71,7 @@ model StreamerConfig {
   blacklistedVoices String[]
   blacklistedUsers String[]
 
-  fallbackVoice String? @default("kanye-west-rap")
+  fallbackVoice String? @default("jerma985")
 
   streamer Streamer @relation(fields: [id], references: [id], onDelete: Cascade)
 }
