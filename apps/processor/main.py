@@ -19,17 +19,8 @@ from API.uberduck import Uberduck
 from dotenv import load_dotenv
 from google.cloud import storage
 from pedalboard import Pedalboard  # type: ignore
-from pedalboard import (
-    Chorus,
-    Distortion,
-    Gain,
-    HighpassFilter,
-    Limiter,
-    LowpassFilter,
-    PitchShift,
-    Resample,
-    Reverb,
-)
+from pedalboard import (Chorus, Distortion, Gain, HighpassFilter, Limiter,
+                        LowpassFilter, PitchShift, Resample, Reverb)
 from pedalboard.io import AudioFile
 from pydub import AudioSegment
 from rich.logging import RichHandler
@@ -135,7 +126,7 @@ def request_tts(
             continue
         try:
             log.debug(message.split(": "))
-            voice: str = message.split(": ")[0]  # type: ignore
+            voice: str = message.split(": ")[0].lower()  # type: ignore
             try:
                 if voice.lower() in config["blacklistedVoices"]:  # type: ignore
                     log.info(f"{voice} is blacklisted, applying fallback voice.")
@@ -151,7 +142,7 @@ def request_tts(
         except IndexError:
             text: str = message
         voice: list = voice.split(".")  # type: ignore
-        voice_name: str = voice[0]
+        voice_name: str = voice[0].lower()
         try:
             voice_effect: str = voice[1:]  # type: ignore
         except IndexError:
@@ -177,7 +168,7 @@ def request_tts(
         ):
             fallback_voice: str = config["fallbackVoice"]
             if fallback_voice is None:
-                fallback_voice = "kanye-west-rap"
+                fallback_voice = "jerma985"
             log.info(
                 "Couldn't find voice specified, using fallback voice: " + fallback_voice
             )
