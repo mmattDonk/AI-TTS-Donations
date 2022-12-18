@@ -31,6 +31,15 @@ const testimonies: CommentSimpleProps[] = [
 	},
 	{
 		author: {
+			name: 'Shibez__',
+			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/a3d5c9e2-d658-47d7-ac3f-651e85fb8b27-profile_image-300x300.png',
+			followers: '1.4K',
+		},
+		body: "THIS SITE IS AMAZING!! Been using mmatt's old version that needed download and configuration but this one is so much easier to use! Finally I dont have to seperatly open a new application to use the TTS.",
+		stars: 5,
+	},
+	{
+		author: {
 			name: 'judo_kami',
 			followers: '1.2K',
 			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/6628a6da-a430-4f9a-8124-7b9374c25764-profile_image-300x300.png',
@@ -45,6 +54,15 @@ const testimonies: CommentSimpleProps[] = [
 			followers: '979',
 		},
 		body: 'No more Brian TTS everywhere, this is the next thing, this thing right here will change the game entirely.',
+		stars: 5,
+	},
+	{
+		author: {
+			name: 'matrHS',
+			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/af99edb7-aa24-4873-9070-3627f3f0dd4e-profile_image-300x300.png',
+			followers: '975',
+		},
+		body: "This is literally one of the most Poggers TTS apps I've ever used, super easy to set up and tons of voices out of the box, AND it works with channel points!",
 		stars: 5,
 	},
 	{
@@ -67,6 +85,15 @@ const testimonies: CommentSimpleProps[] = [
 	},
 	{
 		author: {
+			name: 'BoarBoiLive',
+			followers: '584',
+			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/3d304bb9-13f2-4b56-931b-84c2bc442824-profile_image-300x300.png',
+		},
+		body: 'Why would anyone use normal TTS now? Have GLaDOS roast your gameplay, witness Morgan Freeman have a breakdown, 7/5 This is the future.',
+		stars: 5,
+	},
+	{
+		author: {
 			name: 'C3AGLE',
 			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/96af8b14-8b41-4948-af83-da7d925304df-profile_image-300x300.png',
 			followers: '496',
@@ -77,7 +104,7 @@ const testimonies: CommentSimpleProps[] = [
 	{
 		author: {
 			name: 'Chrustosking',
-			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/746031b3-bc32-4b67-b0a2-1e13b85cd324-profile_image-300x300.png',
+			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/d76bcdaa-4e23-45cf-aa6f-aa9dc1ebf28f-profile_image-300x300.png',
 			followers: '399',
 		},
 		body: 'Ive been using the AI TTS for over a week now with my stream, the potential it has is amazing. The amount of creativity (depending on twitch chat) is endless, although a few issues and having to restart a lot, its honestly worth it for the content it can provided. I will continue to use AI TTS and support this program as i believe its the future of TTS',
@@ -118,6 +145,15 @@ const testimonies: CommentSimpleProps[] = [
 		},
 		body: "Some of the funniest moments in my streams came from viewers blind-siding me with TTS. It's especially great for games where I need to focus and can't look at chat. 11/10, would use again.",
 		stars: 4,
+	},
+	{
+		author: {
+			name: 'VictoryKisses',
+			image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/5b6092fa-27dd-4a94-a574-9ac0651f1dff-profile_image-300x300.png',
+			followers: '76',
+		},
+		body: "The AI is so much fun to play with, if you're a small streamer it's a no-brainer. It's hilarious to have Winnie the Pooh being fed lines by an absolute pun lord chatter. It can do bits, points and subs too, all for free, all through your browser. Don't sleep on Solrock.",
+		stars: 5,
 	},
 	{
 		author: {
