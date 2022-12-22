@@ -2,7 +2,7 @@
 
 The first 100% **free** AI TTS service for Twitch.
 
-Currently in development. Available for beta usage: https://staging.solrock.mmattDonk.com
+Currently in development. Available for beta usage: https://solrock.mmattDonk.com
 
 ## Project Structure
 

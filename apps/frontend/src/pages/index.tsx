@@ -142,7 +142,7 @@ const Home: NextPage = () => {
 				<meta property="og:title" content="AI TTS Donations" />
 				<meta property="og:description" content="The first 100% free AI TTS service for Twitch" />
 				{/* TODO: move this url to the real URL when that eventually happens :-) */}
-				<meta property="og:url" content="https://staging.solrock.mmattDonk.com/" />
+				<meta property="og:url" content="https://solrock.mmattDonk.com/" />
 				<meta property="og:type" content="website" />
 
 				{/* Twitter Card Tags */}

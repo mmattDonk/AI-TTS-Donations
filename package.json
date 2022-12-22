@@ -1,7 +1,7 @@
 {
 	"name": "solrock",
 	"version": "1.0.0",
-	"description": "https://staging.solrock.mmattdonk.com/",
+	"description": "https://solrock.mmattdonk.com/",
 	"private": true,
 	"packageManager": "pnpm@7.19.0",
 	"scripts": {
