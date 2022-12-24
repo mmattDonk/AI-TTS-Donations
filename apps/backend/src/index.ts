@@ -291,7 +291,7 @@ function getSecret() {
 // Build the message used to get the HMAC.
 function getHmacMessage(request: FastifyRequest) {
 	// @ts-ignore
-	return request.headers[TWITCH_MESSAGE_ID] + request.headers[TWITCH_MESSAGE_TIMESTAMP] + JSON.stringify(request.body);
+	return request.headers[TWITCH_MESSAGE_ID] + request.headers[TWITCH_MESSAGE_TIMESTAMP] + request.rawBody;
 }
 
 // Get the HMAC.
