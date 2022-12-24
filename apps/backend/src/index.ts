@@ -5,6 +5,12 @@ import fastify, { FastifyRequest } from 'fastify';
 import fetch from 'node-fetch';
 import { cheerEvent, redemptionEvent, streamer, subscriptionEvent } from './typings';
 const app = fastify();
+await app.register(import('fastify-raw-body'), {
+	field: 'rawBody',
+	global: false,
+	encoding: 'utf8',
+	runFirst: true,
+});
 dotenv.config();
 
 const env = envsafe({
@@ -118,58 +124,66 @@ async function redemptionCallback(event: redemptionEvent, streamerJson: streamer
 	await processEvent(event.broadcaster_user_id, event.user_input, streamerJson);
 }
 
-app.post('/eventsub', async (req, res) => {
-	let secret = getSecret();
-	let message = getHmacMessage(req);
-	let hmac = HMAC_PREFIX + getHmac(secret, message); // Signature to compare
-	console.log('hmac: ', hmac);
-	console.log('req.headers[TWITCH_MESSAGE_SIGNATURE]: ', req.headers[TWITCH_MESSAGE_SIGNATURE]);
+app.post(
+	'/eventsub',
+	{
+		config: {
+			rawBody: true,
+		},
+	},
+	async (req, res) => {
+		let secret = getSecret();
+		let message = getHmacMessage(req);
+		let hmac = HMAC_PREFIX + getHmac(secret, message); // Signature to compare
+		console.log('hmac: ', hmac);
+		console.log('req.headers[TWITCH_MESSAGE_SIGNATURE]: ', req.headers[TWITCH_MESSAGE_SIGNATURE]);
 
-	if (true === verifyMessage(hmac, req.headers[TWITCH_MESSAGE_SIGNATURE])) {
-		console.log('signatures match');
+		if (true === verifyMessage(hmac, req.headers[TWITCH_MESSAGE_SIGNATURE])) {
+			console.log('signatures match');
 
-		// Get JSON object from body, so you can process the message.
-		let notification = req.body as any;
+			// Get JSON object from body, so you can process the message.
+			let notification = req.body as any;
 
-		if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
-			console.log(`Event type: ${notification.subscription.type}`);
-			const streamer = await fetch(API_URL + '/api/streamers/streamerId/' + notification.event.broadcaster_user_id, {
-				headers: { secret: env.API_SECRET ?? '', 'Content-Type': 'application/json' },
-				method: 'GET',
-			});
-			const streamerJson = (await streamer.json()) as streamer;
-			if (streamer.status !== 200) {
-				console.error('Streamer not found');
-				res.send(404).status(404);
-				return;
+			if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
+				console.log(`Event type: ${notification.subscription.type}`);
+				const streamer = await fetch(API_URL + '/api/streamers/streamerId/' + notification.event.broadcaster_user_id, {
+					headers: { secret: env.API_SECRET ?? '', 'Content-Type': 'application/json' },
+					method: 'GET',
+				});
+				const streamerJson = (await streamer.json()) as streamer;
+				if (streamer.status !== 200) {
+					console.error('Streamer not found');
+					res.send(404).status(404);
+					return;
+				}
+				if (notification.subscription.type === 'channel.subscription.message') {
+					res.send('success!').status(204);
+					await subscriptionCallback(notification.event, streamerJson);
+				} else if (notification.subscription.type === 'channel.cheer') {
+					res.send('success!').status(204);
+					await cheerCallback(notification.event, streamerJson);
+				} else if (notification.subscription.type === 'channel.channel_points_custom_reward_redemption.add') {
+					res.send('success!').status(204);
+					await redemptionCallback(notification.event, streamerJson);
+				} else console.log(JSON.stringify(notification.event, null, 4));
+			} else if (MESSAGE_TYPE_VERIFICATION === req.headers[MESSAGE_TYPE]) {
+				res.send(notification.challenge).status(200);
+			} else if (MESSAGE_TYPE_REVOCATION === req.headers[MESSAGE_TYPE]) {
+				res.send(204).status(200);
+
+				console.log(`${notification.subscription.type} notifications revoked!`);
+				console.log(`reason: ${notification.subscription.status}`);
+				console.log(`condition: ${JSON.stringify(notification.subscription.condition, null, 4)}`);
+			} else {
+				res.send(204);
+				console.log(`Unknown message type: ${req.headers[MESSAGE_TYPE]}`);
 			}
-			if (notification.subscription.type === 'channel.subscription.message') {
-				res.send('success!').status(204);
-				await subscriptionCallback(notification.event, streamerJson);
-			} else if (notification.subscription.type === 'channel.cheer') {
-				res.send('success!').status(204);
-				await cheerCallback(notification.event, streamerJson);
-			} else if (notification.subscription.type === 'channel.channel_points_custom_reward_redemption.add') {
-				res.send('success!').status(204);
-				await redemptionCallback(notification.event, streamerJson);
-			} else console.log(JSON.stringify(notification.event, null, 4));
-		} else if (MESSAGE_TYPE_VERIFICATION === req.headers[MESSAGE_TYPE]) {
-			res.send(notification.challenge).status(200);
-		} else if (MESSAGE_TYPE_REVOCATION === req.headers[MESSAGE_TYPE]) {
-			res.send(204).status(200);
-
-			console.log(`${notification.subscription.type} notifications revoked!`);
-			console.log(`reason: ${notification.subscription.status}`);
-			console.log(`condition: ${JSON.stringify(notification.subscription.condition, null, 4)}`);
 		} else {
-			res.send(204);
-			console.log(`Unknown message type: ${req.headers[MESSAGE_TYPE]}`);
+			console.log('403'); // Signatures didn't match.
+			res.send(403);
 		}
-	} else {
-		console.log('403'); // Signatures didn't match.
-		res.send(403);
 	}
-});
+);
 
 app.post('/newuser', async (req, res) => {
 	const data = req.body as { streamerId: string };

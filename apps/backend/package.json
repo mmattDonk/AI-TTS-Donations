@@ -22,7 +22,8 @@
 	"dependencies": {
 		"@solrock/prisma": "workspace:*",
 		"dotenv": "^16.0.3",
-		"fastify": "^4.9.2",
+		"fastify": "^4.10",
+		"fastify-raw-body": "^4.2.0",
 		"node-fetch": "^3.2.10"
 	}
 }
