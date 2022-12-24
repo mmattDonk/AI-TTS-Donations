@@ -133,7 +133,7 @@ def request_tts(
                     try:
                         voice = config["fallbackVoice"]
                     except Exception:
-                        voice = "kanye-west-rap"  # type: ignore
+                        voice = "jerma985"  # type: ignore
             except Exception:
                 pass
             log.debug(voice)

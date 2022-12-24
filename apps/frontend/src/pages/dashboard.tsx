@@ -33,7 +33,7 @@ export default function Dashboard() {
 					blacklistedWords: [],
 					blacklistedVoices: [],
 					blacklistedUsers: [],
-					fallbackVoice: 'kanye-west-rap',
+					fallbackVoice: 'jerma985',
 				}
 			);
 		},
@@ -55,7 +55,7 @@ export default function Dashboard() {
 			blacklistedWords: [],
 			blacklistedVoices: [],
 			blacklistedUsers: [],
-			fallbackVoice: 'kanye-west-rap',
+			fallbackVoice: 'jerma985',
 		}
 	);
 
@@ -78,7 +78,7 @@ export default function Dashboard() {
 				blacklistedWords: config.blacklistedWords ?? [],
 				blacklistedVoices: config.blacklistedVoices ?? [],
 				blacklistedUsers: config.blacklistedUsers ?? [],
-				fallbackVoice: config.fallbackVoice ?? 'kanye-west-rap',
+				fallbackVoice: config.fallbackVoice ?? 'jerma985',
 			},
 		});
 
