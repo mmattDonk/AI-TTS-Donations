@@ -1,52 +1,52 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs and get help in the <discordLink>mmattDonk Discord server</discordLink>."
+		"header": "Ce site est actuellement en BETA. Vous pouvez reporter les bugs et demander de l'aide sur le <discordLink>Discord de mmattDonk</discordLink>."
 	},
-	"close": "Close",
-	"open": "Open",
-	"loggedIn": "Logged in as {name}",
-	"signOut": "Sign Out",
-	"signIn": "Sign In",
-	"learnMore": "Learn more",
-	"submit": "Submit",
-	"enabled": "Enabled",
-	"disabled": "Disabled",
-	"save": "Save",
-	"notLoggedIn": "You are not logged in.",
+	"close": "Fermer",
+	"open": "Ouvrir",
+	"loggedIn": "Connecter en tant que {name}",
+	"signOut": "Se déconnecter",
+	"signIn": "Se connecter",
+	"learnMore": "En savoir plus",
+	"submit": "Soumettre",
+	"enabled": "Activé",
+	"disabled": "Désactivé",
+	"save": "Enregistrer",
+	"notLoggedIn": "Vous n'êtes pas connecté.",
 	"bits": "Bits",
-	"resubs": "Resubs",
-	"channelPoints": "Channel Points",
+	"resubs": "Réabonnés",
+	"channelPoints": "Les Points de Chaîne",
 	"404": {
-		"title": "You have found a secret place.",
+		"title": "Vous avez trouvé notre page secrète.",
 		"description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
-		"link": "Take me back to the landing page."
+		"link": "Revenir sur la page d'accueil."
 	},
 	"alt": {
-		"avatar": "{name}'s profile picture."
+		"avatar": "La photo de profil de {name}."
 	},
 	"Landing": {
 		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
 		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
-		"getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
-		"getStarted": "Get started",
-		"dashboard": "Dashboard",
+		"getStartedTooltip": "Nous ne sommes pas encore prêts ! Inscrivez-vous à la newsletter ci-dessous.",
+		"getStarted": "Commencer",
+		"dashboard": "Tableau de bord",
 		"getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
-		"howItWorks": "How It Works",
+		"howItWorks": "Comment ça marche",
 		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
 		"features": {
-			"freeTitle": "Free to use",
+			"freeTitle": "C'est gratuit",
 			"freeDesc": "All features in AI TTS Donations are completely free. No fees, and no subscriptions. Simply sign in, setup, and use. No payments required at all.",
 			"openSourceTitle": "Open Source",
 			"openSourceDesc": "AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.",
-			"voicesTitle": "1000+ Voices",
+			"voicesTitle": "Plus de 1000+ voix",
 			"voicesDesc": "AI TTS Donations is built using the APIs of Uberduck.ai and Fakeyou.com. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
-			"voiceEffectsTitle": "Voice Effects",
+			"voiceEffectsTitle": "Effets Vocaux",
 			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
-			"soundEffectsTitle": "Sound Effects",
+			"soundEffectsTitle": "Effets Sonores",
 			"soundEffectsDesc": "Sound effects can add a variety of noises to your viewer's TTS messages. Your viewers can create amazing TTS messages using these features."
 		},
 		"FAQ": {
-			"heading": "Frequently Asked Questions",
+			"heading": "Foire aux questions",
 			"q1": "Where can my viewers learn how to use the new TTS?",
 			"a1": "We have a wiki entry to help your viewers get started with using the new AI TTS syntax. It's available on <githubLink>GitHub</githubLink> and you can use the shortlink (<shortLink>https://mmatt.link/UseTTS</shortLink>) to put in Twitch panels or chat commands.",
 			"q2": "Where can I get help with setting up AI TTS Donations?",
@@ -61,7 +61,7 @@
 		"emailPapertrail": "Want to see past emails? Check out the paper trail on mmatt's personal website!"
 	},
 	"Dashboard": {
-		"yourDash": "Your Dashboard",
+		"yourDash": "Votre Tableau de Bord",
 		"sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
 		"sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
 		"ttsOverlay": "TTS Overlay",
