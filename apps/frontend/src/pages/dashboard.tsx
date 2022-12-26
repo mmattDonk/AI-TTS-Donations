@@ -61,9 +61,7 @@ export default function Dashboard() {
 
 	const [message, setMessage] = useState('');
 
-	const saveConfig = async (e: any) => {
-		e.preventDefault();
-
+	const saveConfig = async () => {
 		configMutation.mutate({
 			streamerId: streamerData?.id ?? '',
 			config: {
@@ -208,6 +206,7 @@ export default function Dashboard() {
 													setConfig({ ...config, channelPointsName: event.target.value });
 												}}
 												label={t('Dashboard.configuration.channelPointRewardNameLabel')}
+												onBlur={() => saveConfig()}
 											/>
 										</Group>
 										<h3>Events</h3>
@@ -216,6 +215,7 @@ export default function Dashboard() {
 												checked={config.channelPointsEnabled ?? false}
 												onChange={(event) => {
 													setConfig({ ...config, channelPointsEnabled: event.target.checked });
+													saveConfig();
 												}}
 												label={t('channelPoints')}
 											/>
@@ -223,6 +223,7 @@ export default function Dashboard() {
 												checked={config.resubsEnabled ?? true}
 												onChange={(event) => {
 													setConfig({ ...config, resubsEnabled: event.target.checked });
+													saveConfig();
 												}}
 												label={t('resubs')}
 											/>
@@ -230,6 +231,7 @@ export default function Dashboard() {
 												checked={config.bitsEnabled ?? true}
 												onChange={(event) => {
 													setConfig({ ...config, bitsEnabled: event.target.checked });
+													saveConfig();
 												}}
 												label={t('bits')}
 											/>
@@ -244,6 +246,7 @@ export default function Dashboard() {
 												onChange={(val) => {
 													setConfig({ ...config, maxMsgLength: val ?? 1000 });
 												}}
+												onBlur={() => saveConfig()}
 											/>
 											<NumberInput
 												label={t('Dashboard.configuration.minBitsAmountLabel')}
@@ -253,6 +256,7 @@ export default function Dashboard() {
 												onChange={(val) => {
 													setConfig({ ...config, minBitAmount: val ?? 0 });
 												}}
+												onBlur={() => saveConfig()}
 											/>
 											<NumberInput
 												label={t('Dashboard.configuration.minResubMonthsLabel')}
@@ -262,6 +266,7 @@ export default function Dashboard() {
 												onChange={(val) => {
 													setConfig({ ...config, minMonthsAmount: val ?? 0 });
 												}}
+												onBlur={() => saveConfig()}
 											/>
 										</Stack>
 										<h3>{t('Dashboard.configuration.blacklistHeading')}</h3>
@@ -278,6 +283,7 @@ export default function Dashboard() {
 												// @ts-ignore
 												setConfig({ ...config, blacklistedWords: event.target.value.split('\n') });
 											}}
+											onBlur={() => saveConfig()}
 										/>
 										<Textarea
 											value={config.blacklistedVoices.join('\n').toLowerCase()}
@@ -287,6 +293,7 @@ export default function Dashboard() {
 												// @ts-ignore
 												setConfig({ ...config, blacklistedVoices: event.target.value.split('\n') });
 											}}
+											onBlur={() => saveConfig()}
 										/>
 										<Textarea
 											value={config.blacklistedUsers.join('\n').toLowerCase()}
@@ -296,6 +303,7 @@ export default function Dashboard() {
 												// @ts-ignore
 												setConfig({ ...config, blacklistedUsers: event.target.value.split('\n') });
 											}}
+											onBlur={() => saveConfig()}
 										/>
 										<h3>{t('Dashboard.configuration.fallbacksHeading')}</h3>
 										<TextInput
@@ -304,16 +312,9 @@ export default function Dashboard() {
 												setConfig({ ...config, fallbackVoice: event.target.value ?? '' });
 											}}
 											label={t('Dashboard.configuration.fallbacksVoiceLabel')}
+											onBlur={() => saveConfig()}
 										/>
 										<Space h="md" />
-										<Button
-											onClick={(e: any) => {
-												saveConfig(e);
-											}}
-											disabled={configMutation.isLoading}
-										>
-											{t('save')}
-										</Button>
 										{configMutation.isLoading && <LoadingSpinner />}
 										<p>{configMutation.isLoading ? '' : message}</p>
 									</>
