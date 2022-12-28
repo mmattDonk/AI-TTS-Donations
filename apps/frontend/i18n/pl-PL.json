@@ -1,6 +1,6 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs and get help in the <discordLink>mmattDonk Discord server</discordLink>."
+		"header": "Ta strona internetowa jest w wersji BETA. Jeżeli potrzebujesz pomocy albo chcesz zgłosić jakiś błąd napisz <discordLink>na serwerze Discord mmattDonk</discordLink>."
 	},
 	"close": "Zamknij",
 	"open": "Otwórz",
@@ -34,11 +34,11 @@
 		"howItWorks": "Jak To Działa",
 		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
 		"features": {
-			"freeTitle": "Free to use",
+			"freeTitle": "Bezpłatne",
 			"freeDesc": "All features in AI TTS Donations are completely free. No fees, and no subscriptions. Simply sign in, setup, and use. No payments required at all.",
 			"openSourceTitle": "Open Source",
 			"openSourceDesc": "AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.",
-			"voicesTitle": "1000+ Voices",
+			"voicesTitle": "1000+ Głosów",
 			"voicesDesc": "AI TTS Donations is built using the APIs of Uberduck.ai and Fakeyou.com. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
 			"voiceEffectsTitle": "Efekty Głosowe",
 			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
@@ -76,8 +76,8 @@
 			"minResubMonthsLabel": "Minimum Resub Months Amount",
 			"blacklistHeading": "Blacklisted",
 			"blacklistDescription": "Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)",
-			"blacklistWordsLabel": "Words",
-			"blacklistVoicesLabel": "Voices",
+			"blacklistWordsLabel": "Słowa",
+			"blacklistVoicesLabel": "Głosy",
 			"blacklistUsersLabel": "Użytkownicy",
 			"fallbacksHeading": "Fallbacks",
 			"fallbacksVoiceLabel": "Fallback Voice"
