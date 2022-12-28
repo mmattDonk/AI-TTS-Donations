@@ -76,8 +76,8 @@
 			"minResubMonthsLabel": "Minimum Resub Months Amount",
 			"blacklistHeading": "Blacklisted",
 			"blacklistDescription": "Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)",
-			"blacklistWordsLabel": "Words",
-			"blacklistVoicesLabel": "Voices",
+			"blacklistWordsLabel": "Słowa",
+			"blacklistVoicesLabel": "Głosy",
 			"blacklistUsersLabel": "Użytkownicy",
 			"fallbacksHeading": "Fallbacks",
 			"fallbacksVoiceLabel": "Fallback Voice"
