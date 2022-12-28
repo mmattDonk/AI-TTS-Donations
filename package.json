@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "https://solrock.mmattdonk.com/",
 	"private": true,
-	"packageManager": "pnpm@7.20.0",
+	"packageManager": "pnpm@7.21.0",
 	"scripts": {
 		"frontend": "pnpm --filter @solrock/frontend run",
 		"backend": "pnpm --filter @solrock/backend run",
