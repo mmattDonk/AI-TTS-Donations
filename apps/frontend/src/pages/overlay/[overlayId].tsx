@@ -15,7 +15,13 @@ export async function getServerSideProps() {
 	};
 }
 
-export default function Overlay({ PUSHER_APP_KEY, PUSHER_APP_CLUSTER }: { PUSHER_APP_KEY: string | undefined; PUSHER_APP_CLUSTER: string | undefined }) {
+export default function Overlay({
+	PUSHER_APP_KEY,
+	PUSHER_APP_CLUSTER,
+}: {
+	PUSHER_APP_KEY: typeof env.PUSHER_APP_KEY;
+	PUSHER_APP_CLUSTER: typeof env.PUSHER_APP_CLUSTER;
+}) {
 	const [audioFiles, setAudioFiles] = useState<Array<string>>([]);
 	const [currentAudioFile, setCurrentAudioFile] = useState<string | null>(null);
 	const audioRef = useRef<HTMLAudioElement>(null);
@@ -24,7 +30,7 @@ export default function Overlay({ PUSHER_APP_KEY, PUSHER_APP_CLUSTER }: { PUSHER
 	const { overlayId } = router.query;
 
 	useEffect(() => {
-		const pusher = new Pusher(PUSHER_APP_KEY ?? '', {
+		const pusher = new Pusher(PUSHER_APP_KEY, {
 			cluster: PUSHER_APP_CLUSTER,
 		});
 		console.debug(PUSHER_APP_KEY);
