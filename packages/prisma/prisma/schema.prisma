@@ -70,6 +70,7 @@ model StreamerConfig {
   blacklistedWords String[]
   blacklistedVoices String[]
   blacklistedUsers String[]
+  blacklistedVoiceEffects String[]
 
   fallbackVoice String? @default("jerma985")
 

@@ -19,29 +19,15 @@ export default function Dashboard() {
 
 	const { data: streamerData, isLoading: isStreamerLoading } = trpc.streamer.getStreamer.useQuery(session?.user?.name ?? '', {
 		onSuccess(data) {
-			setConfig(
-				data?.config[0] ?? {
-					id: streamerData?.id,
-					channelPointsName: '',
-					channelPointsEnabled: false,
-					bitsEnabled: true,
-					resubsEnabled: true,
-					maxMsgLength: 1000,
-					minBitAmount: 0,
-					minTipAmount: 0,
-					minMonthsAmount: 0,
-					blacklistedWords: [],
-					blacklistedVoices: [],
-					blacklistedUsers: [],
-					fallbackVoice: 'jerma985',
-				}
-			);
+			if (!data?.config[0]) return;
+			setConfig({ ...data?.config[0] });
 		},
 	});
 
 	const configMutation = trpc.streamer.updateStreamerConfig.useMutation();
 
 	const [config, setConfig] = useState(
+		// TODO: fix this, i don't like it
 		streamerData?.config[0] ?? {
 			id: streamerData?.id,
 			channelPointsName: '',
@@ -55,6 +41,7 @@ export default function Dashboard() {
 			blacklistedWords: [],
 			blacklistedVoices: [],
 			blacklistedUsers: [],
+			blacklistedVoiceEffects: [],
 			fallbackVoice: 'jerma985',
 		}
 	);
@@ -62,22 +49,9 @@ export default function Dashboard() {
 	const [message, setMessage] = useState('');
 
 	const saveConfig = async () => {
-		configMutation.mutate({
+		await configMutation.mutateAsync({
 			streamerId: streamerData?.id ?? '',
-			config: {
-				channelPointsName: config.channelPointsName ?? '',
-				channelPointsEnabled: config.channelPointsEnabled ?? false,
-				bitsEnabled: config.bitsEnabled ?? true,
-				resubsEnabled: config.resubsEnabled ?? true,
-				maxMsgLength: config.maxMsgLength ?? 1000,
-				minBitAmount: config.minBitAmount ?? 0,
-				minTipAmount: config.minTipAmount ?? 0,
-				minMonthsAmount: config.minMonthsAmount ?? 0,
-				blacklistedWords: config.blacklistedWords ?? [],
-				blacklistedVoices: config.blacklistedVoices ?? [],
-				blacklistedUsers: config.blacklistedUsers ?? [],
-				fallbackVoice: config.fallbackVoice ?? 'jerma985',
-			},
+			config: { ...config },
 		});
 
 		if (configMutation.isLoading) {
@@ -206,34 +180,37 @@ export default function Dashboard() {
 													setConfig({ ...config, channelPointsName: event.target.value });
 												}}
 												label={t('Dashboard.configuration.channelPointRewardNameLabel')}
-												onBlur={() => saveConfig()}
+												onBlur={async () => await saveConfig()}
 											/>
 										</Group>
 										<h3>Events</h3>
 										<Stack>
 											<Switch
 												checked={config.channelPointsEnabled ?? false}
-												onChange={(event) => {
+												onChange={async (event) => {
 													setConfig({ ...config, channelPointsEnabled: event.target.checked });
-													saveConfig();
+													await saveConfig();
 												}}
 												label={t('channelPoints')}
+												onBlur={async () => await saveConfig()}
 											/>
 											<Switch
 												checked={config.resubsEnabled ?? true}
-												onChange={(event) => {
+												onChange={async (event) => {
 													setConfig({ ...config, resubsEnabled: event.target.checked });
-													saveConfig();
+													await saveConfig();
 												}}
 												label={t('resubs')}
+												onBlur={async () => await saveConfig()}
 											/>
 											<Switch
 												checked={config.bitsEnabled ?? true}
-												onChange={(event) => {
+												onChange={async (event) => {
 													setConfig({ ...config, bitsEnabled: event.target.checked });
-													saveConfig();
+													await saveConfig();
 												}}
 												label={t('bits')}
+												onBlur={async () => await saveConfig()}
 											/>
 										</Stack>
 										<h3>{t('Dashboard.configuration.maxMinLimitsHeading')}</h3>
@@ -246,7 +223,7 @@ export default function Dashboard() {
 												onChange={(val) => {
 													setConfig({ ...config, maxMsgLength: val ?? 1000 });
 												}}
-												onBlur={() => saveConfig()}
+												onBlur={async () => await saveConfig()}
 											/>
 											<NumberInput
 												label={t('Dashboard.configuration.minBitsAmountLabel')}
@@ -256,7 +233,7 @@ export default function Dashboard() {
 												onChange={(val) => {
 													setConfig({ ...config, minBitAmount: val ?? 0 });
 												}}
-												onBlur={() => saveConfig()}
+												onBlur={async () => await saveConfig()}
 											/>
 											<NumberInput
 												label={t('Dashboard.configuration.minResubMonthsLabel')}
@@ -266,7 +243,7 @@ export default function Dashboard() {
 												onChange={(val) => {
 													setConfig({ ...config, minMonthsAmount: val ?? 0 });
 												}}
-												onBlur={() => saveConfig()}
+												onBlur={async () => await saveConfig()}
 											/>
 										</Stack>
 										<h3>{t('Dashboard.configuration.blacklistHeading')}</h3>
@@ -283,7 +260,7 @@ export default function Dashboard() {
 												// @ts-ignore
 												setConfig({ ...config, blacklistedWords: event.target.value.split('\n') });
 											}}
-											onBlur={() => saveConfig()}
+											onBlur={async () => await saveConfig()}
 										/>
 										<Textarea
 											value={config.blacklistedVoices.join('\n').toLowerCase()}
@@ -293,7 +270,7 @@ export default function Dashboard() {
 												// @ts-ignore
 												setConfig({ ...config, blacklistedVoices: event.target.value.split('\n') });
 											}}
-											onBlur={() => saveConfig()}
+											onBlur={async () => await saveConfig()}
 										/>
 										<Textarea
 											value={config.blacklistedUsers.join('\n').toLowerCase()}
@@ -303,7 +280,17 @@ export default function Dashboard() {
 												// @ts-ignore
 												setConfig({ ...config, blacklistedUsers: event.target.value.split('\n') });
 											}}
-											onBlur={() => saveConfig()}
+											onBlur={async () => await saveConfig()}
+										/>
+										<Textarea
+											value={config.blacklistedVoiceEffects.join('\n').toLowerCase()}
+											label={t('Dashboard.configuration.blacklistVoiceEffectsLabel')}
+											autosize
+											onChange={(event) => {
+												// @ts-ignore
+												setConfig({ ...config, blacklistedVoiceEffects: event.target.value.split('\n') });
+											}}
+											onBlur={async () => await saveConfig()}
 										/>
 										<h3>{t('Dashboard.configuration.fallbacksHeading')}</h3>
 										<TextInput
@@ -312,7 +299,7 @@ export default function Dashboard() {
 												setConfig({ ...config, fallbackVoice: event.target.value ?? '' });
 											}}
 											label={t('Dashboard.configuration.fallbacksVoiceLabel')}
-											onBlur={() => saveConfig()}
+											onBlur={async () => await saveConfig()}
 										/>
 										<Space h="md" />
 										{configMutation.isLoading && <LoadingSpinner />}

@@ -72,6 +72,7 @@ export interface streamer {
 			blacklistedWords: string[];
 			blacklistedVoices: string[];
 			blacklistedUsers: string[];
+			blacklistedVoiceEffects: string[];
 			fallbackVoice: string;
 		}[];
 	};
