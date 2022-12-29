@@ -51,7 +51,7 @@ export default function Dashboard() {
 	const saveConfig = async () => {
 		await configMutation.mutateAsync({
 			streamerId: streamerData?.id ?? '',
-			config: { ...config },
+			config: { ...config, channelPointsName: config.channelPointsName ?? '' },
 		});
 
 		if (configMutation.isLoading) {

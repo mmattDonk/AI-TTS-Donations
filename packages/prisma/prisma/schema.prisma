@@ -56,23 +56,23 @@ model Streamer {
 model StreamerConfig {
   id String @id @default(cuid())
 
-  channelPointsName String?
-  channelPointsEnabled Boolean? @default(false)
+  channelPointsName String? @default("")
+  channelPointsEnabled Boolean @default(false)
 
-  bitsEnabled Boolean? @default(true)
-  resubsEnabled Boolean? @default(true)
+  bitsEnabled Boolean @default(true)
+  resubsEnabled Boolean @default(true)
 
-  maxMsgLength Int? @default(1000)
-  minBitAmount Int? @default(0)
-  minMonthsAmount Int? @default(0)
-  minTipAmount Int? @default(0)
+  maxMsgLength Int @default(1000)
+  minBitAmount Int @default(0)
+  minMonthsAmount Int @default(0)
+  minTipAmount Int @default(0)
 
   blacklistedWords String[]
   blacklistedVoices String[]
   blacklistedUsers String[]
   blacklistedVoiceEffects String[]
 
-  fallbackVoice String? @default("jerma985")
+  fallbackVoice String @default("jerma985")
 
   streamer Streamer @relation(fields: [id], references: [id], onDelete: Cascade)
 }
