@@ -79,6 +79,7 @@
 			"blacklistWordsLabel": "Слова",
 			"blacklistVoicesLabel": "Голоса",
 			"blacklistUsersLabel": "Пользователи",
+			"blacklistVoiceEffectsLabel": "Voice Effects",
 			"fallbacksHeading": "Fallbacks",
 			"fallbacksVoiceLabel": "Fallback Voice"
 		}
