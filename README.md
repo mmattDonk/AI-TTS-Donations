@@ -1,4 +1,4 @@
-# Project Solrock (wip name) [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/mmattdonk/solrock) [![Crowdin](https://badges.crowdin.net/solrock/localized.svg)](https://crowdin.com/project/solrock)
+# Project Solrock (wip name) [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/mmattdonk/solrock) [![Crowdin](https://badges.crowdin.net/solrock/localized.svg)](https://translate.solrock.mmattdonk.com/)
 
 The first 100% **free** AI TTS service for Twitch.
 
