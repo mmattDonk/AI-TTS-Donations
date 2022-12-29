@@ -79,6 +79,7 @@
 			"blacklistWordsLabel": "Słowa",
 			"blacklistVoicesLabel": "Głosy",
 			"blacklistUsersLabel": "Użytkownicy",
+			"blacklistVoiceEffectsLabel": "Voice Effects",
 			"fallbacksHeading": "Fallbacks",
 			"fallbacksVoiceLabel": "Fallback Voice"
 		}
