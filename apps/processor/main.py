@@ -144,7 +144,7 @@ def request_tts(
         voice: list = voice.split(".")  # type: ignore
         voice_name: str = voice[0].lower()
         try:
-            voice_effect: str = voice[1:]  # type: ignore
+            voice_effect: list = voice[1:]  # type: ignore
         except IndexError:
             voice_effect = None  # type: ignore
         log.debug(f"voice effect: {str(voice_effect)}")
@@ -170,7 +170,7 @@ def request_tts(
             if fallback_voice is None:
                 fallback_voice = "jerma985"
             log.info(
-                "Couldn't find voice specified, using fallback voice: " + fallback_voice
+                f"Couldn't find voice specified, using fallback voice: {fallback_voice}"
             )
 
             job_response: dict = Uberduck.get_job(text, fallback_voice)  # type: ignore
@@ -190,7 +190,17 @@ def request_tts(
                         f"./voice_files/AI_voice_{date_string}.wav",
                     )
 
+                    print(voice_effect)
+                    print(config["blacklistedVoiceEffects"])
+                    for effect in voice_effect:
+                        for i in config["blacklistedVoiceEffects"]:
+                            if i.lower() in effect.lower():
+                                log.info(f"{voice_effect} is a blacklisted voice effect, skipping effect.")
+                                voice_effect=None
+
                     if voice_effect:
+                        print(config["blacklistedVoiceEffects"])
+                        print(voice_effect)
                         with AudioFile(f"./voice_files/AI_voice_{date_string}.wav", "r") as f:  # type: ignore
                             audio = f.read(f.frames)
                             samplerate = f.samplerate
@@ -329,6 +339,7 @@ def hello_http(request):
     ).json()
 
     config = configRequest["streamer"]["config"][0]
+    print(config)
 
     response = request_tts(
         message=request_message, failed=False, overlayId=overlay_id, config=config

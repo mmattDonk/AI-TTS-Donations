@@ -3,6 +3,7 @@ import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 export const streamerRouter = router({
 	getStreamer: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
+		// TODO: fix ctx.prisma returning no types?
 		return await ctx.prisma.streamer.findFirst({
 			where: {
 				user: {
@@ -18,6 +19,8 @@ export const streamerRouter = router({
 	}),
 	updateStreamerConfig: protectedProcedure
 		.input(
+			// TODO: gotta be a better way to do this vvv
+			// like pull it from the `streamer` schema on prisma or something
 			z.object({
 				streamerId: z.string(),
 				config: z.object({
@@ -35,6 +38,7 @@ export const streamerRouter = router({
 					blacklistedWords: z.array(z.string()),
 					blacklistedVoices: z.array(z.string()),
 					blacklistedUsers: z.array(z.string()),
+					blacklistedVoiceEffects: z.array(z.string()),
 
 					fallbackVoice: z.string(),
 				}),
@@ -47,6 +51,7 @@ export const streamerRouter = router({
 				blacklistedWords: config.blacklistedWords.filter((w) => w !== ''),
 				blacklistedVoices: config.blacklistedVoices.filter((w) => w !== ''),
 				blacklistedUsers: config.blacklistedUsers.filter((w) => w !== ''),
+				blacklistedVoiceEffects: config.blacklistedVoiceEffects.filter((w) => w !== '').map((w) => w.toLowerCase()),
 			};
 			return await ctx.prisma.streamerConfig.upsert({
 				where: {
