@@ -69,7 +69,8 @@
 		"configuration": {
 			"configurationHeading": "Configuración",
 			"channelPointsHeading": "Puntos del Canal",
-			"channelPointRewardNameLabel": "Nombre del Canje de los Puntos del Canal (Sensitivo a Mayúsculas)",
+			"channelPointRewardNameLabel": "Reward Name",
+			"channelPointRewardNameTooltip": "(Case Sensitive)",
 			"maxMinLimitsHeading": "Límites Max/Min",
 			"maxMessageLengthLabel": "Largo Max. del Mensaje",
 			"minBitsAmountLabel": "Cantidad Mínima de Bits",
