@@ -62,7 +62,7 @@ model StreamerConfig {
   bitsEnabled Boolean @default(true)
   resubsEnabled Boolean @default(true)
 
-  maxMsgLength Int @default(1000)
+  maxMsgLength Int @default(500)
   minBitAmount Int @default(0)
   minMonthsAmount Int @default(0)
   minTipAmount Int @default(0)
