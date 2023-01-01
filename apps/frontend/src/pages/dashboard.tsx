@@ -1,4 +1,21 @@
-import { Avatar, Button, Center, Code, Collapse, Container, Group, Kbd, NumberInput, Space, Stack, Switch, Textarea, TextInput, Tooltip } from '@mantine/core';
+import {
+	Avatar,
+	Button,
+	Center,
+	Code,
+	Collapse,
+	Container,
+	Group,
+	Kbd,
+	NumberInput,
+	SimpleGrid,
+	Space,
+	Stack,
+	Switch,
+	Textarea,
+	TextInput,
+	Tooltip,
+} from '@mantine/core';
 import { GetStaticPropsContext } from 'next';
 import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
@@ -34,7 +51,7 @@ export default function Dashboard() {
 			channelPointsEnabled: false,
 			bitsEnabled: true,
 			resubsEnabled: true,
-			maxMsgLength: 1000,
+			maxMsgLength: 500,
 			minBitAmount: 0,
 			minTipAmount: 0,
 			minMonthsAmount: 0,
@@ -172,76 +189,82 @@ export default function Dashboard() {
 								) : (
 									<>
 										<h2>{t('Dashboard.configuration.configurationHeading')}</h2>
-										<h3>{t('Dashboard.configuration.channelPointsHeading')}</h3>
-										<Group>
-											<TextInput
-												value={config.channelPointsName ?? ''}
-												onChange={(event) => {
-													setConfig({ ...config, channelPointsName: event.target.value });
-												}}
-												label={t('Dashboard.configuration.channelPointRewardNameLabel')}
-												onBlur={async () => await saveConfig()}
-											/>
-										</Group>
 										<h3>Events</h3>
 										<Stack>
-											<Switch
-												checked={config.channelPointsEnabled ?? false}
-												onChange={async (event) => {
-													setConfig({ ...config, channelPointsEnabled: event.target.checked });
-													await saveConfig();
-												}}
-												label={t('channelPoints')}
-												onBlur={async () => await saveConfig()}
-											/>
-											<Switch
-												checked={config.resubsEnabled ?? true}
-												onChange={async (event) => {
-													setConfig({ ...config, resubsEnabled: event.target.checked });
-													await saveConfig();
-												}}
-												label={t('resubs')}
-												onBlur={async () => await saveConfig()}
-											/>
-											<Switch
-												checked={config.bitsEnabled ?? true}
-												onChange={async (event) => {
-													setConfig({ ...config, bitsEnabled: event.target.checked });
-													await saveConfig();
-												}}
-												label={t('bits')}
-												onBlur={async () => await saveConfig()}
-											/>
+											<SimpleGrid cols={2}>
+												<Switch
+													checked={config.channelPointsEnabled ?? false}
+													onChange={async (event) => {
+														setConfig({ ...config, channelPointsEnabled: event.target.checked });
+														await saveConfig();
+													}}
+													label={t('channelPoints')}
+													onBlur={async () => await saveConfig()}
+												/>
+												<Tooltip label={t('Dashboard.configuration.channelPointRewardNameTooltip')} position={'bottom'}>
+													<TextInput
+														value={config.channelPointsName ?? ''}
+														onChange={(event) => {
+															setConfig({ ...config, channelPointsName: event.target.value });
+														}}
+														label={t('Dashboard.configuration.channelPointRewardNameLabel')}
+														onBlur={async () => await saveConfig()}
+													/>
+												</Tooltip>
+											</SimpleGrid>
+											<SimpleGrid cols={2}>
+												<Switch
+													checked={config.resubsEnabled ?? true}
+													onChange={async (event) => {
+														setConfig({ ...config, resubsEnabled: event.target.checked });
+														await saveConfig();
+													}}
+													label={t('resubs')}
+													onBlur={async () => await saveConfig()}
+												/>
+												<NumberInput
+													label={t('Dashboard.configuration.minResubMonthsLabel')}
+													defaultValue={config.minMonthsAmount ?? 0}
+													value={config.minMonthsAmount ?? 0}
+													min={0}
+													onChange={(val) => {
+														setConfig({ ...config, minMonthsAmount: val ?? 0 });
+													}}
+													onBlur={async () => await saveConfig()}
+												/>
+											</SimpleGrid>
+											<SimpleGrid cols={2}>
+												<Switch
+													checked={config.bitsEnabled ?? true}
+													onChange={async (event) => {
+														setConfig({ ...config, bitsEnabled: event.target.checked });
+														await saveConfig();
+													}}
+													label={t('bits')}
+													onBlur={async () => await saveConfig()}
+												/>
+												<NumberInput
+													label={t('Dashboard.configuration.minBitsAmountLabel')}
+													defaultValue={config.minBitAmount ?? 0}
+													value={config.minBitAmount ?? 0}
+													min={0}
+													onChange={(val) => {
+														setConfig({ ...config, minBitAmount: val ?? 0 });
+													}}
+													onBlur={async () => await saveConfig()}
+													width={100}
+												/>
+											</SimpleGrid>
 										</Stack>
 										<h3>{t('Dashboard.configuration.maxMinLimitsHeading')}</h3>
 										<Stack>
 											<NumberInput
 												label={t('Dashboard.configuration.maxMessageLengthLabel')}
-												defaultValue={config.maxMsgLength ?? 1000}
-												value={config.maxMsgLength ?? 1000}
+												defaultValue={config.maxMsgLength ?? 500}
+												value={config.maxMsgLength ?? 500}
 												min={1}
 												onChange={(val) => {
-													setConfig({ ...config, maxMsgLength: val ?? 1000 });
-												}}
-												onBlur={async () => await saveConfig()}
-											/>
-											<NumberInput
-												label={t('Dashboard.configuration.minBitsAmountLabel')}
-												defaultValue={config.minBitAmount ?? 0}
-												value={config.minBitAmount ?? 0}
-												min={0}
-												onChange={(val) => {
-													setConfig({ ...config, minBitAmount: val ?? 0 });
-												}}
-												onBlur={async () => await saveConfig()}
-											/>
-											<NumberInput
-												label={t('Dashboard.configuration.minResubMonthsLabel')}
-												defaultValue={config.minMonthsAmount ?? 0}
-												value={config.minMonthsAmount ?? 0}
-												min={0}
-												onChange={(val) => {
-													setConfig({ ...config, minMonthsAmount: val ?? 0 });
+													setConfig({ ...config, maxMsgLength: val ?? 500 });
 												}}
 												onBlur={async () => await saveConfig()}
 											/>
