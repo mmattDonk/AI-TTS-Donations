@@ -16,6 +16,8 @@ import {
 	TextInput,
 	Tooltip,
 } from '@mantine/core';
+import { showNotification, updateNotification } from '@mantine/notifications';
+import { IconCross } from '@tabler/icons';
 import { GetStaticPropsContext } from 'next';
 import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
@@ -63,21 +65,34 @@ export default function Dashboard() {
 		}
 	);
 
-	const [message, setMessage] = useState('');
-
 	const saveConfig = async () => {
 		await configMutation.mutateAsync({
 			streamerId: streamerData?.id ?? '',
 			config: { ...config, channelPointsName: config.channelPointsName ?? '' },
 		});
 
-		if (configMutation.isLoading) {
-			setMessage('');
-		} else if (!configMutation.isLoading) {
+		showNotification({
+			id: 'savingConfig',
+			message: 'Saving config...',
+			loading: configMutation.isLoading,
+		});
+		if (!configMutation.isLoading) {
 			if (configMutation.isError) {
-				setMessage('Error saving config');
+				updateNotification({
+					id: 'savingConfig',
+					color: 'red',
+					message: 'Error saving config',
+					loading: false,
+					icon: <IconCross size={16} />,
+				});
 			} else {
-				setMessage('Config saved');
+				updateNotification({
+					id: 'savingConfig',
+					color: 'teal',
+					message: 'Config saved!',
+					loading: false,
+					autoClose: 1500,
+				});
 			}
 		}
 	};
@@ -324,9 +339,6 @@ export default function Dashboard() {
 											label={t('Dashboard.configuration.fallbacksVoiceLabel')}
 											onBlur={async () => await saveConfig()}
 										/>
-										<Space h="md" />
-										{configMutation.isLoading && <LoadingSpinner />}
-										<p>{configMutation.isLoading ? '' : message}</p>
 									</>
 								)}
 
