@@ -69,7 +69,8 @@
 		"configuration": {
 			"configurationHeading": "Configurazione",
 			"channelPointsHeading": "Punti Canale",
-			"channelPointRewardNameLabel": "Nome Ricompensa Punti Canale (Maiuscole e Minuscole)",
+			"channelPointRewardNameLabel": "Reward Name",
+			"channelPointRewardNameTooltip": "(Case Sensitive)",
 			"maxMinLimitsHeading": "Limiti Massimo/Minimo",
 			"maxMessageLengthLabel": "Lunghezza massima del messaggio",
 			"minBitsAmountLabel": "Importo minimo di Bits",
