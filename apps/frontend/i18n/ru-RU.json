@@ -69,7 +69,8 @@
 		"configuration": {
 			"configurationHeading": "Конфигурация",
 			"channelPointsHeading": "Очки канала",
-			"channelPointRewardNameLabel": "Название награды за очки канала (зависит от случая)",
+			"channelPointRewardNameLabel": "Reward Name",
+			"channelPointRewardNameTooltip": "(Case Sensitive)",
 			"maxMinLimitsHeading": "Макс/Мин пределы",
 			"maxMessageLengthLabel": "Максимальная длина сообщения",
 			"minBitsAmountLabel": "Минимальное количество бит",
