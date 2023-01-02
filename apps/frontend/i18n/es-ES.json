@@ -31,6 +31,7 @@
 		"getStarted": "Comenzar",
 		"dashboard": "Panel",
 		"getStartedToday": "¿Suena bien? ¡Empieza hoy mismo a utilizar AI TTS Donations de forma gratuita!",
+		"getStartedDesc": "Join the over 900+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
 		"howItWorks": "Cómo funciona",
 		"featuresHeading": "Características que <gradientText>no tienen rivalidad</gradientText> en comparación con cualquier otra cosa disponible.",
 		"features": {
@@ -54,11 +55,7 @@
 		},
 		"dontBelieve": "¿No nos crees?",
 		"dontBelieveDesc": "Simplemente mira lo que otros streamers dicen acerca de él.",
-		"testimonyCTA": "¿Eres un streamer que usa AI TTS Donations? Déjanos una review <link>aquí!</link>",
-		"emailSignUp": "¡Inscríbase a la lista de correo!",
-		"emailNotReadyDescription": "¡Suscríbete a nuestra lista de correos para obtener actualizaciones acerca de AI TTS Donations!",
-		"emailSubscribeSuccess": "¡Te has suscrito con éxito!",
-		"emailPapertrail": "¿Quieres ver correos antigüos? ¡Chequea el historial de correos en el sitio web personal de mmatt!"
+		"testimonyCTA": "¿Eres un streamer que usa AI TTS Donations? Déjanos una review <link>aquí!</link>"
 	},
 	"Dashboard": {
 		"yourDash": "Tu Panel",
