@@ -11,7 +11,7 @@ export default function Bubbles() {
 	return (
 		<Particles
 			id="tsparticles"
-			className="absolute z-0"
+			style={{ position: 'absolute', zIndex: 0 }}
 			init={particlesInit}
 			options={{
 				fpsLimit: 120,
