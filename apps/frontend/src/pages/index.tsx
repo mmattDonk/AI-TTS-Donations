@@ -14,7 +14,6 @@ import Features from '../components/Features';
 import { LoadingSpinner } from '../components/Loading';
 import Spring from '../components/Spring';
 import TestimoniesComponent from '../components/Testimonies';
-import { TranslationMenu } from '../components/TranslationMenu';
 import { trpc } from '../utils/trpc';
 
 const useStyles = createStyles((theme) => ({
@@ -158,7 +157,7 @@ const Home: NextPage = () => {
 			<Container>
 				<Spring>
 					<Group mb={'1rem'} mt={'1rem'} position="right">
-						<TranslationMenu />
+						{/* <TranslationMenu /> */}
 						{isLoading ? (
 							<LoadingSpinner />
 						) : session ? (
