@@ -31,6 +31,7 @@
 		"getStarted": "Начать здесь",
 		"dashboard": "Панель Управления",
 		"getStartedToday": "Звучит хорошо? Тогда воспользуйтесь с AI TTS Донаты бесплатно!",
+		"getStartedDesc": "Join the over 900+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
 		"howItWorks": "Как оно работает",
 		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
 		"features": {
@@ -54,11 +55,7 @@
 		},
 		"dontBelieve": "Don't believe us?",
 		"dontBelieveDesc": "Just look at what streamers say about it.",
-		"testimonyCTA": "Are you a streamer that uses AI TTS Donations? Give us a review <link>here!</link>",
-		"emailSignUp": "Подписаться к рассылкам!",
-		"emailNotReadyDescription": "Subscribe to our mailing list to get updates in your email about AI TTS Donations!",
-		"emailSubscribeSuccess": "Вы подписались!",
-		"emailPapertrail": "Хотите просмотреть прошлые письма? Тогда посмотрите бумажный след на личном сайте mmatt!"
+		"testimonyCTA": "Are you a streamer that uses AI TTS Donations? Give us a review <link>here!</link>"
 	},
 	"Dashboard": {
 		"yourDash": "Панель Управления",
