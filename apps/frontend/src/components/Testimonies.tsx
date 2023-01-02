@@ -205,6 +205,7 @@ export default function TestimoniesComponent() {
 	return (
 		<Carousel
 			sx={{
+				marginTop: '-2.5rem',
 				marginBottom: '1rem',
 				maxWidth: 620,
 				'&:hover': {

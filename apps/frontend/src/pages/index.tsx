@@ -1,4 +1,4 @@
-import { Avatar, Button, Center, Container, createStyles, Group, Menu, Text, TextInput, Title, Tooltip, UnstyledButton } from '@mantine/core';
+import { Avatar, Button, Center, Container, createStyles, Group, Menu, Text, Title, Tooltip, UnstyledButton } from '@mantine/core';
 import type { GetStaticPropsContext, NextPage } from 'next';
 import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
@@ -331,7 +331,7 @@ const Home: NextPage = () => {
 					<br />
 
 					<h1 style={{ textAlign: 'center' }}>{t('Landing.dontBelieve')}</h1>
-					<h2 style={{ textAlign: 'center', marginBottom: '-30px' }}>{t('Landing.dontBelieveDesc')}</h2>
+					<h3 style={{ textAlign: 'center', marginTop: '-1.5rem' }}>{t('Landing.dontBelieveDesc')}</h3>
 					<TestimoniesComponent />
 					<p style={{ textAlign: 'center' }}>
 						{t.rich('Landing.testimonyCTA', {
@@ -367,30 +367,13 @@ const Home: NextPage = () => {
 						height: '100%',
 					}}
 				>
-					{/* idk if i want to use this or not, i still want to have the mailing list *maybe* */}
-					{/* <h1 style={{ textAlign: 'center' }}>{t('Landing.getStartedToday')}</h1>
+					<h1 style={{ textAlign: 'center' }}>{t('Landing.getStartedToday')}</h1>
+					<p>{t('Landing.getStartedDesc')}</p>
 					<Link href="/dashboard" prefetch>
 						<Center>
 							<Button>{t('Landing.getStarted')}</Button>
 						</Center>
-					</Link> */}
-					<h1 style={{ textAlign: 'center' }}>{t('Landing.emailSignUp')}</h1>
-					<p style={{ textAlign: 'center' }}>{t('Landing.emailNotReadyDescription')}</p>
-
-					<form onSubmit={subscribe}>
-						<Group>
-							<TextInput required placeholder="yo@youremail.com" ref={inputElement} type="email" id="email-input" />
-
-							<Button type="submit" disabled={formMutation.isLoading}>
-								{t('submit')}
-							</Button>
-							{formMutation.isLoading && <LoadingSpinner />}
-							<div>{!formMutation.isLoading && message}</div>
-						</Group>
-					</form>
-					<p>
-						{t('Landing.emailPapertrail')} - <a href="https://www.mmatt.net/papertrail">{t('learnMore')}</a>
-					</p>
+					</Link>
 				</div>
 			</div>
 		</>
