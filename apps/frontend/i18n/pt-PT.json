@@ -31,7 +31,7 @@
 		"getStarted": "Prepara-te",
 		"dashboard": "Painel de Controle",
 		"getStartedToday": "Soa-te bem? Começa a usar o AI TTS Donations hoje de graça!",
-		"getStartedDesc": "Join the over 900+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
+		"getStartedDesc": "Junta-te aos mais de 900 steamers que já usam Doações AI TTS, e obtém o melhor TTS ao redor, de graça!",
 		"howItWorks": "Como funciona",
 		"featuresHeading": "Recursos que são incomparáveis ​​em comparação com qualquer outra coisa disponível.",
 		"features": {
@@ -66,8 +66,8 @@
 		"configuration": {
 			"configurationHeading": "Configuração",
 			"channelPointsHeading": "Pontos do canal",
-			"channelPointRewardNameLabel": "Reward Name",
-			"channelPointRewardNameTooltip": "(Case Sensitive)",
+			"channelPointRewardNameLabel": "Nome da recompensa",
+			"channelPointRewardNameTooltip": "(Maiúsculas e minúsculas)",
 			"maxMinLimitsHeading": "Limites Máx./Mín",
 			"maxMessageLengthLabel": "Comprimento máximo da mensagem",
 			"minBitsAmountLabel": "Quantidade Mínima de Bits",
@@ -77,7 +77,7 @@
 			"blacklistWordsLabel": "Palavras",
 			"blacklistVoicesLabel": "Vozes",
 			"blacklistUsersLabel": "Utilizadores",
-			"blacklistVoiceEffectsLabel": "Voice Effects",
+			"blacklistVoiceEffectsLabel": "Efeitos de Voz",
 			"fallbacksHeading": "Substitutos",
 			"fallbacksVoiceLabel": "Voz substituta"
 		}
