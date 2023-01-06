@@ -265,9 +265,10 @@ app.post('/newuser', async (req, res) => {
 		subscribeReward.status === 403 ||
 		subscribeReward.status === 429 ||
 		subscribeReward.status === 400
-	)
+	) {
+		console.log('error subscribing to eventsub', subscribeCheers.status, subscribeResub.status, subscribeReward.status);
 		return res.status(500).send('Error subscribing to eventsub');
-	else {
+	} else {
 		return res.status(200).send('OK, in theory.');
 	}
 });
