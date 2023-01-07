@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import crypto from 'crypto';
 import dotenv from 'dotenv';
 import { envsafe, num, str, url } from 'envsafe';

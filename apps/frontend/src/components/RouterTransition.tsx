@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { completeNavigationProgress, NavigationProgress, startNavigationProgress } from '@mantine/nprogress';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';

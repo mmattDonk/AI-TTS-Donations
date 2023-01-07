@@ -1,3 +1,7 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
+// this file was generated from create-t3-app https://create.t3.gg, however heavily modified (mantine+others)
 // src/pages/_app.tsx
 import { ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';

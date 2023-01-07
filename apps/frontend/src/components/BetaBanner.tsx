@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Badge, Stack } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 

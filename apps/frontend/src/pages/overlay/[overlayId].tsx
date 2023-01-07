@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { useRouter } from 'next/router';
 import Pusher from 'pusher-js';
 import { useEffect, useRef, useState } from 'react';

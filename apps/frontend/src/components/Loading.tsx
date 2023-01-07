@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Container, Group } from '@mantine/core';
 import Image from 'next/image';
 
