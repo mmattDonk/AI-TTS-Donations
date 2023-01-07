@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Carousel } from '@mantine/carousel';
 import { Avatar, createStyles, Group, Rating, Text } from '@mantine/core';
 import Autoplay from 'embla-carousel-autoplay';

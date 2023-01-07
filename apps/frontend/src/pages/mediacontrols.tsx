@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { GetStaticPropsContext } from 'next/types';
 import BetaBanner from '../components/BetaBanner';
 import MediaControls from '../components/MediaControls';

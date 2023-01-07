@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import React from 'react';
 
 export interface DotsProps extends React.ComponentPropsWithoutRef<'svg'> {

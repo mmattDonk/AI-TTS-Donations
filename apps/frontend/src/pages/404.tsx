@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Center, Container, createStyles, Group, Text, Title } from '@mantine/core';
 import { GetStaticPropsContext } from 'next';
 import { useTranslations } from 'next-intl';

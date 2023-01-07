@@ -1,3 +1,7 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
+// this file was mostly generated from create-t3-app https://create.t3.gg
 import { withSentry } from '@sentry/nextjs';
 import { createNextApiHandler } from '@trpc/server/adapters/next';
 

@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Avatar, Button, Center, Container, createStyles, Group, Menu, Text, Title, Tooltip, UnstyledButton } from '@mantine/core';
 import type { GetStaticPropsContext, NextPage } from 'next';
 import { signIn, signOut } from 'next-auth/react';
@@ -104,27 +107,7 @@ const Home: NextPage = () => {
 	const t = useTranslations();
 
 	const BRRef = useRef<HTMLBRElement>(null);
-	const inputElement = useRef<HTMLInputElement>(null);
-	const [message, setMessage] = useState('');
-
 	const scrollToPositions = () => BRRef.current?.scrollIntoView({ behavior: 'smooth' });
-
-	const formMutation = trpc.mailingList.subscribe.useMutation();
-
-	const subscribe = async (e: any) => {
-		e.preventDefault();
-		if (!inputElement.current?.value) return;
-
-		formMutation.mutate({ email: inputElement.current.value });
-		if (!formMutation.isLoading) {
-			if (formMutation.data?.success === false) {
-				setMessage(formMutation.data?.error);
-				return;
-			} else {
-				setMessage(t('Landing.emailSubscribeSuccess'));
-			}
-		}
-	};
 
 	return (
 		<>

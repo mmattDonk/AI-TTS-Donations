@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Button, Collapse, Container, Group, Space, Stack, Table } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { signIn } from 'next-auth/react';

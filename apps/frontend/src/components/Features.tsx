@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Container, createStyles, SimpleGrid, Text } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import React from 'react';
