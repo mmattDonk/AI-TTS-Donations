@@ -1,7 +1,7 @@
 // mmattDonk 2023
 // https://mmattDonk.com
 
-import { envsafe, str, url } from 'envsafe';
+import { envsafe, str, url, num } from 'envsafe';
 
 export const env = envsafe({
 	NEXTAUTH_SECRET: str({
@@ -26,30 +26,15 @@ export const env = envsafe({
 		desc: "the backend server's URL",
 		devDefault: 'http://localhost:4200',
 	}),
-	PUSHER_APP_KEY: str({
-		desc: 'get this from pusher.com (for overlay connection)',
+	SOKETI_URL: str({
+		desc: 'soketi url, hosted on railway',
 	}),
-	PUSHER_APP_CLUSTER: str({
-		desc: 'get this from pusher.com (for overlay connection)',
+	SOKETI_PORT: num({
+		desc: 'soketi port, hosted on railway',
 	}),
-	PUSHER_APP_ID: str({
-		desc: 'get this from pusher.com (for overlay connection)',
-	}),
-	PUSHER_APP_SECRET: str({
-		desc: 'get this from pusher.com (for overlay connection)',
-	}),
-	MAILCHIMP_API_KEY: str({
-		desc: 'get this from mailchimp.com (used for email signups, not neaded most of the time)',
-		allowEmpty: true,
-	}),
-	MAILCHIMP_API_SERVER: str({
-		desc: 'get this from mailchimp.com (used for email signups, not neaded most of the time)',
-		allowEmpty: true,
-	}),
-	MAILCHIMP_AUDIENCE_ID: str({
-		desc: 'get this from mailchimp.com (used for email signups, not neaded most of the time)',
-		allowEmpty: true,
-	}),
+	SOKETI_APP_ID: str(),
+	SOKETI_APP_SECRET: str(),
+	SOKETI_APP_KEY: str(),
 	SERVERLESS_PROCESSOR_URL: url({
 		desc: 'The serverless Python Processor URL',
 		devDefault: 'http://127.0.0.1:8080',

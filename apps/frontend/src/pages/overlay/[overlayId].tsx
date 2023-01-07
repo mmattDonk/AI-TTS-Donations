@@ -7,23 +7,23 @@ import { useEffect, useRef, useState } from 'react';
 import { env } from '../../utils/env';
 
 export async function getServerSideProps() {
-	const PUSHER_APP_KEY = env.PUSHER_APP_KEY;
-	const PUSHER_APP_CLUSTER = env.PUSHER_APP_CLUSTER;
-
 	return {
 		props: {
-			PUSHER_APP_KEY,
-			PUSHER_APP_CLUSTER,
+			SOKETI_APP_KEY: env.SOKETI_APP_KEY,
+			SOKETI_URL: env.SOKETI_URL,
+			SOKETI_PORT: env.SOKETI_PORT,
 		}, // will be passed to the page component as props
 	};
 }
 
 export default function Overlay({
-	PUSHER_APP_KEY,
-	PUSHER_APP_CLUSTER,
+	SOKETI_APP_KEY,
+	SOKETI_URL,
+	SOKETI_PORT,
 }: {
-	PUSHER_APP_KEY: typeof env.PUSHER_APP_KEY;
-	PUSHER_APP_CLUSTER: typeof env.PUSHER_APP_CLUSTER;
+	SOKETI_APP_KEY: typeof env.SOKETI_APP_KEY;
+	SOKETI_URL: typeof env.SOKETI_URL;
+	SOKETI_PORT: typeof env.SOKETI_PORT;
 }) {
 	const [audioFiles, setAudioFiles] = useState<Array<string>>([]);
 	const [currentAudioFile, setCurrentAudioFile] = useState<string | null>(null);
@@ -33,10 +33,14 @@ export default function Overlay({
 	const { overlayId } = router.query;
 
 	useEffect(() => {
-		const pusher = new Pusher(PUSHER_APP_KEY, {
-			cluster: PUSHER_APP_CLUSTER,
+		const pusher = new Pusher(SOKETI_APP_KEY, {
+			wsHost: SOKETI_URL,
+			// wsPort: SOKETI_PORT,
+			forceTLS: false,
+			disableStats: true,
+			enabledTransports: ['ws', 'wss'],
+			cluster: '',
 		});
-		console.debug(PUSHER_APP_KEY);
 		const channel = pusher.subscribe(overlayId as string);
 		channel.bind('new-file', (data: { file: string }) => {
 			console.debug(data.file);
