@@ -45,6 +45,10 @@ const env = envsafe({
 		desc: 'randomly generated, meant for twitch eventsub verification',
 		devDefault: 'superdanksecretdotcom',
 	}),
+	EVENTSUB_URL: url({
+		desc: 'the url that twitch will send eventsub notifications to',
+		default: 'https://eventsub.solrock.mmattDonk.com/eventsub',
+	}),
 });
 
 // port
@@ -138,8 +142,6 @@ app.post(
 		let secret = getSecret();
 		let message = getHmacMessage(req);
 		let hmac = HMAC_PREFIX + getHmac(secret, message); // Signature to compare
-		console.log('hmac: ', hmac);
-		console.log('req.headers[TWITCH_MESSAGE_SIGNATURE]: ', req.headers[TWITCH_MESSAGE_SIGNATURE]);
 
 		if (true === verifyMessage(hmac, req.headers[TWITCH_MESSAGE_SIGNATURE])) {
 			console.log('signatures match');
@@ -206,7 +208,7 @@ app.post('/newuser', async (req, res) => {
 				condition: { broadcaster_user_id: data.streamerId },
 				transport: {
 					method: 'webhook',
-					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
+					callback: env.EVENTSUB_URL,
 					secret: env.EVENTSUB_SECRET,
 				},
 			}),
@@ -224,7 +226,7 @@ app.post('/newuser', async (req, res) => {
 				condition: { broadcaster_user_id: data.streamerId },
 				transport: {
 					method: 'webhook',
-					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
+					callback: env.EVENTSUB_URL,
 					secret: env.EVENTSUB_SECRET,
 				},
 			}),
@@ -242,7 +244,7 @@ app.post('/newuser', async (req, res) => {
 				condition: { broadcaster_user_id: data.streamerId },
 				transport: {
 					method: 'webhook',
-					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
+					callback: env.EVENTSUB_URL,
 					secret: env.EVENTSUB_SECRET,
 				},
 			}),
