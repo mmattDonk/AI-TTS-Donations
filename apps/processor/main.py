@@ -175,8 +175,8 @@ def request_tts(
             log.info(
                 f"Couldn't find voice specified, using fallback voice: {fallback_voice}"
             )
-
-            job_response: dict = Uberduck.get_job(text, fallback_voice)  # type: ignore
+            tts_provider = Fakeyou if fallback_voice.startswith("TM:") else Uberduck
+            job_response: dict = tts_provider.get_job(text, fallback_voice)  # type: ignore
         if job_response["uuid"] is not None:
             log.info("UUID recieved. Waiting for TTS to process")
             checkCount: int = 0
