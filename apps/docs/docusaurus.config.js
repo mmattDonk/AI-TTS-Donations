@@ -29,15 +29,10 @@ const config = {
 			({
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
+					routeBasePath: '/',
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
-					editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-				},
-				blog: {
-					showReadingTime: true,
-					// Please change this to your repo.
-					// Remove this to remove the "edit this page" links.
-					editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+					editUrl: 'https://github.com/mmattDonk/ai-tts-donations/tree/docs/apps/docs/docs/',
 				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
@@ -54,11 +49,12 @@ const config = {
 				logo: {
 					alt: 'mmattDonk Logo',
 					src: 'img/mmattDonk.webp',
+					href: 'https://mmattDonk.com',
 				},
 				items: [
 					{
 						type: 'doc',
-						docId: 'intro',
+						docId: 'index',
 						position: 'left',
 						label: 'Docs',
 					},
