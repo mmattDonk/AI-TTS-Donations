@@ -79,7 +79,8 @@
 			"blacklistUsersLabel": "Usuarios",
 			"blacklistVoiceEffectsLabel": "Voice Effects",
 			"fallbacksHeading": "Respaldos",
-			"fallbacksVoiceLabel": "Voz de Respaldo"
+			"fallbacksVoiceLabel": "Voz de Respaldo",
+			"fallbacksInputTooltip": "(Only Uberduck Voices Allowed At The Moment)"
 		}
 	}
 }
