@@ -144,6 +144,7 @@ export default function MediaControls() {
 												display: 'flex',
 												justifyContent: 'space-between',
 												gap: '1rem',
+												overflowWrap: 'break-word',
 											}}
 										>
 											<p>{ttsMessages?.messages[virtualItem.index].message}</p>
