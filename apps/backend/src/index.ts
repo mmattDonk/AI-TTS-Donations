@@ -138,8 +138,6 @@ app.post(
 		let secret = getSecret();
 		let message = getHmacMessage(req);
 		let hmac = HMAC_PREFIX + getHmac(secret, message); // Signature to compare
-		console.log('hmac: ', hmac);
-		console.log('req.headers[TWITCH_MESSAGE_SIGNATURE]: ', req.headers[TWITCH_MESSAGE_SIGNATURE]);
 
 		if (true === verifyMessage(hmac, req.headers[TWITCH_MESSAGE_SIGNATURE])) {
 			console.log('signatures match');
@@ -149,6 +147,7 @@ app.post(
 
 			if (MESSAGE_TYPE_NOTIFICATION === req.headers[MESSAGE_TYPE]) {
 				console.log(`Event type: ${notification.subscription.type}`);
+				console.log('Streamer:', notification.event.broadcaster_user_id);
 				const streamer = await fetch(API_URL + '/api/streamers/streamerId/' + notification.event.broadcaster_user_id, {
 					headers: { secret: env.API_SECRET ?? '', 'Content-Type': 'application/json' },
 					method: 'GET',
