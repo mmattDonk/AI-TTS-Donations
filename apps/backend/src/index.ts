@@ -45,6 +45,10 @@ const env = envsafe({
 		desc: 'randomly generated, meant for twitch eventsub verification',
 		devDefault: 'superdanksecretdotcom',
 	}),
+	EVENTSUB_URL: url({
+		desc: 'the url that twitch will send eventsub notifications to',
+		default: 'https://eventsub.solrock.mmattDonk.com/eventsub',
+	}),
 });
 
 // port
@@ -189,7 +193,7 @@ app.post(
 
 app.post('/newuser', async (req, res) => {
 	const data = req.body as { streamerId: string };
-	console.log('new user!', data.streamerId);
+	console.log('new user request:', data.streamerId);
 	// if bearer token not equal to env.secret
 	const secret = req.headers.authorization?.split(' ')[1];
 	if (secret !== env.API_SECRET) {
@@ -205,7 +209,7 @@ app.post('/newuser', async (req, res) => {
 				condition: { broadcaster_user_id: data.streamerId },
 				transport: {
 					method: 'webhook',
-					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
+					callback: env.EVENTSUB_URL,
 					secret: env.EVENTSUB_SECRET,
 				},
 			}),
@@ -223,7 +227,7 @@ app.post('/newuser', async (req, res) => {
 				condition: { broadcaster_user_id: data.streamerId },
 				transport: {
 					method: 'webhook',
-					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
+					callback: env.EVENTSUB_URL,
 					secret: env.EVENTSUB_SECRET,
 				},
 			}),
@@ -241,7 +245,7 @@ app.post('/newuser', async (req, res) => {
 				condition: { broadcaster_user_id: data.streamerId },
 				transport: {
 					method: 'webhook',
-					callback: 'https://eventsub.solrock.mmattdonk.com/eventsub',
+					callback: env.EVENTSUB_URL,
 					secret: env.EVENTSUB_SECRET,
 				},
 			}),
@@ -255,22 +259,26 @@ app.post('/newuser', async (req, res) => {
 	]);
 
 	if (
-		subscribeCheers.status === 401 ||
+		subscribeResub.status === 400 ||
 		subscribeResub.status === 401 ||
-		subscribeCheers.status === 403 ||
 		subscribeResub.status === 403 ||
-		subscribeCheers.status === 429 ||
 		subscribeResub.status === 429 ||
 		subscribeCheers.status === 400 ||
-		subscribeResub.status === 400 ||
+		subscribeCheers.status === 401 ||
+		subscribeCheers.status === 403 ||
+		subscribeCheers.status === 429 ||
+		subscribeReward.status === 400 ||
 		subscribeReward.status === 401 ||
 		subscribeReward.status === 403 ||
-		subscribeReward.status === 429 ||
-		subscribeReward.status === 400
+		subscribeReward.status === 429
 	) {
 		console.log('error subscribing to eventsub', subscribeCheers.status, subscribeResub.status, subscribeReward.status);
 		return res.status(500).send('Error subscribing to eventsub');
+	} else if (subscribeCheers.status === 409 || subscribeResub.status === 409 || subscribeReward.status === 409) {
+		console.log('already signed up for eventsub.');
+		return res.status(200).send('Already signed up for eventsub.');
 	} else {
+		console.log('should be fine?!?!');
 		return res.status(200).send('OK, in theory.');
 	}
 });
