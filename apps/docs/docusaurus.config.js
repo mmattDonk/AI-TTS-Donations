@@ -30,9 +30,7 @@ const config = {
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
 					routeBasePath: '/',
-					// Please change this to your repo.
-					// Remove this to remove the "edit this page" links.
-					editUrl: 'https://github.com/mmattDonk/ai-tts-donations/tree/docs/apps/docs/docs/',
+					editUrl: 'https://github.com/mmattDonk/AI-TTS-Donations/blob/main/apps/docs/',
 				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
