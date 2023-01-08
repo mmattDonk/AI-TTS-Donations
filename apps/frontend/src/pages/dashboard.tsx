@@ -334,14 +334,16 @@ export default function Dashboard() {
 											onBlur={async () => await saveConfig()}
 										/>
 										<h3>{t('Dashboard.configuration.fallbacksHeading')}</h3>
-										<TextInput
-											value={config.fallbackVoice ?? ''}
-											onChange={(event) => {
-												setConfig({ ...config, fallbackVoice: event.target.value ?? '' });
-											}}
-											label={t('Dashboard.configuration.fallbacksVoiceLabel')}
-											onBlur={async () => await saveConfig()}
-										/>
+										<Tooltip label={t('Dashboard.configuration.fallbacksInputTooltip')}>
+											<TextInput
+												value={config.fallbackVoice ?? ''}
+												onChange={(event) => {
+													setConfig({ ...config, fallbackVoice: event.target.value ?? '' });
+												}}
+												label={t('Dashboard.configuration.fallbacksVoiceLabel')}
+												onBlur={async () => await saveConfig()}
+											/>
+										</Tooltip>
 									</>
 								)}
 
