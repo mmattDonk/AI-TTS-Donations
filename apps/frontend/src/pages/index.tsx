@@ -7,13 +7,14 @@ import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Dashboard, DoorExit } from 'tabler-icons-react';
 import BetaBanner from '../components/BetaBanner';
 import Bubbles from '../components/Bubbles';
 import Dots from '../components/Dots';
 import FaqSimple from '../components/FAQ';
 import Features from '../components/Features';
+import { Footer } from '../components/Footer';
 import { LoadingSpinner } from '../components/Loading';
 import Spring from '../components/Spring';
 import TestimoniesComponent from '../components/Testimonies';
@@ -359,6 +360,7 @@ const Home: NextPage = () => {
 					</Link>
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 };
