@@ -31,6 +31,7 @@
 		"getStarted": "Prepara-te",
 		"dashboard": "Painel de Controle",
 		"getStartedToday": "Soa-te bem? Começa a usar o AI TTS Donations hoje de graça!",
+		"getStartedDesc": "Junta-te aos mais de 900 steamers que já usam Doações AI TTS, e obtém o melhor TTS ao redor, de graça!",
 		"howItWorks": "Como funciona",
 		"featuresHeading": "Recursos que são incomparáveis ​​em comparação com qualquer outra coisa disponível.",
 		"features": {
@@ -54,11 +55,7 @@
 		},
 		"dontBelieve": "Não acreditas em nós?",
 		"dontBelieveDesc": "Basta olhar para o que os streamers dizem.",
-		"testimonyCTA": "És um streamer que usa AI TTS Donations? Deixanos a tua avaliação <link>aqui!</link>",
-		"emailSignUp": "Inscreve-te na lista de emails!",
-		"emailNotReadyDescription": "Inscreve-te na nossa lista de emails para receber atualizações no teu email sobre o AI TTS Donations!",
-		"emailSubscribeSuccess": "Estás inscrito!",
-		"emailPapertrail": "Quer ver emails anteriores? Confere a trilha de papel no site pessoal do mmatt!"
+		"testimonyCTA": "És um streamer que usa AI TTS Donations? Deixanos a tua avaliação <link>aqui!</link>"
 	},
 	"Dashboard": {
 		"yourDash": "O teu painel",
@@ -69,7 +66,8 @@
 		"configuration": {
 			"configurationHeading": "Configuração",
 			"channelPointsHeading": "Pontos do canal",
-			"channelPointRewardNameLabel": "Nome da recompensa dos ponto do canal (sensível a maiúsculas)",
+			"channelPointRewardNameLabel": "Nome da recompensa",
+			"channelPointRewardNameTooltip": "(Maiúsculas e minúsculas)",
 			"maxMinLimitsHeading": "Limites Máx./Mín",
 			"maxMessageLengthLabel": "Comprimento máximo da mensagem",
 			"minBitsAmountLabel": "Quantidade Mínima de Bits",
@@ -79,9 +77,10 @@
 			"blacklistWordsLabel": "Palavras",
 			"blacklistVoicesLabel": "Vozes",
 			"blacklistUsersLabel": "Utilizadores",
-			"blacklistVoiceEffectsLabel": "Voice Effects",
+			"blacklistVoiceEffectsLabel": "Efeitos de Voz",
 			"fallbacksHeading": "Substitutos",
-			"fallbacksVoiceLabel": "Voz substituta"
+			"fallbacksVoiceLabel": "Voz substituta",
+			"fallbacksInputTooltip": "(Only Uberduck Voices Allowed At The Moment)"
 		}
 	}
 }

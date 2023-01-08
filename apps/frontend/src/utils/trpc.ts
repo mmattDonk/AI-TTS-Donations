@@ -1,3 +1,7 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
+// this file was mostly generated from create-t3-app https://create.t3.gg
 import { httpBatchLink, loggerLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
 import { type inferRouterOutputs } from '@trpc/server';

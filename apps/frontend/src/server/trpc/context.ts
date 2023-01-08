@@ -1,3 +1,7 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
+// this file was mostly generated from create-t3-app https://create.t3.gg
 import { type inferAsyncReturnType } from '@trpc/server';
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next';
 import { type Session } from 'next-auth';

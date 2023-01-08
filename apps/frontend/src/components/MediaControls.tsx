@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Button, Container, Group, Stack } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useVirtualizer } from '@tanstack/react-virtual';

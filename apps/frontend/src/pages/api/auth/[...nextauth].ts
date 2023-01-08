@@ -1,3 +1,7 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
+// this file was mostly generated from create-t3-app https://create.t3.gg
 import NextAuth, { User, type NextAuthOptions } from 'next-auth';
 import TwitchProvider from 'next-auth/providers/twitch';
 
@@ -73,7 +77,6 @@ export const authOptions: NextAuthOptions = {
 		},
 		signIn: async (user) => {
 			await createStreamerIfNotExists(user.user);
-			if (!user.isNewUser) return;
 			await fetch(env.EVENTSUB_API_URL + '/newuser', {
 				method: 'POST',
 				headers: {

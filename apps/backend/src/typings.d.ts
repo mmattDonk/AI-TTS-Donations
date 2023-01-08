@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 export interface subscriptionEvent {
 	user_id: string;
 	user_login: string;

@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { envsafe, str, url } from 'envsafe';
 
 export const env = envsafe({

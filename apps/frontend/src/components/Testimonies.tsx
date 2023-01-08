@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Carousel } from '@mantine/carousel';
 import { Avatar, createStyles, Group, Rating, Text } from '@mantine/core';
 import Autoplay from 'embla-carousel-autoplay';
@@ -205,6 +208,7 @@ export default function TestimoniesComponent() {
 	return (
 		<Carousel
 			sx={{
+				marginTop: '-2.5rem',
 				marginBottom: '1rem',
 				maxWidth: 620,
 				'&:hover': {

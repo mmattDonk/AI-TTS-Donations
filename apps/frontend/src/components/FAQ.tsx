@@ -1,3 +1,6 @@
+// mmattDonk 2023
+// https://mmattDonk.com
+
 import { Accordion, Container, createStyles, Title } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 

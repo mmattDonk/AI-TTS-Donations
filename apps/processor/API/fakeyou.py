@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+## mmattDonk 2023
+## https://mmattDonk.com
+
 import os
 from uuid import uuid4
 
