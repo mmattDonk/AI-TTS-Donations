@@ -1,18 +1,20 @@
 // mmattDonk 2023
 // https://mmattDonk.com
 
-import { Button, Collapse, Container, Group, Space, Stack, Table } from '@mantine/core';
+import { Button, Container, Group, Stack } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
+import { useVirtualizer } from '@tanstack/react-virtual';
 import { signIn } from 'next-auth/react';
-import { useState } from 'react';
-import { Rotate } from 'tabler-icons-react';
+import { useRef, useState } from 'react';
+import { Refresh } from 'tabler-icons-react';
 import { trpc } from '../utils/trpc';
 import LoadingPage, { LoadingSpinner } from './Loading';
 
 export default function MediaControls() {
-	const ttsMutation = trpc.tts.retriggerTts.useMutation();
+	const parentRef = useRef<HTMLDivElement>(null);
 
-	const [showTable, setShowTable] = useState(false);
+	const ttsMutation = trpc.tts.retriggerTts.useMutation();
+	const skipMutation = trpc.tts.skipTts.useMutation();
 
 	const { data: session, isLoading: isSessionLoading } = trpc.auth.getSession.useQuery();
 	const { data: userData, isLoading } = trpc.user.getUser.useQuery(session?.user?.name ?? '');
@@ -22,7 +24,11 @@ export default function MediaControls() {
 
 	const [skipMessage, setSkipMessage] = useState('');
 
-	const skipMutation = trpc.tts.skipTts.useMutation();
+	const rowVirtualizer = useVirtualizer({
+		count: ttsMessages?.messages?.length ?? 0,
+		getScrollElement: () => parentRef.current,
+		estimateSize: () => 50,
+	});
 
 	const skipTts = async (e: any) => {
 		e.preventDefault();
@@ -104,51 +110,56 @@ export default function MediaControls() {
 						</>
 					)}
 				</Group>
-				<Space h="md" />
-				<Button onClick={() => setShowTable((o) => !o)}>{showTable ? 'Close' : 'Open'} Recent TTS Messages</Button>
-				<Space h="sm" />
-				<Collapse in={showTable}>
-					{ttsMessages?.messages?.length ?? 0 > 0 ? (
-						<Table style={{ textAlign: 'center' }}>
-							<thead>
-								<th>Replay</th>
-								<th>Message</th>
-								<th>Created At</th>
-							</thead>
-							<tbody>
-								{ttsMessages?.messages?.map((message: any, i: number) => (
-									<tr key={i}>
-										<td>
-											<div>
-												<Button value={message.audioUrl} color="gray" onClickCapture={replayTts}>
-													<Rotate />
-												</Button>
-											</div>
-										</td>
-										<td>
-											<p
-												style={{
-													maxWidth: '50rem',
-													overflow: 'hidden',
-													textOverflow: 'ellipsis',
-												}}
-											>
-												{message.message}
-											</p>
-										</td>
-										<td>
-											<p>
-												{new Date(message.createdAt).toLocaleDateString()} at {new Date(message.createdAt).toLocaleTimeString()}
-											</p>
-										</td>
-									</tr>
+				{ttsMessages?.messages?.length ?? 0 > 0 ? (
+					<>
+						<h3>Recent Messages</h3>
+						<div
+							ref={parentRef}
+							style={{
+								height: '400px',
+								overflow: 'auto',
+							}}
+						>
+							<div
+								style={{
+									height: `${rowVirtualizer.getTotalSize()}px`,
+									width: '100%',
+									position: 'relative',
+								}}
+							>
+								{rowVirtualizer.getVirtualItems().map((virtualItem) => (
+									<div
+										key={virtualItem.key}
+										data-index={virtualItem.index}
+										style={{
+											position: 'absolute',
+											top: 0,
+											left: 0,
+											width: '100%',
+											transform: `translateY(${virtualItem.start}px)`,
+										}}
+									>
+										<div
+											style={{
+												display: 'flex',
+												justifyContent: 'space-between',
+												gap: '1rem',
+												overflowWrap: 'break-word',
+											}}
+										>
+											<p>{ttsMessages?.messages[virtualItem.index].message}</p>
+											<Button>
+												<Refresh />
+											</Button>
+										</div>
+									</div>
 								))}
-							</tbody>
-						</Table>
-					) : (
-						<p>No recent TTS messages</p>
-					)}
-				</Collapse>
+							</div>
+						</div>
+					</>
+				) : (
+					<p>No recent TTS messages</p>
+				)}
 			</div>
 		);
 	}
