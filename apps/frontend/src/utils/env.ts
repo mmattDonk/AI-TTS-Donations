@@ -55,4 +55,7 @@ export const env = envsafe({
 		devDefault: 'http://127.0.0.1:8080',
 	}),
 	DISCORD_WEBHOOK_URL: url({}),
+	API_KEYS: str({
+		desc: 'a list of strings seperated by , `asdf,jkl`',
+	}),
 });
