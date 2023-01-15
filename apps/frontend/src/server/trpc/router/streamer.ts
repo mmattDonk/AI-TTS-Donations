@@ -2,10 +2,10 @@
 // https://mmattDonk.com
 
 import { z } from 'zod';
-import { protectedProcedure, publicProcedure, router } from '../trpc';
+import { protectedProcedure, router } from '../trpc';
 
 export const streamerRouter = router({
-	getStreamer: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
+	getStreamer: protectedProcedure.input(z.string()).query(async ({ ctx, input }) => {
 		// TODO: fix ctx.prisma returning no types?
 		return await ctx.prisma.streamer.findFirst({
 			where: {

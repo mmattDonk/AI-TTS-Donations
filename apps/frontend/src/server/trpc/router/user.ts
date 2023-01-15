@@ -2,10 +2,10 @@
 // https://mmattDonk.com
 
 import { z } from 'zod';
-import { publicProcedure, router } from '../trpc';
+import { protectedProcedure, router } from '../trpc';
 
 export const userRouter = router({
-	getUser: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
+	getUser: protectedProcedure.input(z.string()).query(async ({ ctx, input }) => {
 		return await ctx.prisma.user.findFirst({
 			where: {
 				name: input,
