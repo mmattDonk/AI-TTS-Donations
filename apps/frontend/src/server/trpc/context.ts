@@ -5,9 +5,8 @@
 import { type inferAsyncReturnType } from '@trpc/server';
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next';
 import { type Session } from 'next-auth';
-import Pusher from 'pusher';
-import { env } from '../../utils/env';
 import prismaClient from '../../utils/prisma';
+import { pusher } from '../../utils/pusher';
 import { getServerAuthSession } from '../common/get-server-auth-session';
 
 type CreateContextOptions = {
@@ -20,13 +19,6 @@ type CreateContextOptions = {
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  **/
 export const createContextInner = async (opts: CreateContextOptions) => {
-	const pusher = new Pusher({
-		appId: env.PUSHER_APP_ID,
-		cluster: env.PUSHER_APP_CLUSTER,
-		key: env.PUSHER_APP_KEY,
-		secret: env.PUSHER_APP_SECRET,
-	});
-
 	return {
 		session: opts.session,
 		prisma: prismaClient,
