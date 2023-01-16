@@ -21,5 +21,6 @@ Example Request:
 Example Headers:
 
 ```
+Content-Type: application/json
 secret: API Key
 ```
