@@ -3,10 +3,10 @@
 
 import { z } from 'zod';
 import { env } from '../../../utils/env';
-import { publicProcedure, router } from '../trpc';
+import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 export const ttsRouter = router({
-	retriggerTts: publicProcedure
+	retriggerTts: protectedProcedure
 		.input(
 			z.object({
 				audioUrl: z.string(),
@@ -16,8 +16,9 @@ export const ttsRouter = router({
 		.mutation(async ({ input, ctx }) => {
 			const { audioUrl, overlayId } = input;
 			const { pusher, prisma } = ctx;
-			const audioUrlResponse = fetch(audioUrl);
-			if ((await audioUrlResponse).status !== 200) {
+			const audioUrlResponse = await fetch(audioUrl);
+			const audioStatus = audioUrlResponse.status;
+			if (audioStatus !== 200) {
 				const message = await prisma.ttsMessages.findFirst({
 					where: {
 						audioUrl: audioUrl,
@@ -49,7 +50,7 @@ export const ttsRouter = router({
 				success: true,
 			};
 		}),
-	skipTts: publicProcedure
+	skipTts: protectedProcedure
 		.input(
 			z.object({
 				overlayId: z.string(),

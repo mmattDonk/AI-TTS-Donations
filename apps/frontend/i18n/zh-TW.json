@@ -31,7 +31,7 @@
 		"getStarted": "Get started",
 		"dashboard": "Dashboard",
 		"getStartedToday": "Sounds good? Get started with AI TTS Donations today for free!",
-		"getStartedDesc": "Join the over 900+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
+		"getStartedDesc": "Join the over 1000+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
 		"howItWorks": "How It Works",
 		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
 		"features": {
@@ -40,7 +40,7 @@
 			"openSourceTitle": "Open Source",
 			"openSourceDesc": "AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.",
 			"voicesTitle": "1000+ Voices",
-			"voicesDesc": "AI TTS Donations is built using the APIs of Uberduck.ai and Fakeyou.com. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
+			"voicesDesc": "AI TTS Donations is built using the APIs of <UDLink>Uberduck.ai</UDLink> and <FYLink>Fakeyou.com</FYLink>. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
 			"voiceEffectsTitle": "Voice Effects",
 			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
 			"soundEffectsTitle": "Sound Effects",

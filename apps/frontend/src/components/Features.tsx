@@ -80,7 +80,10 @@ export default function Features() {
 		{
 			icon: Volume,
 			title: t('voicesTitle'),
-			description: t('voicesDesc'),
+			description: t.rich('voicesDesc', {
+				UDLink: (children) => <a href="https://uberduck.ai/?via=solrock">{children}</a>,
+				FYLink: (children) => <a href="https://fakeyou.com/">{children}</a>,
+			}),
 		},
 		{
 			icon: Adjustments,
@@ -94,6 +97,7 @@ export default function Features() {
 		},
 	];
 
+	// @ts-ignore
 	const items = features.map((item) => <Feature {...item} key={item.title} />);
 
 	return (

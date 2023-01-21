@@ -31,7 +31,7 @@
 		"getStarted": "Prepara-te",
 		"dashboard": "Painel de Controle",
 		"getStartedToday": "Soa-te bem? Começa a usar o AI TTS Donations hoje de graça!",
-		"getStartedDesc": "Junta-te aos mais de 900 steamers que já usam Doações AI TTS, e obtém o melhor TTS ao redor, de graça!",
+		"getStartedDesc": "Join the over 1000+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
 		"howItWorks": "Como funciona",
 		"featuresHeading": "Recursos que são incomparáveis ​​em comparação com qualquer outra coisa disponível.",
 		"features": {
@@ -40,7 +40,7 @@
 			"openSourceTitle": "Código aberto",
 			"openSourceDesc": "O AI TTS Donations é totalmente de código aberto sob a licença 'AGPL-3'. Tu pode visualizar o código-fonte e contribuir com ele na página do GitHub.",
 			"voicesTitle": "Mais de 1000 vozes",
-			"voicesDesc": "O AI TTS Donations é construído usando as APIs de Uberduck.ai e Fakeyou.com. Isso significa que tens acesso a MILHARES de vozes públicas em AMBOS esses sites, e a tua audiência pode usá-los para criar mensagens de TTS incríveis.",
+			"voicesDesc": "AI TTS Donations is built using the APIs of <UDLink>Uberduck.ai</UDLink> and <FYLink>Fakeyou.com</FYLink>. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
 			"voiceEffectsTitle": "Efeitos de Voz",
 			"voiceEffectsDesc": "AI TTS Donations tem a capacidade de adicionar efeitos de voz e efeitos sonoros às tuas mensagens TTS. Os efeitos de voz podem permitir que os teus espectadores aumentem/diminuam as vozes, adicionem reverberação, reduzam a qualidade etc.",
 			"soundEffectsTitle": "Efeitos sonoros",

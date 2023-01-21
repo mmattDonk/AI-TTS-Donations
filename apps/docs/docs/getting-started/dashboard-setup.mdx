@@ -1,0 +1,107 @@
+---
+sidebar_position: 1
+---
+
+# Dashboard Setup
+
+To get started, you'll need to first sign in to the [Solrock Dashboard](https://solrock.mmattdonk.com/dashboard).
+
+After you have signed into the dashboard, you'll be greeted with a page that looks like this:
+![Image of the Solrock Dashboard](/img/screenshots/getting-started/dashboard.png)
+
+Here you can see your media controls (such as skipping the current TTS, and looking at past TTS messages to replay them). You can pop these out into a separate window by
+clicking the button above the "Skip TTS" button.
+
+## Configuration
+
+Below the media controls, you can see your configuration options. Here, you can set which events you want to trigger the TTS, any blacklisted words, users, voice effects,
+max and minimum amounts, and your fallback voice.
+
+### Events
+
+![Image of the Events section in the Solrock Dashboard](/img/screenshots/getting-started/events.png) Setup which events you want to trigger the TTS.
+
+#### Channel Points
+
+Setup which channel point reward you want to trigger the TTS. The reward name **must** be the exact same as in your Twitch Dashboard (Case Sensitive).
+
+<figure>
+
+![Image of the reward name section in the Solrock Dashboard](/img/screenshots/getting-started/reward-name-solrock.png)
+
+<figcaption>Image of the reward name section in the Solrock Dashboard</figcaption>
+</figure>
+
+<figure>
+
+![Image of the reward section in the Twitch Dashboard](/img/screenshots/getting-started/reward-name-twitch.png)
+
+<figcaption>Image of the reward section in the Twitch Dashboard</figcaption>
+</figure>
+
+Make sure that on Twitch, you require the user to enter text.
+
+#### Resubs
+
+These get triggered when a user resubscribes to your channel, with a message in their resubscription share. You can set the minimum amount of months they need to have for
+the TTS to trigger.
+
+#### Bits
+
+These get triggered when a user cheers (aka uses bits) in your channel. You can set the minimum amount of bits they need to cheer for the TTS to trigger.
+
+### Max/Min Amounts
+
+![Image of the Max/Min Amounts section in the Solrock Dashboard](/img/screenshots/getting-started/max-min.png)
+
+Setup the maximum and minimum amount of characters allowed in a TTS message.
+
+### Blacklisted
+
+![Image of the Blacklisted section in the Solrock Dashboard](/img/screenshots/getting-started/blacklisted.png)
+
+Setup the blacklisted words, users, voices, and voice effects.
+
+:::info Seperate each word/user/voice/voice effect with a line break.
+
+(so press enter after each word/user/voice/voice effect)
+
+:::
+
+#### Blacklisted Words
+
+Blacklist any words that you don't want to be said in the TTS. If a message contains any of these words, the TTS will not be triggered.
+
+#### Blacklisted Users
+
+Blacklist any users that you don't want to be able to trigger the TTS. If a message is sent by a blacklisted user, the TTS will not be triggered.
+
+#### Blacklisted Voices
+
+Blacklist any voices that you don't want to be used in the TTS. If a message is sent by a blacklisted voice, the TTS will use the fallback voice.
+
+#### Blacklisted Voice Effects
+
+Blacklist any voice effects that you don't want to be used in the TTS. If a message is sent by a blacklisted voice effect, the TTS will not use that effect.
+
+### Fallbacks
+
+![Image of the Fallbacks section in the Solrock Dashboard](/img/screenshots/getting-started/fallbacks.png)
+
+Here you can set your fallback voice, which will be applied if the voice doesn't exist, or if the voice is blacklisted
+
+### Sensitive Info
+
+:::danger Do **NOT** show this section on stream.
+
+This section of the dashboard contains sensitive information, such as your Overlay Link.
+
+If a malicious user gets access to your "Overlay ID", they may be able to skip TTS messages, and trigger TTS messages to your stream.
+
+If you happen to accidentally leak this Overlay ID, please contact [matt@mmatt.net.](mailto:matt@mmatt.net)
+
+:::
+
+![Image of the Sensitive Info section in the Solrock Dashboard](/img/screenshots/getting-started/sensitive-info.png)
+
+Here you can see your Overlay Link, you use this link in a `Browser Source` on OBS, more information in the next section.

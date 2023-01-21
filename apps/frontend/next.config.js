@@ -1,43 +1,15 @@
+// get all file names from ./i18n
+const fs = require('fs');
+const path = require('path');
+
+const locales = fs.readdirSync(path.resolve('./i18n')).map((fileName) => fileName.replace(/\.json$/, ''));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
 	i18n: {
-		locales: [
-			'af-ZA',
-			'ar-SA',
-			'ca-ES',
-			'cs-CZ',
-			'da-DK',
-			'de-DE',
-			'el-GR',
-			'en-UD',
-			'en-US',
-			'en-PT',
-			'es-ES',
-			'fi-FI',
-			'fr-FR',
-			'he-IL',
-			'hu-HU',
-			'it-IT',
-			'ja-JP',
-			'ko-KR',
-			'lol-US',
-			'nl-NL',
-			'no-NO',
-			'pl-PL',
-			'pt-BR',
-			'pt-PT',
-			'ro-RO',
-			'ru-RU',
-			'sr-SP',
-			'sv-SE',
-			'tr-TR',
-			'uk-UA',
-			'vi-VN',
-			'zh-CN',
-			'zh-TW',
-		],
+		locales,
 		defaultLocale: 'en-US',
 	},
 	images: {

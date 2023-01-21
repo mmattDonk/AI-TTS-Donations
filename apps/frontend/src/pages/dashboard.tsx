@@ -28,6 +28,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { WindowMaximize } from 'tabler-icons-react';
 import BetaBanner from '../components/BetaBanner';
+import { Footer } from '../components/Footer';
 import LoadingPage, { LoadingSpinner } from '../components/Loading';
 import MediaControls from '../components/MediaControls';
 import Spring from '../components/Spring';
@@ -367,6 +368,7 @@ export default function Dashboard() {
 						)}
 					</Spring>
 				</Container>
+				<Footer />
 			</>
 		);
 	}

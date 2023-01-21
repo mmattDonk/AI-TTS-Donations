@@ -77,7 +77,6 @@ export const authOptions: NextAuthOptions = {
 		},
 		signIn: async (user) => {
 			await createStreamerIfNotExists(user.user);
-			if (!user.isNewUser) return;
 			await fetch(env.EVENTSUB_API_URL + '/newuser', {
 				method: 'POST',
 				headers: {
