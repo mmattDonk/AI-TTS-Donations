@@ -160,7 +160,7 @@ def request_tts(
         #     voice_name = config["VOICE_ALIASES"][voice_name]
         # except KeyError:
         #     voice_name = voice_name
-        if voice_name.startswith("TM:"):
+        if voice_name.startswith("TM:") or voice_name.startswith("tm:"):
             tts_provider = Fakeyou
         else:
             tts_provider = Uberduck
