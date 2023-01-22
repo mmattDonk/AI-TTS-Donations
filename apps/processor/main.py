@@ -88,12 +88,12 @@ playsounds.sort(
 #     config = json.load(f)
 load_dotenv()
 pusher_client = pusher.Pusher(
-    host=os.getenv("SOKETI_APP_HOST"),
-    # port=os.getenv("SOKETI_APP_PORT"),
-    app_id=os.getenv("SOKETI_APP_ID"),
-    key=os.getenv("SOKETI_APP_KEY"),
-    secret=os.getenv("SOKETI_APP_SECRET"),
-    cluster="",
+    app_id=os.environ.get("SOKETI_APP_ID"),
+    key=os.environ.get("SOKETI_APP_KEY"),
+    secret=os.environ.get("SOKETI_APP_SECRET"),
+    host=os.environ.get("SOKETI_APP_HOST"),
+    port=int(os.environ.get("SOKETI_APP_PORT")),
+    ssl=True,
 )
 
 

@@ -19,15 +19,6 @@ type CreateContextOptions = {
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  **/
 export const createContextInner = async (opts: CreateContextOptions) => {
-	const pusher = new Pusher({
-		appId: env.SOKETI_APP_ID,
-		key: env.SOKETI_APP_KEY,
-		secret: env.SOKETI_APP_SECRET,
-		cluster: '',
-		host: env.SOKETI_URL,
-		// port: `${env.SOKETI_PORT}`,
-	});
-
 	return {
 		session: opts.session,
 		prisma: prismaClient,
