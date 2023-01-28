@@ -58,6 +58,7 @@
 		"testimonyCTA": "Are you a streamer that uses AI TTS Donations? Give us a review <link>here!</link>"
 	},
 	"Dashboard": {
+		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
 		"yourDash": "UR DASHBORD",
 		"sensitiveInfo": "SENSITIV INFORMASHUN (DO NOT OPEN ON STREAM.)",
 		"sensitiveInfoWarning": "WARNIN: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIV INFORMASHUN.",

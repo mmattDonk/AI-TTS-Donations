@@ -58,6 +58,7 @@
 		"testimonyCTA": "Sei uno streamer che utilizza le donazioni AI TTS? Dacci una recensione <link>qui!</link>"
 	},
 	"Dashboard": {
+		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
 		"yourDash": "La tua Dashboard",
 		"sensitiveInfo": "Informazioni sensibili (NON APRIRE IN STREAM.)",
 		"sensitiveInfoWarning": "ATTENZIONE: NON MOSTRARE IL LINK IN SOVRAPPOSIZIONE IN STREAM. CONTIENE INFORMAZIONI SENSIBILI.",
