@@ -371,15 +371,15 @@ export default function Dashboard() {
 					</Spring>
 				</Container>
 				{
-					// make it appear 50% of the time
-					Math.random() > 0.5 && (
-						<Center>
-							<Stack>
-								<ChatisAd />
-								<Text ta="center">this is a non-paid advertisement that only shows up 50% of the time you visit this page. thanks!</Text>
-							</Stack>
-						</Center>
-					)
+					// eventually, make it so that is randomly shows a different ad each time
+					<Center>
+						<Stack>
+							<ChatisAd />
+							<Text mt={'-2.5rem'} size="xs" ta="center">
+							{t("Dashboard.adDisclaimer")}	
+							</Text>
+						</Stack>
+					</Center>
 				}
 				<Footer />
 			</>
