@@ -15,6 +15,7 @@ import {
 	Space,
 	Stack,
 	Switch,
+	Text,
 	Textarea,
 	TextInput,
 	Tooltip,
@@ -28,6 +29,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { WindowMaximize } from 'tabler-icons-react';
 import BetaBanner from '../components/BetaBanner';
+import ChatisAd from '../components/chatisad';
 import { Footer } from '../components/Footer';
 import LoadingPage, { LoadingSpinner } from '../components/Loading';
 import MediaControls from '../components/MediaControls';
@@ -368,6 +370,17 @@ export default function Dashboard() {
 						)}
 					</Spring>
 				</Container>
+				{
+					// make it appear 50% of the time
+					Math.random() > 0.5 && (
+						<Center>
+							<Stack>
+								<ChatisAd />
+								<Text ta="center">this is a non-paid advertisement that only shows up 50% of the time you visit this page. thanks!</Text>
+							</Stack>
+						</Center>
+					)
+				}
 				<Footer />
 			</>
 		);
