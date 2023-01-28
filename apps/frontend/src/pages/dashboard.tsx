@@ -15,6 +15,7 @@ import {
 	Space,
 	Stack,
 	Switch,
+	Text,
 	Textarea,
 	TextInput,
 	Tooltip,
@@ -28,6 +29,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { WindowMaximize } from 'tabler-icons-react';
 import BetaBanner from '../components/BetaBanner';
+import ChatisAd from '../components/chatisad';
 import { Footer } from '../components/Footer';
 import LoadingPage, { LoadingSpinner } from '../components/Loading';
 import MediaControls from '../components/MediaControls';
@@ -368,6 +370,17 @@ export default function Dashboard() {
 						)}
 					</Spring>
 				</Container>
+				{
+					// eventually, make it so that is randomly shows a different ad each time
+					<Center>
+						<Stack>
+							<ChatisAd />
+							<Text mt={'-2.5rem'} size="xs" ta="center">
+							{t("Dashboard.adDisclaimer")}	
+							</Text>
+						</Stack>
+					</Center>
+				}
 				<Footer />
 			</>
 		);
