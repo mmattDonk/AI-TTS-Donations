@@ -169,8 +169,8 @@ export default function Dashboard() {
 				<Center>
 					<BetaBanner />
 				</Center>
-				<Container size="xl">
-					<Spring>
+				<Spring>
+					<Container size="xl">
 						<Stack mt="xl" mb="xl" spacing="xs">
 							<Group>
 								<Avatar src={session.user?.image} size="lg" />
@@ -368,20 +368,20 @@ export default function Dashboard() {
 								</Collapse>
 							</>
 						)}
-					</Spring>
-				</Container>
-				{
-					// eventually, make it so that is randomly shows a different ad each time
-					<Center>
-						<Stack>
-							<ChatisAd />
-							<Text mt={'-2.5rem'} size="xs" ta="center">
-							{t("Dashboard.adDisclaimer")}	
-							</Text>
-						</Stack>
-					</Center>
-				}
-				<Footer />
+					</Container>
+					{
+						// eventually, make it so that is randomly shows a different ad each time
+						<Center>
+							<Stack>
+								<ChatisAd />
+								<Text mt={'-2.5rem'} size="xs" ta="center">
+									{t('Dashboard.adDisclaimer')}
+								</Text>
+							</Stack>
+						</Center>
+					}
+					<Footer />
+				</Spring>
 			</>
 		);
 	}
