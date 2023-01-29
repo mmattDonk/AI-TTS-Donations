@@ -1,5 +1,6 @@
 import { ActionIcon, Container, createStyles, Group } from '@mantine/core';
 import { IconBrandDiscord, IconBrandGithub, IconBrandMastodon, IconBrandPatreon, IconBrandTwitter, IconWorld } from '@tabler/icons';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 const useStyles = createStyles((theme) => ({
@@ -29,6 +30,7 @@ const useStyles = createStyles((theme) => ({
 
 export function Footer() {
 	const { classes } = useStyles();
+	const t = useTranslations('Footer');
 
 	return (
 		<div className={classes.footer}>
@@ -37,7 +39,7 @@ export function Footer() {
 					<Image src="/images/mmattDonk.webp" width={48} height={48} alt="mmattDonk logo" />
 					<div>
 						<p style={{ fontWeight: 'bolder' }}>mmattDonk</p>
-						<p>making free and open source software for all streamers to make Twitch more fun!</p>
+						<p>{t('description')}</p>
 					</div>
 				</Group>
 				<Group spacing={0} className={classes.links} position="right" noWrap>
@@ -74,14 +76,18 @@ export function Footer() {
 				</Group>
 			</Container>
 			<Container className={classes.inner}>
-				Want to help support the development of Solrock? You can support us on{' '}
-				<span>
-					<IconBrandPatreon size={18} stroke={1.5} /> <a href="https://www.patreon.com/mmattDonk">Patreon</a>
-				</span>{' '}
-				or by a{' '}
-				<span>
-					<IconBrandDiscord size={18} stroke={1.5} /> <a href="https://discordapp.com/servers/mmattdonk-883929594179256350">Discord Server Subscription</a>!
-				</span>
+				{t.rich('support', {
+					patreonLink: (children) => (
+						<span>
+							<IconBrandPatreon size={18} stroke={1.5} /> <a href="https://www.patreon.com/mmattDonk">{children}</a>
+						</span>
+					),
+					discordSubLink: (children) => (
+						<span>
+							<IconBrandDiscord size={18} stroke={1.5} /> <a href="https://discordapp.com/servers/mmattdonk-883929594179256350">{children}</a>
+						</span>
+					),
+				})}
 			</Container>
 		</div>
 	);
