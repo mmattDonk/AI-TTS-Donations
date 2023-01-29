@@ -57,6 +57,10 @@
 		"dontBelieveDesc": "Просто посмотрите, что говорят стримеры об этом.",
 		"testimonyCTA": "Вы стример, который использует AI TTS донаты? Оставьте отзыв о нас <link>здесь!</link>"
 	},
+	"Footer": {
+		"description": "making free and open source software for all streamers to make Twitch more fun!",
+		"support": "Want to help support the development of Solrock? You can support us on <patreonLink>Patreon</patreonLink> or by a <discordSubLink>Discord Server Subscription</discordSubLink>!"
+	},
 	"Dashboard": {
 		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
 		"yourDash": "Панель Управления",
