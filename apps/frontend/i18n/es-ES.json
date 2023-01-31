@@ -2,7 +2,7 @@
 	"beta": {
 		"header": "Esta página se encuentra en BETA. Por favor informa de bugs y consigue ayuda en el <discordLink>server de Discord de mmattDonk</discordLink>."
 	},
-	"close": "Cerrar",
+	"close": "Cerrado",
 	"open": "Abrir",
 	"loggedIn": "Sesión iniciada como {name}",
 	"signOut": "Cerrar sesión",
@@ -31,7 +31,7 @@
 		"getStarted": "Comenzar",
 		"dashboard": "Panel",
 		"getStartedToday": "¿Suena bien? ¡Empieza hoy mismo a utilizar AI TTS Donations de forma gratuita!",
-		"getStartedDesc": "Join the over 1000+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
+		"getStartedDesc": "¡Únete a los 1000 streamers que ya están usando la IA de donaciones, y obtén el mejor TTS, totalmente gratis!",
 		"howItWorks": "Cómo funciona",
 		"featuresHeading": "Características que <gradientText>no tienen rivalidad</gradientText> en comparación con cualquier otra cosa disponible.",
 		"features": {
@@ -58,7 +58,7 @@
 		"testimonyCTA": "¿Eres un streamer que usa AI TTS Donations? Déjanos una review <link>aquí!</link>"
 	},
 	"Footer": {
-		"description": "making free and open source software for all streamers to make Twitch more fun!",
+		"description": "¡Haciendo un software gratuito y de código abierto para todos los streamers, para que Twitch sea más divertido!",
 		"support": "Want to help support the development of Solrock? You can support us on <patreonLink>Patreon</patreonLink> or by a <discordSubLink>Discord Server Subscription</discordSubLink>!"
 	},
 	"Dashboard": {
@@ -71,8 +71,8 @@
 		"configuration": {
 			"configurationHeading": "Configuración",
 			"channelPointsHeading": "Puntos del Canal",
-			"channelPointRewardNameLabel": "Reward Name",
-			"channelPointRewardNameTooltip": "(Case Sensitive)",
+			"channelPointRewardNameLabel": "Nombre de recompensa",
+			"channelPointRewardNameTooltip": "(Caso sensible)",
 			"maxMinLimitsHeading": "Límites Max/Min",
 			"maxMessageLengthLabel": "Largo Max. del Mensaje",
 			"minBitsAmountLabel": "Cantidad Mínima de Bits",
@@ -82,7 +82,7 @@
 			"blacklistWordsLabel": "Palabras",
 			"blacklistVoicesLabel": "Voces",
 			"blacklistUsersLabel": "Usuarios",
-			"blacklistVoiceEffectsLabel": "Voice Effects",
+			"blacklistVoiceEffectsLabel": "Efectos de voz",
 			"fallbacksHeading": "Respaldos",
 			"fallbacksVoiceLabel": "Voz de Respaldo"
 		}
