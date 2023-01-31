@@ -40,7 +40,7 @@
 			"openSourceTitle": "Código Abierto",
 			"openSourceDesc": "AI TTS Donations es completamente código abierto bajo la licencia 'AGPL-3'. Puedes mirar el Código Abierto en la página de GitHub y contribuir allí.",
 			"voicesTitle": "1000+ Voces",
-			"voicesDesc": "AI TTS Donations is built using the APIs of <UDLink>Uberduck.ai</UDLink> and <FYLink>Fakeyou.com</FYLink>. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
+			"voicesDesc": "Nuestra IA TTS de donaciones, se crea utilizando las API de <UDLink>Uberduck.ai</UDLink> y <FYLink>Fakeyou.com</FYLink>. Esto significa que tiene acceso a MILES de voces públicas en AMBOS sitios web, y su audiencia puede usarlas para crear mensajes TTS increibles.",
 			"voiceEffectsTitle": "Efectos de Voz",
 			"voiceEffectsDesc": "AI TTS Donations tiene la habilidad de añadir efectos de voz y efectos de sonidos a tus mensajes de TTS. Los efectos de voz permiten a tus espectadores cambiar el tono, añadir reverb, reducir la calidad, etc.",
 			"soundEffectsTitle": "Efectos de Sonido",
@@ -59,10 +59,10 @@
 	},
 	"Footer": {
 		"description": "¡Haciendo un software gratuito y de código abierto para todos los streamers, para que Twitch sea más divertido!",
-		"support": "Want to help support the development of Solrock? You can support us on <patreonLink>Patreon</patreonLink> or by a <discordSubLink>Discord Server Subscription</discordSubLink>!"
+		"support": "¿Quiere ayudar al desarrollo de Solrock? ¡Puedes apoyarnos en <patreonLink>Patreon</patreonLink> o mediante una <discordSubLink>suscripción a nuestro servidor de Discord</discordSubLink>!"
 	},
 	"Dashboard": {
-		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
+		"adDisclaimer": "este es un anuncio no pagado destinado a recomendar nuevas herramientas de transmisión, ¡gracias!",
 		"yourDash": "Tu Panel",
 		"sensitiveInfo": "Información sensible (NO ABRIR EN STREAM.)",
 		"sensitiveInfoWarning": "ADVERTENCIA: NO MOSTRAR EL ENLACE DEL OVERLAY EN STREAM. CONTIENE INFORMACIÓN SENSIBLE.",
