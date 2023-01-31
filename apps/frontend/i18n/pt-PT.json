@@ -62,7 +62,7 @@
 		"support": "Queres ajudar a apoiar o desenvolvimento da Solrock? Tu podes nos apoiar no <patreonLink>Patreon</patreonLink> ou por uma <discordSubLink>Assinatura do servidor Discord</discordSubLink>!"
 	},
 	"Dashboard": {
-		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
+		"adDisclaimer": "Este é um anúncio não pago destinado a recomendar novas ferramentas aos streamers, obrigado!",
 		"yourDash": "O teu painel",
 		"sensitiveInfo": "Informações confidenciais (NÃO ABRIR EM STREAM.)",
 		"sensitiveInfoWarning": "AVISO: NÃO MOSTRES O LINK DO OVERLAY EM STREAM. CONTÉM INFORMAÇÕES SENSÍVEIS.",
