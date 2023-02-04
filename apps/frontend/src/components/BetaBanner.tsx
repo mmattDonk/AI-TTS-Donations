@@ -15,9 +15,7 @@ export default function BetaBanner() {
 			</Badge>
 			{/* TODO: remindme in like a week to remove this */}
 			<Badge style={{ marginTop: '-0.5rem' }} color="red" variant="light">
-				{t.rich('weekDisclaimer', {
-					discordLink: (children) => <a href="https://discord.gg/VUAjRrkZVJ">{children}</a>,
-				})}
+				{t('weekDisclaimer')}
 			</Badge>
 		</Stack>
 	);
