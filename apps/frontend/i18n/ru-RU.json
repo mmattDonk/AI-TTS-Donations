@@ -1,6 +1,7 @@
 {
 	"beta": {
-		"header": "Сайт находится в стадии бета-тестирования. Пожалуйста, сообщайте нам о найденных недоработках и получайте помощь в нашем <discordLink>mmattDonk Discord сервере</discordLink>."
+		"header": "Сайт находится в стадии бета-тестирования. Пожалуйста, сообщайте нам о найденных недоработках и получайте помощь в нашем <discordLink>mmattDonk Discord сервере</discordLink>.",
+		"weekDisclaimer": "There was a bug in the week of 01/30/2023 that caused new users to not work, please try signing out and signing back in to fix this issue."
 	},
 	"close": "Закрыть",
 	"open": "Открыть",

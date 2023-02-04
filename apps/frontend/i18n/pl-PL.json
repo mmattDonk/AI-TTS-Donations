@@ -1,6 +1,7 @@
 {
 	"beta": {
-		"header": "Ta strona internetowa jest w wersji BETA. Jeżeli potrzebujesz pomocy albo chcesz zgłosić jakiś błąd napisz <discordLink>na serwerze Discord mmattDonk</discordLink>."
+		"header": "Ta strona internetowa jest w wersji BETA. Jeżeli potrzebujesz pomocy albo chcesz zgłosić jakiś błąd napisz <discordLink>na serwerze Discord mmattDonk</discordLink>.",
+		"weekDisclaimer": "There was a bug in the week of 01/30/2023 that caused new users to not work, please try signing out and signing back in to fix this issue."
 	},
 	"close": "Zamknij",
 	"open": "Otwórz",
