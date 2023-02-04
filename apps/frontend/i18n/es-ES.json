@@ -2,7 +2,7 @@
 	"beta": {
 		"header": "Esta página se encuentra en BETA. Por favor informa de bugs y consigue ayuda en el <discordLink>server de Discord de mmattDonk</discordLink>."
 	},
-	"close": "Cerrar",
+	"close": "Cerrado",
 	"open": "Abrir",
 	"loggedIn": "Sesión iniciada como {name}",
 	"signOut": "Cerrar sesión",
@@ -31,7 +31,7 @@
 		"getStarted": "Comenzar",
 		"dashboard": "Panel",
 		"getStartedToday": "¿Suena bien? ¡Empieza hoy mismo a utilizar AI TTS Donations de forma gratuita!",
-		"getStartedDesc": "Join the over 1000+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
+		"getStartedDesc": "¡Únete a los 1000 streamers que ya están usando la IA de donaciones, y obtén el mejor TTS, totalmente gratis!",
 		"howItWorks": "Cómo funciona",
 		"featuresHeading": "Características que <gradientText>no tienen rivalidad</gradientText> en comparación con cualquier otra cosa disponible.",
 		"features": {
@@ -40,7 +40,7 @@
 			"openSourceTitle": "Código Abierto",
 			"openSourceDesc": "AI TTS Donations es completamente código abierto bajo la licencia 'AGPL-3'. Puedes mirar el Código Abierto en la página de GitHub y contribuir allí.",
 			"voicesTitle": "1000+ Voces",
-			"voicesDesc": "AI TTS Donations is built using the APIs of <UDLink>Uberduck.ai</UDLink> and <FYLink>Fakeyou.com</FYLink>. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
+			"voicesDesc": "Nuestra IA TTS de donaciones, se crea utilizando las API de <UDLink>Uberduck.ai</UDLink> y <FYLink>Fakeyou.com</FYLink>. Esto significa que tiene acceso a MILES de voces públicas en AMBOS sitios web, y su audiencia puede usarlas para crear mensajes TTS increibles.",
 			"voiceEffectsTitle": "Efectos de Voz",
 			"voiceEffectsDesc": "AI TTS Donations tiene la habilidad de añadir efectos de voz y efectos de sonidos a tus mensajes de TTS. Los efectos de voz permiten a tus espectadores cambiar el tono, añadir reverb, reducir la calidad, etc.",
 			"soundEffectsTitle": "Efectos de Sonido",
@@ -57,7 +57,12 @@
 		"dontBelieveDesc": "Simplemente mira lo que otros streamers dicen acerca de él.",
 		"testimonyCTA": "¿Eres un streamer que usa AI TTS Donations? Déjanos una review <link>aquí!</link>"
 	},
+	"Footer": {
+		"description": "¡Haciendo un software gratuito y de código abierto para todos los streamers, para que Twitch sea más divertido!",
+		"support": "¿Quiere ayudar al desarrollo de Solrock? ¡Puedes apoyarnos en <patreonLink>Patreon</patreonLink> o mediante una <discordSubLink>suscripción a nuestro servidor de Discord</discordSubLink>!"
+	},
 	"Dashboard": {
+		"adDisclaimer": "este es un anuncio no pagado destinado a recomendar nuevas herramientas de transmisión, ¡gracias!",
 		"yourDash": "Tu Panel",
 		"sensitiveInfo": "Información sensible (NO ABRIR EN STREAM.)",
 		"sensitiveInfoWarning": "ADVERTENCIA: NO MOSTRAR EL ENLACE DEL OVERLAY EN STREAM. CONTIENE INFORMACIÓN SENSIBLE.",
@@ -66,8 +71,8 @@
 		"configuration": {
 			"configurationHeading": "Configuración",
 			"channelPointsHeading": "Puntos del Canal",
-			"channelPointRewardNameLabel": "Reward Name",
-			"channelPointRewardNameTooltip": "(Case Sensitive)",
+			"channelPointRewardNameLabel": "Nombre de recompensa",
+			"channelPointRewardNameTooltip": "(Caso sensible)",
 			"maxMinLimitsHeading": "Límites Max/Min",
 			"maxMessageLengthLabel": "Largo Max. del Mensaje",
 			"minBitsAmountLabel": "Cantidad Mínima de Bits",
@@ -77,7 +82,7 @@
 			"blacklistWordsLabel": "Palabras",
 			"blacklistVoicesLabel": "Voces",
 			"blacklistUsersLabel": "Usuarios",
-			"blacklistVoiceEffectsLabel": "Voice Effects",
+			"blacklistVoiceEffectsLabel": "Efectos de voz",
 			"fallbacksHeading": "Respaldos",
 			"fallbacksVoiceLabel": "Voz de Respaldo"
 		}

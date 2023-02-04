@@ -1,10 +1,10 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs and get help in the <discordLink>mmattDonk Discord server</discordLink>."
+		"header": "Сайт находится в стадии бета-тестирования. Пожалуйста, сообщайте нам о найденных недоработках и получайте помощь в нашем <discordLink>mmattDonk Discord сервере</discordLink>."
 	},
 	"close": "Закрыть",
 	"open": "Открыть",
-	"loggedIn": "Зашёл как {name}",
+	"loggedIn": "Вы вошли как {name}",
 	"signOut": "Выйти",
 	"signIn": "Вход",
 	"learnMore": "Узнать больше",
@@ -12,74 +12,79 @@
 	"enabled": "Включено",
 	"disabled": "Выключено",
 	"save": "Сохранить",
-	"notLoggedIn": "You are not logged in.",
+	"notLoggedIn": "Вы не авторизованы.",
 	"bits": "Bits",
-	"resubs": "Resubs",
-	"channelPoints": "Channel Points",
+	"resubs": "Переподписки",
+	"channelPoints": "Баллы канала",
 	"404": {
-		"title": "Ты нашёл тайное место.",
-		"description": "К сожалению, это только страница 404. Возможно, вы неправильно указали веб адрес или это страница перенесло в другой веб URL.",
-		"link": "Верните меня на целевую страницу."
+		"title": "Вы нашли секретное место.",
+		"description": "К сожалению, это только 404 страница. Возможно, вы ошиблись в написании ссылки или эта страница была перемещена в другое место.",
+		"link": "Верните меня на главную страницу."
 	},
 	"alt": {
 		"avatar": "{name} Аватар."
 	},
 	"Landing": {
-		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
-		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
-		"getStartedTooltip": "Мы ещё не готовы! Подпишись в рассылку ниже.",
+		"heading": "Первый <gradientText>100%</gradientText> бесплатный сервис синтеза речи для <twitchText>Twitch</twitchText>",
+		"description": "AI TTS донаты являются бесплатным сервисом с открытым исходным кодом синтеза речи для Twitch. Первый продукт в своем роде, без подписок, дополнительных расширений и рекламы.",
+		"getStartedTooltip": "Мы ещё не готовы! Подпишись на рассылку ниже.",
 		"getStarted": "Начать здесь",
-		"dashboard": "Панель Управления",
+		"dashboard": "Панель управления",
 		"getStartedToday": "Звучит хорошо? Тогда воспользуйтесь с AI TTS Донаты бесплатно!",
-		"getStartedDesc": "Join the over 1000+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
+		"getStartedDesc": "Присоединяйтесь к более 1000+ стримерам, которые уже используют AI TTS донаты и получайте лучший синтез речи бесплатно!",
 		"howItWorks": "Как оно работает",
-		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
+		"featuresHeading": "Функции, которым <gradientText>нет равных</gradientText>, по сравнению с чем-либо доступным еще.",
 		"features": {
-			"freeTitle": "Free to use",
-			"freeDesc": "All features in AI TTS Donations are completely free. No fees, and no subscriptions. Simply sign in, setup, and use. No payments required at all.",
-			"openSourceTitle": "Open Source",
-			"openSourceDesc": "AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.",
-			"voicesTitle": "1000+ Voices",
-			"voicesDesc": "AI TTS Donations is built using the APIs of <UDLink>Uberduck.ai</UDLink> and <FYLink>Fakeyou.com</FYLink>. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
-			"voiceEffectsTitle": "Voice Effects",
-			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
-			"soundEffectsTitle": "Sound Effects",
-			"soundEffectsDesc": "Sound effects can add a variety of noises to your viewer's TTS messages. Your viewers can create amazing TTS messages using these features."
+			"freeTitle": "Бесплатное использование",
+			"freeDesc": "Все возможности в AI TTS донатах полностью бесплатны. Никаких комиссий и подписок. Просто авторизуйтесь, настройте и используйте. Никаких оплат вовсе не требуется.",
+			"openSourceTitle": "Исходный код",
+			"openSourceDesc": "AI TTS донаты полностью с открытым исходным кодом под лицензией 'AGPL-3'. Вы можете посмотреть исходный код и делать вклад в его развитие на странице GitHub.",
+			"voicesTitle": "1000+ голосов",
+			"voicesDesc": "AI TTS донаты созданы с использованием <UDLink>Uberduck.ai</UDLink> и <FYLink>Fakeyou.com</FYLink> API. Это означает, что вы имеете доступ к ТЫСЯЧАМ публичных голосов на обоих из этих сайтов и ваша аудитория может использовать их для создания удивительных TTS сообщений.",
+			"voiceEffectsTitle": "Голосовые эффекты",
+			"voiceEffectsDesc": "AI TTS донаты имеют возможность добавлять голосовые и звуковые эффекты к вашим TTS сообщениям. Голосовые эффекты могут позволить вашим зрителям повышать/понижать голоса, добавлять реверберацию, снижать качество и т.д.",
+			"soundEffectsTitle": "Звуковые эффекты",
+			"soundEffectsDesc": "Звуковые эффекты могут добавлять различные шумы к вашим зрительским TTS сообщениям. Ваши зрители могут создавать удивительные TTS сообщения используя эти функции."
 		},
 		"FAQ": {
-			"heading": "Frequently Asked Questions",
-			"q1": "Where can my viewers learn how to use the new TTS?",
-			"a1": "We have a wiki entry to help your viewers get started with using the new AI TTS syntax. It's available on <githubLink>GitHub</githubLink> and you can use the shortlink (<shortLink>https://mmatt.link/UseTTS</shortLink>) to put in Twitch panels or chat commands.",
-			"q2": "Where can I get help with setting up AI TTS Donations?",
-			"a2": "You can join the <discordLink>Discord server</discordLink> and open a ticket and we'll get back to you as soon as possible."
+			"heading": "Часто задаваемые вопросы",
+			"q1": "Где мои зрители могут научиться использованию новых TTS?",
+			"a1": "У нас есть страница в вики, чтобы помочь вашим зрителям начать использовать новые AI TTS синтаксисы. Она доступна на <githubLink>GitHub</githubLink>, вы так же можете использовать короткую ссылку (<shortLink>https://mmatt.link/UseTTS</shortLink>), которую можно добавить на панели в Twitch или в команды чата.",
+			"q2": "Где я могу получить помощь по настройке AI TTS донатов?",
+			"a2": "Вы можете присоединиться к <discordLink>Discord серверу</discordLink> и открыть тикет, мы ответим вам, как только это будет возможно."
 		},
-		"dontBelieve": "Don't believe us?",
-		"dontBelieveDesc": "Just look at what streamers say about it.",
-		"testimonyCTA": "Are you a streamer that uses AI TTS Donations? Give us a review <link>here!</link>"
+		"dontBelieve": "Не верите нам?",
+		"dontBelieveDesc": "Просто посмотрите, что говорят об этом стримеры.",
+		"testimonyCTA": "Вы стример, который использует AI TTS донаты? Оставьте отзыв о нас <link>здесь!</link>"
+	},
+	"Footer": {
+		"description": "making free and open source software for all streamers to make Twitch more fun!",
+		"support": "Хотите поддержать разработку Solrock? Вы можете поддержать нас на <patreonLink>Patreon</patreonLink> или подключить подписку в нашем <discordSubLink>Discord сервере</discordSubLink>!"
 	},
 	"Dashboard": {
+		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
 		"yourDash": "Панель Управления",
-		"sensitiveInfo": "Чувствительная информация (НЕ ОТКРЫВАЙТЕ В ВАШЕМ СТРИМЕ)",
-		"sensitiveInfoWarning": "ВНИМАНИЕ: НЕ ПОКАЗЫВАЙТЕ ОВЕРЛЕЙ ССЫЛКУ В СТРИМ. ТАМ МОЖЕТ БЫТЬ ЧТО-ТО ЧУВСТВИТЕЛЬНАЯ ИНФОРМАЦИЯ.",
+		"sensitiveInfo": "Конфиденциальная информация (НЕ ОТКРЫВАЙТЕ ЭТО ВО ВРЕМЯ СТРИМА)",
+		"sensitiveInfoWarning": "ВНИМАНИЕ: НЕ ПОКАЗЫВАЙТЕ ССЫЛКУ НА ОВЕРЛЕЙ НА СТРИМЕ. ОНА СОДЕРЖИТ КОНФИДЕНЦИАЛЬНУЮ ИНФОРМАЦИЮ.",
 		"ttsOverlay": "TTS Оверлей",
 		"ttsOverlayDescription": "Здесь будет проигрывать ваши TTS аудио, просто копируйте ссылку и вставляйте в <Code>Браузер</Code> на вашем стриминг программы (как OBS).",
 		"configuration": {
 			"configurationHeading": "Конфигурация",
 			"channelPointsHeading": "Очки канала",
-			"channelPointRewardNameLabel": "Reward Name",
-			"channelPointRewardNameTooltip": "(Case Sensitive)",
+			"channelPointRewardNameLabel": "Название награды",
+			"channelPointRewardNameTooltip": "(Чувствителен к регистру)",
 			"maxMinLimitsHeading": "Макс/Мин пределы",
 			"maxMessageLengthLabel": "Максимальная длина сообщения",
-			"minBitsAmountLabel": "Минимальное количество бит",
-			"minResubMonthsLabel": "Minimum Resub Months Amount",
+			"minBitsAmountLabel": "Минимальное количество Bits",
+			"minResubMonthsLabel": "Минимальное количество месяцев переподписки",
 			"blacklistHeading": "В черном списке",
 			"blacklistDescription": "Используйте новую строку для каждого ввода. (Например, Forsen <Kbd>Enter</Kbd> Batman)",
 			"blacklistWordsLabel": "Слова",
 			"blacklistVoicesLabel": "Голоса",
 			"blacklistUsersLabel": "Пользователи",
-			"blacklistVoiceEffectsLabel": "Voice Effects",
-			"fallbacksHeading": "Fallbacks",
-			"fallbacksVoiceLabel": "Fallback Voice"
+			"blacklistVoiceEffectsLabel": "Голосовые эффекты",
+			"fallbacksHeading": "Резервные настройки",
+			"fallbacksVoiceLabel": "Резервный голос"
 		}
 	}
 }

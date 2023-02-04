@@ -138,8 +138,8 @@ const Home: NextPage = () => {
 			<Center>
 				<BetaBanner />
 			</Center>
-			<Container>
-				<Spring>
+			<Spring>
+				<Container>
 					<Group mb={'1rem'} mt={'1rem'} position="right">
 						{/* <TranslationMenu /> */}
 						{isLoading ? (
@@ -324,43 +324,43 @@ const Home: NextPage = () => {
 					</p>
 
 					<FaqSimple />
-				</Spring>
-				<Bubbles />
-			</Container>
-			<div
-				style={{
-					// background color gradient from comepletely transparent to black
-					background: `linear-gradient(
+					<Bubbles />
+				</Container>
+				<div
+					style={{
+						// background color gradient from comepletely transparent to black
+						background: `linear-gradient(
 									to bottom,
 									rgba(0, 0, 0, 0),
 									rgba(0, 0, 0, 1)
 								)`,
-					paddingTop: '1rem',
-					paddingBottom: '2rem',
-					width: '100%',
-					height: '20rem',
-				}}
-			>
-				<div
-					style={{
-						// center vertically
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'center',
-						alignItems: 'center',
-						height: '100%',
+						paddingTop: '1rem',
+						paddingBottom: '2rem',
+						width: '100%',
+						height: '20rem',
 					}}
 				>
-					<h1 style={{ textAlign: 'center' }}>{t('Landing.getStartedToday')}</h1>
-					<p>{t('Landing.getStartedDesc')}</p>
-					<Link href="/dashboard" prefetch>
-						<Center>
-							<Button>{t('Landing.getStarted')}</Button>
-						</Center>
-					</Link>
+					<div
+						style={{
+							// center vertically
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							alignItems: 'center',
+							height: '100%',
+						}}
+					>
+						<h1 style={{ textAlign: 'center' }}>{t('Landing.getStartedToday')}</h1>
+						<p>{t('Landing.getStartedDesc')}</p>
+						<Link href="/dashboard" prefetch>
+							<Center>
+								<Button>{t('Landing.getStarted')}</Button>
+							</Center>
+						</Link>
+					</div>
 				</div>
-			</div>
-			<Footer />
+				<Footer />
+			</Spring>
 		</>
 	);
 };

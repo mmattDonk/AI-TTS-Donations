@@ -15,6 +15,7 @@ import {
 	Space,
 	Stack,
 	Switch,
+	Text,
 	Textarea,
 	TextInput,
 	Tooltip,
@@ -28,6 +29,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { WindowMaximize } from 'tabler-icons-react';
 import BetaBanner from '../components/BetaBanner';
+import ChatisAd from '../components/chatisad';
 import { Footer } from '../components/Footer';
 import LoadingPage, { LoadingSpinner } from '../components/Loading';
 import MediaControls from '../components/MediaControls';
@@ -167,8 +169,8 @@ export default function Dashboard() {
 				<Center>
 					<BetaBanner />
 				</Center>
-				<Container size="xl">
-					<Spring>
+				<Spring>
+					<Container size="xl">
 						<Stack mt="xl" mb="xl" spacing="xs">
 							<Group>
 								<Avatar src={session.user?.image} size="lg" />
@@ -366,9 +368,20 @@ export default function Dashboard() {
 								</Collapse>
 							</>
 						)}
-					</Spring>
-				</Container>
-				<Footer />
+					</Container>
+					{
+						// eventually, make it so that is randomly shows a different ad each time
+						<Center>
+							<Stack>
+								<ChatisAd />
+								<Text mt={'-2.5rem'} size="xs" ta="center">
+									{t('Dashboard.adDisclaimer')}
+								</Text>
+							</Stack>
+						</Center>
+					}
+					<Footer />
+				</Spring>
 			</>
 		);
 	}

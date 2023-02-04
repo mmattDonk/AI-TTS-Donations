@@ -31,7 +31,7 @@
 		"getStarted": "Prepara-te",
 		"dashboard": "Painel de Controle",
 		"getStartedToday": "Soa-te bem? Começa a usar o AI TTS Donations hoje de graça!",
-		"getStartedDesc": "Join the over 1000+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
+		"getStartedDesc": "Junta-te a mais de 1.000 streamers que já usam AI TTS Donations e obtém o melhor TTS de graça!",
 		"howItWorks": "Como funciona",
 		"featuresHeading": "Recursos que são incomparáveis ​​em comparação com qualquer outra coisa disponível.",
 		"features": {
@@ -40,7 +40,7 @@
 			"openSourceTitle": "Código aberto",
 			"openSourceDesc": "O AI TTS Donations é totalmente de código aberto sob a licença 'AGPL-3'. Tu pode visualizar o código-fonte e contribuir com ele na página do GitHub.",
 			"voicesTitle": "Mais de 1000 vozes",
-			"voicesDesc": "AI TTS Donations is built using the APIs of <UDLink>Uberduck.ai</UDLink> and <FYLink>Fakeyou.com</FYLink>. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
+			"voicesDesc": "AI TTS Donations é construído usando as APIs de <UDLink>Uberduck.ai</UDLink> e <FYLink>Fakeyou.com</FYLink>. Isso significa que tens acesso a MILHARES de vozes públicas em AMBOS os sites, e o teu público pode usá-las para criar mensagens de TTS incríveis.",
 			"voiceEffectsTitle": "Efeitos de Voz",
 			"voiceEffectsDesc": "AI TTS Donations tem a capacidade de adicionar efeitos de voz e efeitos sonoros às tuas mensagens TTS. Os efeitos de voz podem permitir que os teus espectadores aumentem/diminuam as vozes, adicionem reverberação, reduzam a qualidade etc.",
 			"soundEffectsTitle": "Efeitos sonoros",
@@ -57,7 +57,12 @@
 		"dontBelieveDesc": "Basta olhar para o que os streamers dizem.",
 		"testimonyCTA": "És um streamer que usa AI TTS Donations? Deixanos a tua avaliação <link>aqui!</link>"
 	},
+	"Footer": {
+		"description": "fazendo softwares livres e abertos para todos os streamers para tornar o Twitch mais divertida!",
+		"support": "Queres ajudar a apoiar o desenvolvimento da Solrock? Tu podes nos apoiar no <patreonLink>Patreon</patreonLink> ou por uma <discordSubLink>Assinatura do servidor Discord</discordSubLink>!"
+	},
 	"Dashboard": {
+		"adDisclaimer": "Este é um anúncio não pago destinado a recomendar novas ferramentas aos streamers, obrigado!",
 		"yourDash": "O teu painel",
 		"sensitiveInfo": "Informações confidenciais (NÃO ABRIR EM STREAM.)",
 		"sensitiveInfoWarning": "AVISO: NÃO MOSTRES O LINK DO OVERLAY EM STREAM. CONTÉM INFORMAÇÕES SENSÍVEIS.",

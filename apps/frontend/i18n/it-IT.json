@@ -57,7 +57,12 @@
 		"dontBelieveDesc": "Basta guardare cosa dicono gli streamer a riguardo.",
 		"testimonyCTA": "Sei uno streamer che utilizza le donazioni AI TTS? Dacci una recensione <link>qui!</link>"
 	},
+	"Footer": {
+		"description": "making free and open source software for all streamers to make Twitch more fun!",
+		"support": "Want to help support the development of Solrock? You can support us on <patreonLink>Patreon</patreonLink> or by a <discordSubLink>Discord Server Subscription</discordSubLink>!"
+	},
 	"Dashboard": {
+		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
 		"yourDash": "La tua Dashboard",
 		"sensitiveInfo": "Informazioni sensibili (NON APRIRE IN STREAM.)",
 		"sensitiveInfoWarning": "ATTENZIONE: NON MOSTRARE IL LINK IN SOVRAPPOSIZIONE IN STREAM. CONTIENE INFORMAZIONI SENSIBILI.",
