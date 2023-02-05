@@ -96,7 +96,7 @@ importers:
       embla-carousel-react: ^7.0.3
       eslint: 8.33.0
       eslint-config-next: latest
-      framer-motion: ^8.0.0
+      framer-motion: ^9.0.0
       next: ^13.0.2
       next-auth: ^4.8.0
       next-intl: ^2.7.5
@@ -132,7 +132,7 @@ importers:
       '@vercel/analytics': 0.1.4_react@18.2.0
       embla-carousel-autoplay: 7.0.5
       embla-carousel-react: 7.0.5_react@18.2.0
-      framer-motion: 8.0.1_biqbaboplfbrettd7655fr4n2y
+      framer-motion: 9.0.1_biqbaboplfbrettd7655fr4n2y
       next: 13.0.3_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.16.4_ogpkrxaz2lg6nectum6dl66tn4
       next-intl: 2.9.1_next@13.0.3+react@18.2.0
@@ -7231,8 +7231,8 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: false
 
-  /framer-motion/8.0.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-rr9Sb97cGM5BWU0jMsmTi9x5w8hF90p6wRUlXto5IFejxMVS8YUxT8Ljjy8RspQKPEGOQUZDIZNvlcLBhs0tMw==}
+  /framer-motion/9.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-0EP7+b/hnsbrFOum9zU+23Fq2cJJrLOqv/yJ26fIzK4CC33ZAjXZGi1/XyblbgnUF0cxZ/SEDj5IYHeQo42qNg==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -7241,7 +7241,7 @@ packages:
       hey-listen: 1.0.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      tslib: 2.4.0
+      tslib: 2.4.1
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
     dev: false
