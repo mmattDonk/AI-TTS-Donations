@@ -2,7 +2,7 @@
 // https://mmattDonk.com
 
 import { Button, Menu, useMantineTheme } from '@mantine/core';
-import { IconChevronDown, IconPackage } from '@tabler/icons';
+import { IconChevronDown, IconPackage } from '@tabler/icons-react';
 
 const languages: { name: string; code: string }[] = [
 	{

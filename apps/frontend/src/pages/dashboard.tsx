@@ -21,7 +21,7 @@ import {
 	Tooltip,
 } from '@mantine/core';
 import { showNotification, updateNotification } from '@mantine/notifications';
-import { IconCross } from '@tabler/icons';
+import { IconCross } from '@tabler/icons-react';
 import { GetStaticPropsContext } from 'next';
 import { signIn, signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';

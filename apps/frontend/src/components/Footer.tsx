@@ -1,5 +1,5 @@
 import { ActionIcon, Container, createStyles, Group } from '@mantine/core';
-import { IconBrandDiscord, IconBrandGithub, IconBrandMastodon, IconBrandPatreon, IconBrandTwitter, IconWorld } from '@tabler/icons';
+import { IconBrandDiscord, IconBrandGithub, IconBrandMastodon, IconBrandPatreon, IconBrandTwitter, IconWorld } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
