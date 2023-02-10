@@ -131,7 +131,7 @@ def request_tts(
             continue
         try:
             log.debug(message.split(": "))
-            voice: str = message.split(": ")[0].lower()  # type: ignore
+            voice: str = message.split(": ")[0]  # type: ignore
             try:
                 if voice.lower() in config["blacklistedVoices"]:  # type: ignore
                     log.info(f"{voice} is blacklisted, applying fallback voice.")
@@ -147,7 +147,7 @@ def request_tts(
         except IndexError:
             text: str = message
         voice: list = voice.split(".")  # type: ignore
-        voice_name: str = voice[0].lower()
+        voice_name: str = voice[0]
         try:
             voice_effect: list = voice[1:]  # type: ignore
         except IndexError:
@@ -164,7 +164,7 @@ def request_tts(
             tts_provider = Fakeyou
         else:
             tts_provider = Uberduck
-            voice_name.lower()
+            voice_name = voice_name.lower()
         job_response: dict = tts_provider.get_job(text, voice_name)  # type: ignore
         log.debug(job_response)
         if (
