@@ -41,9 +41,9 @@
 			"openSourceTitle": "otwarto-źródłowe ",
 			"openSourceDesc": "AI TTS Donations jest całkowicie otwarto-źródłowy w ramach licencji 'AGPL-3'. Możesz wyświetlić kod źródłowy i włączyć się w jego rozwój na stronie GitHub.\n\n\n\n",
 			"voicesTitle": "1000+ Głosów",
-			"voicesDesc": "AI TTS Donations is built using the APIs of <UDLink>Uberduck.ai</UDLink> and <FYLink>Fakeyou.com</FYLink>. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
+			"voicesDesc": "AI TTS Donations jest budowane przy użyciu API z <UDLink>Uberduck.ai</UDLink> i <FYLink>Fakeyou.com</FYLink>. Oznacza to, że masz dostęp do TYSIĘCY ogólnodostępnych głosów w OBU tych serwisach, a twoja publiczność może ich używać, aby tworzyć niesamowite wiadomości TTS.",
 			"voiceEffectsTitle": "Efekty Głosowe",
-			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
+			"voiceEffectsDesc": "AI TTS Donations posiada możliwość dodawania głosowych i dźwiękowych efektów do wiadomości TTS. Efekty głosowe pozwalają widzowi na zmianę wysokości głosu, dodanie pogłosu, zmniejszenie jakości itp.",
 			"soundEffectsTitle": "Efekty Dźwiękowe",
 			"soundEffectsDesc": "Sound effects can add a variety of noises to your viewer's TTS messages. Your viewers can create amazing TTS messages using these features."
 		},
@@ -60,10 +60,10 @@
 	},
 	"Footer": {
 		"description": "making free and open source software for all streamers to make Twitch more fun!",
-		"support": "Want to help support the development of Solrock? You can support us on <patreonLink>Patreon</patreonLink> or by a <discordSubLink>Discord Server Subscription</discordSubLink>!"
+		"support": "Chcesz pomóc w rozwoju Solrock? Możesz nas wesprzeć na <patreonLink>Patreon</patreonLink> lub przez  <discordSubLink>Subskrypcję na serwerze Discord</discordSubLink>!"
 	},
 	"Dashboard": {
-		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
+		"adDisclaimer": "To jest nieopłacona reklama, która ma na celu polecenie nowych narzędzi dla streamerów, dzięki!",
 		"yourDash": "Twój Panel",
 		"sensitiveInfo": "Wrażliwe Informacje (NIE OTWIERAJ NA TRANSMISJI.)",
 		"sensitiveInfoWarning": "OSTRZEŻENIE: NIE POKAZUJ LINKU DO NAKŁADKI NA TRANSMISJI. ZAWIERO ON SENSYTYWNE INFORMACJE.",
@@ -72,20 +72,20 @@
 		"configuration": {
 			"configurationHeading": "Konfiguracja",
 			"channelPointsHeading": "Punkty Kanału",
-			"channelPointRewardNameLabel": "Reward Name",
+			"channelPointRewardNameLabel": "Nazwa nagrody",
 			"channelPointRewardNameTooltip": "(Case Sensitive)",
-			"maxMinLimitsHeading": "Max/Min Limits",
+			"maxMinLimitsHeading": "max/min limity",
 			"maxMessageLengthLabel": "Maksymalna Długość Wiadomości",
 			"minBitsAmountLabel": "Minimalna ilość Bitsów",
-			"minResubMonthsLabel": "Minimum Resub Months Amount",
-			"blacklistHeading": "Blacklisted",
-			"blacklistDescription": "Use a new line for every entry. (Example: Forsen <Kbd>Enter</Kbd> Batman)",
+			"minResubMonthsLabel": "Minimalna ilość miesięcy ponownej subskrypcji.",
+			"blacklistHeading": "Blokowane",
+			"blacklistDescription": "Użyj nowej linii dla każdej pozycji. (Przykład: Forsen <Kbd>Enter</Kbd> Batman)",
 			"blacklistWordsLabel": "Słowa",
 			"blacklistVoicesLabel": "Głosy",
 			"blacklistUsersLabel": "Użytkownicy",
-			"blacklistVoiceEffectsLabel": "Voice Effects",
+			"blacklistVoiceEffectsLabel": "Efekty głosowe",
 			"fallbacksHeading": "Fallbacks",
-			"fallbacksVoiceLabel": "Fallback Voice"
+			"fallbacksVoiceLabel": "Awaria głosu "
 		}
 	}
 }
