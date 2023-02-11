@@ -1,7 +1,7 @@
 {
 	"beta": {
 		"header": "Ta strona internetowa jest w wersji BETA. Jeżeli potrzebujesz pomocy albo chcesz zgłosić jakiś błąd napisz <discordLink>na serwerze Discord mmattDonk</discordLink>.",
-		"weekDisclaimer": "There was a bug in the week of 01/30/2023 that caused new users to not work, please try signing out and signing back in to fix this issue."
+		"weekDisclaimer": "W tygodniu od 30.01.2023 wystąpił błąd, uniemożliwiający działanie dla nowych użytkowników. Proszę spróbuj wylogować się i zalogować ponownie, aby rozwiązać ten problem."
 	},
 	"close": "Zamknij",
 	"open": "Otwórz",
@@ -14,8 +14,8 @@
 	"disabled": "Wyłączone",
 	"save": "Zapisz",
 	"notLoggedIn": "Jesteś niezalogowany.",
-	"bits": "Bits",
-	"resubs": "Resubs",
+	"bits": "Bitsy",
+	"resubs": "Ponowne subskrypcje ",
 	"channelPoints": "Punkty Kanału",
 	"404": {
 		"title": "Znalazłeś sekretne miejsce.",
@@ -26,20 +26,20 @@
 		"avatar": "Zdjęcie profilowe {name}."
 	},
 	"Landing": {
-		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
-		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
+		"heading": "Pierwszy w <gradientText>100%</gradientText> darmowy serwis AI TTS dla <twitchText>Twitch</twitchText>",
+		"description": "AI TTS Donations to darmowy serwis Open Source AI TTS  dla Twitcha. Jest to pierwszy serwis tej klasy bez subskrypcji, dodatkowych add-onów i reklam. ",
 		"getStartedTooltip": "Nie jesteśmy jeszcze gotowi! Zaloguj się do listy mailingowej niżej.",
 		"getStarted": "Zacznij",
 		"dashboard": "Panel",
 		"getStartedToday": "Brzmi dobrze? Zacznij z Donacjami AI TTS już dziś za darmo!",
-		"getStartedDesc": "Join the over 1000+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
+		"getStartedDesc": "Dołącz do ponad 1000 streamerów używajacych AI TTS Donations i uzyskaj najlepszy TTS, za darmo!",
 		"howItWorks": "Jak To Działa",
-		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
+		"featuresHeading": "Funkcje, które są <gradientText>bezkonkurencyjne</gradientText> w porównaniu do innych dostępnych na rynku.",
 		"features": {
 			"freeTitle": "Bezpłatne",
-			"freeDesc": "All features in AI TTS Donations are completely free. No fees, and no subscriptions. Simply sign in, setup, and use. No payments required at all.",
-			"openSourceTitle": "Open Source",
-			"openSourceDesc": "AI TTS Donations is completely open sourced under the 'AGPL-3' licence. You can view the Source Code and contribute to it on the GitHub page.",
+			"freeDesc": "Wszystkie funkcje w AI TTS Donations są całkowicie darmowe. Bez opłat i subskrypcji. Po prostu zaloguj się, skonfiguruj i korzystaj. Żadne płatności nie są wymagane.",
+			"openSourceTitle": "otwarto-źródłowe ",
+			"openSourceDesc": "AI TTS Donations jest całkowicie otwarto-źródłowy w ramach licencji 'AGPL-3'. Możesz wyświetlić kod źródłowy i włączyć się w jego rozwój na stronie GitHub.\n\n\n\n",
 			"voicesTitle": "1000+ Głosów",
 			"voicesDesc": "AI TTS Donations is built using the APIs of <UDLink>Uberduck.ai</UDLink> and <FYLink>Fakeyou.com</FYLink>. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
 			"voiceEffectsTitle": "Efekty Głosowe",
