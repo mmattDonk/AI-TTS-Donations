@@ -1,7 +1,7 @@
 {
 	"beta": {
 		"header": "Сайт находится в стадии бета-тестирования. Пожалуйста, сообщайте нам о найденных недоработках и получайте помощь в нашем <discordLink>mmattDonk Discord сервере</discordLink>.",
-		"weekDisclaimer": "There was a bug in the week of 01/30/2023 that caused new users to not work, please try signing out and signing back in to fix this issue."
+		"weekDisclaimer": "В эту неделю, 01/30/2023 здесь был баг которые новые пользователи не будет работать в этом сайт'e, пожалуйста попробуйте выйти и зайдите обратно чтобы сработало."
 	},
 	"close": "Закрыть",
 	"open": "Открыть",
@@ -59,11 +59,11 @@
 		"testimonyCTA": "Вы стример, который использует AI TTS донаты? Оставьте отзыв о нас <link>здесь!</link>"
 	},
 	"Footer": {
-		"description": "making free and open source software for all streamers to make Twitch more fun!",
+		"description": "делать бесплатно и открытым исходным кодом для всех стримеров, чтобы сделать Twitch ещё веселее!",
 		"support": "Хотите поддержать разработку Solrock? Вы можете поддержать нас на <patreonLink>Patreon</patreonLink> или подключить подписку в нашем <discordSubLink>Discord сервере</discordSubLink>!"
 	},
 	"Dashboard": {
-		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
+		"adDisclaimer": "это неплатная реклама, предназначенная для рекомендации новых инструментов стримера, спасибо!",
 		"yourDash": "Панель Управления",
 		"sensitiveInfo": "Конфиденциальная информация (НЕ ОТКРЫВАЙТЕ ЭТО ВО ВРЕМЯ СТРИМА)",
 		"sensitiveInfoWarning": "ВНИМАНИЕ: НЕ ПОКАЗЫВАЙТЕ ССЫЛКУ НА ОВЕРЛЕЙ НА СТРИМЕ. ОНА СОДЕРЖИТ КОНФИДЕНЦИАЛЬНУЮ ИНФОРМАЦИЮ.",
