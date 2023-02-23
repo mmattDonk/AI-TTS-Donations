@@ -16,7 +16,7 @@ export const streamerRouter = router({
 			include: {
 				user: true,
 				config: true,
-				ttsmessages: true,
+				ttsmessages: false,
 			},
 		});
 	}),
