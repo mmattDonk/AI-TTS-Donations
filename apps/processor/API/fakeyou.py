@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 ## mmattDonk 2023
 ## https://mmattDonk.com
 
@@ -60,7 +58,7 @@ class Fakeyou:
             "uuid": uuid,
         }
 
-    def check_tts(uuid: str) -> dict:
+    def check_job(uuid: str) -> dict:
         """
         Check if the TTS job is finished, if it is finished, it returns the URL to the audio file.
 
@@ -77,6 +75,7 @@ class Fakeyou:
 
         response = httpx.get(f"https://api.fakeyou.com/tts/job/{uuid}", timeout=60)
 
+        # damn matt, 12 months ago   (February 28th, 2022 7:07 PM) you were really annoying lol!
         # THIS IS ELF IS CANCER BUT IM STUPID AND MY OTHER ATTEMPTS WERENT WORKING LOL!
         if response.json()["state"]["status"] == "attempt_failed":
             failed_at = response.json()["state"]["status"]

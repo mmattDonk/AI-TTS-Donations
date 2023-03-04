@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
-
 ## mmattDonk 2023
 ## https://mmattDonk.com
 
+import collections
 import logging
 import os
 import re
+from typing import Type
 
 import httpx
 from dotenv import load_dotenv
@@ -13,9 +13,11 @@ from dotenv import load_dotenv
 log = logging.getLogger()
 load_dotenv()
 
+check_job_response = collections.namedtuple("check_job_response", ("path", "failed_at"))
+
 
 class Uberduck:
-    def get_job(text: str, voice_name: str) -> dict:  # type: ignore
+    def get_job(text: str, voice_name: str) -> dict:
         """Get the Uberduck Voice job.
 
         :param text: The text to be spoken.
@@ -50,11 +52,14 @@ class Uberduck:
         uuid = None
         detail = None
 
+        # no this is actually fine please ignore below
         try:  # Uberduck explicitly returns None on the speak-status endpoint, but not on this one, Uberduck pls fix so I can remove this try/catch Madge
             detail = response.json()["detail"]
         except KeyError:
             pass
 
+        # github copilot wrote that LMFAO
+        # ignore this too i think i needed to be sedated when i wrote this
         try:  # NOW THESE HAVE TO BE IN 2 SEPERATE TRY CATCHES BECAUSE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA UBERDANKPLESFIX
             uuid = response.json()["uuid"]
         except KeyError:
@@ -65,7 +70,7 @@ class Uberduck:
             "uuid": uuid,
         }
 
-    def check_tts(uuid: str) -> dict:  # type: ignore
+    def check_job(uuid: str) -> check_job_response:
         """
         Check if the TTS job is finished, if it is finished, it returns the URL to the audio file.
 
@@ -89,7 +94,4 @@ class Uberduck:
             timeout=60,
         )
 
-        return {
-            "path": response.json()["path"],
-            "failed_at": response.json()["failed_at"],
-        }
+        return check_job_response(response.json()["path"], response.json()["failed_at"])
