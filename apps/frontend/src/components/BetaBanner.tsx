@@ -13,10 +13,6 @@ export default function BetaBanner() {
 					discordLink: (children) => <a href="https://discord.gg/VUAjRrkZVJ">{children}</a>,
 				})}
 			</Badge>
-			{/* TODO: remindme in like a week to remove this */}
-			<Badge style={{ marginTop: '-0.5rem' }} color="red" variant="light">
-				{t('weekDisclaimer')}
-			</Badge>
 		</Stack>
 	);
 }

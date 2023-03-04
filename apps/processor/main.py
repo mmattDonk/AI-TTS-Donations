@@ -92,7 +92,6 @@ pusher_client = pusher.Pusher(
     key=os.environ.get("SOKETI_APP_KEY"),
     secret=os.environ.get("SOKETI_APP_SECRET"),
     host=os.environ.get("SOKETI_URL"),
-    port=int(os.environ.get("SOKETI_PORT")),
     ssl=True,
 )
 
