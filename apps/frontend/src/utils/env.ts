@@ -1,7 +1,7 @@
 // mmattDonk 2023
 // https://mmattDonk.com
 
-import { envsafe, str, url, num } from 'envsafe';
+import { envsafe, str, url } from 'envsafe';
 
 export const env = envsafe({
 	NEXTAUTH_SECRET: str({
@@ -29,7 +29,7 @@ export const env = envsafe({
 	SOKETI_URL: str({
 		desc: 'soketi url, hosted on railway',
 	}),
-	SOKETI_PORT: num({
+	SOKETI_PORT: str({
 		desc: 'soketi port, hosted on railway',
 	}),
 	SOKETI_APP_ID: str(),
