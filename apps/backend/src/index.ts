@@ -121,6 +121,9 @@ async function cheerCallback(event: cheerEvent, streamerJson: streamer) {
 }
 
 async function redemptionCallback(event: redemptionEvent, streamerJson: streamer) {
+	console.log('reward name', streamerJson.streamer.config[0].channelPointsName);
+	console.log('channel points enabled', streamerJson.streamer.config[0].channelPointsEnabled);
+	console.log('event reward title', event.reward.title);
 	if (!streamerJson?.streamer?.config[0]?.channelPointsName) return;
 	if (streamerJson.streamer.config[0].channelPointsEnabled === false) return;
 	if (streamerJson.streamer.config[0].channelPointsName !== event.reward.title) return;
