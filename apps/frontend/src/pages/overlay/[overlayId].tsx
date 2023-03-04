@@ -35,10 +35,10 @@ export default function Overlay({
 	useEffect(() => {
 		const pusher = new Pusher(SOKETI_APP_KEY, {
 			wsHost: SOKETI_URL,
-			wsPort: SOKETI_PORT,
-			forceTLS: true,
+			wsPort: SOKETI_URL === '127.0.0.1' ? parseInt(SOKETI_PORT) : undefined,
+			forceTLS: SOKETI_URL === '127.0.0.1' ? false : true,
 			disableStats: true,
-			enabledTransports: ['ws', 'wss'],
+			enabledTransports: SOKETI_URL === '127.0.0.1' ? ['ws'] : ['ws', 'wss'],
 		});
 		const channel = pusher.subscribe(overlayId as string);
 		channel.bind('new-file', (data: { file: string }) => {
