@@ -39,6 +39,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		return;
 	}
 
+	// filter out the email field from the user object
+	streamer.user.email = null;
+
 	switch (req.method) {
 		// "GET" / "POST" routing, only using GET for now.
 		case 'GET':
