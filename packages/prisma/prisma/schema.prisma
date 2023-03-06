@@ -75,6 +75,8 @@ model StreamerConfig {
   blacklistedUsers String[]
   blacklistedVoiceEffects String[]
 
+  ignoredWords String[]
+
   fallbackVoice String @default("jerma985")
 
   streamer Streamer @relation(fields: [id], references: [id], onDelete: Cascade)

@@ -1,8 +1,8 @@
 {
 	"name": "@solrock/backend",
 	"type": "module",
-	"version": "0.0.1",
-	"description": "twitch eventsub websocket server.",
+	"version": "1.0.0",
+	"description": "twitch eventsub server, to be deprecated soon.",
 	"main": "./dist/index.js",
 	"scripts": {
 		"build": "tsc",

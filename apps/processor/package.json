@@ -1,10 +1,11 @@
 {
 	"name": "@solrock/processor",
-	"version": "0.0.1",
+	"version": "2.0.0",
 	"description": "python audio processor.",
 	"main": "index.js",
 	"scripts": {
-		"dev": "functions-framework --target=hello_http"
+		"dev": "python3 -m uvicorn main:app --reload",
+		"start": "python3 -m uvicorn main:app"
 	},
 	"keywords": [],
 	"author": "mmattbtw <matt@mmatt.net>",

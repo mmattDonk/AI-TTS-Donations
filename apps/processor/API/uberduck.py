@@ -13,8 +13,6 @@ from dotenv import load_dotenv
 log = logging.getLogger()
 load_dotenv()
 
-check_job_response = collections.namedtuple("check_job_response", ("path", "failed_at"))
-
 
 class Uberduck:
     def get_job(text: str, voice_name: str) -> dict:
@@ -70,7 +68,7 @@ class Uberduck:
             "uuid": uuid,
         }
 
-    def check_job(uuid: str) -> check_job_response:
+    def check_job(uuid: str) -> dict:
         """
         Check if the TTS job is finished, if it is finished, it returns the URL to the audio file.
 
@@ -93,5 +91,8 @@ class Uberduck:
             ),
             timeout=60,
         )
-
-        return check_job_response(response.json()["path"], response.json()["failed_at"])
+        print(response.json())
+        return {
+            "failed_at": response.json()["failed_at"],
+            "url": response.json()["path"],
+        }

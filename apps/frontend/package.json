@@ -1,6 +1,6 @@
 {
 	"name": "@solrock/frontend",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "frontend dashboard and overlay.",
 	"private": true,
 	"license": "AGPL-3",
