@@ -26,7 +26,6 @@ jobs:
             - name: Install Deps 3
               run: pip install -r apps/processor/requirements-dev.txt
             - uses: pavelzw/pytest-action@v2
-              working-directory: apps/processor
               with:
                   emoji: true
                   verbose: false
