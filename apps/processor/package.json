@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "python3 -m uvicorn main:app --reload",
-		"start": "python3 -m uvicorn main:app"
+		"start": "python3 -m uvicorn main:app",
+		"test": "python3 -m pytest tests.py"
 	},
 	"keywords": [],
 	"author": "mmattbtw <matt@mmatt.net>",

@@ -69,18 +69,18 @@ def read_root():
 
 
 @app.post("/tts")
-async def tts(request: TTSRequest, api_key: APIKey = Depends(get_api_key)):
-    for word in request.streamer_config.blacklistedWords:
-        if word.lower() in request.message.lower():
+def tts(request: TTSRequest, api_key: APIKey = Depends(get_api_key)):
+    for word in request["streamer_config"]["blacklistedWords"]:
+        if word.lower() in request["message"].lower():
             raise HTTPException(
                 status_code=403, detail="Message contains blacklisted word"
             )
-    for word in request.streamer_config.ignoredWords:
-        if word.lower() in request.message.lower():
-            request.message.replace(word, "")
+    for word in request["streamer_config"]["ignoredWords"]:
+        if word.lower() in request["message"].lower():
+            request["message"].replace(word, "")
 
     # make a messages list with the request.message split into a format with a voice and message, example: "spongebob: hello drake: hai" -> [("spongebob", "hello"), ("drake", "hai")]
-    conversation = request.message
+    conversation = request["message"]
 
     # Define a pattern to match the speaker and the message
     pattern = r"([\w\s]+?):\s*(.*)"
@@ -120,8 +120,8 @@ async def tts(request: TTSRequest, api_key: APIKey = Depends(get_api_key)):
         if msg["message"] == "":
             transformed.remove(msg)
 
-        if msg["speaker"] in request.streamer_config.blacklistedVoices:
-            msg["speaker"] = request.streamer_config.fallbackVoice
+        if msg["speaker"] in request["streamer_config"]["blacklistedVoices"]:
+            msg["speaker"] = request["streamer_config"]["fallbackVoice"]
 
     urls = []
 
