@@ -125,17 +125,19 @@ async def tts(request: TTSRequest, api_key: APIKey = Depends(get_api_key)):
 
     urls = []
 
+    print(transformed)
     for msg in transformed:
-        print(msg)
         if msg["playsound"] == True:
-            print(msg["message"])
+            playsound_number = get_playsounds()[
+                int(msg["message"].replace(")", "")) - 1
+            ]
             urls.append(
                 # get the local path to the playsound
                 # get_playsounds returns the list of playsounds sorted by number
                 # so, if you do get_playsounds()[0], you get the first playsound file name
                 # then, you can use that to get the local path to the playsound
                 # /playsounds/1-playsound.wav
-                f"/playsounds/{get_playsounds()[int(msg['message']) - 1]}"
+                f"/playsounds/{playsound_number}"
             )
 
         job_response = Uberduck.get_job(msg["message"], msg["speaker"])
