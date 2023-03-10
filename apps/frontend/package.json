@@ -53,7 +53,7 @@
 		"@types/react": "18.0.28",
 		"@types/react-dom": "18.0.11",
 		"@types/react-typist": "^2.0.3",
-		"eslint": "8.35.0",
+		"eslint": "8.36.0",
 		"eslint-config-next": "latest",
 		"typescript": "4.9.5"
 	}
