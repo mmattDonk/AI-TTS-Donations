@@ -1,6 +1,6 @@
 {
 	"beta": {
-		"header": "This is a BETA website. Please report bugs and get help in the <discordLink>mmattDonk Discord server</discordLink>."
+		"header": "Det här är en BETA-hemsida. Vänligen rapportera fel och få hjälp i <discordLink>mmattDonk discordserver</discordLink>."
 	},
 	"close": "Stäng",
 	"open": "Öppna",
@@ -17,8 +17,8 @@
 	"resubs": "Resubs",
 	"channelPoints": "Kanalpoäng",
 	"404": {
-		"title": "You have found a secret place.",
-		"description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
+		"title": "Du har hittat en hemlig plats.",
+		"description": "Tyvärr är det här bara en 404-sida. Du kan ha stavat adressen fel, eller så har sidan flyttats till en annan URL.",
 		"link": "Take me back to the landing page."
 	},
 	"alt": {
@@ -26,11 +26,11 @@
 	},
 	"Landing": {
 		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
-		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
-		"getStartedTooltip": "We aren't ready yet! Sign up to the mailing list below.",
+		"description": "AI TTS Donations är en gratis service för Twitch. Det är den första av sitt slag, utan prenumerationer eller ytterligare tillägg och utan reklam.",
+		"getStartedTooltip": "Vi är inte redo ännu! Anmäl dig till maillistan nedan.",
 		"getStarted": "Kom igång",
 		"dashboard": "Kontrollpanel",
-		"getStartedToday": "Låter det bra? Kom igång med AI TTS-donationer idag, helt gratis!",
+		"getStartedToday": "Låter det bra? Kom igång med AI TTS Donations idag, helt gratis!",
 		"getStartedDesc": "Gå med över 1000 andra streamers som redan använder AI TTS-donationer, och få den bästa TTS helt gratis!",
 		"howItWorks": "Hur det fungerar",
 		"featuresHeading": "Features that are <gradientText>unrivaled</gradientText> compared to anything else available.",
@@ -43,19 +43,19 @@
 			"voicesDesc": "AI TTS Donations is built using the APIs of <UDLink>Uberduck.ai</UDLink> and <FYLink>Fakeyou.com</FYLink>. This means that you have access to THOUSANDS of public voices on BOTH of these websites, and your audience can use them to create amazing TTS messages.",
 			"voiceEffectsTitle": "Rösteffekter",
 			"voiceEffectsDesc": "AI TTS Donations has the ability to add voice effects and sound effects to your TTS messages. Voice effects can allow your viewer to pitch up/down voices, add reverb, reduce quality, etc.",
-			"soundEffectsTitle": "Sound Effects",
+			"soundEffectsTitle": "Ljudeffekter",
 			"soundEffectsDesc": "Sound effects can add a variety of noises to your viewer's TTS messages. Your viewers can create amazing TTS messages using these features."
 		},
 		"FAQ": {
-			"heading": "Frequently Asked Questions",
-			"q1": "Where can my viewers learn how to use the new TTS?",
-			"a1": "We have a wiki entry to help your viewers get started with using the new AI TTS syntax. It's available on <githubLink>GitHub</githubLink> and you can use the shortlink (<shortLink>https://mmatt.link/UseTTS</shortLink>) to put in Twitch panels or chat commands.",
-			"q2": "Where can I get help with setting up AI TTS Donations?",
+			"heading": "Vanliga frågor (FAQ)",
+			"q1": "Var kan mina tittare lära sig att använda denna nya TTS?",
+			"a1": "Vi har en wikisida för att hjälpa dina tittare att komma igång med att använda sig av den nya AI TTS:en. Den finns på <githubLink>GitHub</githubLink> och du kan använda länken (<shortLink>https://mmatt.link/UseTTS</shortLink>) till dina paneler eller chattkommandon på Twitch.",
+			"q2": "Var kan jag få hjälp med att komma igång med AI TTS Donations?",
 			"a2": "You can join the <discordLink>Discord server</discordLink> and open a ticket and we'll get back to you as soon as possible."
 		},
-		"dontBelieve": "Don't believe us?",
-		"dontBelieveDesc": "Just look at what streamers say about it.",
-		"testimonyCTA": "Are you a streamer that uses AI TTS Donations? Give us a review <link>here!</link>"
+		"dontBelieve": "Svårt att tro?",
+		"dontBelieveDesc": "Kolla bara vad streamers säger om det.",
+		"testimonyCTA": "Är du en streamer som använder AI TTS Donations? Recensera oss <link>här!</link>"
 	},
 	"Footer": {
 		"description": "making free and open source software for all streamers to make Twitch more fun!",
@@ -63,7 +63,7 @@
 	},
 	"Dashboard": {
 		"adDisclaimer": "this is a non-paid advertisement meant to recommend new streamer tools, thanks!",
-		"yourDash": "Your Dashboard",
+		"yourDash": "Din kontrollpanel",
 		"sensitiveInfo": "Sensitive Information (DO NOT OPEN ON STREAM.)",
 		"sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
 		"ttsOverlay": "TTS Overlay",
