@@ -60,8 +60,7 @@ export const ttsRouter = router({
 			const { overlayId } = input;
 			const { pusher } = ctx;
 			try {
-				const asdf = await pusher.trigger(overlayId, 'skip-tts', {});
-				console.log(asdf);
+				await pusher.trigger(overlayId, 'skip-tts', {});
 			} catch (e) {
 				console.log(e);
 				return {
