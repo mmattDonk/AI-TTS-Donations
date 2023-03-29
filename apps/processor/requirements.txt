@@ -5,6 +5,6 @@ pedalboard==0.7.2
 pusher ==3.3.2
 pydub==0.25.1
 python_dotenv ==1.0.0
-rich ==13.3.2
+rich ==13.3.3
 sentry-sdk==1.18.0
 wheel==0.40.0
