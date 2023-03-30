@@ -38,11 +38,11 @@
 			"freeTitle": "Gratis att använda",
 			"freeDesc": "Alla funktioner i AI TTS Donations är helt gratis. Inga avgifter och inga prenumerationer. Det är bara att logga in, konfigurera och använda. Inga krav på betalningar.",
 			"openSourceTitle": "Öppen källkod",
-			"openSourceDesc": "AI TTS Donations har en helt öppen källkod under \"AGPL-3\"-licensen. Du kan se källkoden och bidra till den GitHub-sidan.",
+			"openSourceDesc": "AI TTS Donations har en helt öppen källkod under \"AGPL-3\"-licensen. Du kan se källkoden och bidra till den på GitHub-sidan.",
 			"voicesTitle": "1000+ röster",
-			"voicesDesc": "AI TTS Donations är byggt med hjälp av API-er från <UDLink>Uberduck.ai</UDLink> och <FYLink>Fakeyou.com</FYLink>. Det betyder att du har tillgång till tusentals av offentliga röster på båda av dessa hemsidor, och din pubil kan använda dem för att skapa fantastiska TTS-meddelanden.",
+			"voicesDesc": "AI TTS Donations är byggt med hjälp av API-er från <UDLink>Uberduck.ai</UDLink> och <FYLink>Fakeyou.com</FYLink>. Det betyder att du har tillgång till tusentals av offentliga röster på båda av dessa hemsidor, och din publik kan använda dem för att skapa fantastiska TTS-meddelanden.",
 			"voiceEffectsTitle": "Rösteffekter",
-			"voiceEffectsDesc": "AI TTS Donations har förmågan att lägga till rösteffekter och ljudeffekter till dina TTS-meddelanden. Rösteffekter tillåter dina tittare att använda tonhöjd, lägga till reverb, minska kvalititeten, osv.",
+			"voiceEffectsDesc": "AI TTS Donations har förmågan att lägga till rösteffekter och ljudeffekter till dina TTS-meddelanden. Rösteffekter tillåter dina tittare att använda tonhöjd, lägga till reverb, minska kvaliteten osv.",
 			"soundEffectsTitle": "Ljudeffekter",
 			"soundEffectsDesc": "Ljudeffekter kan ändra dina tittares meddelanden på många olika sätt. Dina tittare kan skapa fantastiska TTS-meddelanden med hjälp av dessa funktioner."
 		},
@@ -51,7 +51,7 @@
 			"q1": "Var kan mina tittare lära sig att använda denna nya TTS?",
 			"a1": "Vi har en wikisida för att hjälpa dina tittare att komma igång med att använda sig av den nya AI TTS:en. Den finns på <githubLink>GitHub</githubLink> och du kan använda länken (<shortLink>https://mmatt.link/UseTTS</shortLink>) till dina paneler eller chattkommandon på Twitch.",
 			"q2": "Var kan jag få hjälp med att komma igång med AI TTS Donations?",
-			"a2": "Du kan gå med i the <discordLink>Discordservern</discordLink> och öppna ett supportärende så återkommer vi så snabbt som möjligt."
+			"a2": "Du kan gå med i vår <discordLink>Discord</discordLink> och öppna ett supportärende så återkommer vi så snabbt som möjligt."
 		},
 		"dontBelieve": "Svårt att tro?",
 		"dontBelieveDesc": "Kolla bara vad streamers säger om det.",
@@ -67,7 +67,7 @@
 		"sensitiveInfo": "Känslig information (ÖPPNA INTE PÅ STREAMEN)",
 		"sensitiveInfoWarning": "VARNING: VISA INTE DENNA LÄNK PÅ STREAMEN. DEN INNEHÅLLER KÄNSLIG INFORMATION.",
 		"ttsOverlay": "TTS Overlay",
-		"ttsOverlayDescription": "Det är här ditt TTS-ljud kommer att spela. Det är bara att kopiera länken och klistra in den i en <Code>Webbläsarkällae</Code> i din streammjukvara (så som OBS).",
+		"ttsOverlayDescription": "Det är här ditt TTS-ljud kommer att spela. Det är bara att kopiera länken och klistra in den i en <Code>Webbläsarkälla</Code> i din streammjukvara (så som OBS).",
 		"configuration": {
 			"configurationHeading": "Konfiguration",
 			"channelPointsHeading": "Kanalpoäng",
