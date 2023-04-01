@@ -58,7 +58,7 @@
 		"testimonyCTA": "Вы стример, который использует AI TTS донаты? Оставьте отзыв о нас <link>здесь!</link>"
 	},
 	"Footer": {
-		"description": "делать бесплатно и открытым исходным кодом для всех стримеров, чтобы сделать Twitch ещё веселее!",
+		"description": "making free and open source software for all streamers to make Twitch more fun! - Uberduck links are affiliate links.",
 		"support": "Хотите поддержать разработку Solrock? Вы можете поддержать нас на <patreonLink>Patreon</patreonLink> или подключить подписку в нашем <discordSubLink>Discord сервере</discordSubLink>!"
 	},
 	"Dashboard": {
