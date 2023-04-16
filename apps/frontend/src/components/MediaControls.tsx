@@ -4,6 +4,7 @@
 import { Button, Collapse, Container, Group, Space, Stack, Table } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { signIn } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Rotate } from 'tabler-icons-react';
 import { trpc } from '../utils/trpc';
@@ -23,6 +24,7 @@ export default function MediaControls() {
 	const [skipMessage, setSkipMessage] = useState('');
 
 	const skipMutation = trpc.tts.skipTts.useMutation();
+	const t = useTranslations();
 
 	const skipTts = async (e: any) => {
 		e.preventDefault();
@@ -30,12 +32,12 @@ export default function MediaControls() {
 		skipMutation.mutate({ overlayId: userData?.streamers[0]?.overlayId ?? '' });
 
 		if (skipMutation.isLoading) {
-			setSkipMessage('Skipping TTS');
+			setSkipMessage(t('MediaControls.skippingTts'));
 		} else {
 			if (skipMutation.data?.success) {
 				setSkipMessage('');
 			} else {
-				setSkipMessage('Failed to skip TTS');
+				setSkipMessage(t('MediaControls.failedToSkip'));
 			}
 		}
 	};
@@ -50,13 +52,13 @@ export default function MediaControls() {
 		console.debug(e.currentTarget.value);
 
 		showNotification({
-			title: 'Sending TTS',
+			title: t('MediaControls.sendingTts'),
 			message: '',
 			loading: ttsMutation.isLoading,
 		});
 		if (ttsMutation.isError) {
 			showNotification({
-				title: 'Error sending TTS',
+				title: t('MediaControls.errorSendingTts'),
 				message: ttsMutation.error?.message ?? '',
 				color: 'red',
 			});
@@ -78,9 +80,9 @@ export default function MediaControls() {
 				}}
 			>
 				<Stack align="center">
-					<h1>You are not logged in.</h1>
+					<h1>{t('notLoggedIn')}</h1>
 					<Button onClick={() => signIn('twitch')} size="xl">
-						Sign In
+						{t('signIn')}
 					</Button>
 				</Stack>
 			</Container>
@@ -96,7 +98,7 @@ export default function MediaControls() {
 			>
 				<Group>
 					<Button color="gray" onClick={skipTts}>
-						Skip TTS
+						{t('MediaControls.skipTts')}
 					</Button>
 					{skipMutation.isLoading && (
 						<>
@@ -105,15 +107,17 @@ export default function MediaControls() {
 					)}
 				</Group>
 				<Space h="md" />
-				<Button onClick={() => setShowTable((o) => !o)}>{showTable ? 'Close' : 'Open'} Recent TTS Messages</Button>
+				<Button onClick={() => setShowTable((o) => !o)}>
+					{showTable ? t('close') : t('open')} {t('MediaControls.recentTtsMessages')}
+				</Button>
 				<Space h="sm" />
 				<Collapse in={showTable}>
 					{ttsMessages?.messages?.length ?? 0 > 0 ? (
 						<Table style={{ textAlign: 'center' }}>
 							<thead>
-								<th>Replay</th>
-								<th>Message</th>
-								<th>Created At</th>
+								<th>{t('MediaControls.replay')}</th>
+								<th>{t('MediaControls.message')}</th>
+								<th>{t('MediaControls.createdAt')}</th>
 							</thead>
 							<tbody>
 								{ttsMessages?.messages?.map((message: any, i: number) => (
@@ -146,7 +150,7 @@ export default function MediaControls() {
 							</tbody>
 						</Table>
 					) : (
-						<p>No recent TTS messages</p>
+						<p>{t('MediaControls.noRecentTtsMessages')}</p>
 					)}
 				</Collapse>
 			</div>

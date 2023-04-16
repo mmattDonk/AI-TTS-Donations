@@ -2,12 +2,14 @@
 // https://mmattDonk.com
 
 import { Container, Group } from '@mantine/core';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 export function LoadingComponent() {
+	const t = useTranslations();
 	return (
 		<Group>
-			<p>Loading...</p>
+			<p>{t('loading')}</p>
 			<Image src="/images/dankCircle.webp" alt={'pajaDank emote spinning in a circle, acting as a loading spinner.'} height="50" width="50" />
 		</Group>
 	);
@@ -17,6 +19,7 @@ export function LoadingSpinner() {
 }
 
 export default function LoadingPage() {
+	const t = useTranslations();
 	return (
 		<Container
 			style={{
@@ -29,7 +32,7 @@ export default function LoadingPage() {
 			}}
 		>
 			<Group>
-				<h1>Loading...</h1>
+				<h1>{t('loading')}</h1>
 				<Image src="/images/dankCircle.webp" alt={'pajaDank emote spinning in a circle, acting as a loading spinner.'} height="100" width="100" />
 			</Group>
 		</Container>

@@ -79,7 +79,7 @@ export default function Dashboard() {
 
 		showNotification({
 			id: 'savingConfig',
-			message: 'Saving config...',
+			message: t('Dashboard.savingConfig'),
 			loading: configMutation.isLoading,
 		});
 		if (!configMutation.isLoading) {
@@ -87,7 +87,7 @@ export default function Dashboard() {
 				updateNotification({
 					id: 'savingConfig',
 					color: 'red',
-					message: 'Error saving config',
+					message: t('Dashboard.errorSavingConfig'),
 					loading: false,
 					icon: <IconCross size={16} />,
 				});
@@ -95,7 +95,7 @@ export default function Dashboard() {
 				updateNotification({
 					id: 'savingConfig',
 					color: 'teal',
-					message: 'Config saved!',
+					message: t('Dashboard.configSaved'),
 					loading: false,
 					autoClose: 1500,
 				});
@@ -118,8 +118,8 @@ export default function Dashboard() {
 					/>
 					{/* Twitter Card Tags */}
 					<meta name="twitter:card" content="summary" />
-					<meta name="twitter:site" content="@mmattbtw" />
-					<meta name="twitter:creator" content="@mmattbtw" />
+					<meta name="twitter:site" content="@mmattDonk" />
+					<meta name="twitter:creator" content="@mmattDonk" />
 					<meta name="twitter:title" content="Dashboard - AI TTS Donations" />
 					<meta
 						name="twitter:description"
@@ -158,8 +158,8 @@ export default function Dashboard() {
 					/>
 					{/* Twitter Card Tags */}
 					<meta name="twitter:card" content="summary" />
-					<meta name="twitter:site" content="@mmattbtw" />
-					<meta name="twitter:creator" content="@mmattbtw" />
+					<meta name="twitter:site" content="@mmattDonk" />
+					<meta name="twitter:creator" content="@mmattDonk" />
 					<meta name="twitter:title" content="Dashboard - AI TTS Donations" />
 					<meta
 						name="twitter:description"

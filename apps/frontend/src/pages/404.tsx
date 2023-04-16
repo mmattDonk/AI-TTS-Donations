@@ -58,8 +58,8 @@ export default function NotFoundPage() {
 				<meta property="og:title" content="404 - AI TTS Donations" />
 				{/* Twitter Card Tags */}
 				<meta name="twitter:card" content="summary" />
-				<meta name="twitter:site" content="@mmattbtw" />
-				<meta name="twitter:creator" content="@mmattbtw" />
+				<meta name="twitter:site" content="@mmattDonk" />
+				<meta name="twitter:creator" content="@mmattDonk" />
 				<meta name="twitter:title" content="404 - AI TTS Donations" />
 			</Head>
 			<Center>
