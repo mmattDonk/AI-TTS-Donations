@@ -2,6 +2,7 @@
 	"beta": {
 		"header": "This is a BETA website. Please report bugs and get help in the <discordLink>mmattDonk Discord server</discordLink>."
 	},
+	"loading": "Loading...",
 	"close": "ǝsolƆ",
 	"open": "uǝdO",
 	"loggedIn": "{name} sɐ uᴉ pǝƃƃo˥",
@@ -24,9 +25,21 @@
 	"alt": {
 		"avatar": "˙ǝɹnʇɔᴉd ǝlᴉɟoɹd s,{name}"
 	},
+	"MediaControls": {
+		"skippingTts": "Skipping TTS",
+		"failedToSkip": "Failed to skip TTS",
+		"sendingTts": "Sending TTS",
+		"errorSendingTts": "Error sending TTS",
+		"skipTts": "Skip TTS",
+		"recentTtsMessages": "Recent TTS Messages",
+		"noRecentTtsMessages": "No recent TTS messages",
+		"replay": "Replay",
+		"message": "Message",
+		"createdAt": "Created At"
+	},
 	"Landing": {
 		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
-		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
+		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no mandatory subscription services, and no random ads.",
 		"getStartedTooltip": "˙ʍolǝq ʇsᴉl ƃuᴉlᴉɐɯ ǝɥʇ oʇ dn uƃᴉS ¡ʇǝʎ ʎpɐǝɹ ʇ,uǝɹɐ ǝM",
 		"getStarted": "pǝʇɹɐʇs ʇǝפ",
 		"dashboard": "Dashboard",
@@ -68,6 +81,9 @@
 		"sensitiveInfoWarning": "˙NOI┴∀WɹOℲNI ƎΛI┴ISNƎS SNI∀┴NOƆ ┴I ˙W∀Ǝɹ┴S NO ʞNI˥ ⅄∀˥ɹƎΛO MOHS ┴ON Op :פNINɹ∀M",
 		"ttsOverlay": "ʎɐlɹǝʌO S┴┴",
 		"ttsOverlayDescription": "˙(SqO ǝʞᴉl) ǝɹɐʍʇɟos ƃuᴉɯɐǝɹʇs pǝɹɹǝɟǝɹd ɹnoʎ uᴉ <Code>ǝɔɹnoS ɹǝsʍoɹq</Code> ɐ oʇuᴉ ʇᴉ ǝʇsɐd puɐ 'ʞuᴉl ǝɥʇ ʎdoɔ ʎldɯᴉs 'ƃuᴉʎɐld ǝq llᴉʍ oᴉpnɐ S┴┴ ɹnoʎ ǝɹǝɥʍ sᴉ sᴉɥ┴",
+		"savingConfig": "Saving config...",
+		"errorSavingConfig": "Error saving config",
+		"configSaved": "Config saved!",
 		"configuration": {
 			"configurationHeading": "Configuration",
 			"channelPointsHeading": "Channel Points",

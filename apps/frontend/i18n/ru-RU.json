@@ -2,6 +2,7 @@
 	"beta": {
 		"header": "Сайт находится в стадии бета-тестирования. Пожалуйста, сообщайте нам о найденных недоработках и получайте помощь в нашем <discordLink>mmattDonk Discord сервере</discordLink>."
 	},
+	"loading": "Loading...",
 	"close": "Закрыть",
 	"open": "Открыть",
 	"loggedIn": "Вы вошли как {name}",
@@ -24,9 +25,21 @@
 	"alt": {
 		"avatar": "{name} Аватар."
 	},
+	"MediaControls": {
+		"skippingTts": "Skipping TTS",
+		"failedToSkip": "Failed to skip TTS",
+		"sendingTts": "Sending TTS",
+		"errorSendingTts": "Error sending TTS",
+		"skipTts": "Skip TTS",
+		"recentTtsMessages": "Recent TTS Messages",
+		"noRecentTtsMessages": "No recent TTS messages",
+		"replay": "Replay",
+		"message": "Message",
+		"createdAt": "Created At"
+	},
 	"Landing": {
 		"heading": "Первый <gradientText>100%</gradientText> бесплатный сервис синтеза речи для <twitchText>Twitch</twitchText>",
-		"description": "AI TTS донаты являются бесплатным сервисом с открытым исходным кодом синтеза речи для Twitch. Первый продукт в своем роде, без подписок, дополнительных расширений и рекламы.",
+		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no mandatory subscription services, and no random ads.",
 		"getStartedTooltip": "Мы ещё не готовы! Подпишись на рассылку ниже.",
 		"getStarted": "Начать здесь",
 		"dashboard": "Панель управления",
@@ -68,6 +81,9 @@
 		"sensitiveInfoWarning": "ВНИМАНИЕ: НЕ ПОКАЗЫВАЙТЕ ССЫЛКУ НА ОВЕРЛЕЙ НА СТРИМЕ. ОНА СОДЕРЖИТ КОНФИДЕНЦИАЛЬНУЮ ИНФОРМАЦИЮ.",
 		"ttsOverlay": "TTS Оверлей",
 		"ttsOverlayDescription": "Здесь будет проигрывать ваши TTS аудио, просто копируйте ссылку и вставляйте в <Code>Браузер</Code> на вашем стриминг программы (как OBS).",
+		"savingConfig": "Saving config...",
+		"errorSavingConfig": "Error saving config",
+		"configSaved": "Config saved!",
 		"configuration": {
 			"configurationHeading": "Конфигурация",
 			"channelPointsHeading": "Очки канала",

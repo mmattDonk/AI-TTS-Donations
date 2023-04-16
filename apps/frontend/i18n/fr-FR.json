@@ -2,6 +2,7 @@
 	"beta": {
 		"header": "Ce site est actuellement en BETA. Vous pouvez reporter les bugs et demander de l'aide sur le <discordLink>Discord de mmattDonk</discordLink>."
 	},
+	"loading": "Loading...",
 	"close": "Fermer",
 	"open": "Ouvrir",
 	"loggedIn": "Connecter en tant que {name}",
@@ -24,9 +25,21 @@
 	"alt": {
 		"avatar": "La photo de profil de {name}."
 	},
+	"MediaControls": {
+		"skippingTts": "Skipping TTS",
+		"failedToSkip": "Failed to skip TTS",
+		"sendingTts": "Sending TTS",
+		"errorSendingTts": "Error sending TTS",
+		"skipTts": "Skip TTS",
+		"recentTtsMessages": "Recent TTS Messages",
+		"noRecentTtsMessages": "No recent TTS messages",
+		"replay": "Replay",
+		"message": "Message",
+		"createdAt": "Created At"
+	},
 	"Landing": {
 		"heading": "The first <gradientText>100%</gradientText> free AI TTS service for <twitchText>Twitch</twitchText>",
-		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no subscription services, no additional add-ons, and no ads.",
+		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no mandatory subscription services, and no random ads.",
 		"getStartedTooltip": "Nous ne sommes pas encore prêts ! Inscrivez-vous à la newsletter ci-dessous.",
 		"getStarted": "Commencer",
 		"dashboard": "Tableau de bord",
@@ -68,6 +81,9 @@
 		"sensitiveInfoWarning": "WARNING: DO NOT SHOW OVERLAY LINK ON STREAM. IT CONTAINS SENSITIVE INFORMATION.",
 		"ttsOverlay": "TTS Overlay",
 		"ttsOverlayDescription": "This is where your TTS audio will be playing, simply copy the link, and paste it into a <Code>Browser Source</Code> in your preferred streaming software (like OBS).",
+		"savingConfig": "Saving config...",
+		"errorSavingConfig": "Error saving config",
+		"configSaved": "Config saved!",
 		"configuration": {
 			"configurationHeading": "Configuration",
 			"channelPointsHeading": "Channel Points",
