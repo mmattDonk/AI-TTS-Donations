@@ -4,7 +4,6 @@
 // this file was generated from create-t3-app https://create.t3.gg, however heavily modified (mantine+others)
 // src/pages/_app.tsx
 import { ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mantine/core';
-import { NotificationsProvider } from '@mantine/notifications';
 import { QueryClientProvider, useQueryClient } from '@tanstack/react-query';
 import { Analytics } from '@vercel/analytics/react';
 import type { Session } from 'next-auth';
@@ -15,6 +14,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { RouterTransition } from '../components/RouterTransition';
 import { trpc } from '../utils/trpc';
+import { Notifications } from '@mantine/notifications';
 
 type PageProps = {
 	messages: IntlMessages;
@@ -107,22 +107,21 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
 	return (
 		<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
 			<MantineProvider theme={{ colorScheme }} withNormalizeCSS withGlobalStyles>
-				<NotificationsProvider>
-					<Global
-						styles={(theme) => ({
-							a: {
-								color: theme.colorScheme === 'dark' ? theme.colors.dark![0] : theme.colors.gray![7],
-								textDecoration: 'underline',
+				<Notifications />
+				<Global
+					styles={(theme) => ({
+						a: {
+							color: theme.colorScheme === 'dark' ? theme.colors.dark![0] : theme.colors.gray![7],
+							textDecoration: 'underline',
 
-								'&:hover': {
-									color: theme.colors[theme.primaryColor]![theme.colorScheme === 'dark' ? 3 : 7],
-									textDecoration: 'none',
-								},
+							'&:hover': {
+								color: theme.colors[theme.primaryColor]![theme.colorScheme === 'dark' ? 3 : 7],
+								textDecoration: 'none',
 							},
-						})}
-					/>
-					{children}
-				</NotificationsProvider>
+						},
+					})}
+				/>
+				{children}
 			</MantineProvider>
 		</ColorSchemeProvider>
 	);
