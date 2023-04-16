@@ -7,5 +7,5 @@ export const pusher = new Pusher({
 	secret: env.SOKETI_APP_SECRET,
 	host: env.SOKETI_URL,
 	useTLS: true,
-	port: `${env.SOKETI_PORT}`,
+	// port: `${env.SOKETI_PORT}`,
 });

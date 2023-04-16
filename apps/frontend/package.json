@@ -49,11 +49,11 @@
 		"zod": "^3.17.3"
 	},
 	"devDependencies": {
-		"@types/node": "18.14.6",
-		"@types/react": "18.0.28",
+		"@types/node": "18.15.11",
+		"@types/react": "18.0.35",
 		"@types/react-dom": "18.0.11",
 		"@types/react-typist": "^2.0.3",
-		"eslint": "8.35.0",
+		"eslint": "8.38.0",
 		"eslint-config-next": "latest",
 		"typescript": "4.9.5"
 	}

@@ -56,12 +56,13 @@ export const ttsRouter = router({
 				overlayId: z.string(),
 			})
 		)
-		.mutation(({ input, ctx }) => {
+		.mutation(async ({ input, ctx }) => {
 			const { overlayId } = input;
 			const { pusher } = ctx;
 			try {
-				pusher.trigger(overlayId, 'skip-tts', {});
+				await pusher.trigger(overlayId, 'skip-tts', {});
 			} catch (e) {
+				console.log(e);
 				return {
 					success: false,
 				};
