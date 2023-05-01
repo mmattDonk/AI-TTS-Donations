@@ -249,7 +249,12 @@ export default function Dashboard() {
 													value={config.minMonthsAmount ?? 0}
 													min={0}
 													onChange={(val) => {
-														setConfig({ ...config, minMonthsAmount: val ?? 0 ?? '' });
+														setConfig({
+															...config,
+															minMonthsAmount:
+																// make it so the value can only be an integer, and never an empty string ""
+																val === '' ? 0 : val,
+														});
 													}}
 													onBlur={async () => await saveConfig()}
 												/>
@@ -270,7 +275,7 @@ export default function Dashboard() {
 													value={config.minBitAmount ?? 0}
 													min={0}
 													onChange={(val) => {
-														setConfig({ ...config, minBitAmount: val ?? 0 });
+														setConfig({ ...config, minBitAmount: val === '' ? 0 : val });
 													}}
 													onBlur={async () => await saveConfig()}
 													width={100}
@@ -285,7 +290,7 @@ export default function Dashboard() {
 												value={config.maxMsgLength ?? 500}
 												min={1}
 												onChange={(val) => {
-													setConfig({ ...config, maxMsgLength: val ?? 500 });
+													setConfig({ ...config, maxMsgLength: val === '' ? 500 : val });
 												}}
 												onBlur={async () => await saveConfig()}
 											/>
