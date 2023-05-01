@@ -249,7 +249,7 @@ export default function Dashboard() {
 													value={config.minMonthsAmount ?? 0}
 													min={0}
 													onChange={(val) => {
-														setConfig({ ...config, minMonthsAmount: val ?? 0 });
+														setConfig({ ...config, minMonthsAmount: val ?? 0 ?? '' });
 													}}
 													onBlur={async () => await saveConfig()}
 												/>
