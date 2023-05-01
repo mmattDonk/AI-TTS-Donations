@@ -26,7 +26,7 @@ const languages: { name: string; code: string }[] = [
 export function TranslationMenu() {
 	const theme = useMantineTheme();
 	return (
-		<Menu transition="pop-top-right" position="top-end" width={220}>
+		<Menu position="top-end" width={220}>
 			<Menu.Target>
 				<Button variant="outline" rightIcon={<IconChevronDown size={18} stroke={1.5} />} pr={12}>
 					Languages

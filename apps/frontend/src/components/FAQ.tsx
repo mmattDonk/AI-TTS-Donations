@@ -6,12 +6,12 @@ import { useTranslations } from 'next-intl';
 
 const useStyles = createStyles((theme) => ({
 	wrapper: {
-		paddingTop: theme.spacing.xl * 2,
-		paddingBottom: theme.spacing.xl * 2,
+		paddingTop: theme.spacing.xl,
+		paddingBottom: theme.spacing.xl,
 	},
 
 	title: {
-		marginBottom: theme.spacing.xl * 1.5,
+		marginBottom: theme.spacing.xl,
 	},
 
 	item: {
