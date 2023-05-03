@@ -2,7 +2,7 @@
 	"beta": {
 		"header": "Este é um site BETA. Por favor, reporta bugs e obtêm ajuda no <discordLink>Servidor de Discord mmattDonk</discordLink>."
 	},
-	"loading": "Loading...",
+	"loading": "A carregar...",
 	"close": "Fecha",
 	"open": "Abre",
 	"loggedIn": "Conectado como {name}",
@@ -26,16 +26,16 @@
 		"avatar": "{name}'s foto de perfil."
 	},
 	"MediaControls": {
-		"skippingTts": "Skipping TTS",
-		"failedToSkip": "Failed to skip TTS",
-		"sendingTts": "Sending TTS",
-		"errorSendingTts": "Error sending TTS",
-		"skipTts": "Skip TTS",
-		"recentTtsMessages": "Recent TTS Messages",
-		"noRecentTtsMessages": "No recent TTS messages",
-		"replay": "Replay",
-		"message": "Message",
-		"createdAt": "Created At"
+		"skippingTts": "A ignorar TTS",
+		"failedToSkip": "Falha ao ignorar TTS",
+		"sendingTts": "A enviar TTS",
+		"errorSendingTts": "Erro ao enviar TTS",
+		"skipTts": "Ignorar TTS",
+		"recentTtsMessages": "Mensagens recentes do TTS",
+		"noRecentTtsMessages": "Nenhuma mensagem recente de TTS",
+		"replay": "Repetir",
+		"message": "Mensagem",
+		"createdAt": "Criada a"
 	},
 	"Landing": {
 		"heading": "O primeiro serviço AI TTS <gradientText>100%</gradientText> grátis para a <twitchText>Twitch</twitchText>",
