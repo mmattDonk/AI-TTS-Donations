@@ -42,7 +42,7 @@ export default function Dashboard() {
 
 	const { data: session, isLoading: isSessionLoading } = trpc.auth.getSession.useQuery();
 
-	const { data: streamerData, isLoading: isStreamerLoading } = trpc.streamer.getStreamer.useQuery(session?.user?.name ?? '', {
+	const { data: streamerData, isLoading: isStreamerLoading } = trpc.streamer.getStreamer.useQuery(undefined, {
 		onSuccess(data) {
 			if (!data?.config[0]) return;
 			setConfig({ ...data?.config[0] });
