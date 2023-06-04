@@ -5,12 +5,12 @@ import { z } from 'zod';
 import { protectedProcedure, router } from '../trpc';
 
 export const streamerRouter = router({
-	getStreamer: protectedProcedure.input(z.string()).query(async ({ ctx, input }) => {
+	getStreamer: protectedProcedure.query(async ({ ctx, input }) => {
 		// TODO: fix ctx.prisma returning no types?
 		return await ctx.prisma.streamer.findFirst({
 			where: {
 				user: {
-					name: input,
+					name: ctx.session.user.name,
 				},
 			},
 			include: {
@@ -49,6 +49,7 @@ export const streamerRouter = router({
 		)
 		.mutation(async ({ ctx, input }) => {
 			let { streamerId, config } = input;
+
 			config = {
 				...config,
 				blacklistedWords: config.blacklistedWords.filter((w) => w !== ''),

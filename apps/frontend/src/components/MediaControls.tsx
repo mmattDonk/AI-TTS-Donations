@@ -16,7 +16,7 @@ export default function MediaControls() {
 	const [showTable, setShowTable] = useState(false);
 
 	const { data: session, isLoading: isSessionLoading } = trpc.auth.getSession.useQuery();
-	const { data: userData, isLoading } = trpc.user.getUser.useQuery(session?.user?.name ?? '');
+	const { data: userData, isLoading } = trpc.user.getUser.useQuery();
 	const { data: ttsMessages, isLoading: isTtsMessagesLoading } = trpc.tts.getRecentMessages.useQuery({
 		streamerId: userData?.streamers[0]?.id ?? '',
 	});

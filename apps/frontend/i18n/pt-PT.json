@@ -2,7 +2,7 @@
 	"beta": {
 		"header": "Este é um site BETA. Por favor, reporta bugs e obtêm ajuda no <discordLink>Servidor de Discord mmattDonk</discordLink>."
 	},
-	"loading": "Loading...",
+	"loading": "A carregar...",
 	"close": "Fecha",
 	"open": "Abre",
 	"loggedIn": "Conectado como {name}",
@@ -26,25 +26,25 @@
 		"avatar": "{name}'s foto de perfil."
 	},
 	"MediaControls": {
-		"skippingTts": "Skipping TTS",
-		"failedToSkip": "Failed to skip TTS",
-		"sendingTts": "Sending TTS",
-		"errorSendingTts": "Error sending TTS",
-		"skipTts": "Skip TTS",
-		"recentTtsMessages": "Recent TTS Messages",
-		"noRecentTtsMessages": "No recent TTS messages",
-		"replay": "Replay",
-		"message": "Message",
-		"createdAt": "Created At"
+		"skippingTts": "A ignorar TTS",
+		"failedToSkip": "Falha ao ignorar TTS",
+		"sendingTts": "A enviar TTS",
+		"errorSendingTts": "Erro ao enviar TTS",
+		"skipTts": "Ignorar TTS",
+		"recentTtsMessages": "Mensagens recentes do TTS",
+		"noRecentTtsMessages": "Nenhuma mensagem recente de TTS",
+		"replay": "Repetir",
+		"message": "Mensagem",
+		"createdAt": "Criada a"
 	},
 	"Landing": {
 		"heading": "O primeiro serviço AI TTS <gradientText>100%</gradientText> grátis para a <twitchText>Twitch</twitchText>",
-		"description": "AI TTS Donations is a free and Open Source AI TTS service for Twitch. It's the first of its class, no mandatory subscription services, and no random ads.",
+		"description": "O AI TTS Donations é um serviço gratuito de AI TTS para a Twitch e de código aberto. É o primeiro da sua classe, sem serviços de assinatura, sem complementos adicionais e sem anúncios.",
 		"getStartedTooltip": "Ainda não estamos prontos! Inscreve-te na lista de emails abaixo.",
 		"getStarted": "Prepara-te",
 		"dashboard": "Painel de Controle",
 		"getStartedToday": "Soa-te bem? Começa a usar o AI TTS Donations hoje de graça!",
-		"getStartedDesc": "Join the over 2700+ streamers already using AI TTS Donations, and get the best TTS around, for free!",
+		"getStartedDesc": "Junta-te aos mais de 2700 steamers que já usam AI TTS Donations, e obtém o melhor TTS ao redor, de graça!",
 		"howItWorks": "Como funciona",
 		"featuresHeading": "Recursos que são incomparáveis ​​em comparação com qualquer outra coisa disponível.",
 		"features": {
@@ -71,7 +71,7 @@
 		"testimonyCTA": "És um streamer que usa AI TTS Donations? Deixanos a tua avaliação <link>aqui!</link>"
 	},
 	"Footer": {
-		"description": "making free and open source software for all streamers to make Twitch more fun! - Uberduck links are affiliate links.",
+		"description": "Criar software gratuito e de código aberto para todos os streamers para tornar a Twitch mais divertida! - Os links Uberduck são links de afiliados.",
 		"support": "Queres ajudar a apoiar o desenvolvimento da Solrock? Tu podes nos apoiar no <patreonLink>Patreon</patreonLink> ou por uma <discordSubLink>Assinatura do servidor Discord</discordSubLink>!"
 	},
 	"Dashboard": {
@@ -81,9 +81,9 @@
 		"sensitiveInfoWarning": "AVISO: NÃO MOSTRES O LINK DO OVERLAY EM STREAM. CONTÉM INFORMAÇÕES SENSÍVEIS.",
 		"ttsOverlay": "TTS Overlay",
 		"ttsOverlayDescription": "Aqui é onde o áudio do teu TTS será reproduzido, simplesmente copia o link, e cole-o em uma <Code>fonte de navegador</Code> no teu software de streaming preferido (como OBS).",
-		"savingConfig": "Saving config...",
-		"errorSavingConfig": "Error saving config",
-		"configSaved": "Config saved!",
+		"savingConfig": "A salvar configuração...",
+		"errorSavingConfig": "Erro ao salvar configuração",
+		"configSaved": "Configuração salva!",
 		"configuration": {
 			"configurationHeading": "Configuração",
 			"channelPointsHeading": "Pontos do canal",
