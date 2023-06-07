@@ -33,10 +33,13 @@ import ChatisAd from '../components/chatisad';
 import { Footer } from '../components/Footer';
 import LoadingPage, { LoadingSpinner } from '../components/Loading';
 import MediaControls from '../components/MediaControls';
+import OuraBotAd from '../components/ourabotad';
 import Spring from '../components/Spring';
 import { trpc } from '../utils/trpc';
 
 export default function Dashboard() {
+	const [randomAdChance, setRandomAdChance] = useState(Math.random());
+
 	const [sensitiveOpen, setSensitiveOpen] = useState(false);
 	const t = useTranslations();
 
@@ -378,8 +381,8 @@ export default function Dashboard() {
 						// eventually, make it so that is randomly shows a different ad each time
 						<Center>
 							<Stack>
-								<ChatisAd />
-								<Text mt={'-2.5rem'} size="xs" ta="center">
+								{randomAdChance > 0.5 ? <ChatisAd /> : <OuraBotAd />}
+								<Text mt={'-1rem'} size="xs" ta="center">
 									{t('Dashboard.adDisclaimer')}
 								</Text>
 							</Stack>
