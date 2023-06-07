@@ -30,6 +30,7 @@ import { useState } from 'react';
 import { WindowMaximize } from 'tabler-icons-react';
 import BetaBanner from '../components/BetaBanner';
 import ChatisAd from '../components/chatisad';
+import OuraBotAd from '../components/ourabotad';
 import { Footer } from '../components/Footer';
 import LoadingPage, { LoadingSpinner } from '../components/Loading';
 import MediaControls from '../components/MediaControls';
@@ -378,7 +379,7 @@ export default function Dashboard() {
 						// eventually, make it so that is randomly shows a different ad each time
 						<Center>
 							<Stack>
-								<ChatisAd />
+								{Math.random() > 0.5 ? <ChatisAd /> : <OuraBotAd />}
 								<Text mt={'-2.5rem'} size="xs" ta="center">
 									{t('Dashboard.adDisclaimer')}
 								</Text>
