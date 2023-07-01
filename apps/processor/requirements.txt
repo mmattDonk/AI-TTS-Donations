@@ -6,5 +6,5 @@ pusher ==3.3.2
 pydub==0.25.1
 python_dotenv ==1.0.0
 rich ==13.4.1
-sentry-sdk==1.25.1
+sentry-sdk==1.26.0
 wheel==0.40.0
