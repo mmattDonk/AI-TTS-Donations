@@ -3,6 +3,7 @@
 
 generator ts {
   provider = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
