@@ -31,6 +31,7 @@
 		"@trpc/next": "^10",
 		"@trpc/react-query": "^10",
 		"@trpc/server": "^10",
+		"@upstash/redis": "^1.22.0",
 		"@vercel/analytics": "^1.0.0",
 		"embla-carousel-autoplay": "^7.0.3",
 		"embla-carousel-react": "^7.0.3",
