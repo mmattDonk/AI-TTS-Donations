@@ -1,18 +1,13 @@
 // mmattDonk 2023
 // https://mmattDonk.com
 
-import { Redis } from '@upstash/redis';
-import https from 'https';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { createClient } from 'redis';
 import { env } from '../../../../utils/env';
 import prismaClient from '../../../../utils/prisma';
 
-const redis = new Redis({
-	url: process.env.REDIS_URL ?? '',
-	token: process.env.REDIS_TOKEN ?? '',
-	agent: new https.Agent({
-		keepAlive: true,
-	}),
+const redis = createClient({
+	url: process.env.REDIS_URL,
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -25,6 +20,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		return;
 	}
 
+	await redis.connect();
+
 	const { overlayId } = req.query;
 
 	if (req.method === 'GET') {
@@ -33,8 +30,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		if (redisCache) {
 			res.status(200).json({
 				message: 'streamer found!',
-				streamer: redisCache,
+				streamer: JSON.parse(redisCache),
 			});
+			await redis.disconnect();
 			return;
 		}
 	}
@@ -60,9 +58,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	streamer.user.email = null;
 	if (req.method === 'GET') {
 		await redis.set(overlayId as string, JSON.stringify(streamer), {
-			ex: 60 * 5,
+			EX: 60 * 5,
 		});
 	}
+
+	await redis.disconnect();
+
 	switch (req.method) {
 		case 'GET':
 			console.debug(overlayId);
