@@ -2,6 +2,7 @@
 	"beta": {
 		"header": "Сайт находится в стадии бета-тестирования. Пожалуйста, сообщайте нам о найденных недоработках и получайте помощь в нашем <discordLink>mmattDonk Discord сервере</discordLink>."
 	},
+	"shutdown": "Solrock is shutting down on 8/1/2023, read the announcement <discordLink>in our Discord server</discordLink>.",
 	"loading": "Loading...",
 	"close": "Закрыть",
 	"open": "Открыть",
