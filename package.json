@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "https://solrock.mmattdonk.com/",
 	"private": true,
-	"packageManager": "pnpm@7.33.0",
+	"packageManager": "pnpm@7.33.3",
 	"scripts": {
 		"backend": "pnpm --filter @solrock/backend run",
 		"doc": "pnpm --filter @solrock/docs run",
@@ -22,7 +22,7 @@
 	"license": "AGPL-3",
 	"devDependencies": {
 		"prettier": "^2.7.1",
-		"vercel": "^30.0.0"
+		"vercel": "^31.0.0"
 	},
 	"dependencies": {
 		"envsafe": "^2.0.3",

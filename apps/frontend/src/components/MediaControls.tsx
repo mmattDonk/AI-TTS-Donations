@@ -8,14 +8,13 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Rotate } from 'tabler-icons-react';
 import { trpc } from '../utils/trpc';
-import LoadingPage, { LoadingSpinner } from './Loading';
+import { LoadingSpinner } from './Loading';
 
 export default function MediaControls() {
 	const ttsMutation = trpc.tts.retriggerTts.useMutation();
 
 	const [showTable, setShowTable] = useState(false);
 
-	const { data: session, isLoading: isSessionLoading } = trpc.auth.getSession.useQuery();
 	const { data: userData, isLoading } = trpc.user.getUser.useQuery();
 	const { data: ttsMessages, isLoading: isTtsMessagesLoading } = trpc.tts.getRecentMessages.useQuery({
 		streamerId: userData?.streamers[0]?.id ?? '',
@@ -65,9 +64,7 @@ export default function MediaControls() {
 		}
 	};
 
-	if (isSessionLoading) return <LoadingPage />;
-
-	if (!session && !isSessionLoading) {
+	if (!userData && !isLoading) {
 		return (
 			<Container
 				style={{
@@ -87,7 +84,7 @@ export default function MediaControls() {
 				</Stack>
 			</Container>
 		);
-	} else if (session) {
+	} else if (userData) {
 		return isTtsMessagesLoading ? (
 			<LoadingSpinner />
 		) : (
@@ -155,6 +152,7 @@ export default function MediaControls() {
 				</Collapse>
 			</div>
 		);
+	} else {
+		<LoadingSpinner />;
 	}
-	return <LoadingPage />;
 }

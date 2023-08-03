@@ -2,8 +2,14 @@
 // https://mmattDonk.com
 
 import { NextApiRequest, NextApiResponse } from 'next';
+import { createClient } from 'redis';
 import { env } from '../../../../utils/env';
 import prismaClient from '../../../../utils/prisma';
+
+const redis = createClient({
+	url: process.env.REDIS_URL,
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if secret not in request headers, return unauthorized
 	if (!req.headers.secret) {
@@ -14,7 +20,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		return;
 	}
 
+	await redis.connect();
+
 	const { overlayId } = req.query;
+
+	if (req.method === 'GET') {
+		const redisCache = await redis.get(overlayId as string);
+
+		if (redisCache) {
+			res.status(200).json({
+				message: 'streamer found!',
+				streamer: JSON.parse(redisCache),
+			});
+			await redis.disconnect();
+			return;
+		}
+	}
+
 	console.debug(overlayId);
 	const streamer = await prismaClient.streamer.findFirst({
 		where: {
@@ -34,6 +56,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 	// filter out the email field from the user object
 	streamer.user.email = null;
+	if (req.method === 'GET') {
+		await redis.set(overlayId as string, JSON.stringify(streamer), {
+			EX: 60 * 5,
+		});
+	}
+
+	await redis.disconnect();
 
 	switch (req.method) {
 		case 'GET':

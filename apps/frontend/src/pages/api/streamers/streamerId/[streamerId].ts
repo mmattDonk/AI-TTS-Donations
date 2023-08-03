@@ -2,8 +2,13 @@
 // https://mmattDonk.com
 
 import { NextApiRequest, NextApiResponse } from 'next';
+import { createClient } from 'redis';
 import { env } from '../../../../utils/env';
 import prismaClient from '../../../../utils/prisma';
+
+const redis = createClient({
+	url: process.env.REDIS_URL,
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if secret not in request headers, return unauthorized
@@ -16,6 +21,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	}
 
 	const { streamerId } = req.query;
+	await redis.connect();
+
+	const redisCache = await redis.get(streamerId as string);
+
+	if (redisCache) {
+		res.status(200).json({
+			message: 'streamer found!',
+			streamer: JSON.parse(redisCache),
+		});
+		await redis.disconnect();
+		return;
+	}
+
 	console.debug(streamerId);
 	const streamer = await prismaClient.streamer.findFirst({
 		where: {
@@ -33,14 +51,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			config: true,
 		},
 	});
-
 	if (!streamer) {
 		res.status(404).json({ message: 'Streamer not found' });
 		return;
 	}
+	streamer.user.email = null;
+	await redis.set(streamerId as string, JSON.stringify(streamer), {
+		EX: 60 * 5,
+	});
 
 	// filter out the email field from the user object
-	streamer.user.email = null;
+	await redis.disconnect();
 
 	switch (req.method) {
 		// "GET" / "POST" routing, only using GET for now.

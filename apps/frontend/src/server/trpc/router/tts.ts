@@ -37,7 +37,6 @@ export const ttsRouter = router({
 				return;
 			}
 			try {
-				console.log('retriggering', audioUrl, 'for', overlayId);
 				pusher.trigger(overlayId, 'skip-tts', {});
 				pusher.trigger(overlayId, 'new-file', { file: audioUrl });
 			} catch (e) {
