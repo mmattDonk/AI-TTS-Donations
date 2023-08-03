@@ -15,7 +15,7 @@ export default function BetaBanner() {
 			</Badge>
 			<Badge color="red">
 				{t.rich('shutdown', {
-					discordLink: (children) => <a href="https://discord.gg/VUAjRrkZVJ">{children}</a>,
+					discordLink: (children) => <a href="https://matt.paste.lol/ripsolrock.md/markup">{children}</a>,
 				})}
 			</Badge>
 		</Stack>
