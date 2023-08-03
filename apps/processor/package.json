@@ -4,7 +4,7 @@
 	"description": "python audio processor.",
 	"main": "index.js",
 	"scripts": {
-		"dev": "functions-framework --target=hello_http"
+		"dev": "python3 -m functions_framework --target=hello_http"
 	},
 	"keywords": [],
 	"author": "mmattbtw <matt@mmatt.net>",
