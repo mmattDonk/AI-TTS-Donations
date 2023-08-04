@@ -3,6 +3,7 @@
 		"header": "Ce site est actuellement en BETA. Vous pouvez reporter les bugs et demander de l'aide sur le <discordLink>Discord de mmattDonk</discordLink>."
 	},
 	"shutdown": "Solrock is shutting down on 10/1/2023, read the announcement <discordLink>here</discordLink>.",
+	"ttsmonster": "The best alternative to Solrock is <ttsmonsterLink>TTS.Monster</ttsmonsterLink>!",
 	"loading": "Loading...",
 	"close": "Fermer",
 	"open": "Ouvrir",
