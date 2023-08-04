@@ -18,6 +18,11 @@ export default function BetaBanner() {
 					discordLink: (children) => <a href="https://matt.paste.lol/ripsolrock.md/markup">{children}</a>,
 				})}
 			</Badge>
+			<Badge color="green">
+				{t.rich('ttsmonster', {
+					ttsmonsterLink: (children) => <a href="https://tts.monster/?ref=solrock">{children}</a>,
+				})}
+			</Badge>
 		</Stack>
 	);
 }
