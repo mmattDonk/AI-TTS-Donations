@@ -21,7 +21,7 @@
 	"author": "mmattbtw <matt@mmatt.net>",
 	"license": "AGPL-3",
 	"devDependencies": {
-		"prettier": "^2.7.1",
+		"prettier": "^3.0.0",
 		"vercel": "^31.0.0"
 	},
 	"dependencies": {
