@@ -1,7 +1,7 @@
 functions-framework==3.*
 google-cloud-storage==2.10.0
 httpx == 1.0.0b0
-pedalboard==0.7.4
+pedalboard==0.8.7
 pusher ==3.3.2
 pydub==0.25.1
 python_dotenv ==1.0.0
