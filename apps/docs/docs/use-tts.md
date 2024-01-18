@@ -123,5 +123,3 @@ You can also chain together these effects! Like this: `drake.pitchup.reverb` or 
 ```
 kanye-west-rap.pitchup.reverb: woah we are in a big room and my voice sounds so high || drake.pitchdown.reverb: yeah? well we are in the same room and my voice sounds lower || spongebob.reverb.loud: i am in the same room but i am really loud. i am going to scream now. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 ```
-
-[![Powered By Vercel](/poweredbyvercel.svg)](https://vercel.com?utm_source=mmattDonk&utm_campaign=oss)

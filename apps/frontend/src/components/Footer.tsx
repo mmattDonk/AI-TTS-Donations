@@ -89,18 +89,6 @@ export function Footer() {
 					),
 				})}
 			</Container>
-			<div
-				style={{
-					display: 'flex',
-					justifyContent: 'center',
-				}}
-			>
-				<Container className={classes.inner}>
-					<a href="https://vercel.com?utm_source=mmattDonk&utm_campaign=oss" target="_blank">
-						<Image alt="Powered by Vercel" height={40} width={200} src="/poweredbyvercel.svg" />
-					</a>
-				</Container>
-			</div>
 		</div>
 	);
 }
