@@ -26,5 +26,3 @@ The best alternative to Solrock is [TTS.monster](https://tts.monster/?from=solro
 Each app has its own README.md with more information on how to run and get started, however you will most likely want to run all of the apps at once. After setting up
 each app, run `pnpm dev` in the root directory to start all of the apps at once using concurrently. You can start each app individually from the root directory by running
 `pnpm <app name> <command>` (e.g. `pnpm backend dev`).
-
-[![Powered By Vercel](/apps/frontend/public/poweredbyvercel.svg)](https://vercel.com?utm_source=mmattDonk&utm_campaign=oss)

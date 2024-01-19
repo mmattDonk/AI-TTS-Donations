@@ -40,5 +40,3 @@ First off, if you haven't already, you should go to [Dashboard setup if you have
 8. Click the `Close` button.
 
 9. Done! You should now be able to hear your audio in OBS.
-
-[![Powered By Vercel](/poweredbyvercel.svg)](https://vercel.com?utm_source=mmattDonk&utm_campaign=oss)
