@@ -2,7 +2,8 @@
 	"beta": {
 		"header": "Ta strona internetowa jest w wersji BETA. Jeżeli potrzebujesz pomocy albo chcesz zgłosić jakiś błąd napisz <discordLink>na serwerze Discord mmattDonk</discordLink>."
 	},
-	"shutdown": "Solrock is shutting down on 8/1/2023, read the announcement <discordLink>here</discordLink>.",
+	"shutdown": "Solrock is shutting down on 10/1/2023, read the announcement <discordLink>here</discordLink>.",
+	"ttsmonster": "The best alternative to Solrock is <ttsmonsterLink>TTS.Monster</ttsmonsterLink>!",
 	"loading": "Loading...",
 	"close": "Zamknij",
 	"open": "Otwórz",

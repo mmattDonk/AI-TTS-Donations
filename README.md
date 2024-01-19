@@ -2,7 +2,11 @@
 
 The first 100% **free** AI TTS service for Twitch.
 
-Currently in development. Available for beta usage: https://solrock.mmattDonk.com
+## The official instance of Solrock is shutting down.
+
+With this being said, support for Solrock is coming to a close.
+
+The best alternative to Solrock is [TTS.monster](https://tts.monster/?from=solrock)
 
 ## Project Structure
 
