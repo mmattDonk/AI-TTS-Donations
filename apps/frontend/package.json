@@ -35,7 +35,7 @@
 		"embla-carousel-autoplay": "^7.0.3",
 		"embla-carousel-react": "^7.0.3",
 		"framer-motion": "^10.0.0",
-		"next": "^13.0.2",
+		"next": "^13.5.1",
 		"next-auth": "^4.8.0",
 		"next-intl": "^2.7.5",
 		"pusher": "^5.1.1-beta",
